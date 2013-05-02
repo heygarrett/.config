@@ -8,7 +8,7 @@ PS1="Vanellope\$PWD $ "
 set -o vi
 
 export NODE_PATH="/usr/local/lib/node"
-export PATH="$PATH:$HOME/.cabal/bin:/usr/local/share/npm/bin:/usr/local/share/python"
+export PATH="$PATH:$HOME/.cabal/bin:/usr/local/share/npm/bin"
 
 source ~/.local/bin/bashmarks.sh
 
