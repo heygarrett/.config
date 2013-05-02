@@ -20,7 +20,6 @@ nnoremap <Leader>p :set paste! paste?<CR>
 "  displaying text
 " -------------------------------------------------------------------------------- 
 colorscheme solarized
-set background=dark
 set t_Co=256
 set scrolloff=3
 set number       " show line numbers
