@@ -16,9 +16,6 @@
 [submodule "vim/bundle/fugitive"]
 	path = vim/bundle/fugitive
 	url = git://github.com/tpope/vim-fugitive.git
-[submodule "vim/bundle/autocomplpop"]
-	path = vim/bundle/autocomplpop
-	url = git://github.com/vim-scripts/AutoComplPop.git
 [submodule "vim/bundle/cocoa"]
 	path = vim/bundle/cocoa
 	url = git://github.com/msanders/cocoa.vim.git
