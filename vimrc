@@ -38,6 +38,8 @@ set cursorline
 "  multiple windows
 " --------------------------------------------------------------------------------  
 set laststatus=2 " always show status line
+set splitbelow
+set splitright
 
 " -------------------------------------------------------------------------------- 
 "  multiple tab pages
@@ -118,6 +120,7 @@ set smarttab
 "  mapping
 " -------------------------------------------------------------------------------- 
 inoremap jj <Esc>
+inoremap JJ <Esc>
 inoremap ,/ </<C-X><C-O>
 nmap j gj
 nmap k gk
@@ -159,5 +162,7 @@ set undolevels=500 " changes to be remembered
 " -------------------------------------------------------------------------------- 
 " Launches neocomplcache automatically on vim startup.
 let g:neocomplcache_enable_at_startup = 1
+" <CR>: close popup and save indent.
+inoremap <expr><CR> neocomplcache#smart_close_popup() . "\<CR>"
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
