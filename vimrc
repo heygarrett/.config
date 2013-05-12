@@ -20,11 +20,15 @@ nnoremap <Leader>p :set paste! paste?<CR>
 "  displaying text
 " -------------------------------------------------------------------------------- 
 colorscheme solarized
-if strftime("%H") > 5 && strftime("%H") < 17
+if strftime("%H") >= 5 && strftime("%H") <= 17
   set background=light
 else
   set background=dark
 endif
+if has("autocmd")
+  autocmd bufwritepost * source ~/.vimrc
+endif
+
 set t_Co=256
 set scrolloff=3
 set number       " show line numbers
