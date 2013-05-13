@@ -20,7 +20,7 @@ nnoremap <Leader>p :set paste! paste?<CR>
 "  displaying text
 " -------------------------------------------------------------------------------- 
 colorscheme solarized
-if strftime("%H") >= 5 && strftime("%H") <= 17
+if strftime("%H") >= 5 && strftime("%H") < 17
   set background=light
 else
   set background=dark
