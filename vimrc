@@ -28,6 +28,7 @@ endif
 if has("autocmd")
   autocmd bufwritepost * source ~/.vimrc
 endif
+call togglebg#map("<F5>")
 
 set t_Co=256
 set scrolloff=3
@@ -122,6 +123,8 @@ set smarttab
 "  folding
 " -------------------------------------------------------------------------------- 
 set fdm=manual
+autocmd BufWinLeave *.* mkview
+autocmd BufWinEnter *.* silent loadview 
 
 " -------------------------------------------------------------------------------- 
 "  diff mode
