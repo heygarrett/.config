@@ -25,9 +25,9 @@ if strftime("%H") >= 5 && strftime("%H") < 17
 else
   set background=dark
 endif
-if has("autocmd")
-  autocmd bufwritepost * source ~/.vimrc
-endif
+" if has("autocmd")
+"   autocmd bufwritepost * source ~/.vimrc
+" endif
 call togglebg#map("<F5>")
 
 set t_Co=256
@@ -98,6 +98,8 @@ set showmatch   " show matching braces when typed or under cursor
 set matchtime=2 " length of time for 'showmatch'
 set backspace=start,indent,eol     " make backspace work like 'normal' text editors
 set ofu=syntaxcomplete#Complete " omni completion
+" Disable autocommenting after <CR>
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " When editing a file, always jump to the last cursor position
 if has("autocmd") 
