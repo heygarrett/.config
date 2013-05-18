@@ -3,10 +3,17 @@
 " --------------------------------------------------------------------------------
 runtime bundle/pathogen/autoload/pathogen.vim
 execute pathogen#infect()
+
 set nocompatible
+
 " set paste to prevent unexpected code formatting when pasting text
 " toggle paste and show current value ('pastetoggle' doesn't)
 nnoremap <Leader>p :set paste! paste?<CR>
+
+" Source the vimrc file after saving it
+if has("autocmd")
+  autocmd bufwritepost .vimrc source %
+endif
 
 " -------------------------------------------------------------------------------- 
 "  moving around, searching, and patterns
@@ -58,6 +65,7 @@ set number       " show line numbers
 " -------------------------------------------------------------------------------- 
 filetype plugin indent on   " let vim detect filetype and load appropriate scripts
 syntax enable    " enable syntax highlighting and allow custom highlighting
+set spell
 set hlsearch    " highlight search terms
 set ignorecase  " ignore case in searches
 set smartcase   " unless there are caps in the search
@@ -198,6 +206,8 @@ set undolevels=500 " changes to be remembered
 " -------------------------------------------------------------------------------- 
 " Launches neocomplcache automatically on vim startup.
 let g:neocomplcache_enable_at_startup = 1
+" Disable neocomplcache for txt files
+autocmd FileType text NeoComplCacheLock
 " <CR>: close popup and save indent.
 inoremap <expr><CR> neocomplcache#smart_close_popup() . "\<CR>"
 " <TAB>: completion.
