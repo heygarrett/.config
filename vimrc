@@ -19,15 +19,34 @@ nnoremap <Leader>p :set paste! paste?<CR>
 " -------------------------------------------------------------------------------- 
 "  displaying text
 " -------------------------------------------------------------------------------- 
+" Set colorscheme to solarized
 colorscheme solarized
-if strftime("%H") >= 5 && strftime("%H") < 17
-  set background=light
-else
-  set background=dark
+ 
+" Change the Solarized background to dark or light depending upon the time of 
+" day (5 refers to 5AM and 17 to 5PM). Change the background only if it is not 
+" already set to the value we want.
+function! SetSolarizedBackground()
+    if strftime("%H") >= 5 && strftime("%H") < 17 
+        if &background != 'light'
+            set background=light
+        endif
+    else
+        if &background != 'dark'
+            set background=dark
+        endif
+    endif
+endfunction
+
+" Set background on launch
+call SetSolarizedBackground()
+ 
+" Every time you save a file, call the function to check the time and change 
+" the background (if necessary).
+if has("autocmd")
+    autocmd bufwritepost * call SetSolarizedBackground()
 endif
-" if has("autocmd")
-"   autocmd bufwritepost * source ~/.vimrc
-" endif
+
+" Toggle Solarized background
 call togglebg#map("<F5>")
 
 set t_Co=256
@@ -98,6 +117,7 @@ set showmatch   " show matching braces when typed or under cursor
 set matchtime=2 " length of time for 'showmatch'
 set backspace=start,indent,eol     " make backspace work like 'normal' text editors
 set ofu=syntaxcomplete#Complete " omni completion
+
 " Disable autocommenting after <CR>
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
