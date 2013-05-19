@@ -165,17 +165,7 @@ set nofoldenable      " set to display all folds open
 " -------------------------------------------------------------------------------- 
 "  mapping
 " -------------------------------------------------------------------------------- 
-" disable arrow keys -- don't be a bitch
-map   <up>    <nop>
-map   <down>  <nop>
-map   <left>  <nop>
-map   <right> <nop>
-imap  <up>    <nop>
-imap  <down>  <nop>
-imap  <left>  <nop>
-imap  <right> <nop>
-
-inoremap jj <Esc>   " Escape with double j
+inoremap jj <Esc>
 inoremap ,/ </<C-X><C-O>
 nmap j gj
 nmap k gk
@@ -218,8 +208,10 @@ set wildmenu    " use menu for command line completion
 " -------------------------------------------------------------------------------- 
 " Launches neocomplcache automatically on vim startup.
 let g:neocomplcache_enable_at_startup = 1
-" Disable neocomplcache for txt files
+" Disable neocomplcache for specific files
 autocmd FileType text NeoComplCacheLock
+autocmd FileType C NeoComplCacheLock
+autocmd FileType C++ NeoComplCacheLock
 " <CR>: close popup and save indent.
 inoremap <expr><CR> neocomplcache#smart_close_popup() . "\<CR>"
 " <TAB>: completion.
