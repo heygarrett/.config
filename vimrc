@@ -210,8 +210,6 @@ set wildmenu    " use menu for command line completion
 let g:neocomplcache_enable_at_startup = 1
 " Disable neocomplcache for specific files
 autocmd FileType text NeoComplCacheLock
-autocmd FileType C NeoComplCacheLock
-autocmd FileType C++ NeoComplCacheLock
 " <CR>: close popup and save indent.
 inoremap <expr><CR> neocomplcache#smart_close_popup() . "\<CR>"
 " <TAB>: completion.
