@@ -18,6 +18,7 @@ endif
 " -------------------------------------------------------------------------------- 
 "  moving around, searching, and patterns
 " -------------------------------------------------------------------------------- 
+set incsearch   " highlight search while typing search pattern
 
 " -------------------------------------------------------------------------------- 
 "  tags
@@ -56,6 +57,7 @@ endif
 " Toggle Solarized background
 call togglebg#map("<F5>")
 
+set linebreak   " wrap long lines at a blank
 set t_Co=256
 set scrolloff=3
 set number       " show line numbers
@@ -152,9 +154,9 @@ set smarttab
 " -------------------------------------------------------------------------------- 
 "  folding
 " -------------------------------------------------------------------------------- 
-set fdm=manual
-autocmd BufWinLeave *.* mkview
-autocmd BufWinEnter *.* silent loadview 
+set fdm=indent
+set foldnestmax=3   " maximum fold depth
+set nofoldenable      " set to display all folds open
 
 " -------------------------------------------------------------------------------- 
 "  diff mode
@@ -163,8 +165,17 @@ autocmd BufWinEnter *.* silent loadview
 " -------------------------------------------------------------------------------- 
 "  mapping
 " -------------------------------------------------------------------------------- 
-inoremap jj <Esc>
-inoremap JJ <Esc>
+" disable arrow keys -- don't be a bitch
+map   <up>    <nop>
+map   <down>  <nop>
+map   <left>  <nop>
+map   <right> <nop>
+imap  <up>    <nop>
+imap  <down>  <nop>
+imap  <left>  <nop>
+imap  <right> <nop>
+
+inoremap jj <Esc>   " Escape with double j
 inoremap ,/ </<C-X><C-O>
 nmap j gj
 nmap k gk
@@ -172,7 +183,7 @@ nmap k gk
 " -------------------------------------------------------------------------------- 
 "  reading and writing files
 " -------------------------------------------------------------------------------- 
-set fileformats=unix,dos,mac " try recognizing line endings in this order
+set fileformats=unix,dos,mac    " try recognizing line endings in this order
 
 " -------------------------------------------------------------------------------- 
 "  the swap file
@@ -182,8 +193,9 @@ set noswapfile
 " -------------------------------------------------------------------------------- 
 "  command line editing
 " -------------------------------------------------------------------------------- 
-set history=500    " history of commands and searches
-set undolevels=500 " changes to be remembered
+set history=1000    " history of commands and searches
+set undolevels=1000 " changes to be remembered
+set wildmenu    " use menu for command line completion
 
 " -------------------------------------------------------------------------------- 
 "  executing external commands
