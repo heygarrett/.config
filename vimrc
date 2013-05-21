@@ -21,7 +21,7 @@ inoremap <expr><CR> neocomplcache#smart_close_popup() . "\<CR>"
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
-set nocompatible    " Don't act like vi
+set nocompatible    " Better safe than sorry
 
 " set paste to prevent unexpected code formatting when pasting text
 " toggle paste and show current value ('pastetoggle' doesn't)
