@@ -1,8 +1,15 @@
 " -------------------------------------------------------------------------------- 
 "  important
 " --------------------------------------------------------------------------------
+" Pathogen
 runtime bundle/pathogen/autoload/pathogen.vim
 execute pathogen#infect()
+
+" Powerline
+set rtp+=/Users/Garrett/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim
+if has("gui_running")
+    set guifont=Monaco\ for\ Powerline:h11
+endif
 
 set nocompatible
 
