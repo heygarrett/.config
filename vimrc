@@ -5,13 +5,23 @@
 runtime bundle/pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 
-" Powerline
+" Enable Powerline
 set rtp+=/Users/Garrett/Library/Python/2.7/lib/python/site-packages/powerline/bindings/vim
+" Fix Powerline in MacVim
 if has("gui_running")
     set guifont=Monaco\ for\ Powerline:h11
 endif
 
-set nocompatible
+" Launches neocomplcache automatically on vim startup.
+let g:neocomplcache_enable_at_startup = 1
+" Disable neocomplcache for specific files
+autocmd FileType text NeoComplCacheLock
+" <CR>: close popup and save indent.
+inoremap <expr><CR> neocomplcache#smart_close_popup() . "\<CR>"
+" <TAB>: completion.
+inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
+set nocompatible    " Don't act like vi
 
 " set paste to prevent unexpected code formatting when pasting text
 " toggle paste and show current value ('pastetoggle' doesn't)
@@ -213,11 +223,3 @@ set wildmenu    " use menu for command line completion
 " -------------------------------------------------------------------------------- 
 "  various
 " -------------------------------------------------------------------------------- 
-" Launches neocomplcache automatically on vim startup.
-let g:neocomplcache_enable_at_startup = 1
-" Disable neocomplcache for specific files
-autocmd FileType text NeoComplCacheLock
-" <CR>: close popup and save indent.
-inoremap <expr><CR> neocomplcache#smart_close_popup() . "\<CR>"
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
