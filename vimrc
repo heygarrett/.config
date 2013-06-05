@@ -20,6 +20,8 @@ autocmd FileType text NeoComplCacheLock
 inoremap <expr><CR> neocomplcache#smart_close_popup() . "\<CR>"
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" Enable python completion
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 
 set nocompatible    " Better safe than sorry
 
@@ -143,7 +145,7 @@ endif
 set showmatch   " show matching braces when typed or under cursor
 set matchtime=2 " length of time for 'showmatch'
 set backspace=start,indent,eol     " make backspace work like 'normal' text editors
-set ofu=syntaxcomplete#Complete " omni completion
+set omnifunc=syntaxcomplete#Complete " omni completion
 
 " Disable autocommenting after <CR>
 autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
