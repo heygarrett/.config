@@ -122,7 +122,7 @@ set mouse=a
 " -------------------------------------------------------------------------------- 
 set ruler        " always show current position
 set showcmd      " show the command being typed
-set showmode     " show current mode (insert, visual, etc.)
+set noshowmode   " let powerline show current mode (insert, visual, etc.)
 
 " -------------------------------------------------------------------------------- 
 "  selecting text
@@ -142,13 +142,13 @@ endif
 " -------------------------------------------------------------------------------- 
 "  editing text
 " -------------------------------------------------------------------------------- 
-set showmatch   " show matching braces when typed or under cursor
-set matchtime=2 " length of time for 'showmatch'
-set backspace=start,indent,eol     " make backspace work like 'normal' text editors
-set omnifunc=syntaxcomplete#Complete " omni completion
+set showmatch                           " show matching braces when typed or under cursor
+set matchtime=2                         " length of time for 'showmatch'
+set backspace=start,indent,eol          " make backspace work like 'normal' text editors
+set omnifunc=syntaxcomplete#Complete    " omni completion
 
-" Disable autocommenting after <CR>
-autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
+" Disable autocommenting after <CR> (//)
+autocmd FileType c,cpp setlocal comments-=:// comments+=f://
 
 " When editing a file, always jump to the last cursor position
 if has("autocmd") 
