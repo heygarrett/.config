@@ -1,20 +1,14 @@
-if [ -f /etc/profile ]; then
-    PATH=""
-    source /etc/profile
-fi
-
+### Custom Terminal prompt
 PS1="Vanellope\$PWD $ "
 
+### Set bash to vi mode
 set -o vi
 
-export NODE_PATH="/usr/local/lib/node"
-export PATH="$PATH:$HOME/.cabal/bin:/usr/local/share/npm/bin"
-
+### Provide bashmarks functionality
 source ~/.local/bin/bashmarks.sh
 
+### Change history format in terminal
 export HISTTIMEFORMAT="%d/%m/%y %T "
 
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+### Changes to PATH
+export PATH="/usr/local/bin:/usr/local/heroku/bin:$PATH:/usr/local/sbin:$HOME/.cabal/bin:/usr/local/share/npm/bin:/usr/local/opt/ruby/bin"
