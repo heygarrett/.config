@@ -1,15 +1,6 @@
-[submodule "vim/bundle/pathogen"]
-	path = vim/bundle/pathogen
-	url = git://github.com/tpope/vim-pathogen.git
 [submodule "vim/bundle/solarized"]
 	path = vim/bundle/solarized
 	url = git://github.com/altercation/vim-colors-solarized.git
-[submodule "vim/bundle/ctrlp"]
-	path = vim/bundle/ctrlp
-	url = git://github.com/kien/ctrlp.vim.git
-[submodule "vim/bundle/fugitive"]
-	path = vim/bundle/fugitive
-	url = git://github.com/tpope/vim-fugitive.git
 [submodule "vim/bundle/cocoa"]
 	path = vim/bundle/cocoa
 	url = git://github.com/msanders/cocoa.vim.git
@@ -19,3 +10,12 @@
 [submodule "vim/bundle/lightline"]
 	path = vim/bundle/lightline
 	url = git@github.com:itchyny/lightline.vim.git
+[submodule "vim/bundle/neocomplete"]
+	path = vim/bundle/neocomplete
+	url = git@github.com:Shougo/neocomplete.vim.git
+[submodule "vim/bundle/ctrlp"]
+	path = vim/bundle/ctrlp
+	url = git@github.com:kien/ctrlp.vim.git
+[submodule "vim/bundle/pathogen"]
+	path = vim/bundle/pathogen
+	url = git@github.com:tpope/vim-pathogen.git
