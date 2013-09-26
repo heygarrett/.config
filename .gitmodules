@@ -19,6 +19,6 @@
 [submodule "vim/bundle/cocoa"]
 	path = vim/bundle/cocoa
 	url = git://github.com/msanders/cocoa.vim.git
-[submodule "vim/bundle/powerline"]
-	path = vim/bundle/powerline
-	url = git@github.com:Lokaltog/vim-powerline.git
+[submodule "vim/bundle/airline"]
+	path = vim/bundle/airline
+	url = https://github.com/bling/vim-airline

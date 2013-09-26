@@ -10,5 +10,8 @@ source ~/.local/bin/bashmarks.sh
 ### Change history format in terminal
 export HISTTIMEFORMAT="%d/%m/%y %T "
 
+### Set solarized background color
+colorize
+
 ### Changes to PATH
-export PATH="/usr/local/bin:/usr/local/heroku/bin:$PATH:/usr/local/sbin:$HOME/.cabal/bin:/usr/local/share/npm/bin:/usr/local/opt/ruby/bin"
+export PATH="/usr/local/bin:$PATH:/usr/local/sbin"
