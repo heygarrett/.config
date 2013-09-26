@@ -16,9 +16,9 @@
 [submodule "vim/bundle/cocoa"]
 	path = vim/bundle/cocoa
 	url = git://github.com/msanders/cocoa.vim.git
-[submodule "vim/bundle/airline"]
-	path = vim/bundle/airline
-	url = https://github.com/bling/vim-airline
 [submodule "vim/bundle/syntastic"]
 	path = vim/bundle/syntastic
 	url = git@github.com:scrooloose/syntastic.git
+[submodule "vim/bundle/lightline"]
+	path = vim/bundle/lightline
+	url = git@github.com:itchyny/lightline.vim.git
