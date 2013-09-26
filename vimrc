@@ -7,12 +7,12 @@ execute pathogen#infect()
 
 " lightline
 let g:lightline = {
-      \ 'colorscheme': 'wombat',
+      \ 'colorscheme': 'solarized',
       \ 'component': {
-      \   'readonly': '%{&readonly?"[]":""}',
+      \   'readonly': '%{&readonly?"⭤":""}',
       \ },
-      \ 'separator': { 'left': '[]', 'right': '[]' },
-      \ 'subseparator': { 'left': '[]', 'right': '[]' }
+      \ 'separator': { 'left': '⮀', 'right': '⮂' },
+      \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
       \ }
 
 " Launches neocomplcache automatically on vim startup.
