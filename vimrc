@@ -5,8 +5,15 @@
 runtime bundle/pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 
-" airline
-let g:airline_powerline_fonts = 1
+" lightline
+let g:lightline = {
+      \ 'colorscheme': 'wombat',
+      \ 'component': {
+      \   'readonly': '%{&readonly?"[]":""}',
+      \ },
+      \ 'separator': { 'left': '[]', 'right': '[]' },
+      \ 'subseparator': { 'left': '[]', 'right': '[]' }
+      \ }
 
 " Launches neocomplcache automatically on vim startup.
 let g:neocomplcache_enable_at_startup = 1
