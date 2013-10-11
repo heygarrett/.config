@@ -16,11 +16,11 @@ let g:lightline = {
       \ }
 
 " Launches neocomplcache automatically on vim startup.
-let g:neocomplcache_enable_at_startup = 1
+let g:neocomplete#enable_at_startup = 1
 " Disable neocomplcache for specific files
 autocmd FileType text NeoComplCacheLock
 " <CR>: close popup and save indent.
-inoremap <expr><CR> neocomplcache#smart_close_popup() . "\<CR>"
+inoremap <expr><CR> neocomplete#smart_close_popup() . "\<CR>"
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " Enable python completion
