@@ -15,16 +15,16 @@ let g:lightline = {
       \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
       \ }
 
-" Launches neocomplcache automatically on vim startup.
-let g:neocomplete#enable_at_startup = 1
-" Disable neocomplcache for specific files
-autocmd FileType text NeoComplCacheLock
-" <CR>: close popup and save indent.
-inoremap <expr><CR> neocomplete#smart_close_popup() . "\<CR>"
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" Enable python completion
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+" " Launches neocomplcache automatically on vim startup.
+" let g:neocomplete#enable_at_startup = 1
+" " Disable neocomplcache for specific files
+" autocmd FileType text NeoComplCacheLock
+" " <CR>: close popup and save indent.
+" inoremap <expr><CR> neocomplete#smart_close_popup() . "\<CR>"
+" " <TAB>: completion.
+" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+" " Enable python completion
+" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 
 set nocompatible    " Better safe than sorry
 
@@ -72,9 +72,9 @@ call SetSolarizedBackground()
  
 " Every time you save a file, call the function to check the time and change 
 " the background (if necessary).
-" if has("autocmd")
-"     autocmd bufwritepost * call SetSolarizedBackground()
-" endif
+if has("autocmd")
+    autocmd bufwritepost * call SetSolarizedBackground()
+endif
 
 " Toggle Solarized background
 call togglebg#map("<F5>")

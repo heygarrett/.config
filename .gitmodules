@@ -19,3 +19,6 @@
 [submodule "vim/bundle/pathogen"]
 	path = vim/bundle/pathogen
 	url = git@github.com:tpope/vim-pathogen.git
+[submodule "vim/bundle/youcompleteme"]
+	path = vim/bundle/youcompleteme
+	url = git@github.com:Valloric/YouCompleteMe.git
