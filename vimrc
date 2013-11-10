@@ -15,17 +15,6 @@ let g:lightline = {
       \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
       \ }
 
-" " Launches neocomplcache automatically on vim startup.
-" let g:neocomplete#enable_at_startup = 1
-" " Disable neocomplcache for specific files
-" autocmd FileType text NeoComplCacheLock
-" " <CR>: close popup and save indent.
-" inoremap <expr><CR> neocomplete#smart_close_popup() . "\<CR>"
-" " <TAB>: completion.
-" inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" " Enable python completion
-" autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-
 set nocompatible    " Better safe than sorry
 
 " set paste to prevent unexpected code formatting when pasting text

@@ -10,9 +10,6 @@
 [submodule "vim/bundle/lightline"]
 	path = vim/bundle/lightline
 	url = git@github.com:itchyny/lightline.vim.git
-[submodule "vim/bundle/neocomplete"]
-	path = vim/bundle/neocomplete
-	url = git@github.com:Shougo/neocomplete.vim.git
 [submodule "vim/bundle/ctrlp"]
 	path = vim/bundle/ctrlp
 	url = git@github.com:kien/ctrlp.vim.git
