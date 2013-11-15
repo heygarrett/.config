@@ -26,6 +26,3 @@
 	path = vim/bundle/youcompleteme
 	url = git@github.com:Valloric/YouCompleteMe.git
         ignore = dirty
-[submodule "vim/bundle/classpath"]
-	path = vim/bundle/classpath
-	url = git@github.com:tpope/vim-classpath.git
