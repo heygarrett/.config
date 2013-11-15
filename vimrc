@@ -15,9 +15,6 @@ let g:lightline = {
       \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
       \ }
 
-" javac
-g:syntastic_java_javac_executable (Default: 'javac')
-
 set nocompatible    " Better safe than sorry
 
 " set paste to prevent unexpected code formatting when pasting text
