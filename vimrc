@@ -77,6 +77,7 @@ set number       " show line numbers
 "  syntax, highlighting, and spelling
 " -------------------------------------------------------------------------------- 
 filetype plugin indent on   " let vim detect filetype and load appropriate scripts
+autocmd filetype php setlocal filetype=html
 syntax enable    " enable syntax highlighting and allow custom highlighting
 set spell
 set hlsearch    " highlight search terms
