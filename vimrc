@@ -15,6 +15,9 @@ let g:lightline = {
       \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
       \ }
 
+" indentLine
+let g:indentLine_char = "┆"
+
 set nocompatible    " Better safe than sorry
 
 " set paste to prevent unexpected code formatting when pasting text
