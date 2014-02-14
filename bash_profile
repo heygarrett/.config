@@ -14,4 +14,4 @@ export HISTTIMEFORMAT="%d/%m/%y %T "
 colorize
 
 ### Changes to PATH
-export PATH="/usr/local/bin:$PATH:/usr/local/sbin"
+export PATH="/usr/local/bin:$PATH:/usr/local/sbin:~/pebble-dev/PebbleSDK-2.0-BETA7/bin"
