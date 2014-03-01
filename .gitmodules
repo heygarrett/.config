@@ -21,3 +21,12 @@
 [submodule "vim/bundle/fugitive"]
 	path = vim/bundle/fugitive
 	url = git@github.com:tpope/vim-fugitive.git
+[submodule "vim/bundle/neocomplete"]
+	path = vim/bundle/neocomplete
+	url = git@github.com:Shougo/neocomplete.vim.git
+[submodule "vim/bundle/neosnippet"]
+	path = vim/bundle/neosnippet
+	url = git@github.com:Shougo/neosnippet.vim.git
+[submodule "vim/bundle/neosnippet-snippets"]
+	path = vim/bundle/neosnippet-snippets
+	url = git@github.com:Shougo/neosnippet-snippets.git
