@@ -2,10 +2,6 @@
 	path = vim/bundle/solarized
 	url = git://github.com/altercation/vim-colors-solarized.git
         ignore = dirty
-[submodule "vim/bundle/cocoa"]
-	path = vim/bundle/cocoa
-	url = git://github.com/msanders/cocoa.vim.git
-        ignore = dirty
 [submodule "vim/bundle/syntastic"]
 	path = vim/bundle/syntastic
 	url = git@github.com:scrooloose/syntastic.git
@@ -22,13 +18,6 @@
 	path = vim/bundle/pathogen
 	url = git@github.com:tpope/vim-pathogen.git
         ignore = dirty
-[submodule "vim/bundle/youcompleteme"]
-	path = vim/bundle/youcompleteme
-	url = git@github.com:Valloric/YouCompleteMe.git
-        ignore = dirty
 [submodule "vim/bundle/fugitive"]
 	path = vim/bundle/fugitive
 	url = git@github.com:tpope/vim-fugitive.git
-[submodule "vim/bundle/ultisnips"]
-	path = vim/bundle/ultisnips
-	url = git@github.com:SirVer/ultisnips.git
