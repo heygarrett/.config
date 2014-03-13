@@ -15,13 +15,21 @@ let g:lightline = {
       \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
       \ }
 
-" indentLine
-let g:indentLine_char = "┆"
+" indent-guide
+" let g:indent_guides_guide_size = 1
+let g:indent_guides_start_level = 2
 
 " neocomplete
 let g:neocomplete#enable_at_startup = 1
 " Use smartcase
 let g:neocomplete#enable_smart_case = 1
+" <CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+  return neocomplete#close_popup() . "\<CR>"
+  " For no inserting <CR> key.
+  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+endfunction
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " <C-h>, <BS>: close popup and delete backword char.
@@ -36,6 +44,10 @@ imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 \ "\<Plug>(neosnippet_expand_or_jump)"
 \: "\<TAB>"
+" For snippet_complete marker.
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
 
 set nocompatible    " Better safe than sorry
 
@@ -69,11 +81,11 @@ colorscheme solarized
 function! SetSolarizedBackground()
     if strftime("%H") >= 5 && strftime("%H") < 17 
         if &background != 'light'
-            set background=light
+            call set background=light
         endif
     else
         if &background != 'dark'
-            set background=dark
+            call set background=dark
         endif
     endif
 endfunction
