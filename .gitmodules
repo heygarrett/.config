@@ -30,9 +30,6 @@
 [submodule "vim/bundle/neosnippet-snippets"]
 	path = vim/bundle/neosnippet-snippets
 	url = git@github.com:Shougo/neosnippet-snippets.git
-[submodule "vim/bundle/indent-guides"]
-	path = vim/bundle/indent-guides
-	url = git@github.com:nathanaelkane/vim-indent-guides.git
 [submodule "vim/bundle/scala"]
 	path = vim/bundle/scala
 	url = git@github.com:derekwyatt/vim-scala.git
