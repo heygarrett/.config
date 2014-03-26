@@ -81,11 +81,11 @@ colorscheme solarized
 function! SetSolarizedBackground()
     if strftime("%H") >= 5 && strftime("%H") < 17 
         if &background != 'light'
-            call set background=light
+            set background=light
         endif
     else
         if &background != 'dark'
-            call set background=dark
+            set background=dark
         endif
     endif
 endfunction
