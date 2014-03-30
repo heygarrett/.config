@@ -17,7 +17,7 @@ source ~/.local/bin/bashmarks.sh
 export HISTTIMEFORMAT="%d/%m/%y %T "
 
 ### Set solarized background color
-colorize
+#colorize
 
 ### Changes to PATH
-export PATH=/usr/local/bin:/usr/local/opt/ruby/bin:$PATH:/usr/local/sbin:/Users/Garrett/pebble-dev/PebbleSDK-2.0-BETA7/bin
+export PATH=/Users/Garrett/.cabal/bin:/usr/local/bin:/usr/local/opt/ruby/bin:$PATH:/usr/local/sbin
