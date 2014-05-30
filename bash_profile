@@ -10,6 +10,9 @@ PS1="Vanellope\$PWD $ "
 ### Set bash to vi mode
 set -o vi
 
+### Why not?
+alias fucking=sudo
+
 ### Provide bashmarks functionality
 source ~/.local/bin/bashmarks.sh
 
