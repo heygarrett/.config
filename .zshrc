@@ -14,7 +14,7 @@ COMPLETION_WAITING_DOTS="true"
 HIST_STAMPS="yyyy-mm-dd"
 
 # Load plugins (plugins can be found in ~/.oh-my-zsh/plugins/*)
-plugins=(git tmux brew python redis-cli)
+plugins=(git git-extras brew lol osx)
 
 source $ZSH/oh-my-zsh.sh
 
