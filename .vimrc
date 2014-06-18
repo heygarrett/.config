@@ -193,7 +193,7 @@ set cindent
 set smartindent              " automatic indenting; see ':h C-indenting' for comparison
 set autoindent
 set smarttab
-autocmd FileType python setlocal textwidth=79
+autocmd FileType python setlocal textwidth=90
 
 " -------------------------------------------------------------------------------- 
 "  folding
