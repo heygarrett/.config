@@ -32,7 +32,7 @@ fi
 ### Set bash to vi mode
 set -o vi
 
-export PATH="/Users/Garrett/.cabal/bin:/usr/local/bin:/usr/local/opt/ruby/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/opt/X11/bin:/usr/local/sbin"
+export PATH="/Users/Garrett/.cabal/bin:/usr/local/bin:/usr/local/opt/ruby/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/sbin"
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
