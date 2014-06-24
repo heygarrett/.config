@@ -75,8 +75,7 @@ filetype plugin indent on   " let vim detect filetype and load appropriate scrip
 
 " Completion
 set omnifunc=syntaxcomplete#Complete
-let g:tmuxcomplete#trigger = 'omnifunc'
-let g:SuperTabDefaultCompletionType = "<C-n>"
+let g:SuperTabDefaultCompletionType = '<C-n>'
 
 autocmd filetype php setlocal filetype=html
 let g:syntastic_javascript_checkers = ['jshint']
