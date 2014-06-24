@@ -15,46 +15,11 @@ let g:lightline = {
       \ 'subseparator': { 'left': '⮁', 'right': '⮃' }
       \ }
 
-" neocomplete
-let g:neocomplete#enable_at_startup = 1
-" Use smartcase
-let g:neocomplete#enable_smart_case = 1
-" <CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-  return neocomplete#close_popup() . "\<CR>"
-  " For no inserting <CR> key.
-  "return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-endfunction
-" <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-" <C-h>, <BS>: close popup and delete backword char.
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><C-y>  neocomplete#close_popup()
-inoremap <expr><C-e>  neocomplete#cancel_popup()
-" SuperTab like snippets behavior.
-imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: pumvisible() ? "\<C-n>" : "\<TAB>"
-smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-\ "\<Plug>(neosnippet_expand_or_jump)"
-\: "\<TAB>"
-" For snippet_complete marker.
-if has('conceal')
-  set conceallevel=2 concealcursor=i
-endif
-
 set nocompatible    " Better safe than sorry
 
 " set paste to prevent unexpected code formatting when pasting text
 " toggle paste and show current value ('pastetoggle' doesn't)
 nnoremap <Leader>p :set paste! paste?<CR>
-
-" " Source the vimrc file after saving it
-" if has("autocmd")
-"   autocmd bufwritepost .vimrc source %
-" endif
 
 " -------------------------------------------------------------------------------- 
 "  moving around, searching, and patterns
@@ -107,6 +72,12 @@ set number       " show line numbers
 "  syntax, highlighting, and spelling
 " -------------------------------------------------------------------------------- 
 filetype plugin indent on   " let vim detect filetype and load appropriate scripts
+
+" Completion
+set omnifunc=syntaxcomplete#Complete
+let g:tmuxcomplete#trigger = 'omnifunc'
+let g:SuperTabDefaultCompletionType = "<C-n>"
+
 autocmd filetype php setlocal filetype=html
 let g:syntastic_javascript_checkers = ['jshint']
 syntax enable    " enable syntax highlighting and allow custom highlighting

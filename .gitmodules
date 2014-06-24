@@ -1,50 +1,9 @@
-[submodule "vim/bundle/solarized"]
-	path = vim/bundle/solarized
-	url = git://github.com/altercation/vim-colors-solarized.git
-        ignore = dirty
-[submodule "vim/bundle/syntastic"]
-	path = vim/bundle/syntastic
-	url = git@github.com:scrooloose/syntastic.git
-        ignore = dirty
-[submodule "vim/bundle/lightline"]
-	path = vim/bundle/lightline
-	url = git@github.com:itchyny/lightline.vim.git
-        ignore = dirty
-[submodule "vim/bundle/ctrlp"]
-	path = vim/bundle/ctrlp
-	url = git@github.com:kien/ctrlp.vim.git
-        ignore = dirty
-[submodule "vim/bundle/pathogen"]
-	path = vim/bundle/pathogen
-	url = git@github.com:tpope/vim-pathogen.git
-        ignore = dirty
-[submodule "vim/bundle/fugitive"]
-	path = vim/bundle/fugitive
-	url = git@github.com:tpope/vim-fugitive.git
-[submodule "vim/bundle/neocomplete"]
-	path = vim/bundle/neocomplete
-	url = git@github.com:Shougo/neocomplete.vim.git
-[submodule "vim/bundle/neosnippet"]
-	path = vim/bundle/neosnippet
-	url = git@github.com:Shougo/neosnippet.vim.git
-[submodule "vim/bundle/neosnippet-snippets"]
-	path = vim/bundle/neosnippet-snippets
-	url = git@github.com:Shougo/neosnippet-snippets.git
 [submodule "vim/bundle/scala"]
 	path = vim/bundle/scala
 	url = git@github.com:derekwyatt/vim-scala.git
-[submodule ".vim/bundle/neocomplete"]
-	path = .vim/bundle/neocomplete
-	url = https://github.com/Shougo/neocomplete.vim.git
 [submodule ".vim/bundle/lightline"]
 	path = .vim/bundle/lightline
 	url = https://github.com/itchyny/lightline.vim.git
-[submodule ".vim/bundle/neosnippet"]
-	path = .vim/bundle/neosnippet
-	url = https://github.com/Shougo/neosnippet.vim.git
-[submodule ".vim/bundle/neosnippet-snippets"]
-	path = .vim/bundle/neosnippet-snippets
-	url = https://github.com/Shougo/neosnippet-snippets.git
 [submodule ".vim/bundle/pathogen"]
 	path = .vim/bundle/pathogen
 	url = https://github.com/tpope/vim-pathogen.git
@@ -57,3 +16,9 @@
 [submodule ".oh-my-zsh"]
 	path = .oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh.git
+[submodule ".vim/bundle/tmux-complete"]
+	path = .vim/bundle/tmux-complete
+	url = https://github.com/wellle/tmux-complete.vim.git
+[submodule ".vim/bundle/supertab"]
+	path = .vim/bundle/supertab
+	url = https://github.com/ervandew/supertab.git
