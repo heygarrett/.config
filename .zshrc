@@ -31,6 +31,8 @@ fi
 
 ### Set bash to vi mode
 set -o vi
+### Set solarized background color
+colorize
 
 export PATH="/Users/Garrett/.cabal/bin:/usr/local/bin:/usr/local/opt/ruby/bin:/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/sbin"
 
