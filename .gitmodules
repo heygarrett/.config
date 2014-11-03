@@ -22,3 +22,6 @@
 [submodule ".vim/bundle/numbers"]
 	path = .vim/bundle/numbers
 	url = https://github.com/myusuf3/numbers.vim.git
+[submodule ".vim/bundle/snipmate"]
+	path = .vim/bundle/snipmate
+	url = https://github.com/ervandew/snipmate.vim.git
