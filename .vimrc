@@ -87,6 +87,7 @@ set cursorline
 set laststatus=2 " always show status line
 set splitbelow
 set splitright
+set hidden
 
 " -------------------------------------------------------------------------------- 
 "  multiple tab pages
