@@ -5,9 +5,8 @@
 runtime bundle/pathogen/autoload/pathogen.vim
 execute pathogen#infect()
 
-" lightline
-let g:lightline = {
-      \ 'colorscheme': 'solarized'}
+" Lightline
+let g:lightline = {'colorscheme': 'solarized'}
 
 set nocompatible    " Better safe than sorry
 
