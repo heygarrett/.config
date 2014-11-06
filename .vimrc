@@ -74,7 +74,6 @@ let g:SuperTabDefaultCompletionType = 'context'
 autocmd filetype php setlocal filetype=html
 let g:syntastic_javascript_checkers = ['jshint']
 syntax enable    " enable syntax highlighting and allow custom highlighting
-set spell
 set hlsearch    " highlight search terms
 set ignorecase  " ignore case in searches
 set smartcase   " unless there are caps in the search
