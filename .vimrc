@@ -126,6 +126,19 @@ set clipboard=unnamed
 if has("unnamedplus")
     set clipboard+=unnamedplus
 endif
+" Clipboard for neovim
+function! ClipboardYank()
+    call system('pbcopy', @@)
+endfunction
+function! ClipboardPaste()
+    let @@ = system('pbpaste')
+endfunction
+
+vnoremap <silent> y y:call ClipboardYank()<cr>
+vnoremap <silent> d d:call ClipboardYank()<cr>
+nnoremap <silent> p :call ClipboardPaste()<cr>p
+onoremap <silent> y y:call ClipboardYank()<cr>
+onoremap <silent> d d:call ClipboardYank()<cr>
 
 " -------------------------------------------------------------------------------- 
 "  editing text
@@ -174,6 +187,7 @@ set nofoldenable      " set to display all folds open
 "  mapping
 " -------------------------------------------------------------------------------- 
 inoremap jj <Esc>
+" inoremap {<CR>  {<CR>}<Esc>O
 inoremap ,/ </<C-X><C-O>
 nmap j gj
 nmap k gk
