@@ -15,3 +15,4 @@ export EDITOR='vim'
 ### Change default prompt
 export PS1="[\w]$ "
 
+alias vim="nvim"
