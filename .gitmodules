@@ -19,3 +19,6 @@
 [submodule ".vim/bundle/snipmate"]
 	path = .vim/bundle/snipmate
 	url = https://github.com/ervandew/snipmate.vim.git
+[submodule ".vim/bundle/rust"]
+	path = .vim/bundle/rust
+	url = https://github.com/wting/rust.vim.git
