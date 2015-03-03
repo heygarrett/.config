@@ -65,8 +65,6 @@ set number       " show line numbers
 " -------------------------------------------------------------------------------- 
 "  syntax, highlighting, and spelling
 " -------------------------------------------------------------------------------- 
-filetype plugin indent on   " let vim detect filetype and load appropriate scripts
-
 " Completion
 set omnifunc=syntaxcomplete#Complete
 let g:SuperTabDefaultCompletionType = 'context'
@@ -162,15 +160,19 @@ endif
 " -------------------------------------------------------------------------------- 
 "  tabs and indenting
 " -------------------------------------------------------------------------------- 
+filetype plugin indent on   " let vim detect filetype and load appropriate scripts
+
 set tabstop=8                " width of a tab character in spaces
 set softtabstop=4            " defines number of spaces for when adding/removing tabs
 set shiftwidth=4             " number of spaces to use for autoindent
 set expandtab                " use spaces instead of tab characters; to insert real tab, use <C-v><Tab>
-set cindent
-set smartindent              " automatic indenting; see ':h C-indenting' for comparison
 set autoindent
 set smarttab
 autocmd FileType python setlocal textwidth=90
+
+" Haskell indentation
+let g:haskell_indent_if = 4
+let g:haskell_indent_case = 4
 
 " -------------------------------------------------------------------------------- 
 "  folding
