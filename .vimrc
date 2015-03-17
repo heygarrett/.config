@@ -173,6 +173,7 @@ autocmd FileType python setlocal textwidth=90
 " Haskell indentation
 let g:haskell_indent_if = 4
 let g:haskell_indent_case = 4
+let g:syntastic_haskell_ghc_mod_exec = 'ghc-mod.sh'
 
 " -------------------------------------------------------------------------------- 
 "  folding
