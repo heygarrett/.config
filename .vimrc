@@ -27,7 +27,7 @@ set incsearch   " highlight search while typing search pattern
 "  displaying text
 " -------------------------------------------------------------------------------- 
 " Set colorscheme to solarized
-set bg=dark
+set bg=light
 colorscheme solarized
  
 " " Change the Solarized background to dark or light depending upon the time of 
