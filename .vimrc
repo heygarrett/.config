@@ -27,7 +27,7 @@ set incsearch   " highlight search while typing search pattern
 "  displaying text
 " -------------------------------------------------------------------------------- 
 " Set colorscheme to solarized
-set bg=light
+set bg=dark
 colorscheme solarized
  
 " " Change the Solarized background to dark or light depending upon the time of 
@@ -168,12 +168,14 @@ set shiftwidth=4             " number of spaces to use for autoindent
 set expandtab                " use spaces instead of tab characters; to insert real tab, use <C-v><Tab>
 set autoindent
 set smarttab
-autocmd FileType python setlocal textwidth=90
 
 " Haskell indentation
 let g:haskell_indent_if = 4
 let g:haskell_indent_case = 4
 let g:syntastic_haskell_ghc_mod_exec = 'ghc-mod.sh'
+
+" Python type checking
+let g:syntastic_python_checkers = ['mypy']
 
 " -------------------------------------------------------------------------------- 
 "  folding
