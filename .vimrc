@@ -1,5 +1,5 @@
 " -------------------------------------------------------------------------------- 
-"  important
+"  plugins
 " --------------------------------------------------------------------------------
 " Pathogen
 runtime bundle/pathogen/autoload/pathogen.vim
@@ -13,6 +13,9 @@ set nocompatible    " Better safe than sorry
 " set paste to prevent unexpected code formatting when pasting text
 " toggle paste and show current value ('pastetoggle' doesn't)
 nnoremap <Leader>p :set paste! paste?<CR>
+
+let g:syntastic_javascript_checkers = ['jshint']
+let g:syntastic_haskell_ghc_mod_exec = 'ghc-mod.sh'
 
 " -------------------------------------------------------------------------------- 
 "  moving around, searching, and patterns
@@ -70,7 +73,6 @@ set omnifunc=syntaxcomplete#Complete
 let g:SuperTabDefaultCompletionType = 'context'
 
 autocmd filetype php setlocal filetype=html
-let g:syntastic_javascript_checkers = ['jshint']
 syntax enable    " enable syntax highlighting and allow custom highlighting
 set hlsearch    " highlight search terms
 set ignorecase  " ignore case in searches
@@ -172,10 +174,6 @@ set smarttab
 " Haskell indentation
 let g:haskell_indent_if = 4
 let g:haskell_indent_case = 4
-let g:syntastic_haskell_ghc_mod_exec = 'ghc-mod.sh'
-
-" Python type checking
-let g:syntastic_python_checkers = ['mypy']
 
 " -------------------------------------------------------------------------------- 
 "  folding
@@ -191,8 +189,7 @@ set nofoldenable      " set to display all folds open
 " -------------------------------------------------------------------------------- 
 "  mapping
 " -------------------------------------------------------------------------------- 
-" inoremap jk <Esc>
-" inoremap {<CR>  {<CR>}<Esc>O
+inoremap {<CR>  {<CR>}<Esc>O
 inoremap ,/ </<C-X><C-O>
 nmap j gj
 nmap k gk
