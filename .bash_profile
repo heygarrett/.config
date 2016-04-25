@@ -10,7 +10,7 @@ set -o vi
 export PATH="/$HOME:/usr/local/bin::/usr/bin:/bin:/usr/sbin:/sbin:/opt/X11/bin:/usr/local/sbin"
 
 # Preferred editor for local and remote sessions
-export EDITOR='vim'
+export EDITOR='nvim'
 
 ### Change default prompt
 export PS1="[\w]$ "

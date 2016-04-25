@@ -1,1 +1,0 @@
-/Users/Garrett/repos/dotfiles/.vimrc
