@@ -1,4 +1,1 @@
-*~
-*.swp
-tags
-.DS_Store
+/doc/tags
