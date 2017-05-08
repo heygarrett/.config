@@ -26,7 +26,6 @@ if dein#load_state('/Users/Garrett/repos/dotfiles/nvim/bundle/')
   " call dein#add('Shougo/neosnippet-snippets')
   call dein#add('itchyny/lightline.vim')
   call dein#add('altercation/vim-colors-solarized')
-  call dein#add('scrooloose/syntastic')
   call dein#add('ervandew/supertab')
   call dein#add('pgdouyon/vim-accio')
 
