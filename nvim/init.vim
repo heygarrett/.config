@@ -28,6 +28,7 @@ if dein#load_state('/Users/Garrett/repos/dotfiles/nvim/bundle/')
   call dein#add('altercation/vim-colors-solarized')
   call dein#add('ervandew/supertab')
   call dein#add('pgdouyon/vim-accio')
+  call dein#add('~/repos/dotfiles/nvim/bundle/swift')
 
   " You can specify revision/branch/tag.
   " call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
@@ -54,9 +55,6 @@ set nocompatible    " Better safe than sorry
 " set paste to prevent unexpected code formatting when pasting text
 " toggle paste and show current value ('pastetoggle' doesn't)
 nnoremap <Leader>p :set paste! paste?<CR>
-
-let g:syntastic_javascript_checkers = ['jshint']
-let g:syntastic_haskell_ghc_mod_exec = 'ghc-mod.sh'
 
 " -------------------------------------------------------------------------------- 
 "  moving around, searching, and patterns
