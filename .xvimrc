@@ -1,0 +1,12 @@
+set incsearch
+set number
+set ignorecase
+set smartcase
+set cursorline
+set ruler
+set showmatch
+set scrolloff=3
+nmap j gj
+nmap k gk
+imap jk <esc>
+

@@ -230,6 +230,7 @@ set nofoldenable      " set to display all folds open
 " -------------------------------------------------------------------------------- 
 "  mapping
 " -------------------------------------------------------------------------------- 
+imap jk <esc>
 inoremap {<CR>  {<CR>}<Esc>O
 inoremap ,/ </<C-X><C-O>
 nmap j gj
