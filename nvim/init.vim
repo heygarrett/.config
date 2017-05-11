@@ -216,6 +216,10 @@ set smarttab
 let g:haskell_indent_if = 4
 let g:haskell_indent_case = 4
 
+" Swift indents
+autocmd filetype swift setlocal tabstop=4
+autocmd filetype swift setlocal shiftwidth=4
+
 " -------------------------------------------------------------------------------- 
 "  folding
 " -------------------------------------------------------------------------------- 
