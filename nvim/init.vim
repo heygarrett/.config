@@ -27,8 +27,11 @@ if dein#load_state('/Users/Garrett/repos/dotfiles/nvim/bundle/')
   call dein#add('itchyny/lightline.vim')
   call dein#add('altercation/vim-colors-solarized')
   call dein#add('ervandew/supertab')
-  call dein#add('pgdouyon/vim-accio')
+  " call dein#add('pgdouyon/vim-accio')
+  call dein#add('vim-syntastic/syntastic')
   call dein#add('~/repos/dotfiles/nvim/bundle/swift')
+  call dein#add('kballard/vim-swift')
+  let g:syntastic_swift_checkers = ['swiftc']
 
   " You can specify revision/branch/tag.
   " call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
