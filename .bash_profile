@@ -16,3 +16,4 @@ export EDITOR='nvim'
 export PS1="[\w]$ "
 
 alias vim="nvim"
+alias gist='gist -c'
