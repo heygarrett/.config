@@ -11,15 +11,15 @@ if &compatible
 endif
 
 " Required:
-set runtimepath+=/Users/Garrett/repos/dotfiles/nvim/bundle//repos/github.com/Shougo/dein.vim
+set runtimepath+=/Users/garrett/repos/dotfiles/nvim/bundle/repos/github.com/Shougo/dein.vim
 
 " Required:
-if dein#load_state('/Users/Garrett/repos/dotfiles/nvim/bundle/')
-  call dein#begin('/Users/Garrett/repos/dotfiles/nvim/bundle/')
+if dein#load_state('/Users/garrett/repos/dotfiles/nvim/bundle/')
+  call dein#begin('/Users/garrett/repos/dotfiles/nvim/bundle/')
 
   " Let dein manage dein
   " Required:
-  call dein#add('/Users/Garrett/repos/dotfiles/nvim/bundle//repos/github.com/Shougo/dein.vim')
+  call dein#add('/Users/garrett/repos/dotfiles/nvim/bundle//repos/github.com/Shougo/dein.vim')
 
   " Add or remove your plugins here:
   " call dein#add('Shougo/neosnippet.vim')
