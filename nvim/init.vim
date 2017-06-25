@@ -1,62 +1,30 @@
 " -------------------------------------------------------------------------------- 
 "  plugins
 " --------------------------------------------------------------------------------
-" " Pathogen
-" runtime bundle/pathogen/autoload/pathogen.vim
-" execute pathogen#infect()
 "
-"dein Scripts-----------------------------
-if &compatible
-  set nocompatible               " Be iMproved
-endif
+" " Plug
+call plug#begin('~/.local/share/nvim/plugged')
 
-" Required:
-set runtimepath+=/Users/garrett/repos/dotfiles/nvim/bundle/repos/github.com/Shougo/dein.vim
+Plug 'itchyny/lightline.vim'
+Plug 'altercation/vim-colors-solarized'
+Plug 'ervandew/supertab'
+Plug 'vim-syntastic/syntastic'
+Plug 'kballard/vim-swift'
 
-" Required:
-if dein#load_state('/Users/garrett/repos/dotfiles/nvim/bundle/')
-  call dein#begin('/Users/garrett/repos/dotfiles/nvim/bundle/')
-
-  " Let dein manage dein
-  " Required:
-  call dein#add('/Users/garrett/repos/dotfiles/nvim/bundle//repos/github.com/Shougo/dein.vim')
-
-  " Add or remove your plugins here:
-  " call dein#add('Shougo/neosnippet.vim')
-  " call dein#add('Shougo/neosnippet-snippets')
-  call dein#add('itchyny/lightline.vim')
-  call dein#add('altercation/vim-colors-solarized')
-  call dein#add('ervandew/supertab')
-  call dein#add('vim-syntastic/syntastic')
-  call dein#add('~/repos/dotfiles/nvim/bundle/swift')
-
-  " You can specify revision/branch/tag.
-  " call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
-
-  " Required:
-  call dein#end()
-  call dein#save_state()
-endif
-
-" Required:
-filetype plugin indent on
-syntax enable
-
-" If you want to install not installed plugins on startup.
-if dein#check_install()
-  call dein#install()
-endif
+call plug#end()
 
 " Lightline
 let g:lightline = {'colorscheme': 'solarized'}
+
+" Swift
+let g:swift_suppress_showmatch_warning = 1
+autocmd filetype swift setlocal colorcolumn=0 " get rid of the annoying vertical line
 
 set nocompatible    " Better safe than sorry
 
 " set paste to prevent unexpected code formatting when pasting text
 " toggle paste and show current value ('pastetoggle' doesn't)
 nnoremap <Leader>p :set paste! paste?<CR>
-
-"" Swift stuff
 
 " -------------------------------------------------------------------------------- 
 "  moving around, searching, and patterns
