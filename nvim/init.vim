@@ -9,7 +9,8 @@ Plug 'itchyny/lightline.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'ervandew/supertab'
 Plug 'vim-syntastic/syntastic'
-Plug 'kballard/vim-swift'
+Plug 'kballard/vim-swift-extra'
+Plug '~/repos/swift/utils/vim'
 
 call plug#end()
 
