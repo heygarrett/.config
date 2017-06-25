@@ -1,2 +1,2 @@
 100
-['/Users/garrett/repos/dotfiles/nvim/bundle//repos/github.com/Shougo/dein.vim', '/Users/garrett/repos/dotfiles/nvim/bundle/swift', 'altercation/vim-colors-solarized', 'ervandew/supertab', 'itchyny/lightline.vim', 'vim-syntastic/syntastic']
+['/Users/garrett/repos/dotfiles/nvim/bundle/repos/github.com/Shougo/dein.vim', '/Users/garrett/repos/dotfiles/nvim/bundle/swift/', 'altercation/vim-colors-solarized', 'ervandew/supertab', 'itchyny/lightline.vim', 'vim-syntastic/syntastic']
