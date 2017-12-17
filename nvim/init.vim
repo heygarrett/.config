@@ -9,6 +9,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'ervandew/supertab'
 Plug 'vim-syntastic/syntastic'
+Plug 'rust-lang/rust.vim'
 Plug 'kballard/vim-swift-extra'
 Plug '~/repos/swift/utils/vim'
 
@@ -20,6 +21,9 @@ let g:lightline = {'colorscheme': 'solarized'}
 " Swift
 let g:swift_suppress_showmatch_warning = 1
 autocmd filetype swift setlocal colorcolumn=0 " get rid of the annoying vertical line
+
+" Rust
+let g:syntastic_rust_checkers = ['rustc']
 
 set nocompatible    " Better safe than sorry
 
