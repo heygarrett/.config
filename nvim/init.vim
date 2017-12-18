@@ -10,6 +10,7 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'ervandew/supertab'
 Plug 'vim-syntastic/syntastic'
 Plug 'rust-lang/rust.vim'
+Plug 'racer-rust/vim-racer'
 Plug 'kballard/vim-swift-extra'
 Plug '~/repos/swift/utils/vim'
 
@@ -23,7 +24,8 @@ let g:swift_suppress_showmatch_warning = 1
 autocmd filetype swift setlocal colorcolumn=0 " get rid of the annoying vertical line
 
 " Rust
-let g:syntastic_rust_checkers = ['rustc']
+let g:syntastic_rust_checkers = ['cargo']
+let g:racer_experimental_completer = 1
 
 set nocompatible    " Better safe than sorry
 
