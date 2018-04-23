@@ -8,6 +8,9 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'itchyny/lightline.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'ervandew/supertab'
+Plug 'Shougo/deoplete.nvim'
+Plug 'zchee/deoplete-clang'
+Plug 'landaire/deoplete-swift'
 Plug 'vim-syntastic/syntastic'
 Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/vim-racer'
@@ -18,6 +21,11 @@ call plug#end()
 
 " Lightline
 let g:lightline = {'colorscheme': 'solarized'}
+
+" Use deoplete.
+let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#clang#libclang_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
+let g:deoplete#sources#clang#clang_header = '/Library/Developer/CommandLineTools/usr/lib/clang'
 
 " Swift
 let g:swift_suppress_showmatch_warning = 1
