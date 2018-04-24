@@ -8,14 +8,21 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'itchyny/lightline.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'ervandew/supertab'
-Plug 'Shougo/deoplete.nvim'
-Plug 'zchee/deoplete-clang'
-Plug 'landaire/deoplete-swift'
 Plug 'vim-syntastic/syntastic'
 Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/vim-racer'
 Plug 'kballard/vim-swift-extra'
 Plug '~/repos/swift/utils/vim'
+
+Plug 'zchee/deoplete-clang'
+Plug 'landaire/deoplete-swift'
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
 
 call plug#end()
 
