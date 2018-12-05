@@ -5,7 +5,7 @@ set smartcase
 set cursorline
 set ruler
 set showmatch
-nmap j gj
-nmap k gk
+" nmap j gj
+" nmap k gk
 imap jk <esc>
 

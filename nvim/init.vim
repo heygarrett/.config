@@ -33,6 +33,7 @@ let g:lightline = {'colorscheme': 'solarized'}
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources#clang#libclang_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
 let g:deoplete#sources#clang#clang_header = '/Library/Developer/CommandLineTools/usr/lib/clang'
+set completeopt-=preview " No scratch window with autocomplete preview
 
 " Swift
 let g:swift_suppress_showmatch_warning = 1
@@ -61,7 +62,7 @@ set incsearch   " highlight search while typing search pattern
 "  displaying text
 " -------------------------------------------------------------------------------- 
 " Set colorscheme to solarized
-set background=light
+set background=dark
 colorscheme solarized
  
 " " Change the Solarized background to dark or light depending upon the time of 
