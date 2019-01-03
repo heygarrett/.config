@@ -9,6 +9,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'ervandew/supertab'
 Plug 'vim-syntastic/syntastic'
+Plug 'leafgarland/typescript-vim'
 Plug 'rust-lang/rust.vim'
 Plug 'racer-rust/vim-racer'
 Plug 'kballard/vim-swift-extra'
@@ -42,6 +43,9 @@ autocmd filetype swift setlocal colorcolumn=0 " get rid of the annoying vertical
 " Rust
 let g:syntastic_rust_checkers = ['cargo']
 let g:racer_experimental_completer = 1
+
+" TypeScript
+let g:syntastic_typescript_checkers = ['tslint']
 
 set nocompatible    " Better safe than sorry
 
@@ -210,6 +214,11 @@ let g:haskell_indent_case = 4
 " Swift indents
 autocmd filetype swift setlocal tabstop=4
 autocmd filetype swift setlocal shiftwidth=4
+
+" TypeScript indents
+autocmd filetype typescript setlocal noexpandtab
+autocmd filetype typescript setlocal tabstop=4
+autocmd filetype typescript setlocal shiftwidth=4
 
 " -------------------------------------------------------------------------------- 
 "  folding
