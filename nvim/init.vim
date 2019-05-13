@@ -10,13 +10,12 @@ Plug 'altercation/vim-colors-solarized'
 Plug 'ervandew/supertab'
 Plug 'vim-syntastic/syntastic'
 Plug 'leafgarland/typescript-vim'
-Plug 'rust-lang/rust.vim'
-Plug 'racer-rust/vim-racer'
 Plug 'kballard/vim-swift-extra'
 Plug '~/repos/swift/utils/vim'
 
 Plug 'zchee/deoplete-clang'
 Plug 'landaire/deoplete-swift'
+Plug 'deoplete-plugins/deoplete-jedi'
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 else
@@ -39,10 +38,6 @@ set completeopt-=preview " No scratch window with autocomplete preview
 " Swift
 let g:swift_suppress_showmatch_warning = 1
 autocmd filetype swift setlocal colorcolumn=0 " get rid of the annoying vertical line
-
-" Rust
-let g:syntastic_rust_checkers = ['cargo']
-let g:racer_experimental_completer = 1
 
 " TypeScript
 let g:syntastic_typescript_checkers = ['tslint']
@@ -69,30 +64,6 @@ set incsearch   " highlight search while typing search pattern
 set background=dark
 colorscheme solarized
  
-" " Change the Solarized background to dark or light depending upon the time of 
-" " day (5 refers to 5AM and 17 to 5PM). Change the background only if it is not 
-" " already set to the value we want.
-" function! SetSolarizedBackground()
-"     if strftime("%H") >= 5 && strftime("%H") < 17 
-"         if &background != 'light'
-"             set background=light
-"         endif
-"     else
-"         if &background != 'dark'
-"             set background=dark
-"         endif
-"     endif
-" endfunction
-" 
-" " Set background on launch
-" call SetSolarizedBackground()
-"  
-" " Every time you save a file, call the function to check the time and change 
-" " the background (if necessary).
-" if has("autocmd")
-"     autocmd bufwritepost * call SetSolarizedBackground()
-" endif
-
 " Toggle Solarized background
 call togglebg#map("<F5>")
 
