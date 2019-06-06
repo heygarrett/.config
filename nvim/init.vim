@@ -4,6 +4,7 @@
 "
 " " Plug
 call plug#begin('~/.local/share/nvim/plugged')
+Plug 'junegunn/vim-plug'
 
 Plug 'itchyny/lightline.vim'
 Plug 'altercation/vim-colors-solarized'
