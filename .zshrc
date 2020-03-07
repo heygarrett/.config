@@ -21,16 +21,3 @@ alias gist='gist -c'
 
 export PATH=$PATH:$HOME/.yarn/bin
 
-### Fix for conflict between Swift and Homebrew Python 2
-### https://forums.swift.org/t/swift-repl-starts-with-error-when-homebrew-python-is-installed/12927
-function fix_python() {
-    PATH="/usr/bin:$PATH" $*
-}
-
-function lldb() {
-    fix_python "$(which lldb)" "$@"
-}
-
-function swift() {
-    fix_python "$(which swift)" "$@"
-}
