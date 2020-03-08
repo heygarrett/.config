@@ -154,7 +154,6 @@ endfunction
 set showmatch                           " show matching braces when typed or under cursor
 set matchtime=2                         " length of time for 'showmatch'
 set backspace=start,indent,eol          " make backspace work like 'normal' text editors
-set omnifunc=syntaxcomplete#Complete    " omni completion
 
 " Disable autocommenting after <CR> (//)
 autocmd FileType c,cpp setlocal comments-=:// comments+=f://
