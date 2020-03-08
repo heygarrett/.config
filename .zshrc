@@ -1,9 +1,3 @@
-### Fix path duplication in tmux
-if [ -f /etc/profile ]; then
-    PATH=""
-    source /etc/profile
-fi
-
 ### Set bash to vi mode
 set -o vi
 
@@ -18,5 +12,5 @@ export PS1="[%~]$ "
 
 alias vim="nvim"
 
-export PATH=$PATH:$HOME/.yarn/bin
+# export PATH=$PATH:$HOME/.yarn/bin
 
