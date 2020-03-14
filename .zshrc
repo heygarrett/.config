@@ -13,3 +13,5 @@ typeset -U path
 ### Change default prompt
 export PS1="[%~]$ "
 
+### brew doctor
+path=(/usr/local/sbin $path)
