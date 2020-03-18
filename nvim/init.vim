@@ -10,12 +10,10 @@ Plug 'itchyny/lightline.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'ervandew/supertab'
 Plug 'vim-syntastic/syntastic'
-Plug 'leafgarland/typescript-vim'
 Plug 'kballard/vim-swift-extra'
-Plug '~/repos/swift/utils/vim'
+Plug 'apple/swift', {'rtp': 'utils/vim'}
 
-Plug 'zchee/deoplete-clang'
-Plug 'landaire/deoplete-swift'
+Plug 'deoplete-plugins/deoplete-clang'
 Plug 'deoplete-plugins/deoplete-jedi'
 if has('nvim')
   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
@@ -39,9 +37,6 @@ set completeopt-=preview " No scratch window with autocomplete preview
 " Swift
 let g:swift_suppress_showmatch_warning = 1
 autocmd filetype swift setlocal colorcolumn=0 " get rid of the annoying vertical line
-
-" TypeScript
-let g:syntastic_typescript_checkers = ['tslint']
 
 set nocompatible    " Better safe than sorry
 
@@ -118,7 +113,6 @@ set mouse=a
 " -------------------------------------------------------------------------------- 
 set ruler        " always show current position
 set showcmd      " show the command being typed
-set noshowmode   " let powerline show current mode (insert, visual, etc.)
 
 " -------------------------------------------------------------------------------- 
 "  selecting text
