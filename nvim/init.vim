@@ -10,7 +10,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'ervandew/supertab'
 Plug 'vim-syntastic/syntastic'
-Plug 'kballard/vim-swift-extra'
+Plug 'keith/swift.vim'
 Plug 'apple/swift', {'rtp': 'utils/vim'}
 
 Plug 'deoplete-plugins/deoplete-clang'
@@ -37,6 +37,7 @@ set completeopt-=preview " No scratch window with autocomplete preview
 " Swift
 let g:swift_suppress_showmatch_warning = 1
 autocmd filetype swift setlocal colorcolumn=0 " get rid of the annoying vertical line
+let g:syntastic_swift_checkers = ['swiftpm', 'swiftlint']
 
 set nocompatible    " Better safe than sorry
 
@@ -75,7 +76,6 @@ set number       " show line numbers
 set omnifunc=syntaxcomplete#Complete
 let g:SuperTabDefaultCompletionType = 'context'
 
-autocmd filetype php setlocal filetype=html
 syntax enable    " enable syntax highlighting and allow custom highlighting
 set hlsearch    " highlight search terms
 set ignorecase  " ignore case in searches
@@ -165,10 +165,10 @@ endif
 " -------------------------------------------------------------------------------- 
 filetype plugin indent on   " let vim detect filetype and load appropriate scripts
 
-set tabstop=8                " width of a tab character in spaces
-set softtabstop=4            " defines number of spaces for when adding/removing tabs
+set tabstop=4                " width of a tab character in spaces
+" set softtabstop=4            " defines number of spaces for when adding/removing tabs
 set shiftwidth=4             " number of spaces to use for autoindent
-set expandtab                " use spaces instead of tab characters; to insert real tab, use <C-v><Tab>
+" set expandtab                " use spaces instead of tab characters; to insert real tab, use <C-v><Tab>
 set autoindent
 set smarttab
 
