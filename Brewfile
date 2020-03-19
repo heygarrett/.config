@@ -27,7 +27,6 @@ mas "1Blocker", id: 1107421413
 mas "Bear", id: 1091189122
 mas "Calcbot", id: 931657367
 mas "CARROT Weather", id: 993487541
-mas "com.newsguardtech.app", id: 1438657064
 mas "Dato", id: 1470584107
 mas "Deliveries", id: 924726344
 mas "Internet Access Policy Viewer", id: 1482630322
