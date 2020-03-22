@@ -8,12 +8,10 @@ brew "msgpack"
 brew "neovim"
 brew "python"
 brew "rust"
-brew "sourcekitten"
 brew "swiftlint"
 cask "1password"
 cask "1password-cli"
 cask "choosy"
-cask "corona-tracker"
 cask "cryptomator"
 cask "firefox"
 cask "gpg-suite"
@@ -21,14 +19,17 @@ cask "keybase"
 cask "knockknock"
 cask "little-snitch"
 cask "mullvadvpn"
+cask "textexpander"
 cask "visual-studio-code"
 cask "zoomus"
 mas "1Blocker", id: 1107421413
 mas "Bear", id: 1091189122
 mas "Calcbot", id: 931657367
 mas "CARROT Weather", id: 993487541
+mas "com.newsguardtech.app", id: 1438657064
 mas "Dato", id: 1470584107
 mas "Deliveries", id: 924726344
+mas "Horo", id: 1437226581
 mas "Internet Access Policy Viewer", id: 1482630322
 mas "Keynote", id: 409183694
 mas "Micro Snitch", id: 972028355
