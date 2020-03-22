@@ -33,3 +33,5 @@ function lldb() {
 function swift() {
     fix_python "$(which swift)" "$@"
 }
+
+export PATH="$HOME/.cargo/bin:$PATH"

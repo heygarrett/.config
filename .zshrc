@@ -1,4 +1,4 @@
-### Set bash to vi mode
+### Set zsh to vi mode
 set -o vi
 
 ### Default to neovim
@@ -14,7 +14,7 @@ typeset -U path
 export PS1="[%~]$ "
 
 ### brew doctor
-path=(/usr/local/sbin $path)
+# path=(/usr/local/sbin $path)
 
 ### brew bundle
 export HOMEBREW_BUNDLE_FILE="$HOME/.Brewfile"

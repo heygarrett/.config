@@ -8,20 +8,29 @@ Plug 'junegunn/vim-plug'
 
 Plug 'itchyny/lightline.vim'
 Plug 'altercation/vim-colors-solarized'
-Plug 'ervandew/supertab'
-Plug 'vim-syntastic/syntastic'
-Plug 'keith/swift.vim'
+" Plug 'ervandew/supertab'
+" Plug 'vim-syntastic/syntastic'
+" Plug 'keith/swift.vim'
 Plug 'apple/swift', {'rtp': 'utils/vim'}
+Plug 'rust-lang/rust.vim'
 
-Plug 'deoplete-plugins/deoplete-clang'
-Plug 'deoplete-plugins/deoplete-jedi'
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
+Plug 'lifepillar/vim-mucomplete'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+" (Optional) Multi-entry selection UI.
+Plug 'junegunn/fzf'
+
+" Plug 'deoplete-plugins/deoplete-clang'
+" Plug 'deoplete-plugins/deoplete-jedi'
+" if has('nvim')
+"   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" else
+"   Plug 'Shougo/deoplete.nvim'
+"   Plug 'roxma/nvim-yarp'
+"   Plug 'roxma/vim-hug-neovim-rpc'
+" endif
 
 call plug#end()
 
@@ -29,10 +38,25 @@ call plug#end()
 let g:lightline = {'colorscheme': 'solarized'}
 
 " Use deoplete.
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#clang#libclang_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
-let g:deoplete#sources#clang#clang_header = '/Library/Developer/CommandLineTools/usr/lib/clang'
-set completeopt-=preview " No scratch window with autocomplete preview
+" let g:deoplete#enable_at_startup = 1
+" let g:deoplete#sources#clang#libclang_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
+" let g:deoplete#sources#clang#clang_header = '/Library/Developer/CommandLineTools/usr/lib/clang'
+
+" Use MUcomplete
+set completeopt+=menuone,noselect
+set shortmess+=c   " Shut off completion messages
+let g:mucomplete#enable_auto_at_startup = 1
+
+" Required for operations modifying multiple buffers like rename.
+set hidden
+
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+	\ 'python': ['/usr/local/bin/pyls'],
+	\ 'go': ['gopls'],
+    \ }
+
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 
 " Swift
 let g:swift_suppress_showmatch_warning = 1
