@@ -8,60 +8,88 @@ Plug 'junegunn/vim-plug'
 
 Plug 'itchyny/lightline.vim'
 Plug 'altercation/vim-colors-solarized'
-" Plug 'ervandew/supertab'
-" Plug 'vim-syntastic/syntastic'
-" Plug 'keith/swift.vim'
 Plug 'apple/swift', {'rtp': 'utils/vim'}
-Plug 'rust-lang/rust.vim'
+" Plug 'rust-lang/rust.vim'
 
-Plug 'lifepillar/vim-mucomplete'
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-" (Optional) Multi-entry selection UI.
-Plug 'junegunn/fzf'
-
-" Plug 'deoplete-plugins/deoplete-clang'
-" Plug 'deoplete-plugins/deoplete-jedi'
-" if has('nvim')
-"   Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" else
-"   Plug 'Shougo/deoplete.nvim'
-"   Plug 'roxma/nvim-yarp'
-"   Plug 'roxma/vim-hug-neovim-rpc'
-" endif
+" Plug 'lifepillar/vim-mucomplete'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'autozimu/LanguageClient-neovim', {
+"     \ 'branch': 'next',
+"     \ 'do': '`echo $SHELL` install.sh',
+"     \ }
+" " (Optional) Multi-entry selection UI.
+" Plug 'junegunn/fzf'
 
 call plug#end()
 
 " Lightline
-let g:lightline = {'colorscheme': 'solarized'}
+" let g:lightline = {'colorscheme': 'solarized'}
+function! CocCurrentFunction()
+    return get(b:, 'coc_current_function', '')
+endfunction
 
-" Use deoplete.
-" let g:deoplete#enable_at_startup = 1
-" let g:deoplete#sources#clang#libclang_path = '/Library/Developer/CommandLineTools/usr/lib/libclang.dylib'
-" let g:deoplete#sources#clang#clang_header = '/Library/Developer/CommandLineTools/usr/lib/clang'
+let g:lightline = {
+      \ 'colorscheme': 'solarized',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'cocstatus': 'coc#status',
+      \   'currentfunction': 'CocCurrentFunction'
+      \ },
+      \ }
 
-" Use MUcomplete
-set completeopt+=menuone,noselect
-set shortmess+=c   " Shut off completion messages
-let g:mucomplete#enable_auto_at_startup = 1
+""" Trying coc.vim
+" Some servers have issues with backup files, see #649.
+set nobackup
+set nowritebackup
 
-" Required for operations modifying multiple buffers like rename.
-set hidden
+" Give more space for displaying messages.
+set cmdheight=2
 
-let g:LanguageClient_serverCommands = {
-    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-	\ 'python': ['/usr/local/bin/pyls'],
-	\ 'go': ['gopls'],
-    \ }
+" Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
+" delays and poor user experience.
+set updatetime=300
 
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+" Don't pass messages to |ins-completion-menu|.
+set shortmess+=c
+
+" Always show the signcolumn, otherwise it would shift the text each time
+" diagnostics appear/become resolved.
+" set signcolumn=yes
+
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+" " Use MUcomplete
+" set completeopt+=menuone,noselect
+" set shortmess+=c   " Shut off completion messages
+" let g:mucomplete#enable_auto_at_startup = 1
+
+" " Use LSP for language support
+" let g:LanguageClient_serverCommands = {
+"     \ 'rust': ['rustup', 'run', 'stable', 'rls'],
+" 	\ 'python': ['/usr/local/bin/pyls'],
+" 	\ 'go': ['gopls'],
+"     \ }
+" 
+" nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 
 " Swift
 let g:swift_suppress_showmatch_warning = 1
 autocmd filetype swift setlocal colorcolumn=0 " get rid of the annoying vertical line
-let g:syntastic_swift_checkers = ['swiftpm', 'swiftlint']
 
 set nocompatible    " Better safe than sorry
 
