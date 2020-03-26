@@ -1,14 +1,21 @@
 tap "homebrew/bundle"
 tap "homebrew/cask"
+tap "homebrew/cask-drivers"
+tap "homebrew/cask-fonts"
+tap "homebrew/cask-versions"
 tap "homebrew/core"
+tap "vitorgalvao/tiny-scripts"
 brew "cmake"
 brew "git"
 brew "mas"
 brew "msgpack"
 brew "neovim"
+brew "node"
 brew "python"
-brew "rust"
+brew "rustup-init"
 brew "swiftlint"
+brew "tree"
+brew "vitorgalvao/tiny-scripts/cask-repair"
 cask "1password"
 cask "1password-cli"
 cask "choosy"
@@ -20,11 +27,13 @@ cask "knockknock"
 cask "little-snitch"
 cask "mullvadvpn"
 cask "textexpander"
+cask "vanilla"
 cask "visual-studio-code"
 cask "zoomus"
 mas "1Blocker", id: 1107421413
 mas "Bear", id: 1091189122
 mas "Calcbot", id: 931657367
+mas "Canary Mail", id: 1236045954
 mas "CARROT Weather", id: 993487541
 mas "com.newsguardtech.app", id: 1438657064
 mas "Dato", id: 1470584107
