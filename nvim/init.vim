@@ -229,6 +229,7 @@ nmap k gk
 "  reading and writing files
 " -------------------------------------------------------------------------------- 
 set fileformats=unix,dos,mac    " try recognizing line endings in this order
+set autoread
 
 " -------------------------------------------------------------------------------- 
 "  the swap file
