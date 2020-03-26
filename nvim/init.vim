@@ -55,6 +55,7 @@ set updatetime=300
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
 
+
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
 " set signcolumn=yes
@@ -134,6 +135,8 @@ set ignorecase  " ignore case in searches
 set smartcase   " unless there are caps in the search
 set cursorline
 
+hi link CocFloating markdown 
+highlight clear SignColumn
 " -------------------------------------------------------------------------------- 
 "  multiple windows
 " --------------------------------------------------------------------------------  
