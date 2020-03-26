@@ -9,16 +9,8 @@ Plug 'junegunn/vim-plug'
 Plug 'itchyny/lightline.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'apple/swift', {'rtp': 'utils/vim'}
-" Plug 'rust-lang/rust.vim'
 
-" Plug 'lifepillar/vim-mucomplete'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'autozimu/LanguageClient-neovim', {
-"     \ 'branch': 'next',
-"     \ 'do': '`echo $SHELL` install.sh',
-"     \ }
-" " (Optional) Multi-entry selection UI.
-" Plug 'junegunn/fzf'
 
 call plug#end()
 
@@ -40,7 +32,7 @@ let g:lightline = {
       \ },
       \ }
 
-""" Trying coc.vim
+"--- coc.nvim settings ---"
 " Some servers have issues with backup files, see #649.
 set nobackup
 set nowritebackup
@@ -58,7 +50,7 @@ set shortmess+=c
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
-" set signcolumn=yes
+set signcolumn=yes
 
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
@@ -73,23 +65,9 @@ function! s:check_back_space() abort
   let col = col('.') - 1
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
-
-" " Use MUcomplete
-" set completeopt+=menuone,noselect
-" set shortmess+=c   " Shut off completion messages
-" let g:mucomplete#enable_auto_at_startup = 1
-
-" " Use LSP for language support
-" let g:LanguageClient_serverCommands = {
-"     \ 'rust': ['rustup', 'run', 'stable', 'rls'],
-" 	\ 'python': ['/usr/local/bin/pyls'],
-" 	\ 'go': ['gopls'],
-"     \ }
-" 
-" nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+"---------"
 
 " Swift
-let g:swift_suppress_showmatch_warning = 1
 autocmd filetype swift setlocal colorcolumn=0 " get rid of the annoying vertical line
 
 set nocompatible    " Better safe than sorry
@@ -127,7 +105,6 @@ set number       " show line numbers
 " -------------------------------------------------------------------------------- 
 " Completion
 set omnifunc=syntaxcomplete#Complete
-let g:SuperTabDefaultCompletionType = 'context'
 
 syntax enable    " enable syntax highlighting and allow custom highlighting
 set hlsearch    " highlight search terms
@@ -137,6 +114,7 @@ set cursorline
 
 hi link CocFloating markdown 
 highlight clear SignColumn
+
 " -------------------------------------------------------------------------------- 
 "  multiple windows
 " --------------------------------------------------------------------------------  
@@ -226,19 +204,6 @@ set shiftwidth=4             " number of spaces to use for autoindent
 " set expandtab                " use spaces instead of tab characters; to insert real tab, use <C-v><Tab>
 set autoindent
 set smarttab
-
-" Haskell indentation
-let g:haskell_indent_if = 4
-let g:haskell_indent_case = 4
-
-" Swift indents
-autocmd filetype swift setlocal tabstop=4
-autocmd filetype swift setlocal shiftwidth=4
-
-" TypeScript indents
-autocmd filetype typescript setlocal noexpandtab
-autocmd filetype typescript setlocal tabstop=4
-autocmd filetype typescript setlocal shiftwidth=4
 
 " -------------------------------------------------------------------------------- 
 "  folding
