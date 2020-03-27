@@ -13,7 +13,6 @@ brew "neovim"
 brew "node"
 brew "python"
 brew "rustup-init"
-brew "swiftlint"
 brew "tree"
 brew "vitorgalvao/tiny-scripts/cask-repair"
 cask "1password"
@@ -53,6 +52,5 @@ mas "The Unarchiver", id: 425424353
 mas "Things", id: 904280696
 mas "Tot", id: 1491071483
 mas "Tweetbot", id: 1384080005
-mas "Twitterrific", id: 1289378661
 mas "WireGuard", id: 1451685025
 mas "Xcode", id: 497799835
