@@ -20,6 +20,7 @@ cask "1password"
 cask "1password-cli"
 cask "choosy"
 cask "cryptomator"
+cask "discord"
 cask "firefox"
 cask "gpg-suite"
 cask "keybase"
@@ -46,7 +47,6 @@ mas "Noizio", id: 928871589
 mas "Numbers", id: 409203825
 mas "OmniFocus", id: 1346203938
 mas "Pages", id: 409201541
-mas "Reeder", id: 1449412482
 mas "Slack", id: 803453959
 mas "The Unarchiver", id: 425424353
 mas "Things", id: 904280696
