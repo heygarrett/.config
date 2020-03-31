@@ -8,14 +8,13 @@ Plug 'junegunn/vim-plug'
 
 Plug 'itchyny/lightline.vim'
 Plug 'altercation/vim-colors-solarized'
-Plug 'apple/swift', {'rtp': 'utils/vim'}
+Plug 'keith/swift.vim'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
-" Lightline
-" let g:lightline = {'colorscheme': 'solarized'}
+" Lightline & coc.nvim <
 function! CocCurrentFunction()
     return get(b:, 'coc_current_function', '')
 endfunction
@@ -67,11 +66,6 @@ function! s:check_back_space() abort
 endfunction
 "---------"
 
-" Swift
-autocmd filetype swift setlocal colorcolumn=0 " get rid of the annoying vertical line
-
-set nocompatible    " Better safe than sorry
-
 " set paste to prevent unexpected code formatting when pasting text
 " toggle paste and show current value ('pastetoggle' doesn't)
 nnoremap <Leader>p :set paste! paste?<CR>
@@ -91,9 +85,6 @@ set incsearch   " highlight search while typing search pattern
 " Set colorscheme to solarized
 set background=dark
 colorscheme solarized
- 
-" Toggle Solarized background
-call togglebg#map("<F5>")
 
 set linebreak   " wrap long lines at a blank
 set t_Co=256
@@ -126,7 +117,7 @@ set hidden
 " -------------------------------------------------------------------------------- 
 "  multiple tab pages
 " -------------------------------------------------------------------------------- 
-
+set showtabline=1
 " -------------------------------------------------------------------------------- 
 "  terminal
 " -------------------------------------------------------------------------------- 
@@ -199,9 +190,7 @@ endif
 filetype plugin indent on   " let vim detect filetype and load appropriate scripts
 
 set tabstop=4                " width of a tab character in spaces
-" set softtabstop=4            " defines number of spaces for when adding/removing tabs
 set shiftwidth=4             " number of spaces to use for autoindent
-" set expandtab                " use spaces instead of tab characters; to insert real tab, use <C-v><Tab>
 set autoindent
 set smarttab
 
@@ -228,7 +217,7 @@ nmap k gk
 " -------------------------------------------------------------------------------- 
 "  reading and writing files
 " -------------------------------------------------------------------------------- 
-set fileformats=unix,dos,mac    " try recognizing line endings in this order
+" set fileformats=unix,dos,mac    " try recognizing line endings in this order
 set autoread
 
 " -------------------------------------------------------------------------------- 
