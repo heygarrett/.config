@@ -1,3 +1,4 @@
 {
-	"diagnostic.checkCurrentLine": true
+	"diagnostic.checkCurrentLine": true,
+	"diagnostic.virtualText": true
 }

@@ -209,7 +209,7 @@ set nofoldenable      " set to display all folds open
 "  mapping
 " -------------------------------------------------------------------------------- 
 imap jk <esc>
-imap {<CR>  {<CR>}<Esc>O
+" imap {<CR>  {<CR>}<Esc>O
 imap ,/ </<C-X><C-O>
 nmap j gj
 nmap k gk
