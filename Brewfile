@@ -8,11 +8,12 @@ tap "vitorgalvao/tiny-scripts"
 brew "clamav"
 brew "cmake"
 brew "git"
+brew "python"
 brew "mas"
 brew "msgpack"
+brew "neofetch"
 brew "neovim"
 brew "node"
-brew "python"
 brew "rustup-init"
 brew "tree"
 brew "vitorgalvao/tiny-scripts/cask-repair"
@@ -29,7 +30,6 @@ cask "little-snitch"
 cask "mullvadvpn"
 cask "signal"
 cask "textexpander"
-cask "zoomus"
 mas "1Blocker", id: 1107421413
 mas "Bear", id: 1091189122
 mas "Calcbot", id: 931657367
@@ -38,6 +38,7 @@ mas "CARROT Weather", id: 993487541
 mas "com.newsguardtech.app", id: 1438657064
 mas "Dato", id: 1470584107
 mas "Deliveries", id: 924726344
+mas "GoodTask", id: 1143437985
 mas "Horo", id: 1437226581
 mas "Internet Access Policy Viewer", id: 1482630322
 mas "Keynote", id: 409183694
