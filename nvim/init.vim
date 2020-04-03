@@ -1,8 +1,9 @@
 " -------------------------------------------------------------------------------- 
 "  plugins
 " --------------------------------------------------------------------------------
-"
-" " Plug
+
+" ----------------------------
+" Plug settings
 call plug#begin('~/.local/share/nvim/plugged')
 Plug 'junegunn/vim-plug'
 
@@ -14,7 +15,11 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
-" Lightline & coc.nvim <
+" / Plug settings
+" ----------------------------
+
+" ----------------------------
+" Lightline settings (with some coc.nvim)
 function! CocCurrentFunction()
     return get(b:, 'coc_current_function', '')
 endfunction
@@ -31,7 +36,12 @@ let g:lightline = {
       \ },
       \ }
 
-"--- coc.nvim settings ---"
+" / Lightline settings (with some coc.nvim)
+" ----------------------------
+
+" ----------------------------
+" coc.nvim settings
+
 " Some servers have issues with backup files, see #649.
 set nobackup
 set nowritebackup
@@ -63,7 +73,7 @@ function! s:check_back_space() abort
   return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-" Use <CR> to confirm selected snippet or enter <CR> depending
+" Use <CR> to confirm selected snippet or enter line break depending
 inoremap <expr> <cr> pumvisible() ? (coc#rpc#request('hasSelected', []) ? "\<C-y>" : "\<CR>") : "\<C-g>u\<CR>"
 
 " Use <tab> for jump to next placeholder, it's default of coc.nvim
@@ -72,11 +82,9 @@ let g:coc_snippet_next = '<tab>'
 " Use <s-tab> for jump to previous placeholder, it's default of coc.nvim
 let g:coc_snippet_prev = '<s-tab>'
 
-"---------"
+" / coc.nvim settings
+" ----------------------------
 
-" set paste to prevent unexpected code formatting when pasting text
-" toggle paste and show current value ('pastetoggle' doesn't)
-nnoremap <Leader>p :set paste! paste?<CR>
 
 " -------------------------------------------------------------------------------- 
 "  moving around, searching, and patterns
@@ -168,11 +176,9 @@ function! ClipboardPaste()
     let @@ = system('pbpaste')
 endfunction
 
-" vnoremap <silent> y y:call ClipboardYank()<cr>
-" vnoremap <silent> d d:call ClipboardYank()<cr>
-" nnoremap <silent> p :call ClipboardPaste()<cr>p
-" onoremap <silent> y y:call ClipboardYank()<cr>
-" onoremap <silent> d d:call ClipboardYank()<cr>
+" set paste to prevent unexpected code formatting when pasting text
+" toggle paste and show current value ('pastetoggle' doesn't)
+nnoremap <Leader>p :set paste! paste?<CR>
 
 " -------------------------------------------------------------------------------- 
 "  editing text
