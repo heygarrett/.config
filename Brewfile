@@ -7,6 +7,7 @@ tap "homebrew/core"
 tap "vitorgalvao/tiny-scripts"
 brew "cmake"
 brew "git"
+brew "gitless"
 brew "python"
 brew "mas"
 brew "msgpack"
@@ -45,12 +46,9 @@ mas "Micro Snitch", id: 972028355
 mas "News Explorer", id: 1032670789
 mas "Noizio", id: 928871589
 mas "Numbers", id: 409203825
-mas "OmniFocus", id: 1346203938
 mas "Pages", id: 409201541
 mas "Slack", id: 803453959
 mas "The Unarchiver", id: 425424353
-mas "Things", id: 904280696
 mas "Tot", id: 1491071483
 mas "Tweetbot", id: 1384080005
-mas "WireGuard", id: 1451685025
 mas "Xcode", id: 497799835
