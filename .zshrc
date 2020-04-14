@@ -1,3 +1,11 @@
+### Change default prompt
+# export PS1="[%~]$ "
+
+### Trying Pure zsh prompt
+fpath+=$HOME/repos/dotfiles/zsh/pure
+autoload -U promptinit; promptinit
+prompt pure
+
 ### Set zsh to vi mode
 set -o vi
 
@@ -9,12 +17,6 @@ export EDITOR="nvim"
 
 ### Avoid duplicates in PATH
 typeset -U path
-
-### Change default prompt
-export PS1="[%~]$ "
-
-### brew doctor
-# path=(/usr/local/sbin $path)
 
 ### brew bundle
 export HOMEBREW_BUNDLE_FILE="$HOME/.Brewfile"
