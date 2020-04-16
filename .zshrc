@@ -1,16 +1,8 @@
-### Change default prompt
-# export PS1="[%~]$ "
-
-### Trying Pure zsh prompt
-# fpath+=$HOME/repos/dotfiles/zsh/pure
-# autoload -U promptinit; promptinit
-# prompt pure
-
-### Trying zplug
+### zplug
 export ZPLUG_HOME=/usr/local/opt/zplug
 source $ZPLUG_HOME/init.zsh
 
-# zplug (self manage)
+# self manage
 zplug 'zplug/zplug', hook-build:'zplug --self-manage'
 # Pure
 zplug mafredri/zsh-async, from:github
@@ -25,7 +17,7 @@ if ! zplug check --verbose; then
 fi
 
 # Then, source plugins and add commands to $PATH
-zplug load # --verbose
+zplug load
 
 ### Set zsh to vi mode
 set -o vi
