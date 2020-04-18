@@ -5,7 +5,7 @@
     "coc-python": ">=1.2.9",
     "coc-rls": ">=1.1.4",
     "coc-sh": ">=0.4.0",
-    "coc-snippets": ">=2.1.24",
+    "coc-snippets": ">=2.1.25",
     "coc-sourcekit": ">=0.0.2"
   }
 }

@@ -49,7 +49,6 @@ mas "Noizio", id: 928871589
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Slack", id: 803453959
-mas "The Unarchiver", id: 425424353
 mas "Tot", id: 1491071483
 mas "Tweetbot", id: 1384080005
 mas "Xcode", id: 497799835
