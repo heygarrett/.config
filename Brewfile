@@ -30,7 +30,6 @@ cask "cryptomator"
 cask "discord"
 cask "firefox"
 cask "gpg-suite"
-cask "keybase"
 cask "knockknock"
 cask "little-snitch"
 cask "mullvadvpn"
@@ -48,12 +47,15 @@ mas "GoodTask", id: 1143437985
 mas "Horo", id: 1437226581
 mas "Internet Access Policy Viewer", id: 1482630322
 mas "Keynote", id: 409183694
+mas "Mactracker", id: 430255202
 mas "Micro Snitch", id: 972028355
 mas "News Explorer", id: 1032670789
 mas "Noizio", id: 928871589
 mas "Numbers", id: 409203825
+mas "OmniFocus", id: 1346203938
 mas "Pages", id: 409201541
 mas "Slack", id: 803453959
+mas "Time Sink", id: 404363161
 mas "Tot", id: 1491071483
 mas "Tweetbot", id: 1384080005
 mas "Xcode", id: 497799835
