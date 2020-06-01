@@ -1,9 +1,9 @@
 {
   "dependencies": {
-    "coc-json": ">=1.2.5",
+    "coc-json": ">=1.2.6",
     "coc-marketplace": ">=1.7.0",
     "coc-python": ">=1.2.12",
-    "coc-rls": ">=1.1.5",
+    "coc-rls": ">=1.1.6",
     "coc-sh": ">=0.4.0",
     "coc-snippets": ">=2.1.26",
     "coc-sourcekit": ">=0.0.2"
