@@ -19,7 +19,6 @@ brew "rolldice"
 brew "rustup-init"
 brew "tree"
 brew "zplug"
-brew "federico-terzi/espanso/espanso"
 brew "vitorgalvao/tiny-scripts/cask-repair"
 cask "1password-cli"
 cask "brave-browser"
@@ -28,10 +27,12 @@ cask "discord"
 cask "eloston-chromium"
 cask "firefox"
 cask "gpg-suite"
+cask "istat-menus"
 cask "knockknock"
 cask "little-snitch"
 cask "mullvadvpn"
 cask "notion"
+cask "numi"
 cask "signal"
 cask "textexpander"
 cask "zoomus"
@@ -45,11 +46,13 @@ mas "Deliveries", id: 924726344
 mas "Horo", id: 1437226581
 mas "Internet Access Policy Viewer", id: 1482630322
 mas "Keynote", id: 409183694
+mas "lire", id: 1482527526
 mas "Micro Snitch", id: 972028355
 mas "Noizio", id: 928871589
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Slack", id: 803453959
+mas "Soulver 3", id: 1508732804
 mas "Things", id: 904280696
 mas "Tot", id: 1491071483
 mas "Tweetbot", id: 1384080005
