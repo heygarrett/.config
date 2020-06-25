@@ -17,6 +17,7 @@ brew "node"
 brew "python"
 brew "rolldice"
 brew "rustup-init"
+brew "tarsnap"
 brew "tree"
 brew "zplug"
 brew "vitorgalvao/tiny-scripts/cask-repair"
@@ -42,6 +43,7 @@ mas "CARROT Weather", id: 993487541
 mas "com.newsguardtech.app", id: 1438657064
 mas "Dato", id: 1470584107
 mas "Deliveries", id: 924726344
+mas "Drafts", id: 1435957248
 mas "Horo", id: 1437226581
 mas "Internet Access Policy Viewer", id: 1482630322
 mas "Keynote", id: 409183694
@@ -55,4 +57,5 @@ mas "Soulver 3", id: 1508732804
 mas "Things", id: 904280696
 mas "Tot", id: 1491071483
 mas "Tweetbot", id: 1384080005
+mas "WireGuard", id: 1451685025
 mas "Xcode", id: 497799835
