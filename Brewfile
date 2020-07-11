@@ -14,18 +14,23 @@ brew "mas"
 brew "msgpack"
 brew "neovim"
 brew "node"
-brew "python"
+brew "pkg-config"
+brew "python@3.8"
 brew "rolldice"
 brew "rustup-init"
+brew "starship"
 brew "tarsnap"
 brew "tree"
-brew "zplug"
 brew "vitorgalvao/tiny-scripts/cask-repair"
 cask "1password-cli"
+cask "brave-browser"
 cask "cryptomator"
 cask "discord"
+cask "dropbox"
 cask "eloston-chromium"
 cask "firefox"
+cask "font-fira-code-nerd-font"
+cask "google-chrome"
 cask "gpg-suite"
 cask "istat-menus"
 cask "jitsi-meet"
@@ -52,6 +57,7 @@ mas "Micro Snitch", id: 972028355
 mas "Noizio", id: 928871589
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
+mas "Parcel", id: 639968404
 mas "Slack", id: 803453959
 mas "Soulver 3", id: 1508732804
 mas "Things", id: 904280696
