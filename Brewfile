@@ -27,7 +27,6 @@ cask "brave-browser"
 cask "cryptomator"
 cask "discord"
 cask "dropbox"
-cask "eloston-chromium"
 cask "firefox"
 cask "font-fira-code-nerd-font"
 cask "google-chrome"
@@ -37,7 +36,9 @@ cask "jitsi-meet"
 cask "knockknock"
 cask "little-snitch"
 cask "mullvadvpn"
+cask "netnewswire"
 cask "notion"
+cask "ripcord"
 cask "signal"
 cask "textexpander"
 cask "zoomus"
@@ -45,17 +46,19 @@ mas "1Blocker", id: 1107421413
 mas "Bear", id: 1091189122
 mas "Calcbot", id: 931657367
 mas "CARROT Weather", id: 993487541
-mas "com.newsguardtech.app", id: 1438657064
 mas "Dato", id: 1470584107
 mas "Deliveries", id: 924726344
 mas "Drafts", id: 1435957248
+mas "GoodLinks", id: 1474335294
 mas "Horo", id: 1437226581
 mas "Internet Access Policy Viewer", id: 1482630322
 mas "Keynote", id: 409183694
 mas "lire", id: 1482527526
 mas "Micro Snitch", id: 972028355
+mas "NewsGuard", id: 1438657064
 mas "Noizio", id: 928871589
 mas "Numbers", id: 409203825
+mas "OmniFocus", id: 1346203938
 mas "Pages", id: 409201541
 mas "Parcel", id: 639968404
 mas "Slack", id: 803453959
