@@ -9,6 +9,7 @@ tap "keys-pub/tap"
 tap "vitorgalvao/tiny-scripts"
 brew "cmake"
 brew "git"
+brew "jq"
 brew "jsonpp"
 brew "mas"
 brew "msgpack"
@@ -24,20 +25,17 @@ brew "tree"
 brew "vitorgalvao/tiny-scripts/cask-repair"
 cask "1password-cli"
 cask "brave-browser"
+cask "choosy"
 cask "cryptomator"
 cask "discord"
 cask "dropbox"
-cask "firefox"
 cask "font-fira-code-nerd-font"
-cask "google-chrome"
 cask "gpg-suite"
 cask "istat-menus"
 cask "jitsi-meet"
 cask "knockknock"
-cask "little-snitch"
 cask "mullvadvpn"
-cask "netnewswire"
-cask "notion"
+cask "parallels"
 cask "ripcord"
 cask "signal"
 cask "textexpander"
@@ -46,25 +44,20 @@ mas "1Blocker", id: 1107421413
 mas "Bear", id: 1091189122
 mas "Calcbot", id: 931657367
 mas "CARROT Weather", id: 993487541
-mas "Dato", id: 1470584107
 mas "Deliveries", id: 924726344
-mas "Drafts", id: 1435957248
 mas "GoodLinks", id: 1474335294
 mas "Horo", id: 1437226581
 mas "Internet Access Policy Viewer", id: 1482630322
 mas "Keynote", id: 409183694
-mas "lire", id: 1482527526
 mas "Micro Snitch", id: 972028355
+mas "Mineswifter", id: 1521190195
 mas "NewsGuard", id: 1438657064
 mas "Noizio", id: 928871589
 mas "Numbers", id: 409203825
-mas "OmniFocus", id: 1346203938
 mas "Pages", id: 409201541
 mas "Parcel", id: 639968404
 mas "Slack", id: 803453959
 mas "Soulver 3", id: 1508732804
-mas "Things", id: 904280696
-mas "Tot", id: 1491071483
 mas "Tweetbot", id: 1384080005
 mas "WireGuard", id: 1451685025
 mas "Xcode", id: 497799835
