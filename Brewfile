@@ -22,6 +22,7 @@ brew "rustup-init"
 brew "starship"
 brew "tarsnap"
 brew "tree"
+brew "yarn"
 brew "vitorgalvao/tiny-scripts/cask-repair"
 cask "1password-cli"
 cask "brave-browser"
@@ -31,10 +32,10 @@ cask "discord"
 cask "dropbox"
 cask "font-fira-code-nerd-font"
 cask "gpg-suite"
-cask "istat-menus"
 cask "jitsi-meet"
 cask "knockknock"
 cask "mullvadvpn"
+cask "oversight"
 cask "parallels"
 cask "ripcord"
 cask "signal"
@@ -42,6 +43,7 @@ cask "textexpander"
 cask "zoomus"
 mas "1Blocker", id: 1107421413
 mas "Bear", id: 1091189122
+mas "Boop", id: 1518425043
 mas "Calcbot", id: 931657367
 mas "CARROT Weather", id: 993487541
 mas "Deliveries", id: 924726344
@@ -54,6 +56,7 @@ mas "Mineswifter", id: 1521190195
 mas "NewsGuard", id: 1438657064
 mas "Noizio", id: 928871589
 mas "Numbers", id: 409203825
+mas "OmniFocus", id: 1346203938
 mas "Pages", id: 409201541
 mas "Parcel", id: 639968404
 mas "Slack", id: 803453959
