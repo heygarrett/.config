@@ -11,7 +11,7 @@ fi
 set -o vi
 
 ### Default to neovim
-alias vim="nvim"
+# alias vim="nvim"
 
 ### Preferred editor for local and remote sessions
 export EDITOR="nvim"
