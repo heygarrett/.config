@@ -206,6 +206,7 @@ endif
 " -------------------------------------------------------------------------------- 
 filetype plugin indent on   " let vim detect filetype and load appropriate scripts
 
+set noexpandtab
 set tabstop=4                " width of a tab character in spaces
 set shiftwidth=4             " number of spaces to use for autoindent
 set autoindent
@@ -226,21 +227,18 @@ set nofoldenable      " set to display all folds open
 "  mapping
 " -------------------------------------------------------------------------------- 
 imap jk <esc>
-" imap {<CR>  {<CR>}<Esc>O
-imap ,/ </<C-X><C-O>
 nmap j gj
 nmap k gk
 
 " -------------------------------------------------------------------------------- 
 "  reading and writing files
 " -------------------------------------------------------------------------------- 
-" set fileformats=unix,dos,mac    " try recognizing line endings in this order
 set autoread
 
 " -------------------------------------------------------------------------------- 
 "  the swap file
 " -------------------------------------------------------------------------------- 
-set noswapfile
+" set noswapfile
 
 " -------------------------------------------------------------------------------- 
 "  command line editing
