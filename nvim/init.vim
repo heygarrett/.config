@@ -102,7 +102,7 @@ set incsearch   " highlight search while typing search pattern
 "  displaying text
 " -------------------------------------------------------------------------------- 
 " Set colorscheme to solarized
-set background=dark
+" set background=dark
 colorscheme solarized
 
 set linebreak   " wrap long lines at a blank
@@ -117,7 +117,7 @@ set number       " show line numbers
 set omnifunc=syntaxcomplete#Complete
 
 syntax enable    " enable syntax highlighting and allow custom highlighting
-set hlsearch    " highlight search terms
+" (default) set hlsearch    " highlight search terms
 set ignorecase  " ignore case in searches
 set smartcase   " unless there are caps in the search
 set cursorline
@@ -154,8 +154,8 @@ set mouse=a
 " -------------------------------------------------------------------------------- 
 "  messages and info
 " -------------------------------------------------------------------------------- 
-set ruler        " always show current position
-set showcmd      " show the command being typed
+" (default) set ruler        " always show current position
+" (default) set showcmd      " show the command being typed
 
 " -------------------------------------------------------------------------------- 
 "  selecting text
@@ -188,7 +188,7 @@ nnoremap <Leader>p :set paste! paste?<CR>
 " -------------------------------------------------------------------------------- 
 set showmatch                           " show matching braces when typed or under cursor
 set matchtime=2                         " length of time for 'showmatch'
-set backspace=start,indent,eol          " make backspace work like 'normal' text editors
+" (default) set backspace=start,indent,eol          " make backspace work like 'normal' text editors
 
 " When editing a file, always jump to the last cursor position
 if has("autocmd") 
@@ -206,8 +206,8 @@ filetype plugin indent on   " let vim detect filetype and load appropriate scrip
 set noexpandtab
 set tabstop=4                " width of a tab character in spaces
 set shiftwidth=4             " number of spaces to use for autoindent
-set autoindent
-set smarttab
+" (default) set autoindent
+" (default) set smarttab
 
 " -------------------------------------------------------------------------------- 
 "  folding
@@ -242,7 +242,7 @@ set autoread
 " -------------------------------------------------------------------------------- 
 set history=1000    " history of commands and searches
 set undolevels=1000 " changes to be remembered
-set wildmenu    " use menu for command line completion
+" (default) set wildmenu    " use menu for command line completion
 
 " -------------------------------------------------------------------------------- 
 "  executing external commands
