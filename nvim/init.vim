@@ -190,9 +190,6 @@ set showmatch                           " show matching braces when typed or und
 set matchtime=2                         " length of time for 'showmatch'
 set backspace=start,indent,eol          " make backspace work like 'normal' text editors
 
-" Disable autocommenting after <CR> (//)
-autocmd FileType c,cpp setlocal comments-=:// comments+=f://
-
 " When editing a file, always jump to the last cursor position
 if has("autocmd") 
   autocmd BufReadPost *
