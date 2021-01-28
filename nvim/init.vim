@@ -92,7 +92,7 @@ let g:coc_snippet_prev = '<s-tab>'
 " -------------------------------------------------------------------------------- 
 "  moving around, searching, and patterns
 " -------------------------------------------------------------------------------- 
-set incsearch   " highlight search while typing search pattern
+" (default) set incsearch   " highlight search while typing search pattern
 
 " -------------------------------------------------------------------------------- 
 "  tags
@@ -116,7 +116,7 @@ set number       " show line numbers
 " Completion
 set omnifunc=syntaxcomplete#Complete
 
-syntax enable    " enable syntax highlighting and allow custom highlighting
+" (default) syntax enable    " enable syntax highlighting and allow custom highlighting
 " (default) set hlsearch    " highlight search terms
 set ignorecase  " ignore case in searches
 set smartcase   " unless there are caps in the search
@@ -201,7 +201,7 @@ endif
 " -------------------------------------------------------------------------------- 
 "  tabs and indenting
 " -------------------------------------------------------------------------------- 
-filetype plugin indent on   " let vim detect filetype and load appropriate scripts
+" (default) filetype plugin indent on   " let vim detect filetype and load appropriate scripts
 
 set noexpandtab
 set tabstop=4                " width of a tab character in spaces
@@ -230,7 +230,7 @@ nmap k gk
 " -------------------------------------------------------------------------------- 
 "  reading and writing files
 " -------------------------------------------------------------------------------- 
-set autoread
+" (default) set autoread
 
 " -------------------------------------------------------------------------------- 
 "  the swap file
