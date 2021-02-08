@@ -43,7 +43,16 @@ let g:lightline = {
 " coc.nvim settings
 
 " Extensions
-let g:coc_global_extensions = ['coc-json', 'coc-marketplace', 'coc-python', 'coc-rust-analyzer', 'coc-sh', 'coc-snippets', 'coc-sourcekit']
+let g:coc_global_extensions = [
+		\ 'coc-json',
+		\ 'coc-marketplace',
+		\ 'coc-python',
+		\ 'coc-rust-analyzer',
+		\ 'coc-sh',
+		\ 'coc-snippets',
+		\ 'coc-sourcekit',
+		\ 'coc-tag'
+		\ ]
 
 " Some servers have issues with backup files, see #649.
 set nobackup
