@@ -22,10 +22,9 @@ brew "libtermkey"
 brew "libuv"
 brew "libvterm"
 brew "llvm"
-brew "luajit", args: ["HEAD"]
 brew "mas"
 brew "msgpack"
-brew "neovim", args: ["HEAD"]
+brew "neovim"
 brew "node", args: ["HEAD"]
 brew "rolldice"
 brew "starship"
@@ -33,7 +32,6 @@ brew "tree"
 brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
 brew "vitorgalvao/tiny-scripts/cask-repair"
 cask "blockblock"
-cask "brave-browser"
 cask "choosy"
 cask "cryptomator"
 cask "db-browser-for-sqlite"
@@ -47,6 +45,7 @@ cask "jitsi-meet"
 cask "knockknock"
 cask "lulu"
 cask "mullvadvpn"
+cask "oversight"
 cask "signal"
 cask "zoom"
 mas "1Blocker", id: 1107421413
