@@ -1,0 +1,12 @@
+[user]
+	name = Garrett Oreilly
+	email = heygarrett@hey.com
+	signingkey = 532D9ADF4303874E
+[commit]
+	gpgsign = true
+[core]
+	editor = nvim
+	excludesfile = /Users/garrett/.gitignore
+	autocrlf = input
+[gpg]
+	program = /opt/homebrew/bin/gpg
