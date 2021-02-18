@@ -25,7 +25,7 @@ brew "llvm"
 brew "mas"
 brew "msgpack"
 brew "neovim"
-brew "node", args: ["HEAD"]
+brew "node"
 brew "rolldice"
 brew "starship"
 brew "tree"
