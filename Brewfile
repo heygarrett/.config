@@ -8,15 +8,12 @@ tap "homebrew/core"
 tap "keys-pub/tap"
 tap "universal-ctags/universal-ctags"
 tap "vitorgalvao/tiny-scripts"
-brew "cmake"
 brew "gettext"
 brew "fish"
 brew "git"
 brew "pkg-config"
 brew "openssl@1.1"
 brew "gnupg"
-brew "jq"
-brew "libssh2"
 brew "unibilium"
 brew "libtermkey"
 brew "libuv"
@@ -26,7 +23,7 @@ brew "mas"
 brew "msgpack"
 brew "neovim"
 brew "node"
-brew "rolldice"
+brew "python@3.9"
 brew "starship"
 brew "tree"
 brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
@@ -38,9 +35,7 @@ cask "db-browser-for-sqlite"
 cask "discord"
 cask "eloston-chromium"
 cask "firefox"
-cask "font-fira-code-nerd-font"
 cask "font-fira-mono-nerd-font"
-cask "iterm2"
 cask "jitsi-meet"
 cask "knockknock"
 cask "lulu"
@@ -53,6 +48,7 @@ mas "Amphetamine", id: 937984704
 mas "Bear", id: 1091189122
 mas "Boop", id: 1518425043
 mas "Deliveries", id: 290986013
+mas "Flow", id: 1423210932
 mas "GoodLinks", id: 1474335294
 mas "Horo", id: 1437226581
 mas "Hush", id: 1544743900
