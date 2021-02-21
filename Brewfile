@@ -23,7 +23,6 @@ brew "mas"
 brew "msgpack"
 brew "neovim"
 brew "node"
-brew "python@3.9"
 brew "starship"
 brew "tree"
 brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
