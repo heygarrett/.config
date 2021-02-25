@@ -10,6 +10,7 @@ Plug 'junegunn/vim-plug'
 Plug 'itchyny/lightline.vim'
 Plug 'altercation/vim-colors-solarized'
 Plug 'apple/swift', { 'rtp': 'utils/vim' }
+Plug 'editorconfig/editorconfig-vim'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
