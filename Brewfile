@@ -1,3 +1,4 @@
+tap "core/1password", "ssh://git@ssh.gitlab.1password.io:2227/dev/core/homebrew-1password.git"
 tap "federico-terzi/espanso"
 tap "homebrew/bundle"
 tap "homebrew/cask"
@@ -8,11 +9,10 @@ tap "homebrew/core"
 tap "keys-pub/tap"
 tap "universal-ctags/universal-ctags"
 tap "vitorgalvao/tiny-scripts"
-brew "gettext"
 brew "fish"
+brew "gettext"
 brew "git"
 brew "pkg-config"
-brew "openssl@1.1"
 brew "gnupg"
 brew "unibilium"
 brew "libtermkey"
@@ -47,7 +47,6 @@ mas "Amphetamine", id: 937984704
 mas "Bear", id: 1091189122
 mas "Boop", id: 1518425043
 mas "Deliveries", id: 290986013
-mas "Flow", id: 1423210932
 mas "GoodLinks", id: 1474335294
 mas "Horo", id: 1437226581
 mas "Hush", id: 1544743900
