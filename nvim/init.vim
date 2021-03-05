@@ -101,7 +101,6 @@ let g:coc_snippet_prev = '<s-tab>'
 " -------------------------------------------------------------------------------- 
 "  moving around, searching, and patterns
 " -------------------------------------------------------------------------------- 
-" (default) set incsearch   " highlight search while typing search pattern
 
 " -------------------------------------------------------------------------------- 
 "  tags
@@ -125,8 +124,6 @@ set number       " show line numbers
 " Completion
 set omnifunc=syntaxcomplete#Complete
 
-" (default) syntax enable    " enable syntax highlighting and allow custom highlighting
-" (default) set hlsearch    " highlight search terms
 set ignorecase  " ignore case in searches
 set smartcase   " unless there are caps in the search
 set cursorline
@@ -163,8 +160,6 @@ set mouse=a
 " -------------------------------------------------------------------------------- 
 "  messages and info
 " -------------------------------------------------------------------------------- 
-" (default) set ruler        " always show current position
-" (default) set showcmd      " show the command being typed
 
 " -------------------------------------------------------------------------------- 
 "  selecting text
@@ -197,7 +192,6 @@ nnoremap <Leader>p :set paste! paste?<CR>
 " -------------------------------------------------------------------------------- 
 set showmatch                           " show matching braces when typed or under cursor
 set matchtime=2                         " length of time for 'showmatch'
-" (default) set backspace=start,indent,eol          " make backspace work like 'normal' text editors
 
 " When editing a file, always jump to the last cursor position
 if has("autocmd") 
@@ -210,13 +204,10 @@ endif
 " -------------------------------------------------------------------------------- 
 "  tabs and indenting
 " -------------------------------------------------------------------------------- 
-" (default) filetype plugin indent on   " let vim detect filetype and load appropriate scripts
 
 set noexpandtab
 set tabstop=4                " width of a tab character in spaces
 set shiftwidth=4             " number of spaces to use for autoindent
-" (default) set autoindent
-" (default) set smarttab
 
 " -------------------------------------------------------------------------------- 
 "  folding
@@ -238,7 +229,6 @@ nmap k gk
 " -------------------------------------------------------------------------------- 
 "  reading and writing files
 " -------------------------------------------------------------------------------- 
-" (default) set autoread
 
 " -------------------------------------------------------------------------------- 
 "  the swap file
@@ -250,7 +240,6 @@ nmap k gk
 " -------------------------------------------------------------------------------- 
 set history=1000    " history of commands and searches
 set undolevels=1000 " changes to be remembered
-" (default) set wildmenu    " use menu for command line completion
 
 " -------------------------------------------------------------------------------- 
 "  executing external commands
