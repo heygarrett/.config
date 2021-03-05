@@ -17,6 +17,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 call plug#end()
 
 " / Plug settings
+"
 " ----------------------------
 
 " ----------------------------
@@ -38,6 +39,7 @@ let g:lightline = {
       \ }
 
 " / Lightline settings (with some coc.nvim)
+"
 " ----------------------------
 
 " ----------------------------
@@ -67,7 +69,6 @@ set updatetime=300
 
 " Don't pass messages to |ins-completion-menu|.
 set shortmess+=c
-
 
 " Always show the signcolumn, otherwise it would shift the text each time
 " diagnostics appear/become resolved.
@@ -133,6 +134,7 @@ set hidden
 "  multiple tab pages
 " -------------------------------------------------------------------------------- 
 set showtabline=1
+
 " -------------------------------------------------------------------------------- 
 "  terminal
 " -------------------------------------------------------------------------------- 
@@ -186,7 +188,6 @@ endif
 " -------------------------------------------------------------------------------- 
 "  tabs and indenting
 " -------------------------------------------------------------------------------- 
-
 set noexpandtab
 set tabstop=4                " width of a tab character in spaces
 set shiftwidth=4             " number of spaces to use for autoindent
@@ -209,3 +210,4 @@ nmap k gk
 " -------------------------------------------------------------------------------- 
 set history=1000    " history of commands and searches
 set undolevels=1000 " changes to be remembered
+
