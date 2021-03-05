@@ -47,7 +47,6 @@ let g:lightline = {
 let g:coc_global_extensions = [
 		\ 'coc-json',
 		\ 'coc-marketplace',
-		\ 'coc-python',
 		\ 'coc-rust-analyzer',
 		\ 'coc-sh',
 		\ 'coc-snippets',
