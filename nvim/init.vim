@@ -110,7 +110,6 @@ let g:coc_snippet_prev = '<s-tab>'
 "  displaying text
 " -------------------------------------------------------------------------------- 
 " Set colorscheme to solarized
-" set background=dark
 colorscheme solarized
 
 set linebreak   " wrap long lines at a blank
