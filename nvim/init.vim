@@ -47,13 +47,14 @@ let g:lightline = {
 
 " Extensions
 let g:coc_global_extensions = [
-		\ 'coc-json',
 		\ 'coc-marketplace',
-		\ 'coc-rust-analyzer',
-		\ 'coc-sh',
+		\ 'coc-tag',
 		\ 'coc-snippets',
+		\ 'coc-json',
+		\ 'coc-sh',
 		\ 'coc-sourcekit',
-		\ 'coc-tag'
+		\ 'coc-rust-analyzer',
+		\ 'coc-tsserver',
 		\ ]
 
 " Some servers have issues with backup files, see #649.
