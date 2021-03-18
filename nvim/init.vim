@@ -120,6 +120,7 @@ set omnifunc=syntaxcomplete#Complete
 set ignorecase  " ignore case in searches
 set smartcase   " unless there are caps in the search
 set cursorline
+set cursorcolumn
 
 hi link CocFloating markdown 
 highlight clear SignColumn
