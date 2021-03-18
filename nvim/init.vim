@@ -38,6 +38,8 @@ let g:lightline = {
       \ },
       \ }
 
+set noshowmode
+
 " / Lightline settings (with some coc.nvim)
 "
 " ----------------------------
