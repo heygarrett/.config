@@ -154,27 +154,7 @@ set mouse=a
 "  selecting text
 " -------------------------------------------------------------------------------- 
 " --copying / pasting
-" allow vim commands to copy to system clipboard (*)
-" for X11:
-"   + is the clipboard register (Ctrl-{c,v})
-"   * is the selection register (middle click, Shift-Insert)
-set clipboard=unnamed
-
-" use clipboard register when supported (X11 only)
-if has("unnamedplus")
-    set clipboard+=unnamedplus
-endif
-" Clipboard for neovim
-function! ClipboardYank()
-    call system('pbcopy', @@)
-endfunction
-function! ClipboardPaste()
-    let @@ = system('pbpaste')
-endfunction
-
-" set paste to prevent unexpected code formatting when pasting text
-" toggle paste and show current value ('pastetoggle' doesn't)
-nnoremap <Leader>p :set paste! paste?<CR>
+set clipboard+=unnamedplus
 
 " -------------------------------------------------------------------------------- 
 "  editing text
