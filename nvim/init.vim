@@ -23,20 +23,20 @@ call plug#end()
 " ----------------------------
 " Lightline settings (with some coc.nvim)
 function! CocCurrentFunction()
-    return get(b:, 'coc_current_function', '')
+	return get(b:, 'coc_current_function', '')
 endfunction
 
 let g:lightline = {
-      \ 'colorscheme': 'solarized',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'cocstatus': 'coc#status',
-      \   'currentfunction': 'CocCurrentFunction'
-      \ },
-      \ }
+	\ 'colorscheme': 'solarized',
+	\ 'active': {
+	\   'left': [ [ 'mode', 'paste' ],
+	\             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
+	\ },
+	\ 'component_function': {
+	\   'cocstatus': 'coc#status',
+	\   'currentfunction': 'CocCurrentFunction'
+	\ },
+	\ }
 
 set noshowmode
 
@@ -80,14 +80,14 @@ set signcolumn=yes
 
 " Use tab for trigger completion with characters ahead and navigate.
 inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
+	\ pumvisible() ? "\<C-n>" :
+	\ <SID>check_back_space() ? "\<TAB>" :
+	\ coc#refresh()
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
+	let col = col('.') - 1
+	return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
 " Use <CR> to confirm selected snippet or enter line break depending
@@ -122,7 +122,6 @@ set omnifunc=syntaxcomplete#Complete
 set ignorecase  " ignore case in searches
 set smartcase   " unless there are caps in the search
 set cursorline
-set cursorcolumn
 
 hi link CocFloating markdown 
 highlight clear SignColumn
@@ -164,10 +163,10 @@ set matchtime=2                         " length of time for 'showmatch'
 
 " When editing a file, always jump to the last cursor position
 if has("autocmd") 
-  autocmd BufReadPost *
-  \ if line("'\"") > 0 && line ("'\"") <= line("$") |
-  \   exe "normal! g'\"" |
-  \ endif
+	autocmd BufReadPost *
+	\ if line("'\"") > 0 && line ("'\"") <= line("$") |
+	\   exe "normal! g'\"" |
+	\ endif
 endif
 
 " -------------------------------------------------------------------------------- 
