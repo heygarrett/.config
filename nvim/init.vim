@@ -11,6 +11,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'altercation/solarized', { 'rtp': 'vim-colors-solarized' }
 Plug 'apple/swift', { 'rtp': 'utils/vim' }
 Plug 'editorconfig/editorconfig-vim'
+Plug 'thaerkh/vim-indentguides'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
@@ -29,14 +30,14 @@ endfunction
 let g:lightline = {
 	\ 'colorscheme': 'solarized',
 	\ 'active': {
-	\   'left': [ [ 'mode', 'paste' ],
-	\             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
+		\ 'left': [ [ 'mode', 'paste' ],
+		\ [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
 	\ },
 	\ 'component_function': {
-	\   'cocstatus': 'coc#status',
-	\   'currentfunction': 'CocCurrentFunction'
+		\ 'cocstatus': 'coc#status',
+		\ 'currentfunction': 'CocCurrentFunction'
 	\ },
-	\ }
+\ }
 
 set noshowmode
 
@@ -49,16 +50,16 @@ set noshowmode
 
 " Extensions
 let g:coc_global_extensions = [
-		\ 'coc-marketplace',
-		\ 'coc-explorer',
-		\ 'coc-tag',
-		\ 'coc-snippets',
-		\ 'coc-json',
-		\ 'coc-sh',
-		\ 'coc-sourcekit',
-		\ 'coc-rust-analyzer',
-		\ 'coc-tsserver',
-		\ ]
+	\ 'coc-marketplace',
+	\ 'coc-explorer',
+	\ 'coc-tag',
+	\ 'coc-snippets',
+	\ 'coc-json',
+	\ 'coc-sh',
+	\ 'coc-sourcekit',
+	\ 'coc-rust-analyzer',
+	\ 'coc-tsserver',
+\ ]
 
 " Some servers have issues with backup files, see #649.
 set nobackup
