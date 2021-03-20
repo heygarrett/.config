@@ -8,7 +8,7 @@ call plug#begin('~/.local/share/nvim/plugged')
 Plug 'junegunn/vim-plug'
 
 Plug 'itchyny/lightline.vim'
-Plug 'altercation/vim-colors-solarized'
+Plug 'altercation/solarized', { 'rtp': 'vim-colors-solarized' }
 Plug 'apple/swift', { 'rtp': 'utils/vim' }
 Plug 'editorconfig/editorconfig-vim'
 
