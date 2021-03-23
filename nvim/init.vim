@@ -2,30 +2,28 @@
 "  plugins
 " --------------------------------------------------------------------------------
 
-" ----------------------------
-" Plug settings
+"" vim-plug settings
 call plug#begin('~/.local/share/nvim/plugged')
+
+" Plugin/extension management
 Plug 'junegunn/vim-plug'
-
-Plug 'itchyny/lightline.vim'
-Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-fugitive'
-Plug 'altercation/solarized', { 'rtp': 'vim-colors-solarized' }
-Plug 'apple/swift', { 'rtp': 'utils/vim' }
-Plug 'editorconfig/editorconfig-vim'
-Plug 'thaerkh/vim-indentguides'
-
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" Visuals
+Plug 'altercation/solarized', { 'rtp': 'vim-colors-solarized' }
+Plug 'itchyny/lightline.vim'
+Plug 'thaerkh/vim-indentguides'
+Plug 'apple/swift', { 'rtp': 'utils/vim' }
+
+" Functionality
+Plug 'editorconfig/editorconfig-vim'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-vinegar'
+Plug 'tpope/vim-fugitive'
 
 call plug#end()
 
-" / Plug settings
-"
-" ----------------------------
-
-" ----------------------------
-" Lightline settings (with some coc.nvim)
+"" lightline.vim settings
 function! CocCurrentFunction()
 	return get(b:, 'coc_current_function', '')
 endfunction
@@ -44,12 +42,7 @@ let g:lightline = {
 
 set noshowmode
 
-" / Lightline settings (with some coc.nvim)
-"
-" ----------------------------
-
-" ----------------------------
-" coc.nvim settings
+"" coc.nvim settings
 
 " Extensions
 let g:coc_global_extensions = [
@@ -103,9 +96,6 @@ let g:coc_snippet_next = '<tab>'
 " Use <s-tab> for jump to previous placeholder, it's default of coc.nvim
 let g:coc_snippet_prev = '<s-tab>'
 
-" / coc.nvim settings
-" ----------------------------
-"
 " -------------------------------------------------------------------------------- 
 "  displaying text
 " -------------------------------------------------------------------------------- 
