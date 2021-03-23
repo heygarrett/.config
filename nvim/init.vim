@@ -166,9 +166,15 @@ endif
 " --------------------------------------------------------------------------------
 "  tabs and indenting
 " --------------------------------------------------------------------------------
-set noexpandtab
-set tabstop=4                " width of a tab character in spaces
-set shiftwidth=4             " number of spaces to use for autoindent
+"" Indenting defaults (does not override vim-sleuth's indenting detection)
+if get(g:, '_has_set_default_indent_settings', 0) == 0
+	autocmd FileType * setlocal noexpandtab tabstop=4 shiftwidth=4
+	let g:_has_set_default_indent_settings = 1
+endif
+
+""" set noexpandtab
+""" set tabstop=4                " width of a tab character in spaces
+""" set shiftwidth=4             " number of spaces to use for autoindent
 
 " --------------------------------------------------------------------------------
 "  folding
