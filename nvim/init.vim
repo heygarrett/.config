@@ -10,6 +10,7 @@ Plug 'junegunn/vim-plug'
 Plug 'itchyny/lightline.vim'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-fugitive'
 Plug 'altercation/solarized', { 'rtp': 'vim-colors-solarized' }
 Plug 'apple/swift', { 'rtp': 'utils/vim' }
 Plug 'editorconfig/editorconfig-vim'
