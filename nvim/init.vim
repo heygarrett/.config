@@ -43,7 +43,6 @@ let g:lightline = {
 set noshowmode
 
 "" coc.nvim settings
-
 " Extensions
 let g:coc_global_extensions = [
 	\ 'coc-marketplace',
