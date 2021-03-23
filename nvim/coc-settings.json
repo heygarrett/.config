@@ -1,4 +1,7 @@
 {
 	"diagnostic.checkCurrentLine": true,
-	"diagnostic.virtualText": true
+	"diagnostic.virtualText": true,
+	"diagnostic.errorSign": "❌",
+	"diagnostic.warningSign": "⚠️",
+	"diagnostic.infoSign": "ℹ️"
 }
