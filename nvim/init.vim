@@ -12,6 +12,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Visuals
 Plug 'altercation/solarized', { 'rtp': 'vim-colors-solarized' }
 Plug 'itchyny/lightline.vim'
+Plug 'mengelbrecht/lightline-bufferline'
 Plug 'thaerkh/vim-indentguides'
 Plug 'apple/swift', { 'rtp': 'utils/vim' }
 
@@ -32,14 +33,28 @@ let g:lightline = {
 	\ 'colorscheme': 'solarized',
 	\ 'active': {
 		\ 'left': [ [ 'mode', 'paste' ],
-		\ [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
+		\ [ 'cocstatus', 'currentfunction', 'readonly', 'filepath', 'modified' ] ]
+	\ },
+	\ 'component': {
+		\ 'filepath': '%F'
 	\ },
 	\ 'component_function': {
 		\ 'cocstatus': 'coc#status',
 		\ 'currentfunction': 'CocCurrentFunction'
 	\ },
+	\ 'tabline': {
+		\ 'left': [ ['buffers'] ],
+		\ 'right': [ ['close'] ]
+	\ },
+	\ 'component_expand': {
+		\ 'buffers': 'lightline#bufferline#buffers'
+	\ },
+	\ 'component_type': {
+		\ 'buffers': 'tabsel'
+	\ },
 \ }
 
+set showtabline=2
 set noshowmode
 
 "" coc.nvim settings
@@ -126,11 +141,6 @@ set laststatus=2 " always show status line
 set splitbelow
 set splitright
 set hidden
-
-" --------------------------------------------------------------------------------
-"  multiple tab pages
-" --------------------------------------------------------------------------------
-set showtabline=1
 
 " --------------------------------------------------------------------------------
 "  terminal
