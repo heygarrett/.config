@@ -77,7 +77,7 @@ set nowritebackup
 
 " Give more space for displaying messages (might have been messed up by
 " lightline-bufferline
-""" set cmdheight=2
+set cmdheight=2
 
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience.
@@ -176,15 +176,14 @@ endif
 " --------------------------------------------------------------------------------
 "  tabs and indenting
 " --------------------------------------------------------------------------------
-"" Indenting defaults (does not override vim-sleuth's indenting detection)
+" Indenting defaults (does not override vim-sleuth's indenting detection)
 if get(g:, '_has_set_default_indent_settings', 0) == 0
 	autocmd FileType * setlocal noexpandtab tabstop=4 shiftwidth=4
+	set noexpandtab
+	set tabstop=4
+	set shiftwidth=4
 	let g:_has_set_default_indent_settings = 1
 endif
-
-""" set noexpandtab
-""" set tabstop=4                " width of a tab character in spaces
-""" set shiftwidth=4             " number of spaces to use for autoindent
 
 " --------------------------------------------------------------------------------
 "  folding
