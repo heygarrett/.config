@@ -23,15 +23,20 @@ brew "mas"
 brew "msgpack"
 brew "neovim"
 brew "node"
+brew "pinentry-mac"
+brew "python@3.9"
 brew "starship"
 brew "tree"
 brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
 brew "vitorgalvao/tiny-scripts/cask-repair"
+cask "1password"
 cask "blockblock"
+cask "brave-browser"
 cask "choosy"
 cask "cryptomator"
 cask "db-browser-for-sqlite"
 cask "discord"
+cask "docker"
 cask "eloston-chromium"
 cask "firefox"
 cask "font-fira-mono-nerd-font"
@@ -41,9 +46,9 @@ cask "lulu"
 cask "mullvadvpn"
 cask "oversight"
 cask "signal"
+cask "taskexplorer"
 cask "zoom"
-mas "1Blocker", id: 1107421413
-mas "Amphetamine", id: 937984704
+mas "1Blocker", id: 1365531024
 mas "Bear", id: 1091189122
 mas "Boop", id: 1518425043
 mas "Deliveries", id: 290986013
