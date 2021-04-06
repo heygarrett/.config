@@ -12,7 +12,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Visuals
 Plug 'altercation/solarized', { 'rtp': 'vim-colors-solarized' }
 Plug 'itchyny/lightline.vim'
-Plug 'mengelbrecht/lightline-bufferline'
 Plug 'thaerkh/vim-indentguides'
 Plug 'apple/swift', { 'rtp': 'utils/vim' }
 
@@ -41,20 +40,9 @@ let g:lightline = {
 	\ 'component_function': {
 		\ 'cocstatus': 'coc#status',
 		\ 'currentfunction': 'CocCurrentFunction'
-	\ },
-	\ 'tabline': {
-		\ 'left': [ ['buffers'] ],
-		\ 'right': [ ['close'] ]
-	\ },
-	\ 'component_expand': {
-		\ 'buffers': 'lightline#bufferline#buffers'
-	\ },
-	\ 'component_type': {
-		\ 'buffers': 'tabsel'
-	\ },
+	\ }
 \ }
 
-set showtabline=2
 set noshowmode
 
 "" coc.nvim settings
