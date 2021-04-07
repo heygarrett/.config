@@ -1,3 +1,22 @@
+shell:
+  program: /opt/homebrew/bin/fish
+  args:
+    - --login
+    - --init-command
+    - "nvim -c ':terminal'"
+
+# Font configuration
+font:
+  normal:
+    family: FiraMono Nerd Font Mono
+    style: Regular
+  bold:
+    style: Bold
+  italic:
+    style: Italic
+  bold_italic:
+    style: Bold Italic
+
 # Colors (Solarized Dark)
 colors:
   # Default colors
