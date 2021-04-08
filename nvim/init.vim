@@ -108,6 +108,9 @@ set t_Co=256
 set scrolloff=3
 set number
 
+set listchars=tab:\|\ ,lead:.,trail:-,nbsp:+
+set list
+
 " --------------------------------------------------------------------------------
 "  syntax, highlighting, and spelling
 " --------------------------------------------------------------------------------
@@ -117,7 +120,6 @@ set omnifunc=syntaxcomplete#Complete
 set ignorecase
 set smartcase
 set cursorline
-set cursorcolumn
 
 hi link CocFloating markdown
 highlight clear SignColumn
