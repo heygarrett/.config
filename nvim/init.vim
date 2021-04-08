@@ -101,13 +101,12 @@ let g:coc_snippet_prev = '<s-tab>'
 " --------------------------------------------------------------------------------
 "  displaying text
 " --------------------------------------------------------------------------------
-" Set colorscheme to solarized
 colorscheme solarized
 
-set linebreak   " wrap long lines at a blank
+set linebreak
 set t_Co=256
 set scrolloff=3
-set number       " show line numbers
+set number
 
 " --------------------------------------------------------------------------------
 "  syntax, highlighting, and spelling
@@ -115,8 +114,8 @@ set number       " show line numbers
 " Completion
 set omnifunc=syntaxcomplete#Complete
 
-set ignorecase  " ignore case in searches
-set smartcase   " unless there are caps in the search
+set ignorecase
+set smartcase
 set cursorline
 set cursorcolumn
 
@@ -126,7 +125,7 @@ highlight clear SignColumn
 " --------------------------------------------------------------------------------
 "  multiple windows
 " --------------------------------------------------------------------------------
-set laststatus=2 " always show status line
+set laststatus=2
 set splitbelow
 set splitright
 set hidden
@@ -136,7 +135,7 @@ set hidden
 " --------------------------------------------------------------------------------
 autocmd TermOpen * startinsert
 autocmd TermOpen * setlocal nocursorline nocursorcolumn
-set title        " set title to filename and modification status
+set title
 
 " --------------------------------------------------------------------------------
 "  using the mouse
@@ -152,8 +151,8 @@ set clipboard+=unnamedplus
 " --------------------------------------------------------------------------------
 "  editing text
 " --------------------------------------------------------------------------------
-set showmatch                           " show matching braces when typed or under cursor
-set matchtime=2                         " length of time for 'showmatch'
+set showmatch
+set matchtime=2
 
 " When editing a file, always jump to the last cursor position
 if has("autocmd")
@@ -179,8 +178,8 @@ endif
 "  folding
 " --------------------------------------------------------------------------------
 set fdm=indent
-set foldnestmax=3   " maximum fold depth
-set nofoldenable      " set to display all folds open
+set foldnestmax=3
+set nofoldenable
 
 " --------------------------------------------------------------------------------
 "  mapping
@@ -191,6 +190,6 @@ nmap k gk
 " --------------------------------------------------------------------------------
 "  command line editing
 " --------------------------------------------------------------------------------
-set history=1000    " history of commands and searches
-set undolevels=1000 " changes to be remembered
+set history=1000
+set undolevels=1000
 
