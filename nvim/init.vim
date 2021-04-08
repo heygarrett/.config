@@ -135,6 +135,7 @@ set hidden
 "  terminal
 " --------------------------------------------------------------------------------
 autocmd TermOpen * startinsert
+autocmd TermOpen * setlocal nocursorline nocursorcolumn
 set title        " set title to filename and modification status
 
 " --------------------------------------------------------------------------------
