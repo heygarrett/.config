@@ -136,7 +136,7 @@ set hidden
 "  terminal
 " --------------------------------------------------------------------------------
 autocmd TermOpen * startinsert
-autocmd TermOpen * setlocal nocursorline nocursorcolumn
+autocmd TermOpen * setlocal nocursorline
 set title
 
 " --------------------------------------------------------------------------------
