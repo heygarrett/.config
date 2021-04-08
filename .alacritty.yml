@@ -3,7 +3,7 @@ shell:
   args:
     - --login
     - --init-command
-    - "nvim -c ':terminal'"
+    - "nvim -c 'terminal'"
 
 # Font configuration
 font:
