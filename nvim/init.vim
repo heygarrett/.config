@@ -12,7 +12,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Visuals
 Plug 'altercation/solarized', { 'rtp': 'vim-colors-solarized' }
 Plug 'itchyny/lightline.vim'
-" Plug 'thaerkh/vim-indentguides'
+Plug 'thaerkh/vim-indentguides'
 Plug 'apple/swift', { 'rtp': 'utils/vim' }
 
 " Functionality
@@ -107,9 +107,6 @@ set linebreak
 set t_Co=256
 set scrolloff=3
 set number
-
-set listchars=tab:\|\ ,lead:.,trail:-,nbsp:+
-set list
 
 " --------------------------------------------------------------------------------
 "  syntax, highlighting, and spelling
