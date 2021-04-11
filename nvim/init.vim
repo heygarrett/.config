@@ -12,7 +12,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Visuals
 Plug 'altercation/solarized', { 'rtp': 'vim-colors-solarized' }
 Plug 'itchyny/lightline.vim'
-Plug 'thaerkh/vim-indentguides'
 Plug 'apple/swift', { 'rtp': 'utils/vim' }
 
 " Functionality
@@ -57,6 +56,7 @@ let g:coc_global_extensions = [
 	\ 'coc-sourcekit',
 	\ 'coc-rust-analyzer',
 	\ 'coc-tsserver',
+	\ 'coc-pyright',
 \ ]
 
 " Some servers have issues with backup files, see #649.
@@ -115,6 +115,7 @@ set omnifunc=syntaxcomplete#Complete
 set ignorecase
 set smartcase
 set cursorline
+set cursorcolumn
 
 hi link CocFloating markdown
 highlight clear SignColumn
@@ -131,7 +132,7 @@ set hidden
 "  terminal
 " --------------------------------------------------------------------------------
 autocmd TermOpen * startinsert
-autocmd TermOpen * setlocal nocursorline
+autocmd TermOpen * setlocal nocursorline no cursorcolumn
 set title
 
 " --------------------------------------------------------------------------------
