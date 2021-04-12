@@ -111,6 +111,7 @@ colorscheme solarized
 
 set number
 set scrolloff=3
+set linebreak
 
 " --------------------------------------------------------------------------------
 "  syntax, highlighting, and spelling
