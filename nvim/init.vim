@@ -55,7 +55,7 @@ let g:coc_global_extensions = [
 	\ 'coc-sh',
 	\ 'coc-sourcekit',
 	\ 'coc-rust-analyzer',
-	\ 'coc-tsserver',
+	\ 'coc-eslint',
 	\ 'coc-pyright',
 \ ]
 
