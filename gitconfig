@@ -1,6 +1,6 @@
 [user]
 	name = Garrett Oreilly
-	email = heygarrett@hey.com
+	email = hey@heygarrett.com
 	signingkey = 532D9ADF4303874E
 [commit]
 	gpgsign = true
