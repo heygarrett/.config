@@ -31,16 +31,23 @@ let g:lightline = {
 	\ 'colorscheme': 'solarized',
 	\ 'active': {
 		\ 'left': [ [ 'mode', 'paste' ],
-		\ [ 'cocstatus', 'currentfunction', 'readonly', 'filepath', 'modified' ] ]
-	\ },
-	\ 'component': {
-		\ 'filepath': '%F'
+		\ [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
 	\ },
 	\ 'component_function': {
+		\ 'filename': 'LightlineFileFormat',
 		\ 'cocstatus': 'coc#status',
 		\ 'currentfunction': 'CocCurrentFunction'
 	\ }
 \ }
+
+function! LightlineFileFormat()
+	if &filetype ==# ''
+		return expand('%:t')
+	elseif &filetype ==# 'netrw'
+		return getcwd()
+	else
+		return expand('%:F')
+endfunction
 
 set noshowmode
 
