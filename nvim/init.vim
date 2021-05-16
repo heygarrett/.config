@@ -28,7 +28,7 @@ function! CocCurrentFunction()
 endfunction
 
 let g:lightline = {
-	\ 'colorscheme': 'solarized',
+	\ 'colorscheme': 'dracula_pro',
 	\ 'active': {
 		\ 'left': [ [ 'mode', 'paste' ],
 		\ [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
@@ -114,7 +114,10 @@ let g:netrw_keepdir=0
 " --------------------------------------------------------------------------------
 "  displaying text
 " --------------------------------------------------------------------------------
-colorscheme solarized
+"" colorscheme solarized
+packadd! dracula_pro
+let g:dracula_colorterm = 0
+colorscheme dracula_pro
 
 set number
 set scrolloff=3
