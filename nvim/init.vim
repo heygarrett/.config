@@ -55,7 +55,6 @@ set noshowmode
 " Extensions
 let g:coc_global_extensions = [
 	\ 'coc-marketplace',
-	\ 'coc-explorer',
 	\ 'coc-tag',
 	\ 'coc-snippets',
 	\ 'coc-json',
