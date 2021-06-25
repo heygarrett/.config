@@ -42,9 +42,7 @@ let g:lightline = {
 \ }
 
 function! LightlineFileFormat()
-	if &filetype ==# ''
-		return expand('%:t')
-	elseif &filetype ==# 'netrw'
+	if &filetype ==# 'netrw'
 		return getcwd()
 	else
 		return expand('%:F')
