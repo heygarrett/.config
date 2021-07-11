@@ -112,7 +112,7 @@ let g:netrw_keepdir=0
 " --------------------------------------------------------------------------------
 "  displaying text
 " --------------------------------------------------------------------------------
-"" colorscheme solarized
+"" colorscheme dracula pro
 packadd! dracula_pro
 let g:dracula_colorterm = 0
 colorscheme dracula_pro
