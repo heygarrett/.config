@@ -12,3 +12,5 @@
 	program = /opt/homebrew/bin/gpg
 [fetch]
 	prune = true
+[init]
+	defaultBranch = main
