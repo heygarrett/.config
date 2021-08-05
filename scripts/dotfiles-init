@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-# Adapted from: https://mjones.network/storing-dotfiles-in-a-git-repo
+# Adapted from:
+# https://mjones.network/storing-dotfiles-in-a-git-repo
+# https://harfangk.github.io/2016/09/18/manage-dotfiles-with-a-git-bare-repository.html
 
 git clone --bare git@github.com:heygarrett/dotfiles.git $HOME/.dotfiles
 
@@ -9,16 +11,6 @@ git clone --bare git@github.com:heygarrett/dotfiles.git $HOME/.dotfiles
 function dotfiles {
    git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
 }
-
-# create a directory to backup existing dotfiles to
-mkdir -p .dotfiles-backup
-dotfiles checkout
-if [ $? = 0 ]; then
-  echo "Checked out dotfiles from git@github.com:heygarrett/dotfiles.git";
-  else
-    echo "Moving existing dotfiles to ~/.dotfiles-backup";
-    dotfiles checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .dotfiles-backup/{}
-fi
 
 # checkout dotfiles from repo
 dotfiles checkout
