@@ -2,6 +2,16 @@
 "  plugins
 " --------------------------------------------------------------------------------
 
+"" Update plugins
+function! Update()
+	PlugUpgrade
+	PlugClean
+	PlugUpdate --sync
+	CocUpdate
+	UpdateRemotePlugins
+endfunction
+command! Update call Update()
+
 "" vim-plug settings
 call plug#begin('~/.local/share/nvim/plugged')
 
