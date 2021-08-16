@@ -51,10 +51,8 @@ endfunction
 
 
 set noshowmode
-
-" Always show the signcolumn, otherwise it would shift the text each time
-" diagnostics appear/become resolved.
 set signcolumn=yes
+set cmdheight=2
 
 " --------------------------------------------------------------------------------
 "  languages
