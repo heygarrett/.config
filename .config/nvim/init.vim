@@ -54,12 +54,13 @@ endfunction
 
 lua << EOF
 local lsp = require "lspconfig"
-lsp.pyright.setup{}
-lsp.rust_analyzer.setup{}
-lsp.tsserver.setup{}
-lsp.sourcekit.setup{}
-lsp.jsonls.setup{}
-lsp.bashls.setup{}
+lsp.pyright.setup({}) -- (coq.lsp_ensure_capabilities({}))
+lsp.rust_analyzer.setup({}) -- (coq.lsp_ensure_capabilities({}))
+lsp.tsserver.setup({}) -- (coq.lsp_ensure_capabilities({}))
+lsp.sourcekit.setup({}) -- (coq.lsp_ensure_capabilities({}))
+lsp.jsonls.setup({}) -- (coq.lsp_ensure_capabilities({}))
+lsp.bashls.setup({}) -- (coq.lsp_ensure_capabilities({}))
+
 EOF
 
 set noshowmode
