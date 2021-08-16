@@ -9,7 +9,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
 end
 
 require 'paq' {
-	'wbthomason/packer.nvim';
+	'savq/paq-nvim';
 	'neovim/nvim-lspconfig';
 	{'ms-jpq/coq_nvim', branch = 'coq' };
 	{'ms-jpq/coq.artifacts', branch = 'artifacts' };
