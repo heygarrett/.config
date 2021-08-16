@@ -1,32 +1,34 @@
 " --------------------------------------------------------------------------------
 "  plugins
 " --------------------------------------------------------------------------------
+lua << EOF
+local fn = vim.fn
+local install_path = fn.stdpath('data') .. '/site/pack/paqs/start/paq-nvim'
+if fn.empty(fn.glob(install_path)) > 0 then
+  fn.system({'git', 'clone', '--depth=1', 'https://github.com/savq/paq-nvim.git', install_path})
+end
 
-"" Update plugins
-function! Update()
-	PlugUpgrade
-	PlugClean
-	PlugUpdate --sync
-	UpdateRemotePlugins
-endfunction
-command! Update call Update()
+require 'paq' {
+	'neovim/nvim-lspconfig';
+	{'ms-jpq/coq_nvim', branch='coq'};
+	{'ms-jpq/coq.artifacts', branch='artifacts'};
+	'itchyny/lightline.vim';
+	'editorconfig/editorconfig-vim';
+	'tpope/vim-sleuth';
+	'tpope/vim-vinegar';
+	'tpope/vim-fugitive';
+	'tpope/vim-markdown';
+	-- 'apple/swift', { 'rtp': 'utils/vim' }
+}
 
-"" vim-plug settings
-call plug#begin('~/.local/share/nvim/plugged')
-
-Plug 'junegunn/vim-plug'
-Plug 'neovim/nvim-lspconfig'
-Plug 'ms-jpq/coq_nvim', {'branch': 'coq', 'do': ':COQnow'}
-Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
-Plug 'itchyny/lightline.vim'
-Plug 'editorconfig/editorconfig-vim'
-Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-vinegar'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-markdown'
-Plug 'apple/swift', { 'rtp': 'utils/vim' }
-
-call plug#end()
+local lsp = require "lspconfig"
+lsp.pyright.setup({}) -- (coq.lsp_ensure_capabilities({}))
+lsp.rust_analyzer.setup({}) -- (coq.lsp_ensure_capabilities({}))
+lsp.tsserver.setup({}) -- (coq.lsp_ensure_capabilities({}))
+lsp.sourcekit.setup({}) -- (coq.lsp_ensure_capabilities({}))
+lsp.jsonls.setup({}) -- (coq.lsp_ensure_capabilities({}))
+lsp.bashls.setup({}) -- (coq.lsp_ensure_capabilities({}))
+EOF
 
 let g:lightline = {
 	\ 'colorscheme': 'dracula_pro',
@@ -46,16 +48,6 @@ function! LightlineFileFormat()
 		return expand('%:F')
 endfunction
 
-lua << EOF
-local lsp = require "lspconfig"
-lsp.pyright.setup({}) -- (coq.lsp_ensure_capabilities({}))
-lsp.rust_analyzer.setup({}) -- (coq.lsp_ensure_capabilities({}))
-lsp.tsserver.setup({}) -- (coq.lsp_ensure_capabilities({}))
-lsp.sourcekit.setup({}) -- (coq.lsp_ensure_capabilities({}))
-lsp.jsonls.setup({}) -- (coq.lsp_ensure_capabilities({}))
-lsp.bashls.setup({}) -- (coq.lsp_ensure_capabilities({}))
-
-EOF
 
 set noshowmode
 
