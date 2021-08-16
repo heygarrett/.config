@@ -14,23 +14,17 @@ command! Update call Update()
 "" vim-plug settings
 call plug#begin('~/.local/share/nvim/plugged')
 
-" Plugin/extension management
 Plug 'junegunn/vim-plug'
 Plug 'neovim/nvim-lspconfig'
 Plug 'ms-jpq/coq_nvim', {'branch': 'coq', 'do': ':COQnow'}
 Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
-
-" Visuals
-Plug 'altercation/solarized', { 'rtp': 'vim-colors-solarized' }
 Plug 'itchyny/lightline.vim'
-Plug 'apple/swift', { 'rtp': 'utils/vim' }
-
-" Functionality
 Plug 'editorconfig/editorconfig-vim'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-markdown'
+Plug 'apple/swift', { 'rtp': 'utils/vim' }
 
 call plug#end()
 
