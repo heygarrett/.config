@@ -4,16 +4,17 @@
 lua << EOF
 require('plugins')
 
-vim.schedule(function ()
-	local nvim_lsp = require 'lspconfig'
-	local servers = { 'pyright', 'rust_analyzer', 'tsserver', 'sourcekit', 'jsonls', 'bashls' }
-	for _, lsp in ipairs(servers) do
-		nvim_lsp[lsp].setup(require("coq")().lsp_ensure_capabilities())
-	end
-end)
+local coq = require 'coq'
+local nvim_lsp = require 'lspconfig'
+local servers = { 'pyright', 'rust_analyzer', 'sourcekit' }
+for _, lsp in ipairs(servers) do
+	nvim_lsp[lsp].setup{} -- coq.lsp_ensure_capabilities()
+end
+
+vim.lsp.set_log_level("debug")
 EOF
 
-let g:coq_settings = { 'auto_start': v:true }
+let g:coq_settings = { 'auto_start': v:true, 'keymap.jump_to_mark': '<c-n>' }
 
 let g:lightline = {
 	\ 'colorscheme': 'dracula_pro',
