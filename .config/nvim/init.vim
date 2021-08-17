@@ -22,13 +22,15 @@ require 'paq' {
 	'keith/swift.vim';
 }
 
-local lsp = require "lspconfig"
-lsp.pyright.setup({}) -- (coq.lsp_ensure_capabilities({}))
-lsp.rust_analyzer.setup({}) -- (coq.lsp_ensure_capabilities({}))
-lsp.tsserver.setup({}) -- (coq.lsp_ensure_capabilities({}))
-lsp.sourcekit.setup({}) -- (coq.lsp_ensure_capabilities({}))
-lsp.jsonls.setup({}) -- (coq.lsp_ensure_capabilities({}))
-lsp.bashls.setup({}) -- (coq.lsp_ensure_capabilities({}))
+vim.schedule(function ()
+	local lsp = require 'lspconfig'
+	lsp.pyright.setup(require("coq")().lsp_ensure_capabilities())
+	lsp.rust_analyzer.setup(require("coq")().lsp_ensure_capabilities())
+	lsp.tsserver.setup(require("coq")().lsp_ensure_capabilities())
+	lsp.sourcekit.setup(require("coq")().lsp_ensure_capabilities())
+	lsp.jsonls.setup(require("coq")().lsp_ensure_capabilities())
+	lsp.bashls.setup(require("coq")().lsp_ensure_capabilities())
+end)
 EOF
 
 let g:lightline = {
