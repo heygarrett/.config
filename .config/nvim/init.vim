@@ -5,13 +5,11 @@ lua << EOF
 require('plugins')
 
 vim.schedule(function ()
-	local lsp = require 'lspconfig'
-	lsp.pyright.setup(require("coq")().lsp_ensure_capabilities())
-	lsp.rust_analyzer.setup(require("coq")().lsp_ensure_capabilities())
-	lsp.tsserver.setup(require("coq")().lsp_ensure_capabilities())
-	lsp.sourcekit.setup(require("coq")().lsp_ensure_capabilities())
-	lsp.jsonls.setup(require("coq")().lsp_ensure_capabilities())
-	lsp.bashls.setup(require("coq")().lsp_ensure_capabilities())
+	local nvim_lsp = require 'lspconfig'
+	local servers = { 'pyright', 'rust_analyzer', 'tsserver', 'sourcekit', 'jsonls', 'bashls' }
+	for _, lsp in ipairs(servers) do
+		nvim_lsp[lsp].setup(require("coq")().lsp_ensure_capabilities())
+	end
 end)
 EOF
 
