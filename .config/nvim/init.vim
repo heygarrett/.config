@@ -2,25 +2,7 @@
 "  plugins
 " --------------------------------------------------------------------------------
 lua << EOF
-local fn = vim.fn
-local install_path = fn.stdpath('data') .. '/site/pack/paqs/start/paq-nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-	fn.system({'git', 'clone', '--depth=1', 'https://github.com/savq/paq-nvim.git', install_path})
-end
-
-require 'paq' {
-	'savq/paq-nvim';
-	'neovim/nvim-lspconfig';
-	{'ms-jpq/coq_nvim', branch = 'coq' };
-	{'ms-jpq/coq.artifacts', branch = 'artifacts' };
-	'itchyny/lightline.vim';
-	'editorconfig/editorconfig-vim';
-	'tpope/vim-sleuth';
-	'tpope/vim-vinegar';
-	'tpope/vim-fugitive';
-	'tpope/vim-markdown';
-	'keith/swift.vim';
-}
+require('plugins')
 
 vim.schedule(function ()
 	local lsp = require 'lspconfig'
