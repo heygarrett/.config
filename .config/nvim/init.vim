@@ -33,6 +33,8 @@ vim.schedule(function ()
 end)
 EOF
 
+let g:coq_settings = { 'auto_start': v:true }
+
 let g:lightline = {
 	\ 'colorscheme': 'dracula_pro',
 	\ 'active': {
