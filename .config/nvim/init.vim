@@ -83,7 +83,7 @@ set linebreak
 "  syntax, highlighting, and spelling
 " --------------------------------------------------------------------------------
 " Completion
-set omnifunc=syntaxcomplete#Complete
+"set omnifunc=syntaxcomplete#Complete
 
 set ignorecase
 set smartcase
