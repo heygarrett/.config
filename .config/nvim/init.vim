@@ -11,7 +11,7 @@ local coq = require 'coq'
 local nvim_lsp = require 'lspconfig'
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-local servers = { 'pyright', 'rust_analyzer', 'sourcekit' }
+local servers = { 'pyright', 'rust_analyzer', 'sourcekit', 'tsserver' }
 for _, lsp in ipairs(servers) do
 	nvim_lsp[lsp].setup(coq.lsp_ensure_capabilities({
 		capabilities = capabilities
