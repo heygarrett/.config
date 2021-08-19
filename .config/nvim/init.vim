@@ -1,20 +1,29 @@
 " --------------------------------------------------------------------------------
 "  plugins
 " --------------------------------------------------------------------------------
+autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+
 lua << EOF
 require('plugins')
 
+vim.g.coq_settings = { ['auto_start'] = true, ['keymap.jump_to_mark'] = '<c-n>' }
 local coq = require 'coq'
 local nvim_lsp = require 'lspconfig'
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+
 local servers = { 'pyright', 'rust_analyzer', 'sourcekit' }
 for _, lsp in ipairs(servers) do
-	nvim_lsp[lsp].setup{} -- coq.lsp_ensure_capabilities()
+	nvim_lsp[lsp].setup(coq.lsp_ensure_capabilities({
+		capabilities = capabilities
+	}))
 end
 
-vim.lsp.set_log_level("debug")
+local signs = { Error = '❌', Warning = '⚠️', Hint = '💡', Information = 'ℹ️' }
+for type, icon in pairs(signs) do
+  local hl = "LspDiagnosticsSign" .. type
+  vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+end
 EOF
-
-let g:coq_settings = { 'auto_start': v:true, 'keymap.jump_to_mark': '<c-n>' }
 
 let g:lightline = {
 	\ 'colorscheme': 'dracula_pro',
@@ -42,7 +51,7 @@ set cmdheight=2
 " --------------------------------------------------------------------------------
 "  languages
 " --------------------------------------------------------------------------------
-let g:python3_host_prog = $HOME ."/.local/venvs/nvim/bin/python"
+let g:python3_host_prog = $HOME . "/.local/venvs/nvim/bin/python"
 
 " --------------------------------------------------------------------------------
 "  netrw
