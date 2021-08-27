@@ -8,16 +8,24 @@ if fn.empty(fn.glob(install_path)) > 0 then
 	execute 'packadd packer.nvim'
 end
 
-return require('packer').startup(function()
-	use 'wbthomason/packer.nvim'
-	use 'neovim/nvim-lspconfig'
-	use {'ms-jpq/coq_nvim', branch = 'coq'}
-	use {'ms-jpq/coq.artifacts', branch = 'artifacts'}
-	use 'itchyny/lightline.vim'
-	use 'editorconfig/editorconfig-vim'
-	use 'tpope/vim-sleuth'
-	use 'tpope/vim-vinegar'
-	use 'tpope/vim-fugitive'
-	use 'tpope/vim-markdown'
-	use 'keith/swift.vim'
-end)
+return require('packer').startup({
+	function()
+		use 'wbthomason/packer.nvim'
+		use 'neovim/nvim-lspconfig'
+		use {'ms-jpq/coq_nvim', branch = 'coq'}
+		use {'ms-jpq/coq.artifacts', branch = 'artifacts'}
+		use 'itchyny/lightline.vim'
+		use 'editorconfig/editorconfig-vim'
+		use 'tpope/vim-sleuth'
+		use 'tpope/vim-vinegar'
+		use 'tpope/vim-fugitive'
+		use 'tpope/vim-markdown'
+		use {'keith/swift.vim', disable = true}
+		use {'apple/swift', rtp = 'utils/vim'}
+	end,
+	config = {
+		git = {
+			clone_timeout = false
+		}
+	}
+})
