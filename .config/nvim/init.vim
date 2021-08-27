@@ -72,6 +72,7 @@ autocmd FileType netrw setlocal nocursorcolumn
 " --------------------------------------------------------------------------------
 "  displaying text
 " --------------------------------------------------------------------------------
+set termguicolors
 "" colorscheme dracula pro
 packadd! dracula_pro
 let g:dracula_colorterm = 0
