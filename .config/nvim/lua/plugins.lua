@@ -20,7 +20,6 @@ return require('packer').startup({
 		use 'tpope/vim-vinegar'
 		use 'tpope/vim-fugitive'
 		use 'tpope/vim-markdown'
-		use {'keith/swift.vim', disable = true}
 		use {'apple/swift', rtp = 'utils/vim'}
 	end,
 	config = {
