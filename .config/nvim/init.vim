@@ -82,13 +82,15 @@ set number
 set scrolloff=3
 set linebreak
 
+set list
+
 " --------------------------------------------------------------------------------
 "  syntax, highlighting, and spelling
 " --------------------------------------------------------------------------------
 set ignorecase
 set smartcase
 set cursorline
-set cursorcolumn
+" set cursorcolumn
 
 highlight clear SignColumn
 

@@ -21,6 +21,7 @@ return require('packer').startup({
 		use 'tpope/vim-fugitive'
 		use 'tpope/vim-markdown'
 		use {'apple/swift', rtp = 'utils/vim'}
+		use "lukas-reineke/indent-blankline.nvim"
 	end,
 	config = {
 		git = {
