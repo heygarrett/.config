@@ -57,6 +57,7 @@ endfunction
 set noshowmode
 set signcolumn=yes
 set cmdheight=2
+let g:indexed_search_numbered_only = 1
 
 " --------------------------------------------------------------------------------
 "  languages
@@ -67,6 +68,7 @@ let g:python3_host_prog = $HOME . "/.local/venvs/nvim/bin/python"
 "  netrw
 " --------------------------------------------------------------------------------
 autocmd FileType netrw setlocal nocursorcolumn
+let g:netrw_liststyle = 3
 " let g:netrw_keepdir=0
 
 " --------------------------------------------------------------------------------
