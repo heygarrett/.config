@@ -63,9 +63,13 @@ function! LightlineFileFormat()
 endfunction
 
 
+" --------------------------------------------------------------------------------
+"  misc. functionality
+" --------------------------------------------------------------------------------
 set noshowmode
 set signcolumn=yes
 set cmdheight=2
+set confirm
 let g:indexed_search_numbered_only = 1
 
 " --------------------------------------------------------------------------------
