@@ -23,6 +23,7 @@ return require('packer').startup({
 		use {'apple/swift', rtp = 'utils/vim'}
 		use 'lukas-reineke/indent-blankline.nvim'
 		use 'henrik/vim-indexed-search'
+		use 'mfussenegger/nvim-lint'
 	end,
 	config = {
 		git = {

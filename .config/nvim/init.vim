@@ -28,6 +28,15 @@ for _, lsp in ipairs(servers) do
 	}))
 end
 
+local lint = require('lint')
+lint.linters_by_ft = {
+	javascript = {'eslint'},
+	typescript = {'eslint'},
+	-- markdown = {'markdownlint'},
+}
+lint.linters.eslint.cmd = './node_modules/.bin/eslint'
+vim.cmd([[au BufEnter,InsertLeave * lua require('lint').try_lint()]])
+
 local signs = { Error = '🚫', Warning = '⚠️', Hint = '💡', Information = 'ℹ️' }
 for type, icon in pairs(signs) do
 	local hl = "LspDiagnosticsSign" .. type
