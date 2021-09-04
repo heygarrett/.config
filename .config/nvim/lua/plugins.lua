@@ -24,6 +24,7 @@ return require('packer').startup({
 		use 'lukas-reineke/indent-blankline.nvim'
 		use 'henrik/vim-indexed-search'
 		use 'mfussenegger/nvim-lint'
+		use 'prettier/vim-prettier'
 	end,
 	config = {
 		git = {
