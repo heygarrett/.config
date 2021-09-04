@@ -136,12 +136,10 @@ set clipboard+=unnamedplus
 set showmatch
 
 " When editing a file, always jump to the last cursor position
-if has("autocmd")
-	autocmd BufReadPost *
-	\ if line("'\"") > 0 && line ("'\"") <= line("$") |
-	\   exe "normal! g'\"" |
-	\ endif
-endif
+autocmd BufReadPost *
+	\ if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit'
+	\ |   exe "normal! g`\""
+	\ | endif
 
 " --------------------------------------------------------------------------------
 "  tabs and indenting
