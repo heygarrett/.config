@@ -149,13 +149,8 @@ autocmd BufReadPost *
 "  tabs and indenting
 " --------------------------------------------------------------------------------
 " Indenting defaults (does not override vim-sleuth's indenting detection)
-if get(g:, '_has_set_default_indent_settings', 0) == 0
-	autocmd FileType * setlocal noexpandtab tabstop=4 shiftwidth=4
-	set noexpandtab
-	set tabstop=4
-	set shiftwidth=4
-	let g:_has_set_default_indent_settings = 1
-endif
+filetype plugin indent on
+autocmd FileType * setlocal noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
 
 " --------------------------------------------------------------------------------
 "  folding
