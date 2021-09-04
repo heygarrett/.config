@@ -8,6 +8,7 @@
 	editor = nvim
 	excludesfile = /Users/garrett/.gitignore
 	autocrlf = input
+	pager = less -x1,5
 [gpg]
 	program = /opt/homebrew/bin/gpg
 [fetch]
