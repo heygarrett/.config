@@ -1,59 +1,8 @@
 require('plugins/packer')
 require('plugins/lualine')
-
-vim.g.coq_settings = {
-	auto_start = true,
-	clients = {
-		['tmux.enabled'] = false,
-		['snippets.enabled'] = false
-	},
-	['keymap.jump_to_mark'] = '<c-n>',
-}
-
-local coq = require 'coq'
-local nvim_lsp = require 'lspconfig'
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-local on_attach = function(client, bufnr)
-	local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-	local opts = { noremap = true, silent = true }
-
-	buf_set_keymap('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-	buf_set_keymap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-	buf_set_keymap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-	buf_set_keymap('n', '<Leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-	buf_set_keymap('n', '<Leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-	buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-	buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-	buf_set_keymap('n', '<Leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-	buf_set_keymap('n', '<Leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
-end
-
-local servers = {
-	'pyright',
-	'rust_analyzer',
-	'sourcekit',
-	'tsserver',
-}
-for _, lsp in ipairs(servers) do
-	nvim_lsp[lsp].setup(coq.lsp_ensure_capabilities({
-		on_attach = on_attach,
-		capabilities = capabilities
-	}))
-end
-
-local lint = require('lint')
-lint.linters_by_ft = {
-	javascript = {'eslint'},
-	typescript = {'eslint'},
-}
-lint.linters.eslint.cmd = './node_modules/.bin/eslint'
-vim.cmd([[au BufEnter,InsertLeave * lua require('lint').try_lint()]])
-
-local signs = { Error = '🚫', Warning = '⚠️', Hint = '💡', Information = 'ℹ️' }
-for type, icon in pairs(signs) do
-	local hl = "LspDiagnosticsSign" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-end
+require('plugins/coq')
+require('plugins/lsp')
+require('plugins/nvim-lint')
 
 vim.cmd([[
 	autocmd BufReadPost * if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit' | exe "normal! g`\"" | endif
