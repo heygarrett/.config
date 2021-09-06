@@ -1,11 +1,3 @@
--- When editing a file, always jump to the last cursor position
-vim.cmd([[autocmd BufReadPost * if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit' | exe "normal! g`\"" | endif]])
-
--- --------------------------------------------------------------------------------
---  plugins
--- --------------------------------------------------------------------------------
-vim.cmd([[autocmd BufWritePost plugins.lua source <afile> | PackerCompile]])
-
 require('plugins')
 
 vim.g.coq_settings = {
@@ -86,6 +78,10 @@ vim.g.lightline = {
 }
 
 vim.cmd([[
+	autocmd BufReadPost * if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit' | exe "normal! g`\"" | endif
+
+	autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+
 	filetype plugin indent on
 	autocmd FileType * setlocal noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
 
