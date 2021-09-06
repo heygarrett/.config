@@ -99,9 +99,8 @@ vim.g.python3_host_prog = vim.env.HOME .. "/.local/venvs/nvim/bin/python"
 -- --------------------------------------------------------------------------------
 --  netrw
 -- --------------------------------------------------------------------------------
-vim.cmd([[autocmd FileType netrw setlocal nocursorcolumn]])
+vim.cmd([[autocmd FileType netrw setlocal]])
 vim.g.netrw_liststyle = 3
--- let g:netrw_keepdir = 0
 
 -- --------------------------------------------------------------------------------
 --  displaying text
@@ -125,7 +124,6 @@ vim.o.list = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.cursorline = true
--- set cursorcolumn
 
 vim.cmd([[highlight clear SignColumn]])
 
@@ -141,7 +139,7 @@ vim.o.hidden = true
 --  terminal
 -- --------------------------------------------------------------------------------
 vim.cmd([[autocmd TermOpen * startinsert]])
-vim.cmd([[autocmd TermOpen * setlocal nonumber nocursorline nocursorcolumn]])
+vim.cmd([[autocmd TermOpen * setlocal nonumber nocursorline]])
 vim.o.title = true
 
 -- --------------------------------------------------------------------------------
