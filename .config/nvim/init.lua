@@ -1,4 +1,5 @@
-require('plugins')
+require('plugins/packer')
+require('plugins/lualine')
 
 vim.g.coq_settings = {
 	auto_start = true,
@@ -53,29 +54,6 @@ for type, icon in pairs(signs) do
 	local hl = "LspDiagnosticsSign" .. type
 	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
 end
-
-
-function LightlineFileFormat()
-	if vim.o.filetype == 'netrw' then
-		return vim.fn.getcwd()
-	else
-		return vim.fn.expand('%:F')
-	end
-end
-
-vim.g.lightline = {
-	colorscheme = 'dracula_pro',
-	active = {
-		left = {
-			{'mode', 'paste'},
-			{'currentfunction', 'readonly', 'filename', 'modified'}
-		},
-		component_function = {
-			filename = LightlineFileFormat()
-		}
-
-	}
-}
 
 vim.cmd([[
 	autocmd BufReadPost * if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit' | exe "normal! g`\"" | endif
