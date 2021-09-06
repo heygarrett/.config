@@ -1,3 +1,6 @@
+-- When editing a file, always jump to the last cursor position
+vim.cmd([[autocmd BufReadPost * if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit' | exe "normal! g`\"" | endif]])
+
 -- --------------------------------------------------------------------------------
 --  plugins
 -- --------------------------------------------------------------------------------
@@ -82,107 +85,40 @@ vim.g.lightline = {
 	}
 }
 
--- --------------------------------------------------------------------------------
---  misc. functionality
--- --------------------------------------------------------------------------------
-vim.o.showmode = false
-vim.o.signcolumn = 'yes'
-vim.o.cmdheight = 2
-vim.o.confirm = true
-vim.g.indexed_search_numbered_only = 1
-
--- --------------------------------------------------------------------------------
---  languages
--- --------------------------------------------------------------------------------
-vim.g.python3_host_prog = vim.env.HOME .. "/.local/venvs/nvim/bin/python"
-
--- --------------------------------------------------------------------------------
---  netrw
--- --------------------------------------------------------------------------------
-vim.cmd([[autocmd FileType netrw setlocal]])
-vim.g.netrw_liststyle = 3
-
--- --------------------------------------------------------------------------------
---  displaying text
--- --------------------------------------------------------------------------------
 vim.cmd([[
+	filetype plugin indent on
+	autocmd FileType * setlocal noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
+
 	set termguicolors
 	packadd! dracula_pro
 	let g:dracula_colorterm = 0
 	colorscheme dracula_pro
 ]])
 
-vim.o.number = true
-vim.o.scrolloff = 3
-vim.o.linebreak = true
-
-vim.o.list = true
-
--- --------------------------------------------------------------------------------
---  syntax, highlighting, and spelling
--- --------------------------------------------------------------------------------
+vim.g.python3_host_prog = vim.env.HOME .. "/.local/venvs/nvim/bin/python"
+vim.o.showmode = false
+vim.o.signcolumn = 'yes'
+vim.o.cmdheight = 2
+vim.o.confirm = true
+vim.g.indexed_search_numbered_only = 1
+vim.g.netrw_liststyle = 3
+vim.o.mouse = 'a'
+vim.o.clipboard = 'unnamedplus'
+vim.o.showmatch = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.cursorline = true
-
-vim.cmd([[highlight clear SignColumn]])
-
--- --------------------------------------------------------------------------------
---  multiple windows
--- --------------------------------------------------------------------------------
+vim.o.number = true
+vim.o.scrolloff = 3
+vim.o.linebreak = true
+vim.o.list = true
 vim.o.laststatus = 2
 vim.o.splitbelow = true
 vim.o.splitright = true
 vim.o.hidden = true
-
--- --------------------------------------------------------------------------------
---  terminal
--- --------------------------------------------------------------------------------
-vim.cmd([[autocmd TermOpen * startinsert]])
-vim.cmd([[autocmd TermOpen * setlocal nonumber nocursorline]])
-vim.o.title = true
-
--- --------------------------------------------------------------------------------
---  using the mouse
--- --------------------------------------------------------------------------------
-vim.o.mouse = 'a'
-
--- --------------------------------------------------------------------------------
---  selecting text
--- --------------------------------------------------------------------------------
-vim.o.clipboard = 'unnamedplus'
-
--- --------------------------------------------------------------------------------
---  editing text
--- --------------------------------------------------------------------------------
-vim.o.showmatch = true
-
--- When editing a file, always jump to the last cursor position
-vim.cmd([[autocmd BufReadPost * if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit' | exe "normal! g`\"" | endif]])
-
--- --------------------------------------------------------------------------------
---  tabs and indenting
--- --------------------------------------------------------------------------------
--- Indenting defaults (does not override vim-sleuth's indenting detection)
-vim.cmd([[
-	filetype plugin indent on
-	autocmd FileType * setlocal noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
-]])
-
--- --------------------------------------------------------------------------------
---  folding
--- --------------------------------------------------------------------------------
 vim.o.foldmethod = 'indent'
 vim.o.foldenable = false
-
--- --------------------------------------------------------------------------------
---  mapping
--- --------------------------------------------------------------------------------
-vim.api.nvim_set_keymap('n', 'j', 'gj', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('n', 'k', 'gk', { noremap = true, silent = true })
-
--- --------------------------------------------------------------------------------
---  command line editing
--- --------------------------------------------------------------------------------
 vim.o.history = 1000
 vim.o.undolevels = 1000
+vim.api.nvim_set_keymap('n', 'j', 'gj', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'k', 'gk', { noremap = true, silent = true })
