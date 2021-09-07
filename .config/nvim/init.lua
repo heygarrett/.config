@@ -1,7 +1,7 @@
 require('plugins/packer')
 require('plugins/lualine')
 require('plugins/coq')
-require('plugins/lsp')
+require('plugins/lspconfig')
 require('plugins/nvim-lint')
 require('plugins/indent-blankline')
 vim.cmd('source $HOME/.config/nvim/viml/autocmds.vim')
