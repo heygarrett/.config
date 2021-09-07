@@ -1,8 +1,16 @@
+local function check_modified()
+	if vim.o.modified == true then 
+		return '[+]'
+	else
+		return ''
+	end
+end
+
 local function filepath()
 	if vim.o.filetype == 'netrw' then
-		return vim.fn.getcwd()
-	elseif vim.fn.expand('%:F') ~= '' then
-		return vim.fn.expand('%:F') .. ' ' .. vim.fn.expand('%m')
+		return vim.fn.expand('%:p:h')
+	elseif vim.fn.expand('%:p:.') ~= '' then
+		return vim.fn.expand('%:p:.') .. check_modified()
 	else
 		return '[No Name]'
 	end
