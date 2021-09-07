@@ -4,4 +4,3 @@ lint.linters_by_ft = {
 	typescript = {'eslint'},
 }
 lint.linters.eslint.cmd = './node_modules/.bin/eslint'
-vim.cmd([[au BufEnter,InsertLeave * lua require('lint').try_lint()]])

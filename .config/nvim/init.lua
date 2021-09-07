@@ -3,20 +3,7 @@ require('plugins/lualine')
 require('plugins/coq')
 require('plugins/lsp')
 require('plugins/nvim-lint')
-
-vim.cmd([[
-	autocmd BufReadPost * if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit' | exe "normal! g`\"" | endif
-
-	autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-
-	filetype plugin indent on
-	autocmd FileType * setlocal noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
-
-	set termguicolors
-	packadd! dracula_pro
-	let g:dracula_colorterm = 0
-	colorscheme dracula_pro
-]])
+vim.cmd('source $HOME/.config/nvim/viml/autocmds.vim')
 
 vim.g.python3_host_prog = vim.env.HOME .. "/.local/venvs/nvim/bin/python"
 vim.o.showmode = false
