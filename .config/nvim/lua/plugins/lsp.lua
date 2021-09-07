@@ -1,3 +1,5 @@
+vim.o.signcolumn = 'yes'
+
 local nvim_lsp = require 'lspconfig'
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 local on_attach = function(client, bufnr)

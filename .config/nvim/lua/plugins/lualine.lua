@@ -1,3 +1,6 @@
+vim.o.laststatus = 2
+vim.o.showmode = false
+
 local function check_modified()
 	if vim.o.modified == true then 
 		return '[+]'

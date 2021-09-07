@@ -3,15 +3,13 @@ require('plugins/lualine')
 require('plugins/coq')
 require('plugins/lsp')
 require('plugins/nvim-lint')
+require('plugins/indent-blankline')
 vim.cmd('source $HOME/.config/nvim/viml/autocmds.vim')
 
 vim.g.python3_host_prog = vim.env.HOME .. "/.local/venvs/nvim/bin/python"
-vim.o.showmode = false
-vim.o.signcolumn = 'yes'
+vim.g.netrw_liststyle = 3
 vim.o.cmdheight = 2
 vim.o.confirm = true
-vim.g.indexed_search_numbered_only = 1
-vim.g.netrw_liststyle = 3
 vim.o.mouse = 'a'
 vim.o.clipboard = 'unnamedplus'
 vim.o.showmatch = true
@@ -22,7 +20,6 @@ vim.o.number = true
 vim.o.scrolloff = 3
 vim.o.linebreak = true
 vim.o.list = true
-vim.o.laststatus = 2
 vim.o.splitbelow = true
 vim.o.splitright = true
 vim.o.hidden = true
