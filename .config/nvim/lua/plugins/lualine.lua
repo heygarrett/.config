@@ -10,7 +10,7 @@ local function check_modified()
 end
 
 local function filepath()
-	if vim.opt.filetype == 'netrw' then
+	if vim.opt.filetype:get() == 'netrw' then
 		return vim.fn.expand('%:p:h')
 	elseif vim.fn.expand('%:p:.') ~= '' then
 		return vim.fn.expand('%:p:.') .. check_modified()
