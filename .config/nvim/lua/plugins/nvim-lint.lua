@@ -5,6 +5,7 @@ lint.linters_by_ft = {
 	typescript = {'eslint'},
 	lua = {'luacheck'},
 }
+
 local f = io.open('./node_modules/.bin/eslint', 'r')
 if f ~= nil then
 	io.close(f)
