@@ -27,7 +27,7 @@ vim.opt.foldmethod = 'indent'
 vim.opt.clipboard:append({'unnamedplus'})
 vim.opt.mouse = 'a'
 
--- For buffers without filetype
+-- TODO Deduplicate for buffers without filetype
 vim.opt.expandtab = false
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4

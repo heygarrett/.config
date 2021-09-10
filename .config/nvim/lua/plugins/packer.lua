@@ -16,7 +16,6 @@ return require('packer').startup({
 		use 'neovim/nvim-lspconfig'
 		use {'ms-jpq/coq_nvim', branch = 'coq', run = ':COQdeps'}
 		use {'ms-jpq/coq.artifacts', branch = 'artifacts'}
-		use {'itchyny/lightline.vim', disable = true}
 		use 'hoob3rt/lualine.nvim'
 		use 'editorconfig/editorconfig-vim'
 		use 'tpope/vim-sleuth'

@@ -1,4 +1,5 @@
 local lint = require('lint')
+
 lint.linters_by_ft = {
 	javascript = {'eslint'},
 	typescript = {'eslint'},
@@ -10,4 +11,5 @@ if f ~= nil then
 	lint.linters.eslint.cmd = './node_modules/.bin/eslint'
 end
 
+-- TODO Figure events for linting
 vim.cmd([[autocmd BufEnter,TextChanged,TextChangedI *.lua,*.ts,*.js lua require('lint').try_lint()]])

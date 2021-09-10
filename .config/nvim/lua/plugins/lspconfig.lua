@@ -1,7 +1,8 @@
 vim.opt.signcolumn = 'yes'
 
-local coq = require('plugins/coq')
 local nvim_lsp = require('lspconfig')
+local coq = require('plugins/coq')
+
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 local on_attach = function(_, bufnr)
 	local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
