@@ -12,9 +12,9 @@ end
 
 return require('packer').startup({
 	function()
-		use {'wbthomason/packer.nvim', run = ':COQdeps'}
+		use 'wbthomason/packer.nvim'
 		use 'neovim/nvim-lspconfig'
-		use {'ms-jpq/coq_nvim', branch = 'coq'}
+		use {'ms-jpq/coq_nvim', branch = 'coq', run = ':COQdeps'}
 		use {'ms-jpq/coq.artifacts', branch = 'artifacts'}
 		use {'itchyny/lightline.vim', disable = true}
 		use 'hoob3rt/lualine.nvim'
