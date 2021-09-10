@@ -1,6 +1,5 @@
 require('plugins/packer')
 require('plugins/lualine')
-require('plugins/coq')
 require('plugins/lspconfig')
 require('plugins/nvim-lint')
 require('plugins/indent-blankline')

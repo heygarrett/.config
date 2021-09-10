@@ -7,4 +7,5 @@ vim.g.coq_settings = {
 	['keymap.jump_to_mark'] = '<c-n>',
 }
 
-local coq = require 'coq'
+local coq = require('coq')
+return coq
