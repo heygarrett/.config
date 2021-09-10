@@ -2,7 +2,6 @@ local lint = require('lint')
 lint.linters_by_ft = {
 	javascript = {'eslint'},
 	typescript = {'eslint'},
-	-- luarocks install luacheck lanes
 	lua = {'luacheck'},
 }
 -- lint.linters.eslint.cmd = './node_modules/.bin/eslint'

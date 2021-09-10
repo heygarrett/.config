@@ -12,7 +12,7 @@ end
 
 return require('packer').startup({
 	function()
-		use 'wbthomason/packer.nvim'
+		use {'wbthomason/packer.nvim', run = ':COQdeps'}
 		use 'neovim/nvim-lspconfig'
 		use {'ms-jpq/coq_nvim', branch = 'coq'}
 		use {'ms-jpq/coq.artifacts', branch = 'artifacts'}
@@ -26,8 +26,7 @@ return require('packer').startup({
 		use {'apple/swift', rtp = 'utils/vim'}
 		use 'lukas-reineke/indent-blankline.nvim'
 		use 'henrik/vim-indexed-search'
-		-- use {'mfussenegger/nvim-lint'}
-		use {'heygarrett/nvim-lint', branch = 'eslint_capture_groups'}
+		use {'mfussenegger/nvim-lint', rocks = {'luacheck', 'lanes'}}
 		use 'prettier/vim-prettier'
 	end,
 	config = {
