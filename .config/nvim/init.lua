@@ -28,15 +28,17 @@ vim.opt.foldmethod = 'indent'
 vim.opt.clipboard:append({'unnamedplus'})
 vim.opt.mouse = 'a'
 
+-- For buffers without filetype
+vim.opt.expandtab = false
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+
 vim.cmd([[
 	autocmd BufReadPost * if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit' | exe "normal! g`\"" | endif
 
 	filetype plugin indent on
-	function Indents()
-		setlocal noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
-	endfunction
-	autocmd FileType * call Indents()
-	autocmd BufNewFile,BufRead * if empty(&filetype) | call Indents()
+	autocmd FileType * setlocal noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
 
 	set termguicolors
 	packadd! dracula_pro
