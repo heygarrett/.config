@@ -32,7 +32,11 @@ vim.cmd([[
 	autocmd BufReadPost * if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit' | exe "normal! g`\"" | endif
 
 	filetype plugin indent on
-	autocmd FileType * setlocal noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
+	function Indents()
+		setlocal noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
+	endfunction
+	autocmd FileType * call Indents()
+	autocmd BufNewFile,BufRead * if empty(&filetype) | call Indents()
 
 	set termguicolors
 	packadd! dracula_pro
