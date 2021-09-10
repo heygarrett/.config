@@ -4,7 +4,6 @@ require('plugins/coq')
 require('plugins/lspconfig')
 require('plugins/nvim-lint')
 require('plugins/indent-blankline')
-vim.cmd('source $HOME/.config/nvim/viml/autocmds.vim')
 
 vim.g.python3_host_prog = vim.env.HOME .. "/.local/venvs/nvim/bin/python"
 vim.api.nvim_set_keymap('n', 'j', 'gj', { noremap = true, silent = true })
@@ -28,3 +27,15 @@ vim.opt.foldenable = false
 vim.opt.foldmethod = 'indent'
 vim.opt.clipboard:append({'unnamedplus'})
 vim.opt.mouse = 'a'
+
+vim.cmd([[
+	autocmd BufReadPost * if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit' | exe "normal! g`\"" | endif
+
+	filetype plugin indent on
+	autocmd FileType * setlocal noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
+
+	set termguicolors
+	packadd! dracula_pro
+	let g:dracula_colorterm = 0
+	colorscheme dracula_pro
+]])

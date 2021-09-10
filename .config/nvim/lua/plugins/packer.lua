@@ -1,3 +1,5 @@
+vim.cmd([[autocmd BufWritePost packer.lua source <afile> | PackerCompile]])
+
 local execute = vim.api.nvim_command
 local fn = vim.fn
 
