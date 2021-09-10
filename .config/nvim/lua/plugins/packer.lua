@@ -26,7 +26,8 @@ return require('packer').startup({
 		use {'apple/swift', rtp = 'utils/vim'}
 		use 'lukas-reineke/indent-blankline.nvim'
 		use 'henrik/vim-indexed-search'
-		use 'mfussenegger/nvim-lint'
+		-- use {'mfussenegger/nvim-lint'}
+		use {'heygarrett/nvim-lint', branch = 'eslint_capture_groups'}
 		use 'prettier/vim-prettier'
 	end,
 	config = {
