@@ -1,4 +1,4 @@
-vim.o.signcolumn = 'yes'
+vim.opt.signcolumn = 'yes'
 
 local nvim_lsp = require 'lspconfig'
 local capabilities = vim.lsp.protocol.make_client_capabilities()
