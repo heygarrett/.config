@@ -4,6 +4,10 @@ lint.linters_by_ft = {
 	typescript = {'eslint'},
 	lua = {'luacheck'},
 }
--- lint.linters.eslint.cmd = './node_modules/.bin/eslint'
+local f = io.open('./node_modules/.bin/eslint', 'r')
+if f ~= nil then
+	io.close(f)
+	lint.linters.eslint.cmd = './node_modules/.bin/eslint'
+end
 
 vim.cmd([[autocmd BufEnter,InsertLeave * lua require('lint').try_lint()]])
