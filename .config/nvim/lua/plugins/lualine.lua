@@ -2,7 +2,7 @@ vim.opt.laststatus = 2
 vim.opt.showmode = false
 
 local function check_modified()
-	if vim.opt.modified == true then
+	if vim.o.modified == true then
 		return '[+]'
 	else
 		return ''
