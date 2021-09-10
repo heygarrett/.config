@@ -2,8 +2,7 @@ vim.opt.laststatus = 2
 vim.opt.showmode = false
 
 local function check_modified()
-	-- Why can't this be vim.opt?
-	if vim.o.modified == true then
+	if vim.opt.modified:get() == true then
 		return '[+]'
 	else
 		return ''
