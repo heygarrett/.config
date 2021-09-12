@@ -33,7 +33,7 @@ vim.opt.shiftwidth = 4
 
 vim.cmd([[
 	"" Restore last cursor position when opening a file
-	autocmd BufReadPost * if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'gitcommit' | exe "normal! g`\"" | endif
+	autocmd BufReadPost * if line("'\"")>=1 && line("'\"")<=line("$") && &ft!~#'gitcommit' | exe "normal! g`\"" | endif
 
 	"" Set local indentation preferences *after* ftplugins
 	"" but *before* plugin scripts (eg, sleuth, editorconfig)
