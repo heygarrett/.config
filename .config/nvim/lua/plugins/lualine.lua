@@ -19,6 +19,15 @@ local function filepath()
 	end
 end
 
+local function round(p)
+	return p % 1 > .5 and math.ceil(p) or math.floor(p)
+end
+
+local function progress()
+	local p = vim.fn.line('.') * 100 / vim.fn.line('$')
+	return tostring(round(p)) .. '%%'
+end
+
 return require('lualine').setup {
 	options = {
 		icons_enabled = false,
@@ -27,6 +36,7 @@ return require('lualine').setup {
 		section_separators = {'', ''}
 	},
 	sections = {
-		lualine_c = {filepath}
+		lualine_c = {filepath},
+		lualine_y = {progress}
 	}
 }
