@@ -26,8 +26,6 @@ vim.opt.foldenable = false
 vim.opt.foldmethod = 'indent'
 vim.opt.clipboard:append({'unnamedplus'})
 vim.opt.mouse = 'a'
-
--- TODO Deduplicate for buffers without filetype
 vim.opt.expandtab = false
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
@@ -37,10 +35,10 @@ vim.cmd([[
 	"" Restore last cursor position when opening a file
 	autocmd BufReadPost * if line("'\"") >= 1 && line("'\"") <= line("$") && &ft !~# 'commit' | exe "normal! g`\"" | endif
 
-	"" Set indentation preferences *after* ftplugins
+	"" Set local indentation preferences *after* ftplugins
 	"" but *before* plugin scripts (eg, sleuth, editorconfig)
 	filetype plugin indent on
-	autocmd FileType * setlocal noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
+	autocmd FileType * setlocal expandtab< tabstop< softtabstop< shiftwidth<
 
 	set termguicolors
 	packadd! dracula_pro
