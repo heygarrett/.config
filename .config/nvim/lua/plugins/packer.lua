@@ -18,14 +18,14 @@ return require('packer').startup({
 			requires = {'ms-jpq/coq.artifacts', branch = 'artifacts'}}
 		use {'mfussenegger/nvim-lint', rocks = {'luacheck', 'lanes'}}
 		use 'hoob3rt/lualine.nvim'
-		use 'lukas-reineke/indent-blankline.nvim'
 		use 'henrik/vim-indexed-search'
+		use 'lukas-reineke/indent-blankline.nvim'
 		use 'tpope/vim-sleuth'
 		use 'tpope/vim-vinegar'
 		use 'tpope/vim-fugitive'
 		use 'tpope/vim-markdown'
 		use 'editorconfig/editorconfig-vim'
-		use {'apple/swift', rtp = 'utils/vim'}
+		use 'prettier/vim-prettier'
 	end,
 	config = {
 		git = {
