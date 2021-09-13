@@ -20,7 +20,7 @@ local function filepath()
 end
 
 local function round(p)
-	return p % 1 > .5 and math.ceil(p) or math.floor(p)
+	return p % 1 >= .5 and math.ceil(p) or math.floor(p)
 end
 
 local function progress()
