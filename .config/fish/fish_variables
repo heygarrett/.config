@@ -3,6 +3,7 @@
 SETUVAR --export EDITOR:nvim
 SETUVAR --export HOMEBREW_BUNDLE_FILE:/Users/garrett/\x2eBrewfile
 SETUVAR --export HOMEBREW_NO_ANALYTICS:1
+SETUVAR --export MANPAGER:nvim\x20\x2bMan\x21
 SETUVAR __fish_initialized:3100
 SETUVAR fish_color_autosuggestion:555\x1ebrblack
 SETUVAR fish_color_cancel:\x2dr
