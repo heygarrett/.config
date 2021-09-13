@@ -1,7 +1,7 @@
-vim.api.nvim_set_keymap("n", "<leader>td", "<cmd>Trouble lsp_document_diagnostics<cr>",
+vim.api.nvim_set_keymap("n", "<leader>dd", "<cmd>Trouble lsp_document_diagnostics<cr>",
   {silent = true, noremap = true}
 )
-vim.api.nvim_set_keymap("n", "<leader>tw", "<cmd>Trouble lsp_workspace_diagnostics<cr>",
+vim.api.nvim_set_keymap("n", "<leader>wd", "<cmd>Trouble lsp_workspace_diagnostics<cr>",
   {silent = true, noremap = true}
 )
 vim.api.nvim_set_keymap("n", "<leader>gd", "<cmd>Trouble lsp_definitions<cr>",
