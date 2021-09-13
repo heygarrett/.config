@@ -13,6 +13,7 @@ return require('packer').startup({
 	function(use)
 		use 'wbthomason/packer.nvim'
 		use 'neovim/nvim-lspconfig'
+		use 'folke/trouble.nvim'
 		use {'ms-jpq/coq_nvim', branch = 'coq', run = ':COQdeps'}
 		use {'ms-jpq/coq.artifacts', branch = 'artifacts'}
 		use 'hoob3rt/lualine.nvim'
