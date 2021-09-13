@@ -11,6 +11,7 @@ vim.api.nvim_set_keymap('n', 'k', 'gk', { noremap = true, silent = true })
 vim.g.netrw_liststyle = 3
 vim.opt.hidden = true -- soon to be default (merged into master)
 vim.opt.path:append({'**'})
+vim.opt.termguicolors = true
 vim.opt.cmdheight = 2
 vim.opt.scrolloff = 3
 vim.opt.number = true
@@ -41,7 +42,6 @@ vim.cmd([[
 	filetype plugin indent on
 	autocmd FileType * setlocal expandtab< tabstop< softtabstop< shiftwidth<
 
-	set termguicolors
 	packadd! dracula_pro
 	let g:dracula_colorterm = 0
 	colorscheme dracula_pro
