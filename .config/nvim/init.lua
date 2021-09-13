@@ -1,8 +1,8 @@
 require('plugins/packer')
-require('plugins/lualine')
 require('plugins/lspconfig')
 require('plugins/trouble')
 require('plugins/nvim-lint')
+require('plugins/lualine')
 require('plugins/indent-blankline')
 
 vim.g.python3_host_prog = vim.env.HOME .. "/.local/venvs/nvim/bin/python"
