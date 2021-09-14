@@ -11,19 +11,24 @@ end
 
 return require('packer').startup({
 	function(use)
+
+		-- configs in lua/plugins
 		use 'wbthomason/packer.nvim'
 		use {'neovim/nvim-lspconfig', rocks = {'luacheck', 'lanes'}}
 		use {'ms-jpq/coq_nvim', branch = 'coq', run = ':COQdeps',
 			requires = {'ms-jpq/coq.artifacts', branch = 'artifacts'}}
 		use 'hoob3rt/lualine.nvim'
-		use 'henrik/vim-indexed-search'
 		use 'lukas-reineke/indent-blankline.nvim'
+
+		-- no configs
+		use 'henrik/vim-indexed-search'
 		use 'tpope/vim-sleuth'
 		use 'tpope/vim-vinegar'
 		use 'tpope/vim-fugitive'
 		use 'tpope/vim-markdown'
 		use 'editorconfig/editorconfig-vim'
 		use 'prettier/vim-prettier'
+
 	end,
 	config = {
 		git = {
