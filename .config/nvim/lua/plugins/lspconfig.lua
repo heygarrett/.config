@@ -26,6 +26,12 @@ local on_attach = function(_, bufnr)
 	buf_set_keymap('n', '<leader>form', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
+local signs = { Error = '🚫', Warning = '⚠️', Hint = '💡', Information = 'ℹ️' }
+for type, icon in pairs(signs) do
+	local hl = "LspDiagnosticsSign" .. type
+	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
+end
+
 local servers = {
 	'pyright',
 	'rust_analyzer',
@@ -76,9 +82,3 @@ nvim_lsp.efm.setup {
 	},
 	on_attach = on_attach
 }
-
-local signs = { Error = '🚫', Warning = '⚠️', Hint = '💡', Information = 'ℹ️' }
-for type, icon in pairs(signs) do
-	local hl = "LspDiagnosticsSign" .. type
-	vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
-end
