@@ -12,11 +12,9 @@ end
 return require('packer').startup({
 	function(use)
 		use 'wbthomason/packer.nvim'
-		use 'neovim/nvim-lspconfig'
-		use 'folke/trouble.nvim'
+		use {'neovim/nvim-lspconfig', rocks = {'luacheck', 'lanes'}}
 		use {'ms-jpq/coq_nvim', branch = 'coq', run = ':COQdeps',
 			requires = {'ms-jpq/coq.artifacts', branch = 'artifacts'}}
-		use {'mfussenegger/nvim-lint', rocks = {'luacheck', 'lanes'}}
 		use 'hoob3rt/lualine.nvim'
 		use 'henrik/vim-indexed-search'
 		use 'lukas-reineke/indent-blankline.nvim'
