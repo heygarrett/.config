@@ -39,19 +39,13 @@ for _, lsp in ipairs(servers) do
 	}))
 end
 
--- TODO clean up
-local function which_es()
-	local f = io.open('./node_modules/.bin/eslint', 'r')
-	if f ~= nil then
-		io.close(f)
-		return './node_modules/.bin/eslint -f compact --stdin --stdin-filename ${INPUT}'
-	else
-		return 'eslint -f compact --stdin --stdin-filename ${INPUT}'
-	end
-end
+-- TODO clean up efm config
+
+local f = './node_modules/.bin/eslint'
+local which_es = os.rename(f, f) and f or 'eslint'
 
 local eslint = {
-	lintCommand = which_es(),
+	lintCommand = which_es .. ' -f compact --stdin --stdin-filename ${INPUT}',
 	lintIgnoreExitCode = true,
 	lintStdin = true,
 	lintFormats = {
