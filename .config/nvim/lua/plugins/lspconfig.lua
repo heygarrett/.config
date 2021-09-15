@@ -47,7 +47,7 @@ end
 
 -- TODO clean up efm config
 
-local function get_command_path(project, global)
+local function command_path(project, global)
 	local f = io.open(project .. global, 'r')
 	if f ~= nil then
 		io.close(f)
@@ -58,12 +58,12 @@ local function get_command_path(project, global)
 end
 
 local prettier = {
-	formatCommand = get_command_path('./node_modules/.bin', 'prettier') .. '--stdin-filepath ${INPUT}',
+	formatCommand = command_path('./node_modules/.bin', 'prettier') .. '--stdin-filepath ${INPUT}',
 	formatStdin = true,
 }
 
 local eslint = {
-	lintCommand = get_command_path('./node_modules/.bin', 'eslint') .. '-f compact --stdin --stdin-filename ${INPUT}',
+	lintCommand = command_path('./node_modules/.bin', 'eslint') .. '-f compact --stdin --stdin-filename ${INPUT}',
 	lintIgnoreExitCode = true,
 	lintStdin = true,
 	lintFormats = {
