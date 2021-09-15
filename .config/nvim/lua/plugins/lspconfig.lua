@@ -82,7 +82,7 @@ local luacheck = {
 local languages = {
 	typescript = {eslint, prettier},
 	javascript = {eslint, prettier},
-	svelte = {eslint},
+	svelte = {eslint, prettier},
 	lua = {luacheck},
 }
 
