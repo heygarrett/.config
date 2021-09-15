@@ -31,7 +31,7 @@ vim.opt.shiftwidth = 4
 
 vim.api.nvim_set_keymap('n', 'j', 'gj', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', 'k', 'gk', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>out', '<c-o>', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<s-tab>', '<c-o>', {noremap = true, silent = true})
 
 vim.cmd([[
 	"" Restore last cursor position when opening a file
