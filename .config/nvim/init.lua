@@ -3,9 +3,6 @@ require('plugins/lspconfig')
 require('plugins/lualine')
 require('plugins/indent-blankline')
 
-vim.api.nvim_set_keymap('n', 'j', 'gj', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', 'k', 'gk', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<leader>out', '<c-o>', {noremap = true, silent = true})
 vim.g.python3_host_prog = vim.env.HOME .. "/.local/venvs/nvim/bin/python"
 vim.g.netrw_liststyle = 3
 vim.opt.hidden = true -- soon to be default (merged into master)
@@ -31,6 +28,10 @@ vim.opt.expandtab = false
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
+
+vim.api.nvim_set_keymap('n', 'j', 'gj', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', 'k', 'gk', {noremap = true, silent = true})
+vim.api.nvim_set_keymap('n', '<leader>out', '<c-o>', {noremap = true, silent = true})
 
 vim.cmd([[
 	"" Restore last cursor position when opening a file
