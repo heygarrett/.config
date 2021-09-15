@@ -13,17 +13,17 @@ local on_attach = function(_, bufnr)
 	-- See `:help vim.lsp.*` for documentation on any of the below functions
 	buf_set_keymap('n', '<leader>dec', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
 	buf_set_keymap('n', '<leader>def', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-	buf_set_keymap('n', '<leader>h', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+	buf_set_keymap('n', '<leader>hov', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
 	buf_set_keymap('n', '<leader>imp', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
 	buf_set_keymap('n', '<leader>sig', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
-	buf_set_keymap('n', '<leader>type', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+	buf_set_keymap('n', '<leader>typ', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
 	buf_set_keymap('n', '<leader>act', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
 	buf_set_keymap('n', '<leader>ref', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-	buf_set_keymap('n', '<leader>line', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+	buf_set_keymap('n', '<leader>sld', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
 	buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
 	buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-	buf_set_keymap('n', '<leader>loc', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-	buf_set_keymap('n', '<leader>form', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+	buf_set_keymap('n', '<leader>dll', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+	buf_set_keymap('n', '<leader>fmt', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 end
 
 local signs = { Error = '🚫', Warning = '⚠️', Hint = '💡', Information = 'ℹ️' }
