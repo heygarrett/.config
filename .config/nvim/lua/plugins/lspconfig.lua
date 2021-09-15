@@ -47,11 +47,23 @@ end
 
 -- TODO clean up efm config
 
-local f = './node_modules/.bin/eslint'
-local which_es = os.rename(f, f) and f or 'eslint'
+local function get_command_path(project, global)
+	local f = io.open(project .. global, 'r')
+	if f ~= nil then
+		io.close(f)
+		return project .. global .. ' '
+	else
+		return global .. ' '
+	end
+end
+
+local prettier = {
+	formatCommand = get_command_path('./node_modules/.bin', 'prettier') .. '--stdin-filepath ${INPUT}',
+	formatStdin = true,
+}
 
 local eslint = {
-	lintCommand = which_es .. ' -f compact --stdin --stdin-filename ${INPUT}',
+	lintCommand = get_command_path('./node_modules/.bin', 'eslint') .. '-f compact --stdin --stdin-filename ${INPUT}',
 	lintIgnoreExitCode = true,
 	lintStdin = true,
 	lintFormats = {
@@ -68,8 +80,9 @@ local luacheck = {
 }
 
 local languages = {
-	typescript = {eslint},
-	javascript = {eslint},
+	typescript = {eslint, prettier},
+	javascript = {eslint, prettier},
+	svelte = {eslint},
 	lua = {luacheck},
 }
 
