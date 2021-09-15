@@ -41,7 +41,7 @@ local servers = {
 for _, lsp in ipairs(servers) do
 	nvim_lsp[lsp].setup(coq.lsp_ensure_capabilities({
 		on_attach = on_attach,
-		capabilities = capabilities
+		capabilities = capabilities,
 	}))
 end
 
@@ -68,7 +68,7 @@ local eslint = {
 	lintStdin = true,
 	lintFormats = {
 		'%f: line %l, col %c, %trror - %m',
-		'%f: line %l, col %c, %tarning - %m'
+		'%f: line %l, col %c, %tarning - %m',
 	}
 }
 
@@ -93,5 +93,5 @@ nvim_lsp.efm.setup {
 		rootMarkers = {'.git/'},
 		languages = languages
 	},
-	on_attach = on_attach
+	on_attach = on_attach,
 }
