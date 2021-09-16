@@ -1,7 +1,7 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
 SETUVAR --export EDITOR:nvim
-SETUVAR --export HOMEBREW_BUNDLE_FILE:/Users/garrett/\x2eBrewfile
+SETUVAR --export HOMEBREW_BUNDLE_FILE:/Users/garrett/\x2econfig/homebrew/Brewfile
 SETUVAR --export HOMEBREW_NO_ANALYTICS:1
 SETUVAR --export MANPAGER:nvim\x20\x2bMan\x21
 SETUVAR __fish_initialized:3100
