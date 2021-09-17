@@ -36,8 +36,9 @@ local servers = {
 	'pyright',
 	'rust_analyzer',
 	'sourcekit',
-	'tsserver',
 	'jsonls',
+	'tsserver',
+	'svelte',
 }
 for _, lsp in ipairs(servers) do
 	nvim_lsp[lsp].setup(coq.lsp_ensure_capabilities({
@@ -84,7 +85,6 @@ local languages = {
 	typescript = {eslint, prettier},
 	javascript = {eslint, prettier},
 	json = {eslint},
-	svelte = {eslint, prettier},
 	lua = {luacheck},
 }
 
