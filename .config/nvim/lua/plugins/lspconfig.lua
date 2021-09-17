@@ -50,13 +50,15 @@ end
 -- TODO clean up efm config
 
 local function command_path(project, global)
+	local path
 	local f = io.open(project .. global, 'r')
 	if f ~= nil then
 		io.close(f)
-		return project .. global .. ' '
+		path = project .. global
 	else
-		return global .. ' '
+		path = global
 	end
+	return path .. ' '
 end
 
 local prettier = {
