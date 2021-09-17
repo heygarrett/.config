@@ -28,6 +28,7 @@ return require('packer').startup({
 		use 'tpope/vim-commentary'
 		use 'editorconfig/editorconfig-vim'
 		use 'lukas-reineke/indent-blankline.nvim'
+		use 'farmergreg/vim-lastplace'
 
 	end,
 	config = {

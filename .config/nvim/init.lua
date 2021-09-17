@@ -34,9 +34,6 @@ vim.api.nvim_set_keymap('n', 'k', 'gk', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<s-tab>', '<c-o>', {noremap = true, silent = true})
 
 vim.cmd([[
-	"" Restore last cursor position when opening a file
-	autocmd BufReadPost * if line("'\"")>=1 && line("'\"")<=line("$") && &ft!~#'gitcommit' | exe "normal! g`\"" | endif
-
 	"" Set local indentation preferences *after* ftplugins
 	"" but *before* plugin scripts (eg, sleuth, editorconfig)
 	filetype plugin indent on
