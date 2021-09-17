@@ -26,6 +26,7 @@ return require('packer').startup({
 		use 'tpope/vim-vinegar'
 		use 'tpope/vim-fugitive'
 		use 'tpope/vim-markdown'
+		use 'tpope/vim-commentary'
 		use 'editorconfig/editorconfig-vim'
 		use 'prettier/vim-prettier'
 
