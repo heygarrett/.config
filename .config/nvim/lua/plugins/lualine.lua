@@ -2,7 +2,9 @@ vim.opt.laststatus = 2
 vim.opt.showmode = false
 
 local function check_modified()
-	if vim.opt.modified:get() == true then
+	if vim.opt.readonly:get() == true then
+		return '[-]'
+	elseif vim.opt.modified:get() == true then
 		return '[+]'
 	else
 		return ''
@@ -10,13 +12,15 @@ local function check_modified()
 end
 
 local function filepath()
+	local path
 	if vim.opt.filetype:get() == 'netrw' then
-		return vim.fn.getcwd()
+		path = vim.fn.getcwd()
 	elseif vim.fn.expand('%:p:.') ~= '' then
-		return vim.fn.expand('%:p:.') .. check_modified()
+		path = vim.fn.expand('%:p:.')
 	else
-		return '[No Name]'
+		path = '[No Name]'
 	end
+	return path .. check_modified()
 end
 
 local function round(p)
