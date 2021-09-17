@@ -1,7 +1,7 @@
 require('plugins/packer')
 require('plugins/lspconfig')
 require('plugins/lualine')
-require('plugins/indent-blankline')
+require('plugins/indexed-search')
 
 vim.g.python3_host_prog = vim.env.HOME .. "/.local/venvs/nvim/bin/python"
 vim.g.netrw_liststyle = 3
