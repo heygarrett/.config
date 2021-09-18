@@ -26,6 +26,7 @@ return require('packer').startup({
 		use 'editorconfig/editorconfig-vim'
 		use 'lukas-reineke/indent-blankline.nvim'
 		use 'farmergreg/vim-lastplace'
+		use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 
 	end,
 	config = {
