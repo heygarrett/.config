@@ -33,13 +33,12 @@ vim.api.nvim_set_keymap('n', 'j', 'gj', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', 'k', 'gk', {noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<s-tab>', '<c-o>', {noremap = true, silent = true})
 
+vim.api.nvim_command('colorscheme dracula_pro')
+vim.g.dracula_colorterm = 0
+
 vim.cmd([[
 	"" Set local indentation preferences *after* ftplugins
 	"" but *before* plugin scripts (eg, sleuth, editorconfig)
 	filetype plugin indent on
 	autocmd FileType * setlocal expandtab< tabstop< softtabstop< shiftwidth<
-
-	packadd! dracula_pro
-	let g:dracula_colorterm = 0
-	colorscheme dracula_pro
 ]])
