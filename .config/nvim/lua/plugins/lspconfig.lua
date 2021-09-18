@@ -1,5 +1,3 @@
-vim.opt.signcolumn = 'yes'
-
 local nvim_lsp = require('lspconfig')
 local coq = require('plugins/coq')
 local on_attach = require('utils/on_attach')

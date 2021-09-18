@@ -1,3 +1,5 @@
+vim.opt.signcolumn = 'yes'
+
 local signs = { Error = '🚫', Warning = '⚠️', Hint = '💡', Information = 'ℹ️' }
 for type, icon in pairs(signs) do
     local hl = "LspDiagnosticsSign" .. type
