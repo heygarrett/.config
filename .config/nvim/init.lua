@@ -3,6 +3,7 @@ require('plugins/lspconfig')
 require('plugins/efm-langserver')
 require('plugins/lualine')
 require('plugins/indexed-search')
+require('utils/diagnostic-signs')
 
 vim.g.python3_host_prog = vim.env.HOME .. "/.local/venvs/nvim/bin/python"
 vim.g.netrw_liststyle = 3
