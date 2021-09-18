@@ -1,5 +1,6 @@
 require('plugins/packer')
 require('plugins/lspconfig')
+require('plugins/efm-langserver')
 require('plugins/lualine')
 require('plugins/indexed-search')
 
