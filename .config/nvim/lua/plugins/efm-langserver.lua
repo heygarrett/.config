@@ -2,12 +2,10 @@ local on_attach = require('utils/on-attach')
 
 local function command_path(project, global)
 	local path
-	local f = io.open(project .. global, 'r')
-	if f ~= nil then
-		io.close(f)
-		path = project .. global
-	else
+	if vim.fn.empty(vim.fn.glob(project .. global)) > 0 then
 		path = global
+	else
+		path = project .. global
 	end
 	return path .. ' '
 end
