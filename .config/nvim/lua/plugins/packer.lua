@@ -12,8 +12,8 @@ return require('packer').startup({
 		-- configs in lua/plugins
 		use 'wbthomason/packer.nvim'
 		use {'neovim/nvim-lspconfig', rocks = {'luacheck', 'lanes'}}
-		use {'ms-jpq/coq_nvim', branch = 'coq', run = ':COQdeps',
-			requires = {'ms-jpq/coq.artifacts', branch = 'artifacts'}}
+		use {'ms-jpq/coq_nvim', branch = 'coq', run = ':COQdeps', requires = {
+			'ms-jpq/coq.artifacts', branch = 'artifacts'}}
 		use 'hoob3rt/lualine.nvim'
 		use 'henrik/vim-indexed-search'
 
@@ -27,6 +27,9 @@ return require('packer').startup({
 		use 'lukas-reineke/indent-blankline.nvim'
 		use 'farmergreg/vim-lastplace'
 		use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
+		use {'nvim-telescope/telescope.nvim', requires = {
+			'nvim-lua/plenary.nvim',
+			{'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }}}
 
 	end,
 	config = {
