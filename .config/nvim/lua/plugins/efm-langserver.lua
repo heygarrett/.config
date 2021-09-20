@@ -1,22 +1,12 @@
 local on_attach = require('utils/on-attach')
 
-local function command_path(project, global)
-	local path
-	if vim.fn.empty(vim.fn.glob(project .. global)) > 0 then
-		path = global
-	else
-		path = project .. global
-	end
-	return path .. ' '
-end
-
 local prettier = {
-	formatCommand = command_path('./node_modules/.bin', 'prettier') .. '--stdin-filepath ${INPUT}',
+	formatCommand = './node_modules/.bin/prettier --stdin-filepath ${INPUT}',
 	formatStdin = true,
 }
 
 local eslint = {
-	lintCommand = command_path('./node_modules/.bin', 'eslint') .. '-f compact --stdin --stdin-filename ${INPUT}',
+	lintCommand = './node_modules/.bin/eslint -f compact --stdin --stdin-filename ${INPUT}',
 	lintIgnoreExitCode = true,
 	lintStdin = true,
 	lintFormats = {
