@@ -13,7 +13,8 @@ return require('packer').startup({
 		use 'wbthomason/packer.nvim'
 		use {'neovim/nvim-lspconfig', rocks = {'luacheck', 'lanes'}}
 		use {'ms-jpq/coq_nvim', branch = 'coq', run = ':COQdeps', requires = {
-			'ms-jpq/coq.artifacts', branch = 'artifacts'}}
+			{'ms-jpq/coq.artifacts', branch = 'artifacts'},
+			'ms-jpq/coq.thirdparty'}}
 		use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 		use 'hoob3rt/lualine.nvim'
 		use 'henrik/vim-indexed-search'

@@ -7,4 +7,8 @@ vim.g.coq_settings = {
 	['keymap.jump_to_mark'] = '<c-n>',
 }
 
+require('coq_3p') {
+	{src = 'nvimlua', short_name = 'nLUA'}
+}
+
 return require('coq')
