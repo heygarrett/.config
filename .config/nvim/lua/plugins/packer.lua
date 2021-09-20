@@ -14,9 +14,6 @@ return require('packer').startup({
 		use {'neovim/nvim-lspconfig', rocks = {'luacheck', 'lanes'}}
 		use {'ms-jpq/coq_nvim', branch = 'coq', run = ':COQdeps', requires = {
 			'ms-jpq/coq.artifacts', branch = 'artifacts'}}
-		use {'nvim-telescope/telescope.nvim', requires = {
-			'nvim-lua/plenary.nvim',
-			{'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}}}
 		use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
 		use 'hoob3rt/lualine.nvim'
 		use 'henrik/vim-indexed-search'

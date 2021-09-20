@@ -4,7 +4,6 @@ require('plugins/efm-langserver')
 require('utils/diagnostic-signs')
 require('plugins/lualine')
 require('plugins/indexed-search')
-require('plugins/telescope')
 require('plugins/treesitter')
 
 vim.g.python3_host_prog = vim.env.HOME .. "/.local/venvs/nvim/bin/python"
