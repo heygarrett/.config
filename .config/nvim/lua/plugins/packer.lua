@@ -20,7 +20,6 @@ return require('packer').startup({
 
 		-- no configs
 		use 'tpope/vim-sleuth'
-		-- use 'tpope/vim-vinegar'
 		use 'tpope/vim-fugitive'
 		use 'tpope/vim-markdown'
 		use 'tpope/vim-commentary'
