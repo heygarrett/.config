@@ -6,10 +6,10 @@ require('plugins/lualine')
 require('plugins/indexed-search')
 require('plugins/treesitter')
 
-vim.g.python3_host_prog = vim.env.HOME .. "/.local/venvs/nvim/bin/python"
+vim.g.python3_host_prog = vim.env.HOME .. '/.local/venvs/nvim/bin/python'
 vim.g.netrw_liststyle = 3
 vim.g.netrw_banner = 0
-vim.opt.hidden = true -- soon to be default (merged into master)
+vim.opt.hidden = true
 vim.opt.path:append('**')
 vim.opt.termguicolors = true
 vim.opt.cmdheight = 2
