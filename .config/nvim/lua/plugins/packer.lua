@@ -23,12 +23,10 @@ return require('packer').startup({
 
 		-- no configs
 		use 'Darazaki/indent-o-matic'
-		-- use 'tpope/vim-sleuth'
-		use 'tpope/vim-fugitive'
+		use 'lukas-reineke/indent-blankline.nvim'
 		use 'tpope/vim-markdown'
 		use 'tpope/vim-commentary'
 		use 'editorconfig/editorconfig-vim'
-		use 'lukas-reineke/indent-blankline.nvim'
 		use 'farmergreg/vim-lastplace'
 
 	end,
