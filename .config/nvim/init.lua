@@ -33,9 +33,11 @@ vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 
-vim.api.nvim_set_keymap('n', 'j', 'gj', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', 'k', 'gk', {noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', '<s-tab>', '<c-o>', {noremap = true, silent = true})
+local map = vim.api.nvim_set_keymap
+local opts = {noremap = true, silent = true}
+map('n', 'j', 'gj', opts)
+map('n', 'k', 'gk', opts)
+map('n', '<s-tab>', '<c-o>', opts)
 
 vim.api.nvim_command('colorscheme dracula_pro')
 vim.g.dracula_colorterm = 0

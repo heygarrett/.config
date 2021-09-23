@@ -2,7 +2,7 @@ local on_attach = function(_, bufnr)
 	local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
 
 	-- Mappings.
-	local opts = { noremap=true, silent=true }
+	local opts = {noremap=true, silent=true}
 
 	-- See `:help vim.lsp.*` for documentation on any of the below functions
 	buf_set_keymap('n', '<leader>dec', '<cmd>lua vim.lsp.buf.declaration()<CR>', opts)
