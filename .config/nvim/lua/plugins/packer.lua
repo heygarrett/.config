@@ -19,7 +19,8 @@ return require('packer').startup({
 		use 'henrik/vim-indexed-search'
 
 		-- no configs
-		use 'tpope/vim-sleuth'
+		use 'Darazaki/indent-o-matic'
+		-- use 'tpope/vim-sleuth'
 		use 'tpope/vim-fugitive'
 		use 'tpope/vim-markdown'
 		use 'tpope/vim-commentary'
