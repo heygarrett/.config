@@ -7,6 +7,15 @@ map('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', opts)
 map('n', '<leader>fb', '<cmd>Telescope buffers<cr>', opts)
 map('n', '<leader>fh', '<cmd>Telescope help_tags<cr>', opts)
 
+vim.cmd([[
+	command! Browser Telescope file_browser
+	command! Find Telescope find_files
+	command! Tracked Telescope git_files
+	command! Grep Telescope live_grep
+	command! Buffers Telescope buffers
+	command! Help Telescope help_tags
+]])
+
 local telescope = require('telescope')
 telescope.load_extension('fzf')
 telescope.setup {
