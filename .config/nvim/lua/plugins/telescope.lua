@@ -17,10 +17,13 @@ vim.cmd([[
 ]])
 
 local telescope = require('telescope')
-telescope.load_extension('fzf')
 telescope.setup {
 	defaults = {
-		prompt_prefix = ''
+		prompt_prefix = '',
+	},
+	extensions = {
+		fzf = {},
 	}
 }
+telescope.load_extension('fzf')
 
