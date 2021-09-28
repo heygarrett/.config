@@ -22,7 +22,8 @@ return require('packer').startup({
 		use 'henrik/vim-indexed-search'
 
 		-- no configs
-		use 'Darazaki/indent-o-matic'
+		-- use 'Darazaki/indent-o-matic'
+		use 'tpope/vim-sleuth'
 		use 'lukas-reineke/indent-blankline.nvim'
 		-- use 'tpope/vim-markdown'
 		use 'plasticboy/vim-markdown'
