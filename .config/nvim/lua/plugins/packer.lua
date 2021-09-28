@@ -32,8 +32,6 @@ return require('packer').startup({
 
 	end,
 	config = {
-		git = {
-			clone_timeout = false
-		}
+		['git.clone_timeout'] = false
 	}
 })
