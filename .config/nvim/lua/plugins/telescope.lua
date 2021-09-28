@@ -10,9 +10,9 @@ map('n', '<leader>fh', '<cmd>Telescope help_tags<cr>', opts)
 vim.cmd([[
 	command! Browse Telescope file_browser
 	command! Find Telescope find_files
-	command! Tracked Telescope git_files
+	command! Git Telescope git_files
 	command! Grep Telescope live_grep
-	command! Buffers Telescope buffers
+	command! Bufs Telescope buffers
 	command! Help Telescope help_tags
 ]])
 
