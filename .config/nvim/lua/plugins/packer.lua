@@ -9,7 +9,7 @@ end
 return require('packer').startup({
 	function(use)
 
-		-- configs in lua/plugins
+		-- Configs in lua/plugins
 		use 'wbthomason/packer.nvim'
 		use {'neovim/nvim-lspconfig', rocks = {'luacheck', 'lanes'}}
 		use {'ms-jpq/coq_nvim', run = ':COQdeps', requires = {
@@ -21,15 +21,17 @@ return require('packer').startup({
 		use 'hoob3rt/lualine.nvim'
 		use 'henrik/vim-indexed-search'
 
-		-- no configs
-		-- use 'Darazaki/indent-o-matic'
+		-- No configs
 		use 'tpope/vim-sleuth'
 		use 'lukas-reineke/indent-blankline.nvim'
-		-- use 'tpope/vim-markdown'
 		use 'plasticboy/vim-markdown'
 		use 'tpope/vim-commentary'
 		use 'editorconfig/editorconfig-vim'
 		use 'farmergreg/vim-lastplace'
+
+		-- Parking
+		-- use 'Darazaki/indent-o-matic'
+		-- use 'tpope/vim-markdown'
 
 	end,
 	config = {
