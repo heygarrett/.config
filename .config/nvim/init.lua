@@ -7,6 +7,18 @@ require('plugins/indexed-search')
 require('plugins/telescope')
 require('plugins/treesitter')
 
+-- Colorscheme
+vim.api.nvim_command('colorscheme dracula_pro')
+vim.g.dracula_colorterm = 0
+
+-- Mappings
+local map = vim.api.nvim_set_keymap
+local opts = {noremap = true, silent = true}
+map('n', 'j', 'gj', opts)
+map('n', 'k', 'gk', opts)
+map('n', '<s-tab>', '<c-o>', opts)
+
+-- Options
 vim.g.python3_host_prog = vim.env.HOME .. '/.local/venvs/nvim/bin/python'
 vim.g.netrw_liststyle = 3
 vim.g.netrw_banner = 0
@@ -29,20 +41,12 @@ vim.opt.foldenable = false
 vim.opt.foldmethod = 'indent'
 vim.opt.clipboard:append('unnamedplus')
 vim.opt.mouse = 'a'
+
+-- Indentation
 vim.opt.expandtab = false
 vim.opt.tabstop = 4
 vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
-
-local map = vim.api.nvim_set_keymap
-local opts = {noremap = true, silent = true}
-map('n', 'j', 'gj', opts)
-map('n', 'k', 'gk', opts)
-map('n', '<s-tab>', '<c-o>', opts)
-
-vim.api.nvim_command('colorscheme dracula_pro')
-vim.g.dracula_colorterm = 0
-
 vim.cmd([[
 	"" Set local indentation preferences *after* ftplugins
 	"" but *before* plugin scripts (eg, sleuth, editorconfig)
