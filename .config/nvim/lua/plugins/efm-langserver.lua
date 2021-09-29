@@ -6,7 +6,7 @@ local prettier = {
 }
 
 local eslint = {
-	lintCommand = './node_modules/.bin/eslint -f compact --stdin --stdin-filename ${INPUT}',
+	lintCommand = 'eslint_d -f compact --stdin --stdin-filename ${INPUT}',
 	lintIgnoreExitCode = true,
 	lintStdin = true,
 	lintFormats = {
