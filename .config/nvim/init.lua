@@ -50,5 +50,5 @@ vim.cmd([[
 	"" Set local indentation preferences *after* ftplugins
 	"" but *before* plugin scripts (eg, sleuth, editorconfig)
 	filetype plugin indent on
-	autocmd FileType * setlocal expandtab< tabstop< softtabstop< shiftwidth<
+	autocmd FileType * setlocal expandtab< shiftwidth< softtabstop< tabstop<
 ]])
