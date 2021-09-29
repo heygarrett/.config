@@ -9,7 +9,6 @@ require('plugins/treesitter')
 
 -- Colorscheme
 vim.api.nvim_command('colorscheme dracula_pro')
-vim.g.dracula_colorterm = 0
 
 -- Mappings
 local map = vim.api.nvim_set_keymap
