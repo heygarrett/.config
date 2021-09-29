@@ -1,3 +1,4 @@
+require('plugins/cmp')
 require('plugins/efm-langserver')
 require('plugins/indexed-search')
 require('plugins/lspconfig')

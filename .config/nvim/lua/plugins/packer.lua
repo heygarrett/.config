@@ -12,8 +12,13 @@ return require('packer').startup({
 		-- Configs in lua/plugins
 		use 'wbthomason/packer.nvim'
 		use {'neovim/nvim-lspconfig', rocks = {'luacheck', 'lanes'}}
-		use {'ms-jpq/coq_nvim', run = ':COQdeps', requires = {
-			'ms-jpq/coq.thirdparty'}}
+		use {'hrsh7th/nvim-cmp', requires = {
+			use 'hrsh7th/cmp-nvim-lsp',
+			use 'hrsh7th/cmp-buffer',
+			use 'hrsh7th/cmp-nvim-lua',
+			use 'ray-x/cmp-treesitter',
+			use 'L3MON4D3/LuaSnip',
+			use 'saadparwaiz1/cmp_luasnip'}}
 		use {'nvim-telescope/telescope.nvim', requires = {
 			'nvim-lua/plenary.nvim',
 			{'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}}}
