@@ -12,8 +12,6 @@ return require('packer').startup({
 		-- Configs in lua/plugins
 		use 'wbthomason/packer.nvim'
 		use {'neovim/nvim-lspconfig', rocks = {'luacheck', 'lanes'}}
-		use {'ms-jpq/coq_nvim', run = ':COQdeps', requires = {
-			'ms-jpq/coq.thirdparty'}}
 		use {'nvim-telescope/telescope.nvim', requires = {
 			'nvim-lua/plenary.nvim',
 			{'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}}}
