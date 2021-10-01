@@ -13,15 +13,6 @@ return require('packer').startup({
 		use 'wbthomason/packer.nvim'
 		use {'neovim/nvim-lspconfig', rocks = {'luacheck', 'lanes'}}
 		use 'jose-elias-alvarez/null-ls.nvim'
-		use {'hrsh7th/nvim-cmp', requires = {
-			use 'hrsh7th/cmp-nvim-lsp',
-			use 'hrsh7th/cmp-buffer',
-			use 'hrsh7th/cmp-nvim-lua',
-			use {'hrsh7th/cmp-vsnip', requires = {
-				use 'hrsh7th/vim-vsnip'}},
-			use 'hrsh7th/cmp-path',
-			use 'ray-x/cmp-treesitter'}}
-			use 'quangnguyen30192/cmp-nvim-tags'
 		use {'nvim-telescope/telescope.nvim', requires = {
 			'nvim-lua/plenary.nvim',
 			{'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}}}
