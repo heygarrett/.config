@@ -1,7 +1,7 @@
 local nvim_lsp = require('lspconfig')
-local coq = require('plugins/coq')
 local on_attach = require('utils/on-attach')
 local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
 local servers = {
 	'pyright',
@@ -13,8 +13,8 @@ local servers = {
 }
 
 for _, lsp in ipairs(servers) do
-	nvim_lsp[lsp].setup(coq.lsp_ensure_capabilities({
+	nvim_lsp[lsp].setup {
 		on_attach = on_attach,
-		capabilities = capabilities,
-	}))
+		capabilities = capabilities
+	}
 end

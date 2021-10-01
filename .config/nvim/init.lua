@@ -1,3 +1,4 @@
+require('plugins/cmp')
 require('plugins/indexed-search')
 require('plugins/lspconfig')
 require('plugins/lualine')

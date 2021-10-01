@@ -13,8 +13,13 @@ return require('packer').startup({
 		use 'wbthomason/packer.nvim'
 		use {'neovim/nvim-lspconfig', rocks = {'luacheck', 'lanes'}}
 		use 'jose-elias-alvarez/null-ls.nvim'
-		use {'ms-jpq/coq_nvim', run = ':COQdeps', requires = {
-			'ms-jpq/coq.thirdparty'}}
+		use {'hrsh7th/nvim-cmp', requires = {
+			use 'hrsh7th/cmp-nvim-lsp',
+			use 'hrsh7th/cmp-buffer',
+			use 'hrsh7th/cmp-nvim-lua',
+			use 'hrsh7th/vim-vsnip',
+			use 'hrsh7th/cmp-vsnip',
+			use 'ray-x/cmp-treesitter'}}
 		use {'nvim-telescope/telescope.nvim', requires = {
 			'nvim-lua/plenary.nvim',
 			{'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}}}
