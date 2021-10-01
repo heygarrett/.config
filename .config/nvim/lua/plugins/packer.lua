@@ -38,6 +38,7 @@ return require('packer').startup({
 		use 'farmergreg/vim-lastplace'
 
 		-- Parking
+		-- use {'ray-x/lsp_signature.nvim', config = function() require('lsp_signature').setup() end}
 		-- use 'Darazaki/indent-o-matic'
 		-- use 'tpope/vim-markdown'
 
