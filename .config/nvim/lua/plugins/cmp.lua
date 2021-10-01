@@ -24,5 +24,17 @@ cmp.setup({
 		{name = 'buffer'},
 		{name = 'nvim_lua'},
 		{name = 'path'},
+	},
+	formatting = {
+		format = function(entry, vim_item)
+			vim_item.menu = ({
+				vsnip = '[vsnip]',
+				nvim_lsp = '[LSP]',
+				buffer = '[Buffer]',
+				nvim_lua = '[nLua]',
+				path = '[Path]',
+			})[entry.source.name]
+			return vim_item
+		end,
 	}
 })
