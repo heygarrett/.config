@@ -40,8 +40,5 @@ return require('packer').startup({
 		-- use 'Darazaki/indent-o-matic'
 		-- use 'tpope/vim-markdown'
 
-	end,
-	config = {
-		['git.clone_timeout'] = false
-	}
+	end
 })
