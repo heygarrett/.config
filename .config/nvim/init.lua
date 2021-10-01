@@ -1,9 +1,11 @@
+-- Load packer first
+require('plugins/packer')
+-- Then the rest
 require('plugins/cmp')
 require('plugins/efm-langserver')
 require('plugins/indexed-search')
 require('plugins/lspconfig')
 require('plugins/lualine')
-require('plugins/packer')
 require('plugins/telescope')
 require('plugins/treesitter')
 require('utils/diagnostic-signs')
