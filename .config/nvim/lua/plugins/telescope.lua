@@ -1,8 +1,3 @@
-local map = vim.api.nvim_set_keymap
-local opts = {noremap = true, silent = true}
-
-map('n', '<c-]>', '<cmd>Telescope lsp_definitions<cr>', opts)
-
 vim.cmd([[
 	command! Browse Telescope file_browser
 	command! Find Telescope find_files
@@ -19,13 +14,6 @@ vim.cmd([[
 ]])
 
 local telescope = require('telescope')
-telescope.setup {
-	defaults = {
-		-- prompt_prefix = '',
-	},
-	extensions = {
-		fzf = {},
-	}
-}
+telescope.setup()
 telescope.load_extension('fzf')
 
