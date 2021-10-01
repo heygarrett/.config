@@ -24,6 +24,7 @@ cmp.setup({
 		{name = 'buffer'},
 		{name = 'nvim_lua'},
 		{name = 'path'},
+		{name = 'tags'},
 	},
 	formatting = {
 		format = function(entry, vim_item)
@@ -33,6 +34,7 @@ cmp.setup({
 				buffer = '[Buffer]',
 				nvim_lua = '[nLua]',
 				path = '[Path]',
+				tags = '[Tags]',
 			})[entry.source.name]
 			return vim_item
 		end,

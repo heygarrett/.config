@@ -21,6 +21,7 @@ return require('packer').startup({
 				use 'hrsh7th/vim-vsnip'}},
 			use 'hrsh7th/cmp-path',
 			use 'ray-x/cmp-treesitter'}}
+			use 'quangnguyen30192/cmp-nvim-tags'
 		use {'nvim-telescope/telescope.nvim', requires = {
 			'nvim-lua/plenary.nvim',
 			{'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}}}
