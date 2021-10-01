@@ -1,7 +1,6 @@
 -- Load packer first
 require('plugins/packer')
 -- Then the rest
-require('plugins/cmp')
 require('plugins/indexed-search')
 require('plugins/lspconfig')
 require('plugins/lualine')
