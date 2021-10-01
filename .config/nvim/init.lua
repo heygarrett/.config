@@ -1,7 +1,7 @@
-require('plugins/efm-langserver')
 require('plugins/indexed-search')
 require('plugins/lspconfig')
 require('plugins/lualine')
+require('plugins/null-ls')
 require('plugins/packer')
 require('plugins/telescope')
 require('plugins/treesitter')
