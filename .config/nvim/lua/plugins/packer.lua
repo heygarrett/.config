@@ -14,6 +14,7 @@ return require('packer').startup({
 		use 'henrik/vim-indexed-search'
 		use 'hoob3rt/lualine.nvim'
 		use 'jose-elias-alvarez/null-ls.nvim'
+		use 'ray-x/lsp_signature.nvim'
 		use {'neovim/nvim-lspconfig', rocks = {'luacheck', 'lanes'}}
 		use {'nvim-telescope/telescope.nvim', requires = {
 			'nvim-lua/plenary.nvim',
@@ -25,7 +26,6 @@ return require('packer').startup({
 		use 'farmergreg/vim-lastplace'
 		use 'lukas-reineke/indent-blankline.nvim'
 		use 'plasticboy/vim-markdown'
-		use 'ray-x/lsp_signature.nvim'
 		use 'tpope/vim-commentary'
 		use 'tpope/vim-sleuth'
 

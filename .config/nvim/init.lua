@@ -2,6 +2,7 @@
 require('plugins/packer')
 -- Then the rest
 require('plugins/indexed-search')
+require('plugins/lsp_signature')
 require('plugins/lspconfig')
 require('plugins/lualine')
 require('plugins/null-ls')
@@ -25,7 +26,7 @@ vim.g.netrw_liststyle = 3
 vim.g.python3_host_prog = vim.env.HOME .. '/.local/venvs/nvim/bin/python'
 vim.opt.clipboard:append('unnamedplus')
 vim.opt.cmdheight = 2
-vim.opt.completeopt = {'menuone', 'noselect'}
+vim.opt.completeopt = {'menuone', 'noselect', 'noinsert'}
 vim.opt.confirm = true
 vim.opt.cursorline = true
 vim.opt.foldenable = false
