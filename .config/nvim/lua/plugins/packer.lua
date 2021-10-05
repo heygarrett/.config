@@ -8,30 +8,29 @@ end
 
 return require('packer').startup({
 	function(use)
+		use 'wbthomason/packer.nvim'
 
 		-- Configs in lua/plugins
-		use 'wbthomason/packer.nvim'
-		use {'neovim/nvim-lspconfig', rocks = {'luacheck', 'lanes'}}
+		use 'henrik/vim-indexed-search'
+		use 'hoob3rt/lualine.nvim'
 		use 'jose-elias-alvarez/null-ls.nvim'
+		use {'neovim/nvim-lspconfig', rocks = {'luacheck', 'lanes'}}
 		use {'nvim-telescope/telescope.nvim', requires = {
 			'nvim-lua/plenary.nvim',
 			{'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}}}
 		use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
-		use 'hoob3rt/lualine.nvim'
-		use 'henrik/vim-indexed-search'
 
 		-- No configs
-		use 'tpope/vim-sleuth'
-		use 'lukas-reineke/indent-blankline.nvim'
-		use 'plasticboy/vim-markdown'
-		use 'tpope/vim-commentary'
 		use 'editorconfig/editorconfig-vim'
 		use 'farmergreg/vim-lastplace'
+		use 'lukas-reineke/indent-blankline.nvim'
+		use 'plasticboy/vim-markdown'
+		use 'ray-x/lsp_signature.nvim'
+		use 'tpope/vim-commentary'
+		use 'tpope/vim-sleuth'
 
 		-- Parking
-		use {'ray-x/lsp_signature.nvim', config = function() require('lsp_signature').setup() end}
 		-- use 'Darazaki/indent-o-matic'
-		-- use 'tpope/vim-markdown'
 
 	end
 })
