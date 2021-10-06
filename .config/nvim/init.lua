@@ -19,6 +19,7 @@ local opts = {noremap = true, silent = true}
 map('n', 'j', 'gj', opts)
 map('n', 'k', 'gk', opts)
 map('n', '<s-tab>', '<c-o>', opts)
+vim.cmd [[inoremap <expr><c-n> pumvisible() ? '<c-n>' : '<c-x><c-o>']]
 
 -- Options
 vim.g.netrw_banner = 0
@@ -26,7 +27,7 @@ vim.g.netrw_liststyle = 3
 vim.g.python3_host_prog = vim.env.HOME .. '/.local/venvs/nvim/bin/python'
 vim.opt.clipboard:append('unnamedplus')
 vim.opt.cmdheight = 2
-vim.opt.completeopt = {'menuone', 'noselect', 'noinsert'}
+vim.opt.completeopt = {'menuone', 'noselect', 'noinsert'} --, 'preview'}
 vim.opt.confirm = true
 vim.opt.cursorline = true
 vim.opt.foldenable = false
