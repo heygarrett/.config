@@ -14,7 +14,6 @@ return require('packer').startup({
 		use 'henrik/vim-indexed-search'
 		use 'hoob3rt/lualine.nvim'
 		use 'jose-elias-alvarez/null-ls.nvim'
-		use {'lewis6991/gitsigns.nvim', config = function() require('gitsigns').setup() end}
 		use 'ray-x/lsp_signature.nvim'
 		use {'neovim/nvim-lspconfig', rocks = {'luacheck', 'lanes'}}
 		use {'nvim-telescope/telescope.nvim', requires = {
