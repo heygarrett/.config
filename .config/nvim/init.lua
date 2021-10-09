@@ -19,7 +19,7 @@ local opts = {noremap = true, silent = true}
 map('n', 'j', 'gj', opts)
 map('n', 'k', 'gk', opts)
 map('n', '<s-tab>', '<c-o>', opts)
-vim.cmd [[inoremap <expr><c-n> pumvisible() ? '<c-n>' : '<c-x><c-o>']]
+vim.cmd [[inoremap <expr><c-p> pumvisible() ? '<c-p>' : '<c-x><c-o>']]
 
 -- Options
 vim.g.netrw_banner = 0
