@@ -8,6 +8,7 @@ require('plugins/lualine')
 require('plugins/null-ls')
 require('plugins/telescope')
 require('plugins/treesitter')
+require('utils/commands')
 require('utils/diagnostic-signs')
 
 -- Colorscheme
