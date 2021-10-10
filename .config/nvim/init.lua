@@ -53,7 +53,7 @@ vim.opt.softtabstop = -1
 vim.opt.tabstop = 4
 
 -- Set indentation *after* ftplugins but *before* plugin scripts (eg, sleuth, editorconfig)
-vim.cmd([[
+vim.cmd [[
 	filetype plugin indent on
 	autocmd FileType * setlocal expandtab< shiftwidth< softtabstop< tabstop<
-]])
+]]
