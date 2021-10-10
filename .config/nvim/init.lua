@@ -14,6 +14,18 @@ require('utils/diagnostic-signs')
 -- Colorscheme
 vim.api.nvim_command('colorscheme dracula_pro')
 
+-- Indentation
+vim.opt.expandtab = false
+vim.opt.shiftwidth = 0
+vim.opt.softtabstop = -1
+vim.opt.tabstop = 4
+
+-- Set indentation *after* ftplugins but *before* plugin scripts (eg, sleuth, editorconfig)
+vim.cmd [[
+	filetype plugin indent on
+	autocmd FileType * setlocal expandtab< shiftwidth< softtabstop< tabstop<
+]]
+
 -- Mappings
 local map = vim.api.nvim_set_keymap
 local opts = {noremap = true, silent = true}
@@ -45,15 +57,3 @@ vim.opt.smartcase = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.termguicolors = true
-
--- Indentation
-vim.opt.expandtab = false
-vim.opt.shiftwidth = 0
-vim.opt.softtabstop = -1
-vim.opt.tabstop = 4
-
--- Set indentation *after* ftplugins but *before* plugin scripts (eg, sleuth, editorconfig)
-vim.cmd [[
-	filetype plugin indent on
-	autocmd FileType * setlocal expandtab< shiftwidth< softtabstop< tabstop<
-]]
