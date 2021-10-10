@@ -41,7 +41,6 @@ vim.opt.cmdheight = 2
 vim.opt.completeopt = {'menuone', 'noselect', 'noinsert'} --, 'preview'}
 vim.opt.confirm = true
 vim.opt.cursorline = true
-vim.opt.hidden = true
 vim.opt.ignorecase = true
 vim.opt.linebreak = true
 vim.opt.list = true
