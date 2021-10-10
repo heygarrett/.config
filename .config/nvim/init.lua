@@ -19,7 +19,7 @@ local opts = {noremap = true, silent = true}
 map('n', 'j', 'gj', opts)
 map('n', 'k', 'gk', opts)
 map('n', '<s-tab>', '<c-o>', opts)
-vim.cmd [[inoremap <expr><c-p> pumvisible() ? '<c-p>' : '<c-x><c-o>']]
+map('i', '<c-p>', vim.fn.pumvisible() ~= 0 and '<c-p>' or '<c-x><c-o>', opts)
 
 -- Options
 vim.g.netrw_banner = 0
@@ -51,9 +51,9 @@ vim.opt.expandtab = false
 vim.opt.shiftwidth = 0
 vim.opt.softtabstop = -1
 vim.opt.tabstop = 4
+
+-- Set indentation *after* ftplugins but *before* plugin scripts (eg, sleuth, editorconfig)
 vim.cmd([[
-	"" Set local indentation preferences *after* ftplugins
-	"" but *before* plugin scripts (eg, sleuth, editorconfig)
 	filetype plugin indent on
 	autocmd FileType * setlocal expandtab< shiftwidth< softtabstop< tabstop<
 ]])
