@@ -1,3 +1,4 @@
+-- Plugins {{{
 -- Load packer first
 require('plugins/packer')
 -- Then the rest
@@ -11,11 +12,13 @@ require('plugins/treesitter')
 require('plugins/vim-markdown')
 require('utils/commands')
 require('utils/diagnostic-signs')
+-- }}}
 
--- Colorscheme
+-- Colorscheme {{{
 vim.api.nvim_command('colorscheme dracula_pro')
+-- }}}
 
--- Indentation
+-- Indentation {{{
 vim.opt.expandtab = false
 vim.opt.shiftwidth = 0
 vim.opt.softtabstop = -1
@@ -25,16 +28,18 @@ vim.cmd [[
 	filetype plugin indent on
 	autocmd FileType * set expandtab< shiftwidth< softtabstop< tabstop<
 ]]
+-- }}}
 
--- Mappings
+-- Mappings {{{
 local map = vim.api.nvim_set_keymap
 local opts = {noremap = true, silent = true}
 map('n', 'j', 'gj', opts)
 map('n', 'k', 'gk', opts)
 map('n', '<s-tab>', '<c-o>', opts)
 map('i', '<c-p>', vim.fn.pumvisible() ~= 0 and '<c-p>' or '<c-x><c-o>', opts)
+-- }}}
 
--- Options
+-- Options {{{
 vim.g.netrw_banner = 0
 vim.g.python3_host_prog = vim.env.HOME .. '/.local/venvs/nvim/bin/python'
 vim.opt.clipboard:append('unnamedplus')
@@ -53,3 +58,6 @@ vim.opt.smartcase = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.termguicolors = true
+-- }}}
+
+-- vim: fdm=marker
