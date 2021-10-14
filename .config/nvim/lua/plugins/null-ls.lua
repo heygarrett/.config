@@ -3,7 +3,6 @@ local on_attach = require('utils/on-attach')
 
 local sources = {
 	null_ls.builtins.diagnostics.luacheck,
-	null_ls.builtins.diagnostics.eslint_d,
 	null_ls.builtins.formatting.prettierd,
 }
 

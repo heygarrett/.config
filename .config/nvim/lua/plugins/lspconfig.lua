@@ -8,6 +8,7 @@ local servers = {
 	'sourcekit',
 	'jsonls',
 	'tsserver',
+	'eslint',
 	'svelte',
 }
 
