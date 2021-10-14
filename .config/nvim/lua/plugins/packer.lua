@@ -13,11 +13,11 @@ return require('packer').startup {
 		-- Configs in lua/plugins
 		use 'henrik/vim-indexed-search'
 		use 'hoob3rt/lualine.nvim'
-		use 'jose-elias-alvarez/null-ls.nvim'
+		use 'neovim/nvim-lspconfig'
 		use 'nvim-lua/plenary.nvim'
 		use 'plasticboy/vim-markdown'
 		use 'ray-x/lsp_signature.nvim'
-		use {'neovim/nvim-lspconfig', rocks = {'luacheck', 'lanes'}}
+		use {'jose-elias-alvarez/null-ls.nvim', rocks = {'luacheck', 'lanes'}}
 		use {'nvim-telescope/telescope.nvim', requires = {
 			{'nvim-telescope/telescope-fzf-native.nvim', run = 'make'}}}
 		use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
