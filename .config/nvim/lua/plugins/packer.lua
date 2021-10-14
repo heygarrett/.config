@@ -25,12 +25,8 @@ return require('packer').startup {
 		-- No configs
 		use 'editorconfig/editorconfig-vim'
 		use 'farmergreg/vim-lastplace'
-		use 'lukas-reineke/indent-blankline.nvim'
 		use 'tpope/vim-commentary'
 		use 'tpope/vim-sleuth'
-
-		-- Parking
-		-- use 'Darazaki/indent-o-matic'
 
 	end
 }

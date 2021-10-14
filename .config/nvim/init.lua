@@ -49,6 +49,7 @@ vim.opt.cursorline = true
 vim.opt.ignorecase = true
 vim.opt.linebreak = true
 vim.opt.list = true
+vim.opt.listchars = 'tab:| ,lead:·,eol:$'
 vim.opt.mouse = 'a'
 vim.opt.number = true
 vim.opt.path:append('**')
