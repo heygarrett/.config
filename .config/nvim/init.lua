@@ -53,6 +53,7 @@ vim.opt.mouse = 'a'
 vim.opt.number = true
 vim.opt.path:append('**')
 vim.opt.scrolloff = 3
+vim.opt.shortmess:append('c')
 vim.opt.showmatch = true
 vim.opt.smartcase = true
 vim.opt.splitbelow = true
