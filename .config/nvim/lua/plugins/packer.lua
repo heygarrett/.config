@@ -25,7 +25,7 @@ return require('packer').startup {
 		-- No configs
 		use 'editorconfig/editorconfig-vim'
 		use 'farmergreg/vim-lastplace'
-		use 'tpope/vim-commentary'
+		use {'numToStr/Comment.nvim', config = function() require('Comment').setup() end}
 		use 'tpope/vim-sleuth'
 
 	end
