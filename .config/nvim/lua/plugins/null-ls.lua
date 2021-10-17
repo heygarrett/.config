@@ -6,7 +6,7 @@ local sources = {
 	null_ls.builtins.formatting.prettierd,
 }
 
-null_ls.config({sources = sources})
+null_ls.config({ sources = sources })
 
 require('lspconfig')['null-ls'].setup {
 	on_attach = on_attach
