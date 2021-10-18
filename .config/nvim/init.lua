@@ -42,7 +42,7 @@ map('i', '<c-p>', vim.fn.pumvisible() ~= 0 and '<c-p>' or '<c-x><c-o>', opts)
 vim.g.netrw_banner = 0
 vim.g.python3_host_prog = vim.env.HOME .. '/.local/venvs/nvim/bin/python'
 vim.opt.clipboard:append('unnamedplus')
-vim.opt.completeopt = { 'menuone', 'noselect', 'noinsert' }
+vim.opt.completeopt = { 'menuone', 'noselect' }
 vim.opt.confirm = true
 vim.opt.cursorline = true
 vim.opt.ignorecase = true
