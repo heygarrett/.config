@@ -6,7 +6,6 @@
 	gpgsign = true
 [core]
 	editor = nvim
-	excludesfile = /Users/garrett/.gitignore
 	autocrlf = input
 	pager = less -x1,5
 [gpg]
