@@ -12,7 +12,7 @@ return require('packer').startup {
 
 		-- Configs in lua/plugins
 		use 'henrik/vim-indexed-search'
-		use 'hoob3rt/lualine.nvim'
+		use 'nvim-lualine/lualine.nvim'
 		use 'neovim/nvim-lspconfig'
 		use 'nvim-lua/plenary.nvim'
 		use 'plasticboy/vim-markdown'
