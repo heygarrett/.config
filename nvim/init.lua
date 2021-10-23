@@ -10,6 +10,7 @@ require('plugins/null-ls')
 require('plugins/telescope')
 require('plugins/treesitter')
 require('plugins/vim-markdown')
+require('utils/commands')
 require('utils/diagnostic-signs')
 -- }}}
 
