@@ -8,6 +8,7 @@ local on_attach = function(_, bufnr)
 	-- Mappings.
 	local opts = { noremap=true, silent=true }
 
+	-- Keymaps
 	buf_set_keymap('n', '<leader>h', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
 	buf_set_keymap('n', '<leader>s', '<cmd>lua vim.lsp.buf.signature_help()<CR>', opts)
 	buf_set_keymap('n', '<leader>t', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
