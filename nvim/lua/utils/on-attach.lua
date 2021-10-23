@@ -16,12 +16,14 @@ local on_attach = function(_, bufnr)
 	buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
 	buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
-	-- Functionality provided by Telescope
-	-- buf_set_keymap('n', '<leader>def', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
-	-- buf_set_keymap('n', '<leader>imp', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
-	-- buf_set_keymap('n', '<leader>act', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-	-- buf_set_keymap('n', '<leader>ref', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-	-- buf_set_keymap('n', '<leader>dll', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
+	-- Commands
+	vim.cmd [[
+		command! -buffer Defs lua vim.lsp.buf.definition()
+		command! -buffer Imps lua vim.lsp.buf.implementation()
+		command! -buffer Acts lua vim.lsp.buf.code_action()
+		command! -buffer Refs lua vim.lsp.buf.references()
+		command! -buffer Doc lua vim.lsp.diagnostic.set_loclist()
+	]]
 
 end
 
