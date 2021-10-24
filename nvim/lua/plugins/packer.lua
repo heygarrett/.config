@@ -12,8 +12,9 @@ return require('packer').startup {
 
 		-- Configs in lua/plugins
 		use 'henrik/vim-indexed-search'
-		use 'nvim-lualine/lualine.nvim'
 		use 'neovim/nvim-lspconfig'
+		use 'numToStr/Comment.nvim'
+		use 'nvim-lualine/lualine.nvim'
 		use 'plasticboy/vim-markdown'
 		use 'ray-x/lsp_signature.nvim'
 		use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
@@ -22,7 +23,6 @@ return require('packer').startup {
 		use 'editorconfig/editorconfig-vim'
 		use 'farmergreg/vim-lastplace'
 		use 'tpope/vim-sleuth'
-		use { 'numToStr/Comment.nvim', config = function() require('Comment').setup() end }
 
 	end
 }

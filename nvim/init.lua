@@ -2,6 +2,7 @@
 -- Load packer first
 require('plugins/packer')
 -- Then the rest
+require('plugins/comment')
 require('plugins/indexed-search')
 require('plugins/lsp_signature')
 require('plugins/lspconfig')
