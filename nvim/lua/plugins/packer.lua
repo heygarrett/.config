@@ -14,11 +14,8 @@ return require('packer').startup {
 		use 'henrik/vim-indexed-search'
 		use 'nvim-lualine/lualine.nvim'
 		use 'neovim/nvim-lspconfig'
-		use 'nvim-lua/plenary.nvim'
 		use 'plasticboy/vim-markdown'
 		use 'ray-x/lsp_signature.nvim'
-		use { 'nvim-telescope/telescope.nvim', requires = {
-			{ 'nvim-telescope/telescope-fzf-native.nvim', run = 'make' }}}
 		use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
 
 		-- No configs
