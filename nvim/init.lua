@@ -6,12 +6,12 @@ require('plugins/indexed-search')
 require('plugins/lsp_signature')
 require('plugins/lspconfig')
 require('plugins/lualine')
-require('plugins/null-ls')
 require('plugins/telescope')
 require('plugins/treesitter')
 require('plugins/vim-markdown')
 require('utils/commands')
 require('utils/diagnostic-signs')
+require('utils/lua-language-server')
 -- }}}
 
 -- Colorscheme {{{
