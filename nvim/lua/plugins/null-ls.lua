@@ -3,11 +3,12 @@ local on_attach = require('utils/on-attach')
 
 local sources = {
 	null_ls.builtins.diagnostics.luacheck,
-	null_ls.builtins.formatting.prettierd,
 }
 
 null_ls.config({ sources = sources })
 
-require('lspconfig')['null-ls'].setup {
-	on_attach = on_attach
+local lspconfig = require('lspconfig')
+lspconfig['null-ls'].setup {
+	on_attach = on_attach,
+	root_dir = lspconfig.util.root_pattern('.luacheckrc')
 }
