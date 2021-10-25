@@ -10,13 +10,13 @@ require('packer').startup {
 	function(use)
 		use 'wbthomason/packer.nvim'
 
-		use(require('plugins/indexed-search'))
-		use(require('plugins/lspconfig'))
 		use(require('plugins/comment'))
-		use(require('plugins/lualine'))
-		use(require('plugins/vim-markdown'))
+		use(require('plugins/indexed-search'))
 		use(require('plugins/lsp_signature'))
+		use(require('plugins/lspconfig'))
+		use(require('plugins/lualine'))
 		use(require('plugins/treesitter'))
+		use(require('plugins/vim-markdown'))
 
 		-- No configs
 		use 'editorconfig/editorconfig-vim'
