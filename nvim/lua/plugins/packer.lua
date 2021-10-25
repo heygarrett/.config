@@ -6,7 +6,7 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 	vim.api.nvim_command('packadd packer.nvim')
 end
 
-return require('packer').startup {
+require('packer').startup {
 	function(use)
 		use 'wbthomason/packer.nvim'
 
