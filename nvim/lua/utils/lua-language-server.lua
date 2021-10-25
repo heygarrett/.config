@@ -16,7 +16,13 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
+-- TODO: figure out how to not duplicate these from lspconfig
+local on_attach = require('utils/on-attach')
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+
 require'lspconfig'.sumneko_lua.setup {
+	on_attach = on_attach,
+	capabilities = capabilities,
 	cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
 	settings = {
 		Lua = {
