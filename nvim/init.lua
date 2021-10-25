@@ -1,17 +1,6 @@
--- Plugins {{{
--- Load packer first
-require('plugins/packer')
--- Then the rest
-require('plugins/comment')
-require('plugins/indexed-search')
-require('plugins/lsp_signature')
-require('plugins/lspconfig')
-require('plugins/lualine')
-require('plugins/treesitter')
-require('plugins/vim-markdown')
-require('utils/commands')
-require('utils/diagnostic-signs')
-require('utils/lua-language-server')
+-- Commands {{{
+vim.cmd([[command! -nargs=+ Ggrep execute 'silent grep! -r <args> .' | copen]])
+vim.cmd([[command! -nargs=+ Ghelpgrep execute 'helpgrep <args>' | copen]])
 -- }}}
 
 -- Colorscheme {{{
@@ -62,6 +51,10 @@ vim.opt.smartcase = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.termguicolors = true
+-- }}}
+
+-- Plugins {{{
+require('plugins/packer')
 -- }}}
 
 -- vim: fdm=marker

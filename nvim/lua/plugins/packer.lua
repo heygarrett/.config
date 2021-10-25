@@ -10,14 +10,13 @@ return require('packer').startup {
 	function(use)
 		use 'wbthomason/packer.nvim'
 
-		-- Configs in lua/plugins
-		use 'henrik/vim-indexed-search'
-		use 'neovim/nvim-lspconfig'
-		use 'numToStr/Comment.nvim'
-		use 'nvim-lualine/lualine.nvim'
-		use 'plasticboy/vim-markdown'
-		use 'ray-x/lsp_signature.nvim'
-		use { 'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+		use(require('plugins/indexed-search'))
+		use(require('plugins/lspconfig'))
+		use(require('plugins/comment'))
+		use(require('plugins/lualine'))
+		use(require('plugins/vim-markdown'))
+		use(require('plugins/lsp_signature'))
+		use(require('plugins/treesitter'))
 
 		-- No configs
 		use 'editorconfig/editorconfig-vim'
