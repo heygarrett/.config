@@ -23,6 +23,7 @@ return require('packer').startup {
 		use 'editorconfig/editorconfig-vim'
 		use 'farmergreg/vim-lastplace'
 		use 'tpope/vim-sleuth'
+		use 'tpope/vim-vinegar'
 
 	end
 }
