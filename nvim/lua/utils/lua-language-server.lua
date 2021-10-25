@@ -20,7 +20,7 @@ table.insert(runtime_path, "lua/?/init.lua")
 local on_attach = require('utils/on-attach')
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
-require'lspconfig'.sumneko_lua.setup {
+require('lspconfig').sumneko_lua.setup {
 	on_attach = on_attach,
 	capabilities = capabilities,
 	cmd = { sumneko_binary, "-E", sumneko_root_path .. "/main.lua" },
