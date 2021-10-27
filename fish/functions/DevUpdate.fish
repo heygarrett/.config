@@ -1,6 +1,5 @@
 function DevUpdate
-	brew update && brew upgrade && brew cleanup
-	and brew upgrade --fetch-HEAD neovim
+	brew update && brew upgrade --fetch-HEAD
 	and cd $HOME/.local/src/lua-language-server && git fetch
 	and set -l updates (git log HEAD..origin/master --oneline)
 	and if test -n "$updates"
