@@ -19,10 +19,10 @@ require('packer').startup {
 		use(require('plugins/vim-markdown'))
 
 		-- No configs
-		use 'editorconfig/editorconfig-vim'
-		use 'farmergreg/vim-lastplace'
-		use 'tpope/vim-sleuth'
-		use 'tpope/vim-vinegar'
+		use('editorconfig/editorconfig-vim')
+		use('farmergreg/vim-lastplace')
+		use('tpope/vim-sleuth')
+		use('tpope/vim-vinegar')
 
 	end
 }
