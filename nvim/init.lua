@@ -27,7 +27,7 @@ local opts = { noremap = true, silent = true }
 map('n', 'j', 'gj', opts)
 map('n', 'k', 'gk', opts)
 map('n', '<s-tab>', '<c-o>', opts)
-map('i', '<c-p>', vim.fn.pumvisible() ~= 0 and '<c-p>' or '<c-x><c-o>', opts)
+map('i', '<c-space>', '<c-x><c-o>', opts)
 -- }}}
 
 -- Options {{{
