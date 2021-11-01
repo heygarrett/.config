@@ -7,22 +7,21 @@ if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
 end
 
 require('packer').startup {
-	function(use)
-		use 'wbthomason/packer.nvim'
+	{
+		'wbthomason/packer.nvim',
 
-		use(require('plugins/comment'))
-		use(require('plugins/indexed-search'))
-		use(require('plugins/lsp_signature'))
-		use(require('plugins/lspconfig'))
-		use(require('plugins/lualine'))
-		use(require('plugins/treesitter'))
-		use(require('plugins/vim-markdown'))
+		require('plugins/comment'),
+		require('plugins/indexed-search'),
+		require('plugins/lsp_signature'),
+		require('plugins/lspconfig'),
+		require('plugins/lualine'),
+		require('plugins/treesitter'),
+		require('plugins/vim-markdown'),
 
 		-- No configs
-		use('editorconfig/editorconfig-vim')
-		use('farmergreg/vim-lastplace')
-		use('tpope/vim-sleuth')
-		use('tpope/vim-vinegar')
-
-	end
+		'editorconfig/editorconfig-vim',
+		'farmergreg/vim-lastplace',
+		'tpope/vim-sleuth',
+		'tpope/vim-vinegar',
+	}
 }
