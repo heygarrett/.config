@@ -8,8 +8,10 @@ end
 
 require('packer').startup {
 	{
+		-- Self-manage
 		'wbthomason/packer.nvim',
 
+		-- Configs
 		require('plugins/comment'),
 		require('plugins/indexed-search'),
 		require('plugins/lsp_signature'),
