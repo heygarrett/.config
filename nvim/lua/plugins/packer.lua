@@ -17,6 +17,7 @@ require('packer').startup {
 		require('plugins/lsp_signature'),
 		require('plugins/lspconfig'),
 		require('plugins/lualine'),
+		require('plugins/telescope'),
 		require('plugins/treesitter'),
 		require('plugins/vim-markdown'),
 

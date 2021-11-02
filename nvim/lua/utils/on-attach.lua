@@ -18,13 +18,13 @@ local on_attach = function(_, bufnr)
 	buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
 	-- Commands
-	vim.cmd [[
-		command! -buffer Defs lua vim.lsp.buf.definition()
-		command! -buffer Imps lua vim.lsp.buf.implementation()
-		command! -buffer Acts lua vim.lsp.buf.code_action()
-		command! -buffer Refs lua vim.lsp.buf.references()
-		command! -buffer Doc lua vim.lsp.diagnostic.set_loclist()
-	]]
+	-- vim.cmd [[
+	-- 	command! -buffer Defs lua vim.lsp.buf.definition()
+	-- 	command! -buffer Imps lua vim.lsp.buf.implementation()
+	-- 	command! -buffer Acts lua vim.lsp.buf.code_action()
+	-- 	command! -buffer Refs lua vim.lsp.buf.references()
+	-- 	command! -buffer Doc lua vim.lsp.diagnostic.set_loclist()
+	-- ]]
 
 end
 
