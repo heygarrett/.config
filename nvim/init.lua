@@ -5,10 +5,6 @@ vim.cmd([[command! -nargs=+ Ggrep execute 'silent grep! -r <args> .' | copen]])
 vim.cmd([[command! -nargs=+ Ghelpgrep execute 'helpgrep <args>' | copen]])
 -- }}}
 
--- Colorscheme {{{
-vim.api.nvim_command('colorscheme dracula_pro')
--- }}}
-
 -- Indentation {{{
 vim.opt.expandtab = false
 vim.opt.shiftwidth = 0
