@@ -12,14 +12,14 @@ require('packer').startup {
 		'wbthomason/packer.nvim',
 
 		-- Configs
-		require('plugins/comment'),
-		require('plugins/indexed-search'),
+		require('plugins/Comment'),
 		require('plugins/lsp_signature'),
-		require('plugins/lspconfig'),
 		require('plugins/lualine'),
+		require('plugins/nvim-lspconfig'),
+		require('plugins/nvim-treesitter'),
 		require('plugins/telescope'),
 		require('plugins/tokyonight'),
-		require('plugins/treesitter'),
+		require('plugins/vim-indexed-search'),
 		require('plugins/vim-markdown'),
 
 		-- No configs
