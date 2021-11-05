@@ -15,8 +15,7 @@ return {
 				return 'bot'
 			else
 				local p = vim.fn.line('.') / vim.fn.line('$') * 100
-				-- TODO: prepend one space to single-digit percentage
-				return tostring(round(p)) .. '%%'
+				return string.format('%02d', round(p)) .. '%%'
 			end
 		end
 
