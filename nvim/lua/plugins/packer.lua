@@ -27,5 +27,10 @@ require('packer').startup {
 		'farmergreg/vim-lastplace',
 		'tpope/vim-sleuth',
 		'tpope/vim-vinegar',
-	}
+	},
+	config = {
+		display = {
+			open_fn = require('packer.util').float,
+		}
+	},
 }
