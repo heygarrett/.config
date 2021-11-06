@@ -11,6 +11,12 @@ require('packer').startup {
 		-- Self-manage
 		'wbthomason/packer.nvim',
 
+		-- No configs
+		'editorconfig/editorconfig-vim',
+		'farmergreg/vim-lastplace',
+		'tpope/vim-sleuth',
+		'tpope/vim-vinegar',
+
 		-- Configs
 		require('plugins/Comment'),
 		require('plugins/lsp_signature'),
@@ -21,12 +27,6 @@ require('packer').startup {
 		require('plugins/tokyonight'),
 		require('plugins/vim-indexed-search'),
 		require('plugins/vim-markdown'),
-
-		-- No configs
-		'editorconfig/editorconfig-vim',
-		'farmergreg/vim-lastplace',
-		'tpope/vim-sleuth',
-		'tpope/vim-vinegar',
 	},
 	config = {
 		display = {
