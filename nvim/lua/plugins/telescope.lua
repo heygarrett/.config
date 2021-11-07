@@ -12,7 +12,7 @@ return {
 			command! Browse Telescope file_browser
 			command! Bufs Telescope buffers
 			command! Find Telescope find_files
-			command! Git Telescope git_files
+			command! Tracked Telescope git_files
 			command! Grep Telescope live_grep
 			command! Help Telescope help_tags
 			" LSP lists
