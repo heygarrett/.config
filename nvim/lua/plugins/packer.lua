@@ -24,12 +24,9 @@ require('packer').startup {
 		require('plugins/nvim-lspconfig'),
 		require('plugins/nvim-treesitter'),
 		require('plugins/telescope'),
+		require('plugins/tokyonight'),
 		require('plugins/vim-indexed-search'),
 		require('plugins/vim-markdown'),
-
-		-- Colorschemes
-		-- require('plugins/dracula'),
-		require('plugins/tokyonight'),
 	},
 	config = {
 		display = {
