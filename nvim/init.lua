@@ -1,11 +1,4 @@
--- vim: fdm=marker
-
--- Commands {{{
-vim.cmd([[command! -nargs=+ Ggrep execute 'silent grep! -r <args> .' | copen]])
-vim.cmd([[command! -nargs=+ Ghelpgrep execute 'helpgrep <args>' | copen]])
--- }}}
-
--- Indentation {{{
+-- Indentation
 vim.opt.expandtab = false
 vim.opt.shiftwidth = 0
 vim.opt.softtabstop = -1
@@ -15,18 +8,16 @@ vim.cmd [[
 	filetype plugin indent on
 	autocmd FileType * set expandtab< shiftwidth< softtabstop< tabstop<
 ]]
--- }}}
 
--- Mappings {{{
+-- Mappings
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
 map('n', 'j', 'gj', opts)
 map('n', 'k', 'gk', opts)
 map('n', '<s-tab>', '<c-o>', opts)
 map('i', '<c-space>', '<c-x><c-o>', opts)
--- }}}
 
--- Options {{{
+-- Options
 vim.g.python3_host_prog = vim.env.HOME .. '/.local/venvs/nvim/bin/python'
 vim.opt.breakindent = true
 vim.opt.clipboard:append('unnamedplus')
@@ -48,8 +39,6 @@ vim.opt.smartcase = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.termguicolors = true
--- }}}
 
--- Plugins {{{
+-- Plugins
 require('plugins/packer')
--- }}}
