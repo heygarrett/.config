@@ -16,16 +16,6 @@ local on_attach = function(_, bufnr)
 	buf_set_keymap('n', '<leader>t', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
 	buf_set_keymap('n', '[d', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
 	buf_set_keymap('n', ']d', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
-
-	-- Commands
-	-- vim.cmd [[
-	-- 	command! -buffer Acts lua vim.lsp.buf.code_action()
-	-- 	command! -buffer Defs lua vim.lsp.buf.definition()
-	-- 	command! -buffer Doc lua vim.lsp.diagnostic.set_loclist()
-	-- 	command! -buffer Imps lua vim.lsp.buf.implementation()
-	-- 	command! -buffer Refs lua vim.lsp.buf.references()
-	-- ]]
-
 end
 
 return on_attach
