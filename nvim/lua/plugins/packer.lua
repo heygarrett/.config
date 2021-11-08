@@ -20,7 +20,6 @@ require('packer').startup {
 
 		-- Configs
 		require('plugins/Comment'),
-		require('plugins/lsp_signature'),
 		require('plugins/lualine'),
 		require('plugins/nvim-lspconfig'),
 		require('plugins/nvim-treesitter'),
