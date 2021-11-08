@@ -12,11 +12,11 @@ vim.cmd [[
 -- Mappings
 local map = vim.api.nvim_set_keymap
 local opts = { noremap = true, silent = true }
-map('n', 'j', 'gj', opts)
-map('n', 'k', 'gk', opts)
+map('i', '<c-space>', '<c-x><c-o>', opts)
 map('n', '<leader>-', '<cmd>e %:h<cr>', opts)
 map('n', '<s-tab>', '<c-o>', opts)
-map('i', '<c-space>', '<c-x><c-o>', opts)
+map('n', 'j', 'gj', opts)
+map('n', 'k', 'gk', opts)
 
 -- Options
 vim.g.netrw_banner = 0
