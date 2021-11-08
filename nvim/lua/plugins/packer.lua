@@ -20,7 +20,6 @@ require('packer').startup {
 			'farmergreg/vim-lastplace',
 			'tpope/vim-fugitive',
 			'tpope/vim-sleuth',
-			'tpope/vim-vinegar',
 
 			-- Configs
 			require('plugins/Comment'),
