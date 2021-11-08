@@ -8,7 +8,7 @@ return {
 		},
 	},
 	config = function()
-		vim.cmd [[
+		vim.api.nvim_command [[
 			command! Browse Telescope file_browser
 			command! Bufs Telescope buffers
 			command! Find Telescope find_files
