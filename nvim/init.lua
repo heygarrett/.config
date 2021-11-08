@@ -19,6 +19,7 @@ map('n', '<s-tab>', '<c-o>', opts)
 map('i', '<c-space>', '<c-x><c-o>', opts)
 
 -- Options
+vim.g.netrw_banner = 0
 vim.g.python3_host_prog = vim.env.HOME .. '/.local/venvs/nvim/bin/python'
 vim.opt.breakindent = true
 vim.opt.clipboard:append('unnamedplus')
