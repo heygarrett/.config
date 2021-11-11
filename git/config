@@ -19,3 +19,5 @@
 [mergetool]
 	keepBackup = false
 	hideResolved = true
+[pull]
+	rebase = true
