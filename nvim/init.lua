@@ -44,3 +44,6 @@ vim.opt.termguicolors = true
 
 -- Plugins
 require('plugins/packer')
+
+-- Terminal
+vim.api.nvim_command([[au! TermOpen * setl nocursorline nonumber | startinsert]])
