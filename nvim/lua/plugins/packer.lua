@@ -39,7 +39,7 @@ require('packer').startup {
 
 	config = {
 		display = {
-			open_fn = require('packer.util').float,
+			open_fn = require('packer/util').float,
 		}
 	},
 }
