@@ -1445,7 +1445,7 @@
 	<key>SeparateWindowTitlePerTab</key>
 	<true/>
 	<key>ShowNewOutputIndicator</key>
-	<true/>
+	<false/>
 	<key>ShowPaneTitles</key>
 	<false/>
 	<key>SmartPlacement</key>
