@@ -6,5 +6,5 @@ function DevUpdate
 		git merge && git submodule update --recursive
 		and pushd 3rd/luamake && compile/install.sh && popd && ./3rd/luamake/luamake rebuild
 	end
-	and cd $HOME/.config/nvim && nvim lua/plugins/packer.lua +PackerSync
+	and cd $HOME/.config/nvim && nvim lua/config/packer.lua +PackerSync
 end
