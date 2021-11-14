@@ -22,14 +22,14 @@ require('packer').startup {
 			'tpope/vim-sleuth',
 
 			-- Configs
-			require('plugins/Comment'),
-			require('plugins/lualine'),
-			require('plugins/nvim-lspconfig'),
-			require('plugins/nvim-treesitter'),
-			require('plugins/telescope'),
-			require('plugins/tokyonight'),
-			require('plugins/vim-indexed-search'),
-			require('plugins/vim-markdown'),
+			require('config/Comment'),
+			require('config/lualine'),
+			require('config/nvim-lspconfig'),
+			require('config/nvim-treesitter'),
+			require('config/telescope'),
+			require('config/tokyonight'),
+			require('config/vim-indexed-search'),
+			require('config/vim-markdown'),
 		}
 
 		if Bootstrap then

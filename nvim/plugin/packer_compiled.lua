@@ -81,7 +81,7 @@ _G.packer_plugins = {
     url = "https://github.com/editorconfig/editorconfig-vim"
   },
   ["lualine.nvim"] = {
-    config = { "\27LJ\2\nZ\0\1\4\0\3\2\15\26\1\0\0*\2\1\0\3\2\1\0X\1\6€6\1\0\0009\1\1\1\18\3\0\0B\1\2\2\14\0\1\0X\2\4€6\1\0\0009\1\2\1\18\3\0\0B\1\2\2L\1\2\0\nfloor\tceil\tmath\2\1€€€ÿ\3ú\1\0\0\a\1\v\00206\0\0\0009\0\1\0009\0\2\0'\2\3\0B\0\2\2\t\0\0\0X\0\3€'\0\4\0L\0\2\0X\0%€6\0\0\0009\0\1\0009\0\2\0'\2\3\0B\0\2\0026\1\0\0009\1\1\0019\1\2\1'\3\5\0B\1\2\2\5\0\1\0X\0\3€'\0\6\0L\0\2\0X\0\22€6\0\0\0009\0\1\0009\0\2\0'\2\3\0B\0\2\0026\1\0\0009\1\1\0019\1\2\1'\3\5\0B\1\2\2#\0\1\0\24\0\1\0006\1\a\0009\1\b\1'\3\t\0-\4\0\0\18\6\0\0B\4\2\0A\1\1\2'\2\n\0&\1\2\1L\1\2\0K\0\1\0\0À\a%%\t%02d\vformat\vstring\bbot\6$\btop\6.\tline\afn\bvim\2È\1Þ\2\1\0\b\0\21\0!6\0\0\0009\0\1\0)\1\2\0=\1\2\0006\0\0\0009\0\1\0+\1\1\0=\1\3\0003\0\4\0003\1\5\0006\2\6\0'\4\a\0B\2\2\0029\2\b\0025\4\14\0005\5\t\0005\6\n\0=\6\v\0055\6\f\0=\6\r\5=\5\15\0045\5\17\0004\6\3\0005\a\16\0>\a\1\6=\6\18\0054\6\3\0>\1\1\6=\6\19\5=\5\20\4B\2\2\0012\0\0€K\0\1\0\rsections\14lualine_y\14lualine_c\1\0\0\1\2\2\0\rfilename\tpath\3\1\16file_status\2\foptions\1\0\0\23section_separators\1\3\0\0\5\5\25component_separators\1\3\0\0\6|\6|\1\0\2\ntheme\tauto\18icons_enabled\1\nsetup\flualine\frequire\0\0\rshowmode\15laststatus\bopt\bvim\0" },
+    config = { "\27LJ\2\nZ\0\1\4\0\3\2\15\26\1\0\0*\2\1\0\3\2\1\0X\1\6€6\1\0\0009\1\1\1\18\3\0\0B\1\2\2\14\0\1\0X\2\4€6\1\0\0009\1\2\1\18\3\0\0B\1\2\2L\1\2\0\nfloor\tceil\tmath\2\1€€€ÿ\3ú\1\0\0\a\1\v\00206\0\0\0009\0\1\0009\0\2\0'\2\3\0B\0\2\2\t\0\0\0X\0\3€'\0\4\0L\0\2\0X\0%€6\0\0\0009\0\1\0009\0\2\0'\2\3\0B\0\2\0026\1\0\0009\1\1\0019\1\2\1'\3\5\0B\1\2\2\5\0\1\0X\0\3€'\0\6\0L\0\2\0X\0\22€6\0\0\0009\0\1\0009\0\2\0'\2\3\0B\0\2\0026\1\0\0009\1\1\0019\1\2\1'\3\5\0B\1\2\2#\0\1\0\24\0\1\0006\1\a\0009\1\b\1'\3\t\0-\4\0\0\18\6\0\0B\4\2\0A\1\1\2'\2\n\0&\1\2\1L\1\2\0K\0\1\0\0À\a%%\t%02d\vformat\vstring\bbot\6$\btop\6.\tline\afn\bvim\2È\1Þ\2\1\0\b\0\21\0!6\0\0\0009\0\1\0)\1\2\0=\1\2\0006\0\0\0009\0\1\0+\1\1\0=\1\3\0003\0\4\0003\1\5\0006\2\6\0'\4\a\0B\2\2\0029\2\b\0025\4\14\0005\5\t\0005\6\n\0=\6\v\0055\6\f\0=\6\r\5=\5\15\0045\5\17\0004\6\3\0005\a\16\0>\a\1\6=\6\18\0054\6\3\0>\1\1\6=\6\19\5=\5\20\4B\2\2\0012\0\0€K\0\1\0\rsections\14lualine_y\14lualine_c\1\0\0\1\2\2\0\rfilename\16file_status\2\tpath\3\1\foptions\1\0\0\23section_separators\1\3\0\0\5\5\25component_separators\1\3\0\0\6|\6|\1\0\2\ntheme\tauto\18icons_enabled\1\nsetup\flualine\frequire\0\0\rshowmode\15laststatus\bopt\bvim\0" },
     loaded = true,
     path = "/Users/garrett/.local/share/nvim/site/pack/packer/start/lualine.nvim",
     url = "https://github.com/nvim-lualine/lualine.nvim"
@@ -157,6 +157,14 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: nvim-treesitter
+time([[Config for nvim-treesitter]], true)
+try_loadstring("\27LJ\2\n¼\1\0\0\4\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\0025\3\6\0=\3\a\2B\0\2\1K\0\1\0\14highlight\1\0\1\venable\2\21ensure_installed\1\0\0\1\n\0\0\tfish\blua\bvim\nswift\vpython\trust\tjson\15typescript\vsvelte\nsetup\28nvim-treesitter.configs\frequire\0", "config", "nvim-treesitter")
+time([[Config for nvim-treesitter]], false)
+-- Config for: Comment.nvim
+time([[Config for Comment.nvim]], true)
+try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fComment\frequire\0", "config", "Comment.nvim")
+time([[Config for Comment.nvim]], false)
 -- Config for: telescope.nvim
 time([[Config for telescope.nvim]], true)
 try_loadstring("\27LJ\2\nÕ\4\0\0\3\0\b\0\0166\0\0\0009\0\1\0'\2\2\0B\0\2\0016\0\3\0'\2\4\0B\0\2\0029\0\5\0B\0\1\0016\0\3\0'\2\4\0B\0\2\0029\0\6\0'\2\a\0B\0\2\1K\0\1\0\bfzf\19load_extension\nsetup\14telescope\frequireÞ\3\t\t\tcommand! Browse Telescope file_browser\n\t\t\tcommand! Bufs Telescope buffers\n\t\t\tcommand! Find Telescope find_files\n\t\t\tcommand! Tracked Telescope git_files\n\t\t\tcommand! Grep Telescope live_grep\n\t\t\tcommand! Help Telescope help_tags\n\t\t\t\" LSP lists\n\t\t\tcommand! Acts Telescope lsp_code_actions\n\t\t\tcommand! Defs Telescope lsp_definitions\n\t\t\tcommand! Doc Telescope lsp_document_diagnostics\n\t\t\tcommand! Imps Telescope lsp_implementations\n\t\t\tcommand! Refs Telescope lsp_references\n\t\t\bcmd\bvim\0", "config", "telescope.nvim")
@@ -175,16 +183,8 @@ try_loadstring("\27LJ\2\nt\0\0\3\0\a\0\n6\0\0\0009\0\1\0'\1\3\0=\1\2\0006\0\0\00
 time([[Config for tokyonight.nvim]], false)
 -- Config for: lualine.nvim
 time([[Config for lualine.nvim]], true)
-try_loadstring("\27LJ\2\nZ\0\1\4\0\3\2\15\26\1\0\0*\2\1\0\3\2\1\0X\1\6€6\1\0\0009\1\1\1\18\3\0\0B\1\2\2\14\0\1\0X\2\4€6\1\0\0009\1\2\1\18\3\0\0B\1\2\2L\1\2\0\nfloor\tceil\tmath\2\1€€€ÿ\3ú\1\0\0\a\1\v\00206\0\0\0009\0\1\0009\0\2\0'\2\3\0B\0\2\2\t\0\0\0X\0\3€'\0\4\0L\0\2\0X\0%€6\0\0\0009\0\1\0009\0\2\0'\2\3\0B\0\2\0026\1\0\0009\1\1\0019\1\2\1'\3\5\0B\1\2\2\5\0\1\0X\0\3€'\0\6\0L\0\2\0X\0\22€6\0\0\0009\0\1\0009\0\2\0'\2\3\0B\0\2\0026\1\0\0009\1\1\0019\1\2\1'\3\5\0B\1\2\2#\0\1\0\24\0\1\0006\1\a\0009\1\b\1'\3\t\0-\4\0\0\18\6\0\0B\4\2\0A\1\1\2'\2\n\0&\1\2\1L\1\2\0K\0\1\0\0À\a%%\t%02d\vformat\vstring\bbot\6$\btop\6.\tline\afn\bvim\2È\1Þ\2\1\0\b\0\21\0!6\0\0\0009\0\1\0)\1\2\0=\1\2\0006\0\0\0009\0\1\0+\1\1\0=\1\3\0003\0\4\0003\1\5\0006\2\6\0'\4\a\0B\2\2\0029\2\b\0025\4\14\0005\5\t\0005\6\n\0=\6\v\0055\6\f\0=\6\r\5=\5\15\0045\5\17\0004\6\3\0005\a\16\0>\a\1\6=\6\18\0054\6\3\0>\1\1\6=\6\19\5=\5\20\4B\2\2\0012\0\0€K\0\1\0\rsections\14lualine_y\14lualine_c\1\0\0\1\2\2\0\rfilename\tpath\3\1\16file_status\2\foptions\1\0\0\23section_separators\1\3\0\0\5\5\25component_separators\1\3\0\0\6|\6|\1\0\2\ntheme\tauto\18icons_enabled\1\nsetup\flualine\frequire\0\0\rshowmode\15laststatus\bopt\bvim\0", "config", "lualine.nvim")
+try_loadstring("\27LJ\2\nZ\0\1\4\0\3\2\15\26\1\0\0*\2\1\0\3\2\1\0X\1\6€6\1\0\0009\1\1\1\18\3\0\0B\1\2\2\14\0\1\0X\2\4€6\1\0\0009\1\2\1\18\3\0\0B\1\2\2L\1\2\0\nfloor\tceil\tmath\2\1€€€ÿ\3ú\1\0\0\a\1\v\00206\0\0\0009\0\1\0009\0\2\0'\2\3\0B\0\2\2\t\0\0\0X\0\3€'\0\4\0L\0\2\0X\0%€6\0\0\0009\0\1\0009\0\2\0'\2\3\0B\0\2\0026\1\0\0009\1\1\0019\1\2\1'\3\5\0B\1\2\2\5\0\1\0X\0\3€'\0\6\0L\0\2\0X\0\22€6\0\0\0009\0\1\0009\0\2\0'\2\3\0B\0\2\0026\1\0\0009\1\1\0019\1\2\1'\3\5\0B\1\2\2#\0\1\0\24\0\1\0006\1\a\0009\1\b\1'\3\t\0-\4\0\0\18\6\0\0B\4\2\0A\1\1\2'\2\n\0&\1\2\1L\1\2\0K\0\1\0\0À\a%%\t%02d\vformat\vstring\bbot\6$\btop\6.\tline\afn\bvim\2È\1Þ\2\1\0\b\0\21\0!6\0\0\0009\0\1\0)\1\2\0=\1\2\0006\0\0\0009\0\1\0+\1\1\0=\1\3\0003\0\4\0003\1\5\0006\2\6\0'\4\a\0B\2\2\0029\2\b\0025\4\14\0005\5\t\0005\6\n\0=\6\v\0055\6\f\0=\6\r\5=\5\15\0045\5\17\0004\6\3\0005\a\16\0>\a\1\6=\6\18\0054\6\3\0>\1\1\6=\6\19\5=\5\20\4B\2\2\0012\0\0€K\0\1\0\rsections\14lualine_y\14lualine_c\1\0\0\1\2\2\0\rfilename\16file_status\2\tpath\3\1\foptions\1\0\0\23section_separators\1\3\0\0\5\5\25component_separators\1\3\0\0\6|\6|\1\0\2\ntheme\tauto\18icons_enabled\1\nsetup\flualine\frequire\0\0\rshowmode\15laststatus\bopt\bvim\0", "config", "lualine.nvim")
 time([[Config for lualine.nvim]], false)
--- Config for: nvim-treesitter
-time([[Config for nvim-treesitter]], true)
-try_loadstring("\27LJ\2\n¼\1\0\0\4\0\b\0\v6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\0025\3\6\0=\3\a\2B\0\2\1K\0\1\0\14highlight\1\0\1\venable\2\21ensure_installed\1\0\0\1\n\0\0\tfish\blua\bvim\nswift\vpython\trust\tjson\15typescript\vsvelte\nsetup\28nvim-treesitter.configs\frequire\0", "config", "nvim-treesitter")
-time([[Config for nvim-treesitter]], false)
--- Config for: Comment.nvim
-time([[Config for Comment.nvim]], true)
-try_loadstring("\27LJ\2\n5\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\fComment\frequire\0", "config", "Comment.nvim")
-time([[Config for Comment.nvim]], false)
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads
