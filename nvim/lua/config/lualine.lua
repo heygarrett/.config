@@ -4,10 +4,6 @@ return {
 		vim.opt.laststatus = 2
 		vim.opt.showmode = false
 
-		local function round(p)
-			return p % 1 >= .5 and math.ceil(p) or math.floor(p)
-		end
-
 		local function progress()
 			if vim.fn.line('.') == 1 then
 				return 'top'
@@ -15,7 +11,8 @@ return {
 				return 'bot'
 			else
 				local p = vim.fn.line('.') / vim.fn.line('$') * 100
-				return string.format('%02d', round(p)) .. '%%'
+				p = p % 1 >= .5 and math.ceil(p) or math.floor(p)
+				return string.format('%02d', p) .. '%%'
 			end
 		end
 
