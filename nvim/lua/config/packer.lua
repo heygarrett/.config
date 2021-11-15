@@ -18,7 +18,6 @@ require('packer').startup {
 			-- No configs
 			'editorconfig/editorconfig-vim',
 			'farmergreg/vim-lastplace',
-			'tpope/vim-fugitive',
 			'tpope/vim-sleuth',
 
 			-- Configs
