@@ -29,7 +29,6 @@ require('packer').startup {
 			require('config/telescope'),
 			require('config/tokyonight'),
 			require('config/vim-indexed-search'),
-			require('config/vim-markdown'),
 		}
 
 		if packer_bootstrap then
