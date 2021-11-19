@@ -19,6 +19,7 @@ require('packer').startup {
 			-- No configs
 			'editorconfig/editorconfig-vim',
 			'farmergreg/vim-lastplace',
+			'tpope/vim-markdown',
 			'tpope/vim-sleuth',
 
 			-- Configs
