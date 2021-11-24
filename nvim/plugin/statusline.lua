@@ -3,7 +3,7 @@ local function file_name()
 	if pdot:find('^/') then
 		return pdot
 	elseif pdot == '' then
-		return vim.fn.getcwd()
+		return vim.fn.getcwd() .. '/'
 	else
 		local root_path = vim.fn.getcwd()
 		local root_name = root_path:match('(%a+)$')
