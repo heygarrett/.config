@@ -2,12 +2,12 @@ local function file_name()
 	local pdot = vim.fn.expand('%:p:.')
 	if pdot:find('^/') then
 		return pdot
-	elseif pdot ~= '' then
+	elseif pdot == '' then
+		return vim.fn.getcwd()
+	else
 		local root_path = vim.fn.getcwd()
 		local root_name = root_path:match('(%a+)$')
 		return root_name .. '/' .. pdot
-	else
-		return vim.fn.getcwd()
 	end
 end
 
