@@ -5,8 +5,7 @@ local function file_name()
 	elseif pdot == '' then
 		return vim.fn.getcwd() .. '/'
 	else
-		local root_path = vim.fn.getcwd()
-		local root_name = root_path:match('(%a+)$')
+		local root_name = vim.fn.getcwd():match('(%a+)$')
 		return root_name .. '/' .. pdot
 	end
 end
