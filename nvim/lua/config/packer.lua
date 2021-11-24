@@ -24,7 +24,6 @@ require('packer').startup {
 
 			-- Configs
 			require('config/Comment'),
-			require('config/lualine'),
 			require('config/nvim-lspconfig'),
 			require('config/nvim-treesitter'),
 			require('config/telescope'),
