@@ -20,10 +20,10 @@ require('packer').startup {
 			'editorconfig/editorconfig-vim',
 			'farmergreg/vim-lastplace',
 			'tpope/vim-markdown',
-			'tpope/vim-sleuth',
 
 			-- Configs
 			require('config/Comment'),
+			require('config/indent-o-matic'),
 			require('config/nvim-lspconfig'),
 			require('config/nvim-treesitter'),
 			require('config/telescope'),
