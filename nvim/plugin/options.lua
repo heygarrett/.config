@@ -20,3 +20,5 @@ vim.opt.smartcase = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.termguicolors = true
+
+vim.api.nvim_command([[au FileType * setl formatoptions-=r | setl formatoptions-=o]])
