@@ -22,7 +22,6 @@ require('packer').startup {
 			'tpope/vim-markdown',
 
 			-- Configs
-			require('config/Comment'),
 			require('config/indent-o-matic'),
 			require('config/nvim-lspconfig'),
 			require('config/nvim-treesitter'),
