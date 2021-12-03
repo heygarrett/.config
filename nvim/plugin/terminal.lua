@@ -1,1 +1,1 @@
-vim.api.nvim_command([[au! TermOpen * setl nocursorline nonumber | startinsert]])
+vim.api.nvim_command([[au TermOpen * setl nocursorline nonumber | startinsert]])
