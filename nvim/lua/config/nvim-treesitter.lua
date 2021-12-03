@@ -12,7 +12,6 @@ return {
 				'rust',
 				'json',
 				'typescript',
-				'svelte',
 			},
 			highlight = {
 				enable = true

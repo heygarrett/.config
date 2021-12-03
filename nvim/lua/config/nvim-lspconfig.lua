@@ -15,7 +15,6 @@ return {
 			'jsonls',
 			'tsserver',
 			'eslint',
-			'svelte',
 		}
 
 		for _, lsp in ipairs(servers) do
