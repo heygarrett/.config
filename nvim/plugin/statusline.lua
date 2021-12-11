@@ -24,15 +24,21 @@ local function progress()
 end
 
 function _G.status_line()
-	return ' %{mode()} '
+	return ' '
+		.. '%{mode()}'
+		.. ' '
 		.. '|'
-		.. ' %<'
+		.. ' '
+		.. '%<'
 		.. file_name()
-		.. ' %h'
+		.. ' '
+		.. '%h'
 		.. '%m'
 		.. '%='
-		.. '%y '
+		.. '%y'
+		.. ' '
 		.. progress()
+		.. ' '
 end
 
 vim.opt.statusline = '%{%v:lua.status_line()%}'
