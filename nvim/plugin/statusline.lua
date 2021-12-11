@@ -24,7 +24,9 @@ local function progress()
 end
 
 function _G.status_line()
-	return '%<'
+	return ' %{mode()} '
+		.. '|'
+		.. ' %<'
 		.. file_name()
 		.. ' %h'
 		.. '%m'
