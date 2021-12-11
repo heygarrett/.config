@@ -27,4 +27,4 @@ function _G.status_line()
 	return '%<' .. file_name() .. ' %h%m%=%y ' .. progress()
 end
 
-vim.opt.statusline = '%!v:lua.status_line()'
+vim.opt.statusline = '%{%v:lua.status_line()%}'
