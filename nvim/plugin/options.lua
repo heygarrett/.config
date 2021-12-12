@@ -16,7 +16,6 @@ vim.opt.path:append('**')
 vim.opt.scrolloff = 3
 vim.opt.shortmess:append('c')
 vim.opt.showmatch = true
-vim.opt.showmode = false
 vim.opt.smartcase = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true

@@ -25,10 +25,6 @@ end
 
 function _G.status_line()
 	return ' '
-		.. vim.api.nvim_get_mode().mode
-		.. ' '
-		.. '|'
-		.. ' '
 		.. '%<'
 		.. file_name()
 		.. ' '
