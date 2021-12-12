@@ -1,7 +1,7 @@
 return {
 	'neovim/nvim-lspconfig',
 	config = function()
-		require('utils/diagnostic-signs')
+		require('utils/diagnostics')
 		require('utils/lua-language-server')
 
 		local nvim_lsp = require('lspconfig')
