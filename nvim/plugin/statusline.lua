@@ -25,7 +25,7 @@ end
 
 function _G.status_line()
 	return ' '
-		.. vim.fn.mode()
+		.. vim.api.nvim_get_mode().mode
 		.. ' '
 		.. '|'
 		.. ' '
