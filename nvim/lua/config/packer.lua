@@ -19,7 +19,6 @@ require('packer').startup {
 			-- No configs
 			'editorconfig/editorconfig-vim',
 			'farmergreg/vim-lastplace',
-			'tpope/vim-markdown',
 
 			-- Configs
 			require('config/indent-o-matic'),
