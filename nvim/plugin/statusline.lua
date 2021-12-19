@@ -1,13 +1,14 @@
 local function file_name()
-	local pdot = vim.fn.expand('%:p:.')
-	if pdot:find('^/') then
-		return pdot
-	elseif pdot == '' then
-		return vim.fn.getcwd() .. '/'
+	local root_path = vim.fn.getcwd()
+	local root_dir = root_path:match('[^/]+$')
+	local home_path = vim.fn.expand('%:~')
+	local overlap, _ = home_path:find(root_dir)
+	if home_path == '' then
+		return root_path:gsub('/Users/garrett', '~')
+	elseif overlap then
+		return home_path:sub(overlap)
 	else
-		local root_path = vim.fn.getcwd()
-		local root_name = root_path:match('([^/]+)$')
-		return root_name .. '/' .. pdot
+		return home_path
 	end
 end
 
