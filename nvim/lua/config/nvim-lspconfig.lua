@@ -9,12 +9,12 @@ return {
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 		local servers = {
+			'eslint',
+			'jsonls',
 			'pyright',
 			'rust_analyzer',
 			'sourcekit',
-			'jsonls',
 			'tsserver',
-			'eslint',
 		}
 
 		for _, lsp in ipairs(servers) do
