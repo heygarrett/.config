@@ -18,7 +18,7 @@ return {
 			" LSP lists
 			command! Acts Telescope lsp_code_actions
 			command! Defs Telescope lsp_definitions
-			command! Doc Telescope lsp_document_diagnostics
+			command! Diags Telescope diagnostics bufnr=0
 			command! Imps Telescope lsp_implementations
 			command! Refs Telescope lsp_references
 		]]
