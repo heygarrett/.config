@@ -22,6 +22,7 @@ brew "libtermkey"
 brew "libuv"
 brew "python@3.9"
 brew "llvm"
+brew "lua-language-server"
 brew "msgpack"
 brew "neovim", args: ["HEAD"]
 brew "ninja"

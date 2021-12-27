@@ -5,7 +5,6 @@ table.insert(runtime_path, 'lua/?/init.lua')
 require('lspconfig').sumneko_lua.setup {
 	on_attach = require('utils/on-attach'),
 	capabilities = vim.lsp.protocol.make_client_capabilities(),
-	cmd = { vim.env.HOME .. '/.local/src/lua-language-server/bin/macOS/lua-language-server' },
 	settings = {
 		Lua = {
 			runtime = {
