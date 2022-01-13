@@ -1,14 +1,9 @@
 local on_attach = function(_, bufnr)
+	vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
 	local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-	local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
+	local opts = { noremap = true, silent = true }
 
-	-- Native completion
-	buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-	-- Mappings.
-	local opts = { noremap=true, silent=true }
-
-	-- Keymaps
 	buf_set_keymap('i', '<c-s>', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
 	buf_set_keymap('n', '<leader>d', '<cmd>lua vim.diagnostic.open_float()<cr>', opts)
 	buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<cr>', opts)
