@@ -9,7 +9,7 @@ vim.opt.ignorecase = true
 vim.opt.keywordprg = ':help'
 vim.opt.linebreak = true
 vim.opt.list = true
-vim.opt.listchars = { tab = '| ', lead = '·', trail = '·', eol = '$' }
+vim.opt.listchars = { tab = '| ', lead = '·', trail = '·' }
 vim.opt.mouse = 'a'
 vim.opt.number = true
 vim.opt.path:append('**')
