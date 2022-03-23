@@ -22,6 +22,7 @@ require('packer').startup {
 
 			-- Configs
 			require('config/indent-o-matic'),
+			require('config/marks'),
 			require('config/nvim-lspconfig'),
 			require('config/nvim-treesitter'),
 			require('config/telescope'),
