@@ -7,7 +7,6 @@ vim.opt.confirm = true
 vim.opt.cursorline = true
 vim.opt.ignorecase = true
 vim.opt.keywordprg = ':help'
-vim.opt.laststatus = 3
 vim.opt.linebreak = true
 vim.opt.list = true
 vim.opt.listchars = { tab = '| ', lead = '·', trail = '·' }
