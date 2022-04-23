@@ -23,6 +23,6 @@ vim.opt.termguicolors = true
 
 vim.api.nvim_create_autocmd('FileType', {
 	callback = function()
-		vim.opt.formatoptions = vim.opt.formatoptions - { 'r', 'o' }
+		vim.opt.formatoptions:remove({ 'r', 'o' })
 	end
 })
