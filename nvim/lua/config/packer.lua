@@ -1,4 +1,7 @@
-vim.api.nvim_command('autocmd BufWritePost packer.lua source <afile> | PackerCompile')
+vim.api.nvim_create_autocmd('BufWritePost', {
+	pattern = 'packer.lua',
+	command = 'source <afile> | PackerCompile'
+})
 
 local packer_bootstrap
 local install_path = vim.fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'

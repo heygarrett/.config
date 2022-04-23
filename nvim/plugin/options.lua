@@ -22,4 +22,8 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.termguicolors = true
 
-vim.api.nvim_command([[au FileType * setl formatoptions-=r | setl formatoptions-=o]])
+vim.api.nvim_create_autocmd('FileType', {
+	callback = function()
+		vim.opt.formatoptions = vim.opt.formatoptions - { 'r', 'o' }
+	end
+})
