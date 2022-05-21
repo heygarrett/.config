@@ -24,6 +24,7 @@ require('packer').startup {
 			'farmergreg/vim-lastplace',
 
 			-- Configs
+			require('config/gitsigns'),
 			require('config/indent-o-matic'),
 			require('config/nvim-lspconfig'),
 			require('config/nvim-treesitter'),
