@@ -1,7 +1,7 @@
 return {
 	'lewis6991/gitsigns.nvim',
 	config = function()
-		vim.opt.signcolumn = 'number'
+		vim.opt.signcolumn = 'yes:1'
 		require('gitsigns').setup {
 			on_attach = function(bufnr)
 				local gs = package.loaded.gitsigns
