@@ -21,8 +21,21 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.termguicolors = true
 
+-- Disable automatic comments
 vim.api.nvim_create_autocmd('FileType', {
 	callback = function()
 		vim.opt.formatoptions:remove({ 'r', 'o' })
+	end
+})
+
+-- Restore cursor position
+vim.api.nvim_create_autocmd('FileType', {
+	callback = function()
+		if vim.opt.filetype:get() ~= "gitcommit"
+		and vim.fn.line("'\"") > 1
+		and vim.fn.line("'\"") <= vim.fn.line("$")
+		then
+			vim.cmd([[exe 'normal! g`"']])
+		end
 	end
 })
