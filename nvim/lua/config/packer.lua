@@ -23,13 +23,13 @@ require('packer').startup {
 			'editorconfig/editorconfig-vim',
 
 			-- Configs
-			require('config/gitsigns'),
-			require('config/guess-indent'),
-			require('config/nvim-lspconfig'),
-			require('config/nvim-treesitter'),
-			require('config/telescope'),
-			require('config/tokyonight'),
-			require('config/vim-indexed-search'),
+			require('config.gitsigns'),
+			require('config.guess-indent'),
+			require('config.nvim-lspconfig'),
+			require('config.nvim-treesitter'),
+			require('config.telescope'),
+			require('config.tokyonight'),
+			require('config.vim-indexed-search'),
 		}
 
 		if packer_bootstrap then
