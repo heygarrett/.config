@@ -24,7 +24,7 @@ require('packer').startup {
 
 			-- Configs
 			require('config/gitsigns'),
-			require('config/indent-o-matic'),
+			require('config/guess-indent'),
 			require('config/nvim-lspconfig'),
 			require('config/nvim-treesitter'),
 			require('config/telescope'),
