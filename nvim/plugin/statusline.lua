@@ -1,3 +1,16 @@
+local function branch_name()
+	local branch = io.popen("git rev-parse --abbrev-ref HEAD 2> /dev/null")
+	if branch then
+		local name = branch:read("*l")
+		branch:close()
+		if name then
+			return name .. " | "
+		else
+			return ""
+		end
+	end
+end
+
 local function file_name()
 	local root_path = vim.fn.getcwd()
 	local root_dir = root_path:match("[^/]+$")
@@ -27,6 +40,7 @@ end
 function _G.status_line()
 	return " "
 		.. "%<"
+		.. branch_name()
 		.. file_name()
 		.. " "
 		.. "%h"
