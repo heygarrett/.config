@@ -11,14 +11,14 @@ return {
 					opts.buffer = bufnr
 					vim.keymap.set(mode, l, r, opts)
 				end
-				map('n', ']g', function()
-				if vim.wo.diff then return ']g' end
+				map('n', ']h', function()
+				if vim.wo.diff then return ']h' end
 					vim.schedule(function() gs.next_hunk() end)
 					return '<Ignore>'
 				end, {expr=true})
 
-				map('n', '[g', function()
-					if vim.wo.diff then return '[g' end
+				map('n', '[h', function()
+					if vim.wo.diff then return '[h' end
 					vim.schedule(function() gs.prev_hunk() end)
 					return '<Ignore>'
 				end, {expr=true})
