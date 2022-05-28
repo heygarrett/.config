@@ -33,7 +33,7 @@ local function progress()
 	end
 end
 
-vim.api.nvim_create_autocmd({"BufEnter", "CursorHold", "FocusGained"}, {
+vim.api.nvim_create_autocmd({"VimEnter", "BufEnter", "FocusGained"}, {
 	callback = function()
 		vim.b.branch_name = branch_name() .. " | "
 		vim.b.file_name = file_name()
@@ -43,8 +43,8 @@ vim.api.nvim_create_autocmd({"BufEnter", "CursorHold", "FocusGained"}, {
 function _G.status_line()
 	return " "
 		.. "%<"
-		.. (vim.b.branch_name or "")
-		.. (vim.b.file_name or "")
+		.. vim.b.branch_name
+		.. vim.b.file_name
 		.. " "
 		.. "%h"
 		.. "%m"
