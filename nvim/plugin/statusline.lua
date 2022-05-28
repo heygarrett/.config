@@ -1,27 +1,25 @@
-vim.api.nvim_create_autocmd({"BufEnter", "CursorHold", "FocusGained"}, {
-	callback = function()
-		-- Branch name
-		local branch = vim.fn.system("git branch --show-current | tr -d '\n' 2> /dev/null")
-		if branch then
-			vim.b.branch_name = branch .. " | "
-		else
-			vim.b.branch_name = ""
-		end
-
-		-- File name
-		local root_path = vim.fn.getcwd()
-		local root_dir = root_path:match("[^/]+$")
-		local home_path = vim.fn.expand("%:~")
-		local overlap, _ = home_path:find(root_dir)
-		if home_path == "" then
-			vim.b.file_name = root_path:gsub("/Users/[^/]+", "~")
-		elseif overlap then
-			vim.b.file_name = home_path:sub(overlap)
-		else
-			vim.b.file_name = home_path
-		end
+local function branch_name()
+	local branch = vim.fn.system("git branch --show-current | tr -d '\n' 2> /dev/null")
+	if branch then
+		return branch
+	else
+		return ""
 	end
-})
+end
+
+local function file_name()
+	local root_path = vim.fn.getcwd()
+	local root_dir = root_path:match("[^/]+$")
+	local home_path = vim.fn.expand("%:~")
+	local overlap, _ = home_path:find(root_dir)
+	if home_path == "" then
+		return root_path:gsub("/Users/[^/]+", "~")
+	elseif overlap then
+		return home_path:sub(overlap)
+	else
+		return home_path
+	end
+end
 
 local function progress()
 	if vim.fn.line(".") == 1 then
@@ -34,6 +32,13 @@ local function progress()
 		return string.format("%02d", p) .. "%%"
 	end
 end
+
+vim.api.nvim_create_autocmd({"BufEnter", "CursorHold", "FocusGained"}, {
+	callback = function()
+		vim.b.branch_name = branch_name() .. " | "
+		vim.b.file_name = file_name()
+	end
+})
 
 function _G.status_line()
 	return " "
