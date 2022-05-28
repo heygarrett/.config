@@ -40,7 +40,7 @@ vim.api.nvim_create_autocmd({"VimEnter", "BufEnter", "FocusGained"}, {
 	end
 })
 
-function _G.status_line()
+function Status_Line()
 	return " "
 		.. "%<"
 		.. vim.b.branch_name
@@ -55,4 +55,4 @@ function _G.status_line()
 		.. " "
 end
 
-vim.opt.statusline = "%{%v:lua.status_line()%}"
+vim.opt.statusline = "%{%v:lua.Status_Line()%}"
