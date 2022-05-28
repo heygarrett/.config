@@ -1,29 +1,27 @@
-local function branch_name()
-	local branch = io.popen("git rev-parse --abbrev-ref HEAD 2> /dev/null")
-	if branch then
-		local name = branch:read("*l")
-		branch:close()
-		if name then
-			return name .. " | "
+vim.api.nvim_create_autocmd({"BufEnter", "CursorHold", "FocusGained"}, {
+	callback = function()
+		-- Branch name
+		local branch = vim.fn.system("git branch --show-current | tr -d '\n' 2> /dev/null")
+		if branch then
+			vim.b.branch_name = branch .. " | "
 		else
-			return ""
+			vim.b.branch_name = ""
+		end
+
+		-- File name
+		local root_path = vim.fn.getcwd()
+		local root_dir = root_path:match("[^/]+$")
+		local home_path = vim.fn.expand("%:~")
+		local overlap, _ = home_path:find(root_dir)
+		if home_path == "" then
+			vim.b.file_name = root_path:gsub("/Users/garrett", "~")
+		elseif overlap then
+			vim.b.file_name = home_path:sub(overlap)
+		else
+			vim.b.file_name = home_path
 		end
 	end
-end
-
-local function file_name()
-	local root_path = vim.fn.getcwd()
-	local root_dir = root_path:match("[^/]+$")
-	local home_path = vim.fn.expand("%:~")
-	local overlap, _ = home_path:find(root_dir)
-	if home_path == "" then
-		return root_path:gsub("/Users/garrett", "~")
-	elseif overlap then
-		return home_path:sub(overlap)
-	else
-		return home_path
-	end
-end
+})
 
 local function progress()
 	if vim.fn.line(".") == 1 then
@@ -40,8 +38,8 @@ end
 function _G.status_line()
 	return " "
 		.. "%<"
-		.. branch_name()
-		.. file_name()
+		.. (vim.b.branch_name or "")
+		.. (vim.b.file_name or "")
 		.. " "
 		.. "%h"
 		.. "%m"
