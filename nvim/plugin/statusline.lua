@@ -14,7 +14,7 @@ vim.api.nvim_create_autocmd({"BufEnter", "CursorHold", "FocusGained"}, {
 		local home_path = vim.fn.expand("%:~")
 		local overlap, _ = home_path:find(root_dir)
 		if home_path == "" then
-			vim.b.file_name = root_path:gsub("/Users/garrett", "~")
+			vim.b.file_name = root_path:gsub("/Users/[^/]+", "~")
 		elseif overlap then
 			vim.b.file_name = home_path:sub(overlap)
 		else
