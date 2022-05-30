@@ -1,6 +1,6 @@
 local function branch_name()
-	local branch = vim.fn.system("git branch --show-current | tr -d '\n' 2> /dev/null")
-	if branch then
+	local branch = vim.fn.system("git branch --show-current 2> /dev/null | tr -d '\n'")
+	if branch ~= "" then
 		return branch .. " | "
 	else
 		return ""
