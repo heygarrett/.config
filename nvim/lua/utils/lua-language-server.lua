@@ -1,21 +1,21 @@
-local runtime_path = vim.split(package.path, ';')
-table.insert(runtime_path, 'lua/?.lua')
-table.insert(runtime_path, 'lua/?/init.lua')
+local runtime_path = vim.split(package.path, ";")
+table.insert(runtime_path, "lua/?.lua")
+table.insert(runtime_path, "lua/?/init.lua")
 
-require('lspconfig').sumneko_lua.setup {
-	on_attach = require('utils/on-attach'),
+require("lspconfig").sumneko_lua.setup {
+	on_attach = require("utils/on-attach"),
 	capabilities = vim.lsp.protocol.make_client_capabilities(),
 	settings = {
 		Lua = {
 			runtime = {
-				version = 'LuaJIT',
+				version = "LuaJIT",
 				path = runtime_path,
 			},
 			diagnostics = {
-				globals = { 'vim' },
+				globals = { "vim" },
 			},
 			workspace = {
-				library = vim.api.nvim_get_runtime_file('', true),
+				library = vim.api.nvim_get_runtime_file("", true),
 			},
 			telemetry = {
 				enable = false,

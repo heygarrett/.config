@@ -1,7 +1,7 @@
 return {
-	'folke/tokyonight.nvim',
+	"folke/tokyonight.nvim",
 	config = function()
-		vim.g.tokyonight_style = 'night'
+		vim.g.tokyonight_style = "night"
 		vim.api.nvim_command([[colorscheme tokyonight]])
 	end
 }
