@@ -23,6 +23,7 @@ require("packer").startup {
 			"editorconfig/editorconfig-vim",
 
 			-- Configs
+			require("config.FTerm"),
 			require("config.gitsigns"),
 			require("config.guess-indent"),
 			require("config.nvim-lspconfig"),
