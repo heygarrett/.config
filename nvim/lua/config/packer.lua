@@ -16,13 +16,8 @@ end
 require("packer").startup {
 	function(use)
 		use {
-			-- Self-manage
-			"wbthomason/packer.nvim",
-
-			-- No configs
 			"editorconfig/editorconfig-vim",
-
-			-- Configs
+			"wbthomason/packer.nvim",
 			require("config.FTerm"),
 			require("config.gitsigns"),
 			require("config.guess-indent"),
