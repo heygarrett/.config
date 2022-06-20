@@ -1,11 +1,11 @@
 return {
 	"neovim/nvim-lspconfig",
 	config = function()
-		require("utils/diagnostics")
-		require("utils/lua-language-server")
+		require("lsp/diagnostics")
+		require("lsp/lua-language-server")
 
 		local nvim_lsp = require("lspconfig")
-		local on_attach = require("utils/on-attach")
+		local on_attach = require("lsp/on-attach")
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 		local servers = {
