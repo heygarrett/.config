@@ -1,0 +1,5 @@
+require("settings.indentation")
+require("settings.keymaps")
+require("settings.options")
+require("settings.statusline")
+require("settings.terminal")
