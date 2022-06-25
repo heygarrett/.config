@@ -1,6 +1,8 @@
+vim.api.nvim_create_augroup("packer", { clear = true })
 vim.api.nvim_create_autocmd("BufWritePost", {
+	group = "packer",
 	pattern = "packer.lua",
-	command = "source <afile> | PackerCompile"
+	command = "source <afile> | PackerCompile",
 })
 
 local packer_bootstrap
