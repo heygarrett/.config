@@ -11,6 +11,7 @@ return {
 					opts.buffer = bufnr
 					vim.keymap.set(mode, l, r, opts)
 				end
+
 				map("n", "]h", function()
 				if vim.wo.diff then return "]h" end
 					vim.schedule(function() gs.next_hunk() end)
