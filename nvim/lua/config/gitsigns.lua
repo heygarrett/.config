@@ -24,9 +24,17 @@ return {
 					return "<Ignore>"
 				end, { expr = true })
 
+				local function stage(t)
+					if t.range ~= 0 then
+						gs.stage_hunk({ t.line1, t.line2 })
+					else
+						gs.stage_hunk()
+					end
+				end
+
 				vim.api.nvim_create_user_command("Blame", function() gs.blame_line({ full = true }) end, {})
 				vim.api.nvim_create_user_command("Diff", gs.preview_hunk, {})
-				vim.api.nvim_create_user_command("Stage", "'<,'>Gitsigns stage_hunk", { range = true })
+				vim.api.nvim_create_user_command("Stage", function(t) stage(t) end, { range = true })
 				vim.api.nvim_create_user_command("Unstage", gs.undo_stage_hunk, {})
 			end
 		}
