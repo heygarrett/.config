@@ -25,8 +25,8 @@ return {
 
 				vim.api.nvim_create_user_command("Blame", function() gs.blame_line({ full = true }) end, {})
 				vim.api.nvim_create_user_command("Diff", "Gitsigns diffthis", {})
+				vim.api.nvim_create_user_command("Stage", "Gitsigns stage_hunk", {})
 				vim.api.nvim_create_user_command("Stagebuffer", gs.stage_buffer, {})
-				vim.api.nvim_create_user_command("Stagehunk", "Gitsigns stage_hunk", {})
 				vim.api.nvim_create_user_command("Unstage", gs.undo_stage_hunk, {})
 			end
 		}
