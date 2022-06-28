@@ -9,11 +9,12 @@ local on_attach = function(_, bufnr)
 
 	-- LSP settings
 	local opts = { buffer = bufnr }
+	vim.api.nvim_create_user_command("Actions", vim.lsp.buf.code_action, {})
+	vim.api.nvim_create_user_command("Def", vim.lsp.buf.definition, {})
+	vim.api.nvim_create_user_command("Format", vim.lsp.buf.formatting, {})
+	vim.api.nvim_create_user_command("Rename", function(t) vim.lsp.buf.rename(t.args) end, { nargs = 1 })
 	vim.keymap.set("i", "<c-s>", vim.lsp.buf.signature_help, opts)
-	vim.keymap.set("n", "<leader>f", vim.lsp.buf.formatting, opts)
 	vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, opts)
-	vim.keymap.set("n", "<leader>r", vim.lsp.buf.rename, opts)
-	vim.keymap.set("n", "<leader>s", vim.lsp.buf.definition, opts)
 end
 
 return on_attach
