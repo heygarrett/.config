@@ -9,7 +9,6 @@ vim.opt.ignorecase = true
 vim.opt.keywordprg = ":help"
 vim.opt.linebreak = true
 vim.opt.list = true
-vim.opt.listchars = { tab = "| ", lead = "·", trail = "·" }
 vim.opt.mouse = "a"
 vim.opt.number = true
 vim.opt.path:append("**")
@@ -20,6 +19,14 @@ vim.opt.smartcase = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.termguicolors = true
+
+-- Use | for tabs and · for blocks of spaces 
+vim.api.nvim_create_autocmd("FileType", {
+	callback = function()
+		local ms = "·" .. string.rep(" ", vim.opt.tabstop:get() - 1)
+		vim.opt.listchars = { tab = "| ", multispace = ms, trail = "·" }
+	end
+})
 
 -- Disable automatic comments
 vim.api.nvim_create_autocmd("FileType", {
