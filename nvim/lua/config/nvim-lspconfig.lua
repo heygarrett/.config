@@ -9,6 +9,7 @@ return {
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 		local servers = {
+			"bashls",
 			"eslint",
 			"jsonls",
 			"pyright",
