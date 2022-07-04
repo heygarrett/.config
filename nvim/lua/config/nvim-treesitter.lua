@@ -8,6 +8,7 @@ return {
 				"fish",
 				"hjson",
 				"json",
+				"jsonc",
 				"lua",
 				"markdown",
 				"markdown_inline",
