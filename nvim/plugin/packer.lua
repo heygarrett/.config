@@ -20,13 +20,13 @@ require("packer").startup {
 		use {
 			"editorconfig/editorconfig-vim",
 			"wbthomason/packer.nvim",
+			require("config.catppuccin"),
 			require("config.FTerm"),
 			require("config.gitsigns"),
 			require("config.guess-indent"),
 			require("config.nvim-lspconfig"),
 			require("config.nvim-treesitter"),
 			require("config.telescope"),
-			require("config.tokyonight"),
 			require("config.vim-indexed-search"),
 		}
 
