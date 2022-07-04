@@ -20,29 +20,18 @@ vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.termguicolors = true
 
--- Use | for tabs and · for blocks of spaces 
+vim.api.nvim_create_augroup("options", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
+	group = "options",
 	callback = function()
-		local ms = "·" .. string.rep(" ", vim.opt.tabstop:get() - 1)
-		vim.opt.listchars = { tab = "| ", multispace = ms, trail = "·" }
-	end
-})
-
--- Disable automatic comments
-vim.api.nvim_create_autocmd("FileType", {
-	callback = function()
+		-- Disable automatic comments
 		vim.opt.formatoptions:remove({ "r", "o" })
-	end
-})
-
--- Restore cursor position
-vim.api.nvim_create_autocmd("FileType", {
-	callback = function()
+		-- Restore cursor position
 		if vim.opt.filetype:get() ~= "gitcommit"
-		and vim.fn.line("'\"") > 1
-		and vim.fn.line("'\"") <= vim.fn.line("$")
+			and vim.fn.line("'\"") > 1
+			and vim.fn.line("'\"") <= vim.fn.line("$")
 		then
-			vim.cmd([[exe 'normal! g`"']])
+			vim.cmd([[execute 'normal! g`"']])
 		end
 	end
 })
