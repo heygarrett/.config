@@ -14,7 +14,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt_local.tabstop = vim.opt_global.tabstop:get()
 		-- Run guess-indent
 		if vim.opt.filetype:get() ~= "gitcommit" then
-			vim.api.nvim_command("silent GuessIndent")
+			vim.api.nvim_command("silent GuessIndent auto_cmd")
 		end
 		-- Use | for tabs and · for spaces
 		vim.opt.listchars = { tab = "| ", trail = "·" }
