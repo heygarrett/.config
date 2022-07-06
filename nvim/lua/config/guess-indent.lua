@@ -5,6 +5,7 @@ return {
 	config = function()
 		require("guess-indent").setup {
 			auto_cmd = false,
+			filetype_exclude = { "gitcommit" },
 		}
 	end
 }

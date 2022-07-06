@@ -13,7 +13,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt_local.softtabstop = vim.opt_global.softtabstop:get()
 		vim.opt_local.tabstop = vim.opt_global.tabstop:get()
 		-- Run guess-indent
-		if vim.opt.filetype:get() ~= "gitcommit" then
+		if vim.fn.exists(":GuessIndent") == 2 then
 			vim.api.nvim_command("silent GuessIndent auto_cmd")
 		end
 		-- Use | for tabs and · for spaces
