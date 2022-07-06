@@ -13,7 +13,9 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt_local.softtabstop = vim.opt_global.softtabstop:get()
 		vim.opt_local.tabstop = vim.opt_global.tabstop:get()
 		-- Run guess-indent
-		if vim.opt.filetype:get() ~= "gitcommit" then
+		if vim.opt.filetype:get() ~= "gitcommit" and
+			vim.opt.filetype:get() ~= "netrw"
+		then
 			vim.api.nvim_command("GuessIndent")
 		end
 		-- Use | for tabs and · for spaces
