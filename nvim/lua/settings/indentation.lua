@@ -16,10 +16,10 @@ vim.api.nvim_create_autocmd("FileType", {
 		if vim.fn.exists(":GuessIndent") == 2 then
 			vim.api.nvim_command("silent GuessIndent auto_cmd")
 		end
-		-- Use | for tabs and · for spaces
+		-- Use | for tab indentation and : for space indentation
 		vim.opt.listchars = { tab = "| ", trail = "·" }
 		if vim.opt.expandtab:get() then
-			local ms = "·" .. string.rep(" ", vim.opt.tabstop:get() - 1)
+			local ms = ":" .. string.rep(" ", vim.opt.tabstop:get() - 1)
 			-- TODO: Switch to leadmultispace when possible
 			vim.opt.listchars:append({ multispace = ms })
 		else
