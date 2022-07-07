@@ -34,7 +34,7 @@ local function progress()
 	end
 end
 
-vim.api.nvim_create_autocmd({"FileType", "BufEnter", "FocusGained"}, {
+vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "FocusGained" }, {
 	callback = function()
 		vim.b.branch_name = branch_name()
 		vim.b.file_name = file_name()
