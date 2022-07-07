@@ -18,7 +18,7 @@ end
 require("packer").startup {
 	function(use)
 		use {
-			"editorconfig/editorconfig-vim",
+			"gpanders/editorconfig.nvim",
 			"wbthomason/packer.nvim",
 			require("config.catppuccin"),
 			require("config.FTerm"),
