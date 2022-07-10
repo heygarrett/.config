@@ -24,6 +24,7 @@ require("packer").startup {
 			require("config.FTerm"),
 			require("config.gitsigns"),
 			require("config.guess-indent"),
+			require("config.null-ls"),
 			require("config.nvim-lspconfig"),
 			require("config.nvim-treesitter"),
 			require("config.telescope"),
