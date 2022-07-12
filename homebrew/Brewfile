@@ -24,7 +24,7 @@ brew "libtermkey"
 brew "llvm"
 brew "lua-language-server"
 brew "msgpack"
-brew "neovim"
+brew "neovim", args: ["HEAD"]
 brew "ninja"
 brew "pinentry-mac"
 brew "pyright"
