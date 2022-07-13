@@ -1,9 +1,17 @@
 local function branch_name()
 	local branch = vim.fn.system("git branch --show-current 2> /dev/null")
 	if branch ~= "" then
-		return branch:gsub("\n", "") .. " | "
+		return branch:gsub("\n", "")
 	else
 		return ""
+	end
+end
+
+local function diagnostics()
+	if #vim.diagnostic.get(0) ~= 0 then
+		return ""
+	else
+		return "|"
 	end
 end
 
@@ -47,6 +55,9 @@ function Status_Line()
 	return " "
 		.. "%<"
 		.. vim.b.branch_name
+		.. " "
+		.. diagnostics()
+		.. " "
 		.. vim.b.file_name
 		.. " "
 		.. "%h"
