@@ -16,6 +16,7 @@ return {
 			"rust_analyzer",
 			"sourcekit",
 			"tsserver",
+			"vimls",
 		}
 
 		for _, lsp in ipairs(servers) do
