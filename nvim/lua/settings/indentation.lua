@@ -19,8 +19,9 @@ vim.api.nvim_create_autocmd("FileType", {
 		-- Use | for tab indentation and : for space indentation
 		vim.opt_local.listchars = { tab = "| ", trail = "·" }
 		if vim.opt_local.expandtab:get() then
-			local lms = ":" .. string.rep(" ", vim.opt_local.tabstop:get() - 1)
-			vim.opt_local.listchars:append({ leadmultispace = lms })
+			-- Switch to leadmultispace in Neovim 0.8
+			local ms = ":" .. string.rep(" ", vim.opt_local.tabstop:get() - 1)
+			vim.opt_local.listchars:append({ multispace = ms })
 		else
 			vim.opt_local.listchars:append({ lead = "·" })
 		end
