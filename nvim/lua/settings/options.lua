@@ -18,8 +18,13 @@ vim.opt.smartcase = true
 vim.opt.splitbelow = true
 vim.opt.splitright = true
 vim.opt.termguicolors = true
+vim.opt.updatetime = 2000
 
 vim.api.nvim_create_augroup("options", { clear = true })
+vim.api.nvim_create_autocmd("CursorHold", {
+	group = "options",
+	command = "checktime",
+})
 vim.api.nvim_create_autocmd("FileType", {
 	group = "options",
 	callback = function()
