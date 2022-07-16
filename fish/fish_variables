@@ -5,9 +5,10 @@ SETUVAR --export HOMEBREW_BUNDLE_FILE:/Users/garrett/\x2econfig/homebrew/Brewfil
 SETUVAR --export HOMEBREW_NO_ANALYTICS:1
 SETUVAR --export MANPAGER:nvim\x20\x2bMan\x21
 SETUVAR __fish_initialized:3400
+SETUVAR _fisher_andreiborisov_2F_sponge_files:\x7e/\x2econfig/fish/functions/_sponge_clear_state\x2efish\x1e\x7e/\x2econfig/fish/functions/_sponge_on_exit\x2efish\x1e\x7e/\x2econfig/fish/functions/_sponge_on_postexec\x2efish\x1e\x7e/\x2econfig/fish/functions/_sponge_on_preexec\x2efish\x1e\x7e/\x2econfig/fish/functions/_sponge_on_prompt\x2efish\x1e\x7e/\x2econfig/fish/functions/_sponge_remove_from_history\x2efish\x1e\x7e/\x2econfig/fish/functions/sponge_filter_failed\x2efish\x1e\x7e/\x2econfig/fish/functions/sponge_filter_matched\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/sponge\x2efish
 SETUVAR _fisher_catppuccin_2F_fish_files:\x7e/\x2econfig/fish/conf\x2ed/frappe\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/latte\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/macchiato\x2efish\x1e\x7e/\x2econfig/fish/conf\x2ed/mocha\x2efish
 SETUVAR _fisher_jorgebucaran_2F_fisher_files:\x7e/\x2econfig/fish/functions/fisher\x2efish\x1e\x7e/\x2econfig/fish/completions/fisher\x2efish
-SETUVAR _fisher_plugins:jorgebucaran/fisher\x1ecatppuccin/fish
+SETUVAR _fisher_plugins:jorgebucaran/fisher\x1ecatppuccin/fish\x1eandreiborisov/sponge
 SETUVAR _fisher_upgraded_to_4_4:\x1d
 SETUVAR fish_color_autosuggestion:555\x1ebrblack
 SETUVAR fish_color_cancel:\x2dr
@@ -40,3 +41,8 @@ SETUVAR fish_pager_color_prefix:white\x1e\x2d\x2dbold\x1e\x2d\x2dunderline
 SETUVAR fish_pager_color_progress:brwhite\x1e\x2d\x2dbackground\x3dcyan
 SETUVAR fish_pager_color_selected_background:\x2dr
 SETUVAR fish_user_paths:/Users/garrett/\x2ecargo/bin\x1e/opt/homebrew/bin\x1e/opt/homebrew/sbin\x1e/opt/homebrew/opt/fzf/bin
+SETUVAR sponge_allow_previously_successful:true
+SETUVAR sponge_delay:2
+SETUVAR sponge_filters:sponge_filter_failed\x1esponge_filter_matched
+SETUVAR sponge_regex_patterns:\x1d
+SETUVAR sponge_successful_exit_codes:0
