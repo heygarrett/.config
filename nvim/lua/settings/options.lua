@@ -4,6 +4,8 @@ vim.opt.clipboard:append("unnamedplus")
 vim.opt.completeopt = { "menuone", "noselect" }
 vim.opt.confirm = true
 vim.opt.cursorline = true
+vim.opt.foldenable = false
+vim.opt.foldmethod = "indent"
 vim.opt.ignorecase = true
 vim.opt.keywordprg = ":help"
 vim.opt.linebreak = true
