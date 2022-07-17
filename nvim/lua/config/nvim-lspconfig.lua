@@ -10,7 +10,6 @@ return {
 
 		local servers = {
 			"bashls",
-			"eslint",
 			"jsonls",
 			"pyright",
 			"rust_analyzer",

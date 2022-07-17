@@ -1,4 +1,10 @@
-local on_attach = function(_, bufnr)
+local on_attach = function(client, bufnr)
+	-- Disable formatting for tsserver
+	if client.name == "tsserver" then
+		client.resolved_capabilities.document_formatting = false
+	end
+
+	-- Use omnicomplete with LSP
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
 	-- Diagnostics
