@@ -3,7 +3,10 @@ table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 
 require("lspconfig").sumneko_lua.setup {
-	on_attach = require("lsp/on-attach"),
+	on_attach = function(client, bufnr)
+		require("lsp/on-attach")(client, bufnr)
+		client.resolved_capabilities.document_formatting = false
+	end,
 	capabilities = vim.lsp.protocol.make_client_capabilities(),
 	settings = {
 		Lua = {
