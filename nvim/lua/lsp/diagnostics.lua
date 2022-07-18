@@ -3,6 +3,6 @@ for _, type in ipairs({ "Error", "Warn", "Hint", "Info" }) do
 	vim.fn.sign_define(hl, { text = "", texthl = hl, numhl = hl })
 end
 
-vim.diagnostic.config {
-	virtual_text = false
-}
+vim.diagnostic.config({
+	virtual_text = false,
+})

@@ -5,5 +5,5 @@ vim.api.nvim_create_autocmd("TermOpen", {
 		vim.api.nvim_command("startinsert")
 		vim.opt.cursorline = false
 		vim.opt.number = false
-	end
+	end,
 })

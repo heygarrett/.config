@@ -2,7 +2,7 @@ return {
 	"nvim-treesitter/nvim-treesitter",
 	run = ":TSUpdate",
 	config = function()
-		require("nvim-treesitter.configs").setup {
+		require("nvim-treesitter.configs").setup({
 			ensure_installed = {
 				"bash",
 				"fish",
@@ -20,8 +20,8 @@ return {
 			},
 			auto_install = true,
 			highlight = {
-				enable = true
-			}
-		}
-	end
+				enable = true,
+			},
+		})
+	end,
 }

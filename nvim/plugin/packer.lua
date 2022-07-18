@@ -16,16 +16,19 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 local packer_bootstrap
 local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
 if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-	packer_bootstrap = vim.fn.system {
-		"git", "clone", "--depth", "1",
+	packer_bootstrap = vim.fn.system({
+		"git",
+		"clone",
+		"--depth",
+		"1",
 		"https://github.com/wbthomason/packer.nvim",
-		install_path
-	}
+		install_path,
+	})
 end
 
-require("packer").startup {
+require("packer").startup({
 	function(use)
-		use {
+		use({
 			"gpanders/editorconfig.nvim",
 			"wbthomason/packer.nvim",
 			require("config.catppuccin"),
@@ -37,7 +40,7 @@ require("packer").startup {
 			require("config.nvim-treesitter"),
 			require("config.telescope"),
 			require("config.vim-indexed-search"),
-		}
+		})
 
 		if packer_bootstrap then
 			require("packer").sync()
@@ -47,6 +50,6 @@ require("packer").startup {
 	config = {
 		display = {
 			open_fn = require("packer/util").float,
-		}
+		},
 	},
-}
+})

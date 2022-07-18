@@ -25,5 +25,5 @@ vim.api.nvim_create_autocmd("FileType", {
 		else
 			vim.opt_local.listchars:append({ lead = "·" })
 		end
-	end
+	end,
 })

@@ -33,11 +33,12 @@ vim.api.nvim_create_autocmd("FileType", {
 		-- Disable automatic comments
 		vim.opt.formatoptions:remove({ "r", "o" })
 		-- Restore cursor position
-		if vim.opt.filetype:get() ~= "gitcommit"
+		if
+			vim.opt.filetype:get() ~= "gitcommit"
 			and vim.fn.line("'\"") > 1
 			and vim.fn.line("'\"") <= vim.fn.line("$")
 		then
 			vim.cmd([[execute 'normal! g`"']])
 		end
-	end
+	end,
 })

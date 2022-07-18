@@ -2,7 +2,7 @@ return {
 	"lewis6991/gitsigns.nvim",
 	config = function()
 		vim.opt.signcolumn = "yes:1"
-		require("gitsigns").setup {
+		require("gitsigns").setup({
 			on_attach = function(bufnr)
 				local gs = package.loaded.gitsigns
 
@@ -13,14 +13,22 @@ return {
 				end
 
 				map("n", "]h", function()
-					if vim.wo.diff then return "]h" end
-					vim.schedule(function() gs.next_hunk() end)
+					if vim.wo.diff then
+						return "]h"
+					end
+					vim.schedule(function()
+						gs.next_hunk()
+					end)
 					return "<Ignore>"
 				end, { expr = true })
 
 				map("n", "[h", function()
-					if vim.wo.diff then return "[h" end
-					vim.schedule(function() gs.prev_hunk() end)
+					if vim.wo.diff then
+						return "[h"
+					end
+					vim.schedule(function()
+						gs.prev_hunk()
+					end)
 					return "<Ignore>"
 				end, { expr = true })
 
@@ -43,7 +51,7 @@ return {
 				vim.api.nvim_create_user_command("Stage", function(t)
 					hunk_range(gs.stage_hunk, t)
 				end, { range = true })
-			end
-		}
-	end
+			end,
+		})
+	end,
 }

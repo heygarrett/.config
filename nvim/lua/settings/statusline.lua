@@ -46,7 +46,7 @@ local function progress()
 		return "bot"
 	else
 		local p = vim.fn.line(".") / vim.fn.line("$") * 100
-		p = p % 1 >= .5 and math.ceil(p) or math.floor(p)
+		p = p % 1 >= 0.5 and math.ceil(p) or math.floor(p)
 		return string.format("%02d", p) .. "%%"
 	end
 end
@@ -57,7 +57,7 @@ vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "FocusGained" }, {
 	callback = function()
 		vim.b.branch_name = branch_name()
 		vim.b.file_name = file_name()
-	end
+	end,
 })
 
 function Status_Line()
