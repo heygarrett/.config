@@ -1,7 +1,5 @@
 return {
-	-- "NMAC427/guess-indent.nvim",
-	"heygarrett/guess-indent.nvim",
-	branch = "auto_cmd-argument",
+	"NMAC427/guess-indent.nvim",
 	config = function()
 		require("guess-indent").setup {
 			auto_cmd = false,
