@@ -4,5 +4,5 @@ function DevUpdate
 	and fisher update
 	and cd $HOME/.config/nvim
 	and nvim plugin/packer.lua \
-	"+PackerSnapshotDelete latest" "+PackerSnapshot latest" "+PackerSync"
+		"+PackerSnapshotDelete latest" "+PackerSnapshot latest" "+PackerSync"
 end
