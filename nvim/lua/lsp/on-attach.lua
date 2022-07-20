@@ -1,6 +1,11 @@
 local on_attach = function(client, bufnr)
-	-- Disable formatting for tsserver
-	if client.name == "tsserver" then
+	-- Disable formatting for servers conflicting with null-ls
+	local disable_formatting = {
+		sumneko_lua = true,
+		jsonls = true,
+		tsserver = true,
+	}
+	if disable_formatting[client.name] then
 		client.resolved_capabilities.document_formatting = false
 	end
 
