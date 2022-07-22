@@ -2,13 +2,13 @@ vim.api.nvim_create_augroup("packer", { clear = true })
 vim.api.nvim_create_autocmd("BufWritePost", {
 	group = "packer",
 	pattern = "packer.lua",
-	callback = function()
+	callback = function(t)
 		for k, _ in pairs(package.loaded) do
 			if k:match("^config") then
 				package.loaded[k] = nil
 			end
 		end
-		dofile(vim.fn.expand("%"))
+		dofile(t.file)
 		require("packer").compile()
 	end,
 })
