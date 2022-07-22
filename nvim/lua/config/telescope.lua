@@ -35,12 +35,7 @@ return {
 			end
 		end, { nargs = "?" })
 
-		require("telescope").setup({
-			defaults = {
-				layout_config = { prompt_position = "top" },
-				sorting_strategy = "ascending",
-			},
-		})
+		require("telescope").setup()
 		require("telescope").load_extension("fzf")
 	end,
 }
