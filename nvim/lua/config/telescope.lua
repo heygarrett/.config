@@ -17,7 +17,7 @@ return {
 			if vim.fn.system("git rev-parse --is-inside-work-tree"):match("true") then
 				telescope.git_files({ use_git_root = false, show_untracked = true })
 			else
-				telescope.find_files()
+				telescope.find_files({ hidden = true })
 			end
 		end, {})
 		-- LSP lists
