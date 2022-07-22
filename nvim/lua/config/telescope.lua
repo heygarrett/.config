@@ -9,7 +9,7 @@ return {
 	},
 	config = function()
 		local telescope = require("telescope.builtin")
-		vim.api.nvim_create_user_command("Bufs", telescope.buffers, {})
+		vim.api.nvim_create_user_command("Buffers", telescope.buffers, {})
 		vim.api.nvim_create_user_command("Commits", telescope.git_commits, {})
 		vim.api.nvim_create_user_command("Grep", telescope.live_grep, {})
 		vim.api.nvim_create_user_command("Help", telescope.help_tags, {})
