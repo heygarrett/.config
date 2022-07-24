@@ -58,8 +58,7 @@ vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "FocusGained" }, {
 })
 
 function Status_Line()
-	local status = " "
-		.. "%<"
+	local status = "%<"
 		.. vim.b.branch_name
 		.. " "
 		.. diagnostics()
@@ -72,7 +71,6 @@ function Status_Line()
 		.. "%y"
 		.. " "
 		.. progress()
-		.. " "
 	return status
 end
 
