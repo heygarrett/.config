@@ -16,7 +16,7 @@ return {
 				}),
 			},
 			on_attach = function(client, bufnr)
-				require("lsp.on-attach")(client, bufnr)
+				require("lsp.on_attach")(client, bufnr)
 				if client.supports_method("textDocument/formatting") then
 					vim.api.nvim_create_autocmd("BufWritePre", {
 						group = "null-ls",

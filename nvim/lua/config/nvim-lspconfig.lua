@@ -5,7 +5,7 @@ return {
 		require("lsp.sumneko_lua")
 
 		local nvim_lsp = require("lspconfig")
-		local on_attach = require("lsp.on-attach")
+		local on_attach = require("lsp.on_attach")
 
 		local servers = {
 			"bashls",
