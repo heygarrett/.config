@@ -35,7 +35,26 @@ return {
 			end
 		end, { nargs = "?" })
 
-		require("telescope").setup()
+		local interactive_rebase = function(prompt_bufnr)
+			local actions = require("telescope.actions")
+			local action_state = require("telescope.actions.state")
+			local commit = action_state.get_selected_entry().value
+			actions.close(prompt_bufnr)
+			require("FTerm").run({ "git rebase --interactive", commit })
+			vim.api.nvim_command("norm a")
+		end
+
+		require("telescope").setup({
+			pickers = {
+				git_commits = {
+					mappings = {
+						i = {
+							["<c-r>r"] = interactive_rebase,
+						},
+					},
+				},
+			},
+		})
 		require("telescope").load_extension("fzf")
 	end,
 }
