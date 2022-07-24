@@ -9,14 +9,14 @@ end
 
 local function diagnostics()
 	if #vim.diagnostic.get(0) == 0 or vim.fn.mode():match("^i") then
-		return "<>"
-	elseif #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR }) ~= 0 then
+		return "()"
+	elseif #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR }) > 0 then
 		return "🔴"
-	elseif #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN }) ~= 0 then
+	elseif #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN }) > 0 then
 		return "🟡"
-	elseif #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT }) ~= 0 then
+	elseif #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT }) > 0 then
 		return "🔵"
-	elseif #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO }) ~= 0 then
+	elseif #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO }) > 0 then
 		return "⚪"
 	end
 end
