@@ -57,20 +57,20 @@ vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "FocusGained" }, {
 })
 
 function Status_Line()
-	local status = "%<"
-		.. vim.b.branch_name
-		.. " "
-		.. diagnostics()
-		.. " "
-		.. vim.b.file_name
-		.. " "
-		.. "%h"
-		.. "%m"
-		.. "%="
-		.. "%y"
-		.. " "
-		.. progress()
-	return status
+	return table.concat({
+		vim.b.branch_name,
+		" ",
+		diagnostics(),
+		" ",
+		vim.b.file_name,
+		" ",
+		"%h",
+		"%m",
+		"%=",
+		"%y",
+		" ",
+		progress(),
+	})
 end
 
 vim.opt.statusline = "%{%v:lua.Status_Line()%}"
