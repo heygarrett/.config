@@ -1,6 +1,5 @@
-vim.api.nvim_create_augroup("packer", { clear = true })
 vim.api.nvim_create_autocmd("BufWritePost", {
-	group = "packer",
+	group = vim.api.nvim_create_augroup("packer", { clear = true }),
 	pattern = "packer.lua",
 	callback = function(t)
 		for k, _ in pairs(package.loaded) do

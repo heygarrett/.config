@@ -5,9 +5,8 @@ vim.opt.shiftwidth = 0
 vim.opt.softtabstop = -1
 vim.opt.tabstop = 4
 
-vim.api.nvim_create_augroup("indentation", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
-	group = "indentation",
+	group = vim.api.nvim_create_augroup("indentation", { clear = true }),
 	callback = function()
 		-- Override ftplugin indentation settings
 		vim.opt_local.expandtab = vim.opt_global.expandtab:get()
