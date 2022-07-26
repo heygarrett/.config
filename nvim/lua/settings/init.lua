@@ -1,5 +1,6 @@
 require("settings.indentation")
 require("settings.keymaps")
 require("settings.options")
+require("settings.sessions")
 require("settings.statusline")
 require("settings.terminal")
