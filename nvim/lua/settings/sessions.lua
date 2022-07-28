@@ -1,4 +1,5 @@
 vim.api.nvim_create_augroup("sessions", { clear = true })
+-- Load potential session when launched without args
 vim.api.nvim_create_autocmd("VimEnter", {
 	group = "sessions",
 	nested = true,
@@ -8,6 +9,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 		end
 	end,
 })
+-- Save new session when exiting
 vim.api.nvim_create_autocmd("VimLeavePre", {
 	group = "sessions",
 	command = "mksession!",
