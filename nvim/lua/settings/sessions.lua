@@ -1,11 +1,15 @@
 vim.api.nvim_create_augroup("sessions", { clear = true })
--- Load potential session when launched without args
+-- If launched without args load or create session
 vim.api.nvim_create_autocmd("VimEnter", {
 	group = "sessions",
 	nested = true,
 	callback = function()
 		if vim.fn.argc() == 0 then
-			vim.api.nvim_command("silent! source Session.vim")
+			if vim.fn.filereadable("Session.vim") == 1 then
+				vim.api.nvim_command("source Session.vim")
+			else
+				vim.api.nvim_command("mksession")
+			end
 		end
 	end,
 })
