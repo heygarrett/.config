@@ -9,8 +9,12 @@ vim.api.nvim_create_autocmd("VimEnter", {
 		end
 	end,
 })
--- Save new session when exiting
+-- Overwrite existing session when exiting
 vim.api.nvim_create_autocmd("VimLeavePre", {
 	group = "sessions",
-	command = "mksession!",
+	callback = function()
+		if vim.fn.filereadable("Session.vim") == 1 then
+			vim.api.nvim_command("mksession!")
+		end
+	end,
 })
