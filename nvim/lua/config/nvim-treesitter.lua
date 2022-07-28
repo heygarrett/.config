@@ -15,6 +15,7 @@ return {
 				"python",
 				"rust",
 				"swift",
+				"toml",
 				"typescript",
 				"vim",
 			},
