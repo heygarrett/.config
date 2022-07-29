@@ -13,12 +13,17 @@ return {
 		vim.api.nvim_create_user_command("Grep", telescope.live_grep, {})
 		vim.api.nvim_create_user_command("Help", telescope.help_tags, {})
 		vim.api.nvim_create_user_command("Tele", telescope.resume, {})
-		vim.api.nvim_create_user_command("Buffers", function()
-			telescope.buffers({ sort_lastused = true })
-		end, {})
+		vim.api.nvim_create_user_command(
+			"Buffers",
+			function() telescope.buffers({ sort_lastused = true }) end,
+			{}
+		)
 		vim.api.nvim_create_user_command("Find", function()
 			if vim.fn.system("git rev-parse --is-inside-work-tree"):match("true") then
-				telescope.git_files({ use_git_root = false, show_untracked = true })
+				telescope.git_files({
+					use_git_root = false,
+					show_untracked = true,
+				})
 			else
 				telescope.find_files({ hidden = true })
 			end

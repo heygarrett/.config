@@ -3,9 +3,7 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 	pattern = "packer.lua",
 	callback = function(t)
 		for k, _ in pairs(package.loaded) do
-			if k:match("^config") then
-				package.loaded[k] = nil
-			end
+			if k:match("^config") then package.loaded[k] = nil end
 		end
 		dofile(t.file)
 		require("packer").compile()
@@ -41,9 +39,7 @@ require("packer").startup({
 			require("config.vim-indexed-search"),
 		})
 
-		if packer_bootstrap then
-			require("packer").sync()
-		end
+		if packer_bootstrap then require("packer").sync() end
 	end,
 
 	config = {
