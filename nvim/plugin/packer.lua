@@ -28,8 +28,8 @@ require("packer").startup({
 		use({
 			"gpanders/editorconfig.nvim",
 			"wbthomason/packer.nvim",
-			require("config.catppuccin"),
 			require("config.FTerm"),
+			require("config.catppuccin"),
 			require("config.gitsigns"),
 			require("config.guess-indent"),
 			require("config.null-ls"),
