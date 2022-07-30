@@ -1,7 +1,7 @@
 local function branch_name()
 	local branch = vim.fn.system("git branch --show-current 2> /dev/null")
 	if branch ~= "" then
-		return branch:gsub("\n", "")
+		return branch:gsub("\n", "") .. " | "
 	else
 		return ""
 	end
@@ -9,7 +9,7 @@ end
 
 local function diagnostics()
 	if #vim.diagnostic.get(0) == 0 or vim.fn.mode():match("^i") then
-		return "()"
+		return ""
 	elseif #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR }) > 0 then
 		return "🔴"
 	elseif #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN }) > 0 then
@@ -58,15 +58,16 @@ vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "FocusGained" }, {
 
 function Status_Line()
 	return table.concat({
+		" ",
 		vim.b.branch_name,
-		" ",
-		diagnostics(),
-		" ",
 		vim.b.file_name,
 		" ",
 		"%h",
 		"%m",
 		"%=",
+		" ",
+		diagnostics(),
+		" ",
 		"%y",
 		" ",
 		progress(),
