@@ -1,7 +1,7 @@
 local function branch_name()
 	local branch = vim.fn.system("git branch --show-current 2> /dev/null")
 	if branch ~= "" then
-		return branch:gsub("\n", "") .. " | "
+		return branch:gsub("\n", "") .. " |"
 	else
 		return ""
 	end
@@ -79,18 +79,14 @@ function Status_Line()
 	local left = table.concat({
 		vim.b.branch_name,
 		vim.b.file_name,
-		" ",
 		modified_flag(),
-	})
+	}, " ")
 
 	local right = table.concat({
-		" ",
 		diagnostics(),
-		" ",
 		vim.b.file_type,
-		" ",
 		progress(),
-	})
+	}, " ")
 
 	local length = left:len() + right:len()
 	local gap = vim.fn.winwidth(0) - length
