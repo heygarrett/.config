@@ -47,11 +47,9 @@ local function diagnostics()
 end
 
 local function file_type()
-	if vim.opt.filetype:get() ~= "" then
-		return table.concat({ "[", vim.opt.filetype:get(), "]" })
-	else
-		return ""
-	end
+	local ft = vim.opt.filetype:get()
+	if ft ~= "" then ft = table.concat({ "[", ft, "]" }) end
+	return ft
 end
 
 local function progress()
