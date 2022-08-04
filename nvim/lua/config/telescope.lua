@@ -45,7 +45,7 @@ return {
 			local action_state = require("telescope.actions.state")
 			local commit = action_state.get_selected_entry().value
 			actions.close(prompt_bufnr)
-			require("FTerm").run({ "git rebase --interactive", commit })
+			vim.api.nvim_command("tabnew | terminal git rebase --interactive " .. commit)
 			vim.api.nvim_command("norm a")
 		end
 
