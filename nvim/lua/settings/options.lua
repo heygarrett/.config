@@ -33,8 +33,9 @@ vim.api.nvim_create_autocmd("FileType", {
 		-- Disable automatic comments
 		vim.opt.formatoptions:remove({ "r", "o" })
 		-- Restore cursor position
+		local exclude = { diff = true, gitcommit = true, gitrebase = true }
 		if
-			vim.opt.filetype:get() ~= "gitcommit"
+			not exclude[vim.opt_local.filetype:get()]
 			and vim.fn.line("'\"") > 1
 			and vim.fn.line("'\"") <= vim.fn.line("$")
 		then
