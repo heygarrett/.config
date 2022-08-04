@@ -6,6 +6,7 @@ return {
 			filetype_exclude = {
 				"diff",
 				"gitcommit",
+				"gitrebase",
 			},
 		})
 	end,
