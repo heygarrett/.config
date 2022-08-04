@@ -7,6 +7,31 @@ local function branch_name()
 	end
 end
 
+local function file_name()
+	local user = vim.fn.system("echo $USER"):gsub("\n", "")
+	local root_path = vim.fn.getcwd()
+	local root_dir = root_path:match("[^/]+$")
+	local home_path = vim.fn.expand("%:~")
+	local overlap, _ = home_path:find(root_dir)
+	if home_path == "" then
+		return root_path:gsub("/Users/" .. user, "~")
+	elseif overlap then
+		return home_path:sub(overlap)
+	else
+		return home_path
+	end
+end
+
+local function modified_flag()
+	if not vim.opt.modifiable:get() then
+		return "[-]"
+	elseif vim.opt.modified:get() then
+		return "[+]"
+	else
+		return ""
+	end
+end
+
 local function diagnostics()
 	if #vim.diagnostic.get(0) == 0 or vim.fn.mode():match("^i") then
 		return ""
@@ -21,18 +46,11 @@ local function diagnostics()
 	end
 end
 
-local function file_name()
-	local user = vim.fn.system("echo $USER"):gsub("\n", "")
-	local root_path = vim.fn.getcwd()
-	local root_dir = root_path:match("[^/]+$")
-	local home_path = vim.fn.expand("%:~")
-	local overlap, _ = home_path:find(root_dir)
-	if home_path == "" then
-		return root_path:gsub("/Users/" .. user, "~")
-	elseif overlap then
-		return home_path:sub(overlap)
+local function file_type()
+	if vim.opt.filetype:get() then
+		return table.concat({ "[", vim.opt.filetype:get(), "]" })
 	else
-		return home_path
+		return ""
 	end
 end
 
@@ -53,25 +71,32 @@ vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "FocusGained" }, {
 	callback = function()
 		vim.b.branch_name = branch_name()
 		vim.b.file_name = file_name()
+		vim.b.file_type = file_type()
 	end,
 })
 
 function Status_Line()
-	return table.concat({
-		" ",
+	local left = table.concat({
 		vim.b.branch_name,
 		vim.b.file_name,
 		" ",
-		"%h",
-		"%m",
-		"%=",
+		modified_flag(),
+	})
+
+	local right = table.concat({
 		" ",
 		diagnostics(),
 		" ",
-		"%y",
+		vim.b.file_type,
 		" ",
 		progress(),
 	})
+
+	local length = left:len() + right:len()
+	local gap = vim.fn.winwidth(0) - length
+	if diagnostics() ~= "" then gap = gap + 2 end
+
+	return table.concat({ left, string.rep(" ", gap), right })
 end
 
 vim.opt.statusline = "%{%v:lua.Status_Line()%}"
