@@ -89,6 +89,7 @@ function Status_Line()
 	local length = left:len() + right:len()
 	local gap = vim.fn.winwidth(0) - length
 	if diagnostics() ~= "" then gap = gap + 2 end
+	if right:sub(-1) == "%" then gap = gap + 1 end
 
 	return table.concat({ left, string.rep(" ", gap), right })
 end
