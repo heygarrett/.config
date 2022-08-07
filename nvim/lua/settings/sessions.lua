@@ -21,7 +21,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 	end,
 })
 -- Overwrite existing session when exiting
-vim.api.nvim_create_autocmd("VimLeavePre", {
+vim.api.nvim_create_autocmd("VimLeave", {
 	group = sessions,
 	callback = function()
 		if launched_by_git() then return end
