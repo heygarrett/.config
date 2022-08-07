@@ -82,6 +82,7 @@ function Status_Line()
 
 	local right = table.concat({
 		diagnostics(),
+		vim.b.gitsigns_status or "",
 		vim.b.file_type,
 		progress(),
 	}, " ")
