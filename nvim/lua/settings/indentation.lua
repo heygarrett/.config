@@ -15,9 +15,8 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt_local.softtabstop = vim.opt_global.softtabstop:get()
 		vim.opt_local.tabstop = vim.opt_global.tabstop:get()
 		-- Run guess-indent
-		if vim.fn.exists(":GuessIndent") == 2 then
-			vim.api.nvim_command("silent GuessIndent auto_cmd")
-		end
+		local success, _ = pcall(require, "guess-indent")
+		if success then vim.api.nvim_command("silent GuessIndent auto_cmd") end
 		-- Set whitespace characters for indentation with spaces
 		if vim.opt_local.expandtab:get() then
 			-- Switch to leadmultispace in Neovim 0.8
