@@ -36,6 +36,9 @@ vim.api.nvim_create_autocmd("VimLeave", {
 			)
 		end
 		if save and not save:match("^n") then
+			-- Close treesitter-context floating window
+			local success, treesitter_context = pcall(require, "treesitter-context")
+			if success then treesitter_context.disable() end
 			-- Prevent arg list from getting saved in session
 			vim.api.nvim_command("%argd | mksession!")
 		end
