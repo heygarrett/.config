@@ -31,7 +31,7 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
 		if vim.fn.argc() > 0 then
 			-- Ask iff session exists but arg list is not empty
 			vim.ui.input(
-				{ prompt = "Save session? [no]: " },
+				{ prompt = "Save session? [y/N] " },
 				function(input) save = input end
 			)
 		end
