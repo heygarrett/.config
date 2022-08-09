@@ -25,7 +25,7 @@ vim.opt.updatetime = 2000
 local options = vim.api.nvim_create_augroup("options", { clear = true })
 vim.api.nvim_create_autocmd("CursorHold", {
 	group = options,
-	command = "checktime",
+	command = "silent! checktime",
 })
 vim.api.nvim_create_autocmd("FileType", {
 	group = options,
