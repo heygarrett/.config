@@ -1,6 +1,8 @@
+local utils = require("settings.utils")
+
 local function branch_name()
 	local branch = vim.fn.system("git branch --show-current 2> /dev/null")
-	if branch ~= "" then
+	if branch ~= "" and utils.launched_by_user() then
 		return branch:gsub("\n", "") .. " |"
 	else
 		return ""
