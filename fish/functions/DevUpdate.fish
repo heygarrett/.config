@@ -1,9 +1,10 @@
 function DevUpdate
+	pushd $HOME/.config
+	git fetch && git rebase origin/main
 	brew update && brew upgrade --fetch-HEAD
-	and npm -g update
-	and fisher update
-	and pushd $HOME/.config
-	and nvim nvim/plugin/packer.lua \
+	npm --global update
+	fisher update
+	nvim nvim/plugin/packer.lua \
 		"+PackerSnapshotDelete latest" "+PackerSnapshot latest" "+PackerSync"
-	and popd
+	popd
 end
