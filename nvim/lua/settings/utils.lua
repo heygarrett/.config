@@ -12,7 +12,7 @@ vim.api.nvim_create_user_command("Sort", function(t)
 		end
 	end)
 	vim.fn.setline(t.line1, line_list)
-end, { range = true, bang = true })
+end, { range = "%", bang = true })
 
 local M = {}
 
