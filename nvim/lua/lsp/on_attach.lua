@@ -11,6 +11,22 @@ local on_attach = function(client, bufnr)
 
 	-- Use omnicomplete with LSP
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+	vim.api.nvim_create_autocmd("InsertCharPre", {
+		group = vim.api.nvim_create_augroup("on_attach", { clear = true }),
+		callback = function()
+			if
+				vim.opt_local.omnifunc:get() ~= ""
+				and vim.fn.pumvisible() == 0
+				and vim.v.char:match("%w_")
+			then
+				vim.api.nvim_feedkeys(
+					vim.api.nvim_replace_termcodes("<c-x><c-o>", true, false, true),
+					"n",
+					false
+				)
+			end
+		end,
+	})
 
 	-- Diagnostics
 	vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float)
