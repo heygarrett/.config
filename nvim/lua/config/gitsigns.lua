@@ -1,8 +1,11 @@
 return {
 	"lewis6991/gitsigns.nvim",
 	config = function()
+		local success, gitsigns = pcall(require, "gitsigns")
+		if not success then return end
+
 		vim.opt.signcolumn = "yes:1"
-		require("gitsigns").setup({
+		gitsigns.setup({
 			on_attach = function(bufnr)
 				local gs = package.loaded.gitsigns
 				local function map(mode, l, r, opts)

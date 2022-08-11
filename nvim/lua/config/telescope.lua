@@ -8,35 +8,38 @@ return {
 		},
 	},
 	config = function()
-		local telescope = require("telescope.builtin")
-		vim.api.nvim_create_user_command("Commits", telescope.git_commits, {})
-		vim.api.nvim_create_user_command("Grep", telescope.live_grep, {})
-		vim.api.nvim_create_user_command("Help", telescope.help_tags, {})
-		vim.api.nvim_create_user_command("Tele", telescope.resume, {})
+		local success, telescope = pcall(require, "telescope")
+		if not success then return end
+
+		local builtin = require("telescope.builtin")
+		vim.api.nvim_create_user_command("Commits", builtin.git_commits, {})
+		vim.api.nvim_create_user_command("Grep", builtin.live_grep, {})
+		vim.api.nvim_create_user_command("Help", builtin.help_tags, {})
+		vim.api.nvim_create_user_command("Tele", builtin.resume, {})
 		vim.api.nvim_create_user_command(
 			"Buffers",
-			function() telescope.buffers({ sort_lastused = true }) end,
+			function() builtin.buffers({ sort_lastused = true }) end,
 			{}
 		)
 		vim.api.nvim_create_user_command("Find", function()
 			if vim.fn.system("git rev-parse --is-inside-work-tree"):match("true") then
-				telescope.git_files({
+				builtin.git_files({
 					use_git_root = false,
 					show_untracked = true,
 				})
 			else
-				telescope.find_files({ hidden = true })
+				builtin.find_files({ hidden = true })
 			end
 		end, {})
 		-- LSP lists
-		vim.api.nvim_create_user_command("Defs", telescope.lsp_definitions, {})
-		vim.api.nvim_create_user_command("Imps", telescope.lsp_implementations, {})
-		vim.api.nvim_create_user_command("Refs", telescope.lsp_references, {})
+		vim.api.nvim_create_user_command("Defs", builtin.lsp_definitions, {})
+		vim.api.nvim_create_user_command("Imps", builtin.lsp_implementations, {})
+		vim.api.nvim_create_user_command("Refs", builtin.lsp_references, {})
 		vim.api.nvim_create_user_command("Diags", function(t)
 			if t.args == "all" then
-				telescope.diagnostics({ bufnr = nil })
+				builtin.diagnostics({ bufnr = nil })
 			else
-				telescope.diagnostics({ bufnr = 0 })
+				builtin.diagnostics({ bufnr = 0 })
 			end
 		end, { nargs = "?" })
 
@@ -49,7 +52,7 @@ return {
 			vim.api.nvim_command("norm a")
 		end
 
-		require("telescope").setup({
+		telescope.setup({
 			pickers = {
 				git_commits = {
 					mappings = {

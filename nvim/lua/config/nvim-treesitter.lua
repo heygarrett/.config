@@ -2,7 +2,10 @@ return {
 	"nvim-treesitter/nvim-treesitter",
 	run = ":TSUpdate",
 	config = function()
-		require("nvim-treesitter.configs").setup({
+		local success, treesitter = pcall(require, "nvim-treesitter.configs")
+		if not success then return end
+
+		treesitter.setup({
 			ensure_installed = {
 				"bash",
 				"fish",
