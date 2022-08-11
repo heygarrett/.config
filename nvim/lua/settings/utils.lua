@@ -13,9 +13,12 @@ local M = {}
 -- Check nvim's parent process
 M.launched_by_user = function()
 	local parent_process = vim.fn.system(
-		string.format("ps -o ppid= -p %s | xargs ps -o comm= -p", vim.fn.getpid())
+		string.format(
+			"ps -o ppid= -p %s | xargs ps -o comm= -p | tr -d '\n'",
+			vim.fn.getpid()
+		)
 	)
-	return parent_process:match("-fish") and true or false
+	return parent_process == "-fish"
 end
 
 return M
