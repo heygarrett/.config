@@ -1,5 +1,6 @@
 return {
 	"catppuccin/nvim",
+	as = "catppuccin",
 	config = function()
 		local success, _ = pcall(require, "catppuccin")
 		if not success then return end
