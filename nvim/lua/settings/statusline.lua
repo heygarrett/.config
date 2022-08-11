@@ -76,6 +76,7 @@ vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "FocusGained" }, {
 })
 
 function Status_Line()
+	local diagnostics = get_diagnostics()
 	local left = table.concat({
 		vim.b.branch_name,
 		vim.b.file_name,
@@ -83,7 +84,7 @@ function Status_Line()
 	}, " ")
 
 	local right = table.concat({
-		get_diagnostics(),
+		diagnostics,
 		vim.b.gitsigns_status or "",
 		vim.b.file_type,
 		get_progress(),
@@ -91,7 +92,7 @@ function Status_Line()
 
 	local length = left:len() + right:len()
 	local gap = vim.fn.winwidth(0) - length
-	if get_diagnostics() ~= "" then gap = gap + 2 end
+	if diagnostics ~= "" then gap = gap + 2 end
 	if right:sub(-1) == "%" then gap = gap + 1 end
 
 	return table.concat({ left, string.rep(" ", gap), right })
