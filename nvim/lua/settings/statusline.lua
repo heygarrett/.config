@@ -1,6 +1,6 @@
 local utils = require("settings.utils")
 
-local function branch_name()
+local function get_branch_name()
 	local branch = vim.fn.system("git branch --show-current 2> /dev/null")
 	if branch ~= "" and utils.launched_by_user() then
 		return branch:gsub("\n", "") .. " |"
@@ -9,7 +9,7 @@ local function branch_name()
 	end
 end
 
-local function file_name()
+local function get_file_name()
 	local user = vim.fn.system("echo $USER"):gsub("\n", "")
 	local root_path = vim.fn.getcwd()
 	local root_dir = root_path:match("[^/]+$")
@@ -24,7 +24,7 @@ local function file_name()
 	end
 end
 
-local function modified_flag()
+local function get_modified_flag()
 	if not vim.opt.modifiable:get() then
 		return "[-]"
 	elseif vim.opt.modified:get() then
@@ -34,7 +34,7 @@ local function modified_flag()
 	end
 end
 
-local function diagnostics()
+local function get_diagnostics()
 	if #vim.diagnostic.get(0) == 0 or vim.fn.mode():match("^i") then
 		return ""
 	elseif #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR }) > 0 then
@@ -48,13 +48,13 @@ local function diagnostics()
 	end
 end
 
-local function file_type()
+local function get_file_type()
 	local ft = vim.opt.filetype:get()
 	if ft ~= "" then ft = table.concat({ "[", ft, "]" }) end
 	return ft
 end
 
-local function progress()
+local function get_progress()
 	if vim.fn.line(".") == 1 then
 		return "top"
 	elseif vim.fn.line(".") == vim.fn.line("$") then
@@ -69,9 +69,9 @@ end
 vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "FocusGained" }, {
 	group = vim.api.nvim_create_augroup("statusline", { clear = true }),
 	callback = function()
-		vim.b.branch_name = branch_name()
-		vim.b.file_name = file_name()
-		vim.b.file_type = file_type()
+		vim.b.branch_name = get_branch_name()
+		vim.b.file_name = get_file_name()
+		vim.b.file_type = get_file_type()
 	end,
 })
 
@@ -79,19 +79,19 @@ function Status_Line()
 	local left = table.concat({
 		vim.b.branch_name,
 		vim.b.file_name,
-		modified_flag(),
+		get_modified_flag(),
 	}, " ")
 
 	local right = table.concat({
-		diagnostics(),
+		get_diagnostics(),
 		vim.b.gitsigns_status or "",
 		vim.b.file_type,
-		progress(),
+		get_progress(),
 	}, " ")
 
 	local length = left:len() + right:len()
 	local gap = vim.fn.winwidth(0) - length
-	if diagnostics() ~= "" then gap = gap + 2 end
+	if get_diagnostics() ~= "" then gap = gap + 2 end
 	if right:sub(-1) == "%" then gap = gap + 1 end
 
 	return table.concat({ left, string.rep(" ", gap), right })
