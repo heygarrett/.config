@@ -4,9 +4,15 @@ vim.api.nvim_create_user_command("Sort", function(t)
 	for n = t.line1, t.line2 do
 		line_list[#line_list + 1] = vim.fn.getline(n)
 	end
-	table.sort(line_list, function(a, b) return a:len() < b:len() end)
+	table.sort(line_list, function(a, b)
+		if t.bang then
+			return a:len() > b:len()
+		else
+			return a:len() < b:len()
+		end
+	end)
 	vim.fn.setline(t.line1, line_list)
-end, { range = true })
+end, { range = true, bang = true })
 
 local M = {}
 
