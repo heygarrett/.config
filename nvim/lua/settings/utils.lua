@@ -6,9 +6,9 @@ vim.api.nvim_create_user_command("Sort", function(t)
 	end
 	table.sort(line_list, function(a, b)
 		if t.bang then
-			return a:len() > b:len()
+			return vim.fn.strdisplaywidth(a) > vim.fn.strdisplaywidth(b)
 		else
-			return a:len() < b:len()
+			return vim.fn.strdisplaywidth(a) < vim.fn.strdisplaywidth(b)
 		end
 	end)
 	vim.fn.setline(t.line1, line_list)
