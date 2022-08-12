@@ -14,11 +14,17 @@ local on_attach = function(client, bufnr)
 		vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 		vim.keymap.set("i", "<c-space>", "<c-x><c-o>")
 	end
-	vim.api.nvim_create_autocmd("InsertCharPre", {
+	vim.api.nvim_create_autocmd("TextChangedI", {
 		group = vim.api.nvim_create_augroup("on_attach", { clear = true }),
 		callback = function()
 			if vim.opt_local.omnifunc:get() == "" then return end
-			if vim.fn.pumvisible() == 0 and vim.v.char:match("[%w_.]") then
+			if
+				vim.fn.pumvisible() == 0
+				and vim.fn
+					.getline(".")
+					:sub(vim.fn.col(".") - 1, vim.fn.col(".") - 1)
+					:match("[%w_.]")
+			then
 				vim.api.nvim_feedkeys(
 					vim.api.nvim_replace_termcodes("<c-x><c-o>", true, false, true),
 					"n",
