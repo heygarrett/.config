@@ -12,6 +12,7 @@ local on_attach = function(client, bufnr)
 	-- Use omnicomplete with LSP
 	if client.supports_method("textDocument/completion") then
 		vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+		vim.keymap.set("i", "<c-space>", "<c-x><c-o>")
 	end
 	vim.api.nvim_create_autocmd("InsertCharPre", {
 		group = vim.api.nvim_create_augroup("on_attach", { clear = true }),
