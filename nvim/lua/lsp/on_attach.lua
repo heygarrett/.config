@@ -19,8 +19,7 @@ local on_attach = function(client, bufnr)
 		callback = function()
 			if vim.opt_local.omnifunc:get() == "" then return end
 			if
-				vim.fn.pumvisible() == 0
-				and vim.fn
+				vim.fn
 					.getline(".")
 					:sub(vim.fn.col(".") - 1, vim.fn.col(".") - 1)
 					:match("[%w_.]")
