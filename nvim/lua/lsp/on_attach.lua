@@ -1,5 +1,3 @@
-local utils = require("settings.utils")
-
 local on_attach = function(client, bufnr)
 	-- Disable formatting for servers conflicting with null-ls
 	local disable_formatting = {
@@ -12,11 +10,12 @@ local on_attach = function(client, bufnr)
 	end
 
 	-- Use omnicomplete with LSP
-	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+	if client.supports_method("textDocument/completion") then
+		vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+	end
 	vim.api.nvim_create_autocmd("InsertCharPre", {
 		group = vim.api.nvim_create_augroup("on_attach", { clear = true }),
 		callback = function()
-			if not utils.launched_by_user() then return end
 			if vim.opt_local.omnifunc:get() == "" then return end
 			if vim.fn.pumvisible() == 0 and vim.v.char:match("[%w_.]") then
 				vim.api.nvim_feedkeys(
