@@ -18,7 +18,7 @@ local on_attach = function(client, bufnr)
 		callback = function()
 			if not utils.launched_by_user() then return end
 			if vim.opt_local.omnifunc:get() == "" then return end
-			if vim.fn.pumvisible() == 0 and vim.v.char:match("[%w_]") then
+			if vim.fn.pumvisible() == 0 and vim.v.char:match("[%w_.]") then
 				vim.api.nvim_feedkeys(
 					vim.api.nvim_replace_termcodes("<c-x><c-o>", true, false, true),
 					"n",
