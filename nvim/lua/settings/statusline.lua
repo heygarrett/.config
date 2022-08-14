@@ -3,9 +3,9 @@ local utils = require("settings.utils")
 local function get_branch_name()
 	local branch = vim.fn.system("git branch --show-current 2> /dev/null")
 	if branch ~= "" and utils.launched_by_user() then
-		return branch:gsub("\n", "") .. " |"
+		return branch:gsub("\n", "")
 	else
-		return ""
+		return nil
 	end
 end
 
@@ -75,28 +75,65 @@ vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "FocusGained" }, {
 	end,
 })
 
+local function generate_left(branch, file)
+	branch = branch or vim.b.branch_name
+	file = file or vim.b.file_name
+
+	local left = {}
+	if branch then table.insert(left, branch) end
+	table.insert(left, file)
+	left = { table.concat(left, " | ") }
+	table.insert(left, get_modified_flag())
+	return table.concat(left, " ")
+end
+
+local function truncate(overflow)
+	local min_width = 15
+	local new_branch = vim.b.branch_name
+	local new_file = vim.b.file_name
+
+	if vim.b.branch_name:len() > min_width then
+		if vim.b.branch_name:len() - overflow >= min_width then
+			new_branch = string.sub(vim.b.branch_name, 1, 1 - overflow)
+			overflow = 0
+		else
+			new_branch = string.sub(vim.b.branch_name, 1, min_width)
+			overflow = overflow - string.sub(vim.b.branch_name, min_width):len()
+		end
+	end
+
+	if overflow > 0 and vim.b.file_name:len() > min_width then
+		if vim.b.file_name:len() - overflow >= min_width then
+			new_file = string.sub(vim.b.file_name, overflow)
+		else
+			new_file = string.sub(vim.b.file_name, min_width)
+		end
+	end
+
+	return generate_left(new_branch, new_file)
+end
+
 function Status_Line()
+	local left_string = generate_left()
+
+	local right_table = {}
 	local diagnostics = get_diagnostics()
-	local left = table.concat({
-		vim.b.branch_name,
-		vim.b.file_name,
-		get_modified_flag(),
-	}, " ")
+	table.insert(right_table, diagnostics)
+	if vim.b.gitsigns_status ~= "" then
+		table.insert(right_table, vim.b.gitsigns_status)
+	end
+	table.insert(right_table, vim.b.file_type)
+	table.insert(right_table, get_progress())
+	local right_string = table.concat(right_table, " ")
 
-	local right = table.concat({
-		diagnostics,
-		vim.b.gitsigns_status or "",
-		vim.b.file_type,
-		get_progress(),
-	}, " ")
+	local length = left_string:len() + right_string:len()
+	-- if diagnostics ~= "" then length = length + 2 end
+	if right_string:sub(-1) == "%" then length = length - 1 end
+	local overflow = length - vim.fn.winwidth(0)
+	if overflow > 0 then left_string = truncate(overflow) end
 
-	local length = left:len() + right:len()
-	local gap = vim.fn.winwidth(0) - length
-	if diagnostics ~= "" then gap = gap + 2 end
-	if right:sub(-1) == "%" then gap = gap + 1 end
-	if gap < 1 then gap = 1 end
-
-	return table.concat({ left, string.rep(" ", gap), right })
+	print(string.format("Length: %s, Width: %s", length, vim.fn.winwidth(0)))
+	return table.concat({ left_string, "%=", right_string })
 end
 
 vim.opt.statusline = "%{%v:lua.Status_Line()%}"
