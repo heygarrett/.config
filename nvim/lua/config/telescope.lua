@@ -12,9 +12,11 @@ return {
 		if not success then return end
 
 		local builtin = require("telescope.builtin")
+		vim.api.nvim_create_user_command("Bcommits", builtin.git_bcommits, {})
 		vim.api.nvim_create_user_command("Commits", builtin.git_commits, {})
 		vim.api.nvim_create_user_command("Grep", builtin.live_grep, {})
 		vim.api.nvim_create_user_command("Help", builtin.help_tags, {})
+		vim.api.nvim_create_user_command("Status", builtin.git_status, {})
 		vim.api.nvim_create_user_command("Tele", builtin.resume, {})
 		vim.api.nvim_create_user_command(
 			"Buffers",
