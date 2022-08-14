@@ -30,13 +30,13 @@ local function get_modified_flag()
 	elseif vim.opt.modified:get() then
 		return "[+]"
 	else
-		return ""
+		return nil
 	end
 end
 
 local function get_diagnostics()
 	if #vim.diagnostic.get(0) == 0 or vim.fn.mode():match("^i") then
-		return ""
+		return nil
 	elseif #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR }) > 0 then
 		return "🔴"
 	elseif #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN }) > 0 then
@@ -83,7 +83,8 @@ local function generate_left(branch, file)
 	if branch then table.insert(left, branch) end
 	table.insert(left, file)
 	left = { table.concat(left, " | ") }
-	table.insert(left, get_modified_flag())
+	local modified_flag = get_modified_flag()
+	if modified_flag then table.insert(left, modified_flag) end
 	return table.concat(left, " ")
 end
 
@@ -92,25 +93,26 @@ local function truncate(overflow)
 	local new_branch = vim.b.branch_name
 	local new_file = vim.b.file_name
 
-	if vim.b.branch_name:len() > min_width then
+	if vim.b.branch_name and vim.b.branch_name:len() > min_width then
 		if vim.b.branch_name:len() - overflow >= min_width then
-			new_branch = string.sub(vim.b.branch_name, 1, 1 - overflow)
+			new_branch = string.sub(vim.b.branch_name, 1, overflow * -1 - 1) .. ">"
 			overflow = 0
 		else
-			new_branch = string.sub(vim.b.branch_name, 1, min_width)
+			new_branch = string.sub(vim.b.branch_name, 1, min_width - 1) .. ">"
 			overflow = overflow - string.sub(vim.b.branch_name, min_width):len()
 		end
 	end
 
 	if overflow > 0 and vim.b.file_name:len() > min_width then
 		if vim.b.file_name:len() - overflow >= min_width then
-			new_file = string.sub(vim.b.file_name, overflow)
+			new_file = "<" .. string.sub(vim.b.file_name, overflow + 2)
 		else
-			new_file = string.sub(vim.b.file_name, min_width)
+			new_file = "<"
+				.. string.sub(vim.b.file_name, vim.b.file_name:len() - min_width + 2)
 		end
 	end
 
-	return generate_left(new_branch, new_file)
+	return new_branch, new_file
 end
 
 function Status_Line()
@@ -118,7 +120,7 @@ function Status_Line()
 
 	local right_table = {}
 	local diagnostics = get_diagnostics()
-	table.insert(right_table, diagnostics)
+	if diagnostics then table.insert(right_table, diagnostics) end
 	if vim.b.gitsigns_status ~= "" then
 		table.insert(right_table, vim.b.gitsigns_status)
 	end
@@ -126,14 +128,16 @@ function Status_Line()
 	table.insert(right_table, get_progress())
 	local right_string = table.concat(right_table, " ")
 
-	local length = left_string:len() + right_string:len()
-	-- if diagnostics ~= "" then length = length + 2 end
+	local length = left_string:len() + right_string:len() + 1
+	if diagnostics then length = length - 1 end
 	if right_string:sub(-1) == "%" then length = length - 1 end
 	local overflow = length - vim.fn.winwidth(0)
-	if overflow > 0 then left_string = truncate(overflow) end
+	if overflow > 0 then
+		local trunc_branch, trunc_file = truncate(overflow)
+		left_string = generate_left(trunc_branch, trunc_file)
+	end
 
-	print(string.format("Length: %s, Width: %s", length, vim.fn.winwidth(0)))
-	return table.concat({ left_string, "%=", right_string })
+	return table.concat({ "%<", left_string, "%=", right_string })
 end
 
 vim.opt.statusline = "%{%v:lua.Status_Line()%}"
