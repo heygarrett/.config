@@ -121,8 +121,8 @@ function Status_Line()
 	local right_table = {}
 	local diagnostics = get_diagnostics()
 	if diagnostics then table.insert(right_table, diagnostics) end
-	if vim.b.gitsigns_status ~= "" then
-		table.insert(right_table, vim.b.gitsigns_status)
+	if vim.b.gitsigns_status and vim.b.gitsigns_status ~= "" then
+		table.insert(right_table, string.format("[%s]", vim.b.gitsigns_status))
 	end
 	table.insert(right_table, vim.b.file_type)
 	table.insert(right_table, get_progress())
