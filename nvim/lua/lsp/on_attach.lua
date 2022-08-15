@@ -32,10 +32,21 @@ local on_attach = function(client, bufnr)
 					:sub(vim.fn.col(".") - 1, vim.fn.col(".") - 1)
 					:match("[%w_.]")
 			then
-				vim.api.nvim_feedkeys(
-					vim.api.nvim_replace_termcodes("<c-x><c-o>", true, false, true),
-					"n",
-					false
+				if vim.g.pum_timer then vim.fn.timer_stop(vim.g.pum_timer) end
+				vim.g.pum_timer = vim.fn.timer_start(
+					400,
+					function()
+						vim.api.nvim_feedkeys(
+							vim.api.nvim_replace_termcodes(
+								"<c-x><c-o>",
+								true,
+								false,
+								true
+							),
+							"n",
+							false
+						)
+					end
 				)
 			end
 		end,
