@@ -13,6 +13,14 @@ local on_attach = function(client, bufnr)
 	if client.supports_method("textDocument/completion") then
 		vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 		vim.keymap.set("i", "<c-space>", "<c-x><c-o>")
+		-- https://github.com/vim/vim/issues/1653
+		vim.keymap.set("i", "<cr>", function()
+			if vim.fn.pumvisible() == 1 and vim.fn.complete_info()["selected"] == -1 then
+				return "<cr><cr>"
+			else
+				return "<cr>"
+			end
+		end, { expr = true })
 	end
 	vim.api.nvim_create_autocmd("TextChangedI", {
 		group = vim.api.nvim_create_augroup("on_attach", { clear = true }),
