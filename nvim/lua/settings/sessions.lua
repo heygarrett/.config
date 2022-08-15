@@ -1,5 +1,7 @@
 local utils = require("settings.utils")
 
+vim.opt.sessionoptions:remove("winsize")
+
 local sessions = vim.api.nvim_create_augroup("sessions", { clear = true })
 -- Load or create session on launch
 vim.api.nvim_create_autocmd("VimEnter", {
@@ -16,7 +18,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 	end,
 })
 -- Overwrite existing session when exiting
-vim.api.nvim_create_autocmd("VimLeave", {
+vim.api.nvim_create_autocmd("VimLeavePre", {
 	group = sessions,
 	callback = function()
 		if not utils.launched_by_user() then return end
