@@ -26,13 +26,13 @@ local on_attach = function(client, bufnr)
 		group = vim.api.nvim_create_augroup("on_attach", { clear = true }),
 		callback = function()
 			if vim.opt_local.omnifunc:get() == "" then return end
+			if vim.g.pum_timer then vim.fn.timer_stop(vim.g.pum_timer) end
 			if
 				vim.fn
 					.getline(".")
 					:sub(vim.fn.col(".") - 1, vim.fn.col(".") - 1)
 					:match("[%w_.]")
 			then
-				if vim.g.pum_timer then vim.fn.timer_stop(vim.g.pum_timer) end
 				vim.g.pum_timer = vim.fn.timer_start(
 					400,
 					function()
