@@ -95,21 +95,22 @@ local function truncate(overflow)
 
 	if vim.b.branch_name and vim.b.branch_name:len() > min_width then
 		if vim.b.branch_name:len() - overflow >= min_width then
-			new_branch = string.sub(vim.b.branch_name, 1, overflow * -1 - 1) .. ">"
+			new_branch = vim.b.branch_name:sub(1, (overflow + 1) * -1)
 			overflow = 0
 		else
-			new_branch = string.sub(vim.b.branch_name, 1, min_width - 1) .. ">"
-			overflow = overflow - string.sub(vim.b.branch_name, min_width):len()
+			new_branch = vim.b.branch_name:sub(1, min_width)
+			overflow = overflow - vim.b.branch_name:sub(min_width + 1):len()
 		end
+		new_branch = new_branch:gsub(".$", ">")
 	end
 
 	if overflow > 0 and vim.b.file_name:len() > min_width then
 		if vim.b.file_name:len() - overflow >= min_width then
-			new_file = "<" .. string.sub(vim.b.file_name, overflow + 2)
+			new_file = vim.b.file_name:sub(overflow + 1)
 		else
-			new_file = "<"
-				.. string.sub(vim.b.file_name, vim.b.file_name:len() - min_width + 2)
+			new_file = vim.b.file_name:sub(vim.b.file_name:len() - min_width + 1)
 		end
+		new_file = new_file:gsub("^.", "<")
 	end
 
 	return new_branch, new_file
@@ -132,12 +133,14 @@ function Status_Line()
 	if diagnostics then length = length - 1 end
 	if right_string:sub(-1) == "%" then length = length - 1 end
 	local overflow = length - vim.fn.winwidth(0)
+	local separator = "%="
 	if overflow > 0 then
+		separator = " "
 		local trunc_branch, trunc_file = truncate(overflow)
 		left_string = generate_left(trunc_branch, trunc_file)
 	end
 
-	return table.concat({ "%<", left_string, "%=", right_string })
+	return table.concat({ "%<", left_string, separator, right_string })
 end
 
 vim.opt.statusline = "%{%v:lua.Status_Line()%}"
