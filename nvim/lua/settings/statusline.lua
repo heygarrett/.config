@@ -130,7 +130,7 @@ function Status_Line()
 	local right_string = table.concat(right_table, " ")
 
 	local length = left_string:len() + right_string:len() + 1
-	if diagnostics then length = length - 1 end
+	if diagnostics then length = length - 2 end
 	if right_string:sub(-1) == "%" then length = length - 1 end
 	local overflow = length - vim.fn.winwidth(0)
 	local separator = "%="
