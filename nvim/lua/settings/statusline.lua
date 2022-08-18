@@ -65,13 +65,13 @@ end
 
 local function get_progress()
 	if vim.fn.line(".") == 1 then
-		return "top"
+		return "[top]"
 	elseif vim.fn.line(".") == vim.fn.line("$") then
-		return "bot"
+		return "[bot]"
 	else
 		local p = vim.fn.line(".") / vim.fn.line("$") * 100
 		p = p % 1 >= 0.5 and math.ceil(p) or math.floor(p)
-		return string.format("%02d", p) .. "%%"
+		return ("[%02d%s]"):format(p, "%%")
 	end
 end
 
