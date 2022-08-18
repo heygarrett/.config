@@ -34,6 +34,15 @@ local function get_modified_flag()
 	end
 end
 
+local function get_search_count()
+	if vim.v.hlsearch == 1 and vim.fn.mode():match("n") then
+		local search_count = vim.fn.searchcount({ maxcount = 0 })
+		return ("[%d/%d]"):format(search_count["current"], search_count["total"])
+	else
+		return nil
+	end
+end
+
 local function get_diagnostics()
 	if #vim.diagnostic.get(0) == 0 or vim.fn.mode():match("^i") then
 		return nil
@@ -120,6 +129,8 @@ function Status_Line()
 	local left_string = generate_left()
 
 	local right_table = {}
+	local search_count = get_search_count()
+	if search_count then table.insert(right_table, search_count) end
 	local diagnostics = get_diagnostics()
 	if diagnostics then table.insert(right_table, diagnostics) end
 	if vim.b.gitsigns_status and vim.b.gitsigns_status ~= "" then
@@ -131,7 +142,7 @@ function Status_Line()
 
 	local length = left_string:len() + right_string:len() + 1
 	if diagnostics then length = length - 2 end
-	if right_string:sub(-1) == "%" then length = length - 1 end
+	if right_string:find("%%") then length = length - 1 end
 	local overflow = length - vim.fn.winwidth(0)
 	local separator = "%="
 	if overflow > 0 then

@@ -38,7 +38,6 @@ require("packer").startup({
 			require("config.nvim-treesitter"),
 			require("config.nvim-treesitter-context"),
 			require("config.telescope"),
-			require("config.vim-indexed-search"),
 		})
 
 		if packer_bootstrap then require("packer").sync() end
