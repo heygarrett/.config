@@ -164,16 +164,16 @@ function Status_Line()
 	local right_string_length =
 		right_string:gsub("%%#%a+#", ""):gsub("%%%*", ""):gsub("%%%%", "%"):len()
 
-	local length = left_string:len() + right_string_length + 1
+	local length = left_string:len() + right_string_length + 3
 	local overflow = length - vim.fn.winwidth(0)
-	local separator = "%="
+	local divider = "%="
+	if overflow >= 0 then divider = " | " end
 	if overflow > 0 then
-		separator = " "
 		local trunc_branch, trunc_file = truncate(overflow)
 		left_string = generate_left(trunc_branch, trunc_file)
 	end
 
-	return table.concat({ "%<", left_string, separator, right_string })
+	return table.concat({ "%<", left_string, divider, right_string })
 end
 
 vim.opt.statusline = "%{%v:lua.Status_Line()%}"
