@@ -60,25 +60,25 @@ local function get_diagnostics()
 	if severities["ERROR"] > 0 then
 		table.insert(
 			output,
-			("%s%d%s"):format("%#DiagnosticError#", severities["ERROR"], "%*")
+			("%s%d%s"):format("%#DiagnosticVirtualTextError#", severities["ERROR"], "%*")
 		)
 	end
 	if severities["WARN"] > 0 then
 		table.insert(
 			output,
-			("%s%d%s"):format("%#DiagnosticWarn#", severities["WARN"], "%*")
+			("%s%d%s"):format("%#DiagnosticVirtualTextWarn#", severities["WARN"], "%*")
 		)
 	end
 	if severities["HINT"] > 0 then
 		table.insert(
 			output,
-			("%s%d%s"):format("%#DiagnosticHint#", severities["HINT"], "%*")
+			("%s%d%s"):format("%#DiagnosticVirtualTextHint#", severities["HINT"], "%*")
 		)
 	end
 	if severities["INFO"] > 0 then
 		table.insert(
 			output,
-			("%s%d%s"):format("%#DiagnosticInfo#", severities["INFO"], "%*")
+			("%s%d%s"):format("%#DiagnosticVirtualTextInfo#", severities["INFO"], "%*")
 		)
 	end
 
