@@ -87,19 +87,19 @@ end
 
 local function get_file_type()
 	local filetype = vim.opt.filetype:get()
-	if filetype ~= "" then filetype = string.format("[%s]", filetype) end
+	if filetype ~= "" then filetype = string.format("[ %s ]", filetype) end
 	return filetype
 end
 
 local function get_progress()
 	if vim.fn.line(".") == 1 then
-		return "[top]"
+		return "[ top ]"
 	elseif vim.fn.line(".") == vim.fn.line("$") then
-		return "[bot]"
+		return "[ bot ]"
 	else
 		local p = vim.fn.line(".") / vim.fn.line("$") * 100
 		p = p % 1 >= 0.5 and math.ceil(p) or math.floor(p)
-		return ("[%02d%s]"):format(p, "%%")
+		return ("[ %02d%s ]"):format(p, "%%")
 	end
 end
 
@@ -162,11 +162,11 @@ function Status_Line()
 	if search_count then
 		table.insert(right_table, search_count)
 	elseif vim.b.gitsigns_status and vim.b.gitsigns_status ~= "" then
-		table.insert(right_table, string.format("[%s]", vim.b.gitsigns_status))
+		table.insert(right_table, string.format("[ %s ]", vim.b.gitsigns_status))
 	end
 	table.insert(right_table, vim.b.file_type)
 	table.insert(right_table, get_progress())
-	local right_string = table.concat(right_table, " ")
+	local right_string = table.concat(right_table)
 	local right_string_length =
 		right_string:gsub("%%#%a+#", ""):gsub("%%%*", ""):gsub("%%%%", "%"):len()
 
