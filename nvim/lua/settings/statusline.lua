@@ -129,11 +129,11 @@ function Status_Line()
 	local left_string = generate_left()
 
 	local right_table = {}
-	local search_count = get_search_count()
-	if search_count then table.insert(right_table, search_count) end
-	local diagnostics = get_diagnostics()
+	local diagnostics, search_count = get_diagnostics(), get_search_count()
 	if diagnostics then table.insert(right_table, diagnostics) end
-	if vim.b.gitsigns_status and vim.b.gitsigns_status ~= "" then
+	if search_count then
+		table.insert(right_table, search_count)
+	elseif vim.b.gitsigns_status and vim.b.gitsigns_status ~= "" then
 		table.insert(right_table, string.format("[%s]", vim.b.gitsigns_status))
 	end
 	table.insert(right_table, vim.b.file_type)
