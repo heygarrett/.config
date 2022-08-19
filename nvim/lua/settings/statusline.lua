@@ -44,17 +44,45 @@ local function get_search_count()
 end
 
 local function get_diagnostics()
-	if #vim.diagnostic.get(0) == 0 or vim.fn.mode():match("^i") then
-		return nil
-	elseif #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.ERROR }) > 0 then
-		return "🔴"
-	elseif #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.WARN }) > 0 then
-		return "🟡"
-	elseif #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.HINT }) > 0 then
-		return "🔵"
-	elseif #vim.diagnostic.get(0, { severity = vim.diagnostic.severity.INFO }) > 0 then
-		return "⚪"
+	local diagnostics = vim.diagnostic.get(0)
+	if #diagnostics == 0 or vim.fn.mode():match("^i") then return nil end
+
+	local severities = { ERROR = 0, WARN = 0, HINT = 0, INFO = 0 }
+	for _, v in ipairs(diagnostics) do
+		for k, _ in pairs(severities) do
+			if v["severity"] == vim.diagnostic.severity[k] then
+				severities[k] = severities[k] + 1
+			end
+		end
 	end
+
+	local output = {}
+	if severities["ERROR"] > 0 then
+		table.insert(
+			output,
+			("%s%d%s"):format("%#DiagnosticError#", severities["ERROR"], "%*")
+		)
+	end
+	if severities["WARN"] > 0 then
+		table.insert(
+			output,
+			("%s%d%s"):format("%#DiagnosticWarn#", severities["WARN"], "%*")
+		)
+	end
+	if severities["HINT"] > 0 then
+		table.insert(
+			output,
+			("%s%d%s"):format("%#DiagnosticHint#", severities["HINT"], "%*")
+		)
+	end
+	if severities["INFO"] > 0 then
+		table.insert(
+			output,
+			("%s%d%s"):format("%#DiagnosticInfo#", severities["INFO"], "%*")
+		)
+	end
+
+	return ("[%s]"):format(table.concat(output, " "))
 end
 
 local function get_file_type()
@@ -139,10 +167,10 @@ function Status_Line()
 	table.insert(right_table, vim.b.file_type)
 	table.insert(right_table, get_progress())
 	local right_string = table.concat(right_table, " ")
+	local right_string_length =
+		right_string:gsub("%%#%a+#", ""):gsub("%%%*", ""):gsub("%%%%", "%"):len()
 
-	local length = left_string:len() + right_string:len() + 1
-	if diagnostics then length = length - 2 end
-	if right_string:find("%%") then length = length - 1 end
+	local length = left_string:len() + right_string_length + 1
 	local overflow = length - vim.fn.winwidth(0)
 	local separator = "%="
 	if overflow > 0 then
