@@ -82,7 +82,7 @@ local function get_diagnostics()
 		)
 	end
 
-	return ("[%s]"):format(table.concat(output, " "))
+	return ("[ %s ]"):format(table.concat(output, " "))
 end
 
 local function get_file_type()
