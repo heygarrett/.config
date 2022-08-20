@@ -16,7 +16,7 @@ local on_attach = function(client, bufnr)
 		-- https://github.com/vim/vim/issues/1653
 		vim.keymap.set("i", "<cr>", function()
 			if vim.fn.pumvisible() == 1 and vim.fn.complete_info()["selected"] == -1 then
-				return "<cr><cr>"
+				return "<c-e><cr>"
 			else
 				return "<cr>"
 			end
