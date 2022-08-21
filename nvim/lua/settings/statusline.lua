@@ -85,6 +85,15 @@ local function get_diagnostics()
 	return table.concat(output, " ")
 end
 
+local function get_file_type()
+	local file_type = vim.opt.filetype:get()
+	if file_type ~= "" then
+		return file_type
+	else
+		return nil
+	end
+end
+
 local function get_progress()
 	if vim.fn.line(".") == 1 then
 		return "top"
@@ -102,7 +111,7 @@ vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "FocusGained" }, {
 	callback = function()
 		vim.b.branch_name = get_branch_name()
 		vim.b.file_name = get_file_name()
-		vim.b.file_type = vim.opt.filetype:get()
+		vim.b.file_type = get_file_type()
 	end,
 })
 
@@ -158,7 +167,7 @@ function Status_Line()
 	elseif vim.b.gitsigns_status and vim.b.gitsigns_status ~= "" then
 		table.insert(right_table, vim.b.gitsigns_status)
 	end
-	table.insert(right_table, vim.b.file_type)
+	if vim.b.file_type then table.insert(right_table, vim.b.file_type) end
 	table.insert(right_table, get_progress())
 	local right_string = table.concat(right_table, " | ")
 	local right_string_length =
