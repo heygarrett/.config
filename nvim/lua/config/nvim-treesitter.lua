@@ -10,7 +10,6 @@ return {
 				"bash",
 				"fish",
 				"go",
-				"hjson",
 				"json",
 				"jsonc",
 				"lua",
