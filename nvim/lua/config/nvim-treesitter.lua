@@ -9,6 +9,7 @@ return {
 			ensure_installed = {
 				"bash",
 				"fish",
+				"go",
 				"hjson",
 				"json",
 				"jsonc",
