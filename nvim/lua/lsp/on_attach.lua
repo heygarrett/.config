@@ -1,14 +1,4 @@
 local on_attach = function(client, bufnr)
-	-- Disable formatting for servers conflicting with null-ls
-	local disable_formatting = {
-		sumneko_lua = true,
-		jsonls = true,
-		tsserver = true,
-	}
-	if disable_formatting[client.name] then
-		client.resolved_capabilities.document_formatting = false
-	end
-
 	-- Use omnicomplete with LSP
 	if client.supports_method("textDocument/completion") then
 		vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
@@ -22,8 +12,9 @@ local on_attach = function(client, bufnr)
 			end
 		end, { expr = true })
 	end
+	vim.api.nvim_create_augroup("on_attach", { clear = true })
 	vim.api.nvim_create_autocmd("TextChangedI", {
-		group = vim.api.nvim_create_augroup("on_attach", { clear = true }),
+		group = "on_attach",
 		callback = function()
 			if vim.opt_local.omnifunc:get() == "" then return end
 			if vim.g.pum_timer then vim.fn.timer_stop(vim.g.pum_timer) end
@@ -45,6 +36,14 @@ local on_attach = function(client, bufnr)
 		end,
 	})
 
+	-- Format on save
+	if client.supports_method("textDocument/formatting") then
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			group = "on_attach",
+			callback = function() vim.lsp.buf.format() end,
+		})
+	end
+
 	-- Diagnostics
 	vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float)
 	vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist)
@@ -55,7 +54,11 @@ local on_attach = function(client, bufnr)
 	local opts = { buffer = bufnr }
 	vim.api.nvim_create_user_command("Actions", vim.lsp.buf.code_action, {})
 	vim.api.nvim_create_user_command("Def", vim.lsp.buf.definition, {})
-	vim.api.nvim_create_user_command("Format", vim.lsp.buf.formatting, {})
+	vim.api.nvim_create_user_command(
+		"Format",
+		function() vim.lsp.buf.format({ async = true }) end,
+		{}
+	)
 	vim.api.nvim_create_user_command(
 		"Rename",
 		function(t) vim.lsp.buf.rename(t.args) end,

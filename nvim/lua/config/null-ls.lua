@@ -16,16 +16,7 @@ return {
 					command = "editorconfig-checker",
 				}),
 			},
-			on_attach = function(client, bufnr)
-				require("lsp.on_attach")(client, bufnr)
-				if client.supports_method("textDocument/formatting") then
-					vim.api.nvim_create_autocmd("BufWritePre", {
-						group = vim.api.nvim_create_augroup("null-ls", { clear = true }),
-						buffer = bufnr,
-						callback = function() vim.lsp.buf.formatting_sync() end,
-					})
-				end
-			end,
+			on_attach = require("lsp.on_attach"),
 		})
 	end,
 }
