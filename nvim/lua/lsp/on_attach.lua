@@ -70,11 +70,17 @@ local on_attach = function(client, bufnr)
 			async = true,
 		})
 	end, {})
-	vim.api.nvim_create_user_command(
-		"Rename",
-		function(t) vim.lsp.buf.rename(t.args) end,
-		{ nargs = 1 }
-	)
+	vim.api.nvim_create_user_command("Rename", function(t)
+		if t.args ~= "" then
+			vim.lsp.buf.rename(t.args)
+		else
+			vim.api.nvim_feedkeys(
+				("q:aRename %s"):format(vim.fn.expand("<cword>")),
+				"in",
+				true
+			)
+		end
+	end, { nargs = "?" })
 	vim.keymap.set("i", "<c-s>", vim.lsp.buf.signature_help, opts)
 	vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, opts)
 end
