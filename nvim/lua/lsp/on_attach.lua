@@ -26,11 +26,7 @@ local on_attach = function(client, bufnr)
 			then
 				vim.g.pum_timer = vim.fn.timer_start(400, function()
 					if vim.fn.mode():match("^[^i]") then return end
-					vim.api.nvim_feedkeys(
-						vim.api.nvim_replace_termcodes("<c-x><c-o>", true, false, true),
-						"n",
-						false
-					)
+					vim.api.nvim_feedkeys("", "n", true)
 				end)
 			end
 		end,
