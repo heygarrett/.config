@@ -20,10 +20,9 @@ vim.api.nvim_create_autocmd("FileType", {
 		end
 		-- Set whitespace characters for indentation with spaces
 		if vim.opt_local.expandtab:get() then
-			-- Switch to leadmultispace in Neovim 0.8
-			local ms = ":" .. string.rep(" ", vim.opt_local.tabstop:get() - 1)
+			local lms = ":" .. (" "):rep(vim.opt_local.tabstop:get() - 1)
 			vim.opt_local.listchars:remove("lead")
-			vim.opt_local.listchars:append({ multispace = ms })
+			vim.opt_local.listchars:append({ leadmultispace = lms })
 		end
 	end,
 })
