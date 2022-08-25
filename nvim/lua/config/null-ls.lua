@@ -12,9 +12,6 @@ return {
 				null_ls.builtins.diagnostics.fish,
 				null_ls.builtins.formatting.prettierd,
 				null_ls.builtins.formatting.stylua,
-				null_ls.builtins.diagnostics.editorconfig_checker.with({
-					command = "editorconfig-checker",
-				}),
 			},
 			on_attach = require("lsp.on_attach"),
 		})
