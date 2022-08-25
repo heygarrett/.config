@@ -11,7 +11,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 		if vim.fn.argc() > 0 then return end
 		if not utils.launched_by_user() then return end
 		if vim.fn.filereadable("Session.vim") == 1 then
-			vim.api.nvim_command("source Session.vim")
+			vim.api.nvim_command("silent! source Session.vim")
 		else
 			vim.api.nvim_command("mksession")
 		end
