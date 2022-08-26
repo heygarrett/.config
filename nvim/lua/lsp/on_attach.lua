@@ -1,3 +1,5 @@
+vim.api.nvim_create_augroup("on_attach", { clear = true })
+
 local on_attach = function(client, bufnr)
 	-- Use omnicomplete with LSP
 	if client.supports_method("textDocument/completion") then
@@ -11,26 +13,26 @@ local on_attach = function(client, bufnr)
 				return "<cr>"
 			end
 		end, { expr = true })
+		-- Auto-complete
+		vim.api.nvim_create_autocmd("TextChangedI", {
+			group = "on_attach",
+			callback = function()
+				if vim.opt_local.omnifunc:get() == "" then return end
+				if vim.g.pum_timer then vim.fn.timer_stop(vim.g.pum_timer) end
+				if
+					vim.fn
+						.getline(".")
+						:sub(vim.fn.col(".") - 1, vim.fn.col(".") - 1)
+						:match("[%w_.]")
+				then
+					vim.g.pum_timer = vim.fn.timer_start(400, function()
+						if vim.fn.mode():match("^[^i]") then return end
+						vim.api.nvim_feedkeys("", "n", true)
+					end)
+				end
+			end,
+		})
 	end
-	vim.api.nvim_create_augroup("on_attach", { clear = true })
-	vim.api.nvim_create_autocmd("TextChangedI", {
-		group = "on_attach",
-		callback = function()
-			if vim.opt_local.omnifunc:get() == "" then return end
-			if vim.g.pum_timer then vim.fn.timer_stop(vim.g.pum_timer) end
-			if
-				vim.fn
-					.getline(".")
-					:sub(vim.fn.col(".") - 1, vim.fn.col(".") - 1)
-					:match("[%w_.]")
-			then
-				vim.g.pum_timer = vim.fn.timer_start(400, function()
-					if vim.fn.mode():match("^[^i]") then return end
-					vim.api.nvim_feedkeys("", "n", true)
-				end)
-			end
-		end,
-	})
 
 	local disable_format = {
 		jsonls = true,
