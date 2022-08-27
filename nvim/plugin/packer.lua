@@ -1,3 +1,19 @@
+local bootstrap
+local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
+if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
+	bootstrap = vim.fn.system({
+		"git",
+		"clone",
+		"--depth",
+		"1",
+		"https://github.com/wbthomason/packer.nvim",
+		install_path,
+	})
+	vim.api.nvim_command("packadd packer.nvim")
+end
+local packer = require("packer")
+local packer_util = require("packer.util")
+
 vim.api.nvim_create_autocmd("BufWritePost", {
 	group = vim.api.nvim_create_augroup("packer", { clear = true }),
 	pattern = "packer.lua",
@@ -6,24 +22,11 @@ vim.api.nvim_create_autocmd("BufWritePost", {
 			if k:match("^config") then package.loaded[k] = nil end
 		end
 		dofile(t.file)
-		require("packer").compile()
+		packer.compile()
 	end,
 })
 
-local packer_bootstrap
-local install_path = vim.fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if vim.fn.empty(vim.fn.glob(install_path)) > 0 then
-	packer_bootstrap = vim.fn.system({
-		"git",
-		"clone",
-		"--depth",
-		"1",
-		"https://github.com/wbthomason/packer.nvim",
-		install_path,
-	})
-end
-
-require("packer").startup({
+packer.startup({
 	function(use)
 		use({
 			"gpanders/editorconfig.nvim",
@@ -40,12 +43,12 @@ require("packer").startup({
 			require("config.telescope"),
 		})
 
-		if packer_bootstrap then require("packer").sync() end
+		if bootstrap then packer.sync() end
 	end,
 
 	config = {
 		display = {
-			open_fn = require("packer/util").float,
+			open_fn = packer_util.float,
 		},
 	},
 })
