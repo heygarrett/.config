@@ -1,6 +1,6 @@
 return {
 	"nvim-treesitter/nvim-treesitter",
-	run = ":TSUpdate",
+	run = [[if exists(":TSUpdate") | TSUpdate | endif]],
 	config = function()
 		local loaded, treesitter = pcall(require, "nvim-treesitter.configs")
 		if not loaded then return end
