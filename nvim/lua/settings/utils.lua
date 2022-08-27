@@ -5,10 +5,14 @@ vim.api.nvim_create_user_command("Sort", function(t)
 		line_list[#line_list + 1] = vim.fn.getline(n)
 	end
 	table.sort(line_list, function(a, b)
-		if t.bang then
-			return vim.fn.strdisplaywidth(a) > vim.fn.strdisplaywidth(b)
+		local a_len = vim.fn.strdisplaywidth(a)
+		local b_len = vim.fn.strdisplaywidth(b)
+		if a_len == b_len then
+			return a < b
+		elseif t.bang then
+			return a_len > b_len
 		else
-			return vim.fn.strdisplaywidth(a) < vim.fn.strdisplaywidth(b)
+			return a_len < b_len
 		end
 	end)
 	vim.fn.setline(t.line1, line_list)
