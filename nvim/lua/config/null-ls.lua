@@ -2,8 +2,8 @@ return {
 	"jose-elias-alvarez/null-ls.nvim",
 	requires = "nvim-lua/plenary.nvim",
 	config = function()
-		local success, null_ls = pcall(require, "null-ls")
-		if not success then return end
+		local loaded, null_ls = pcall(require, "null-ls")
+		if not loaded then return end
 
 		null_ls.setup({
 			sources = {

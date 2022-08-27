@@ -1,8 +1,8 @@
 return {
 	"numToStr/FTerm.nvim",
 	config = function()
-		local success, FTerm = pcall(require, "FTerm")
-		if not success then return end
+		local loaded, FTerm = pcall(require, "FTerm")
+		if not loaded then return end
 
 		vim.keymap.set({ "n", "t" }, "<leader>t", function()
 			if vim.opt_local.buftype:get() ~= "prompt" then

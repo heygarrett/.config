@@ -8,8 +8,8 @@ return {
 		},
 	},
 	config = function()
-		local success, telescope = pcall(require, "telescope")
-		if not success then return end
+		local loaded, telescope = pcall(require, "telescope")
+		if not loaded then return end
 
 		local builtin = require("telescope.builtin")
 		vim.api.nvim_create_user_command("Bcommits", builtin.git_bcommits, {})

@@ -1,8 +1,8 @@
 return {
 	"neovim/nvim-lspconfig",
 	config = function()
-		local success, lspconfig = pcall(require, "lspconfig")
-		if not success then return end
+		local loaded, lspconfig = pcall(require, "lspconfig")
+		if not loaded then return end
 
 		require("lsp.diagnostics")
 		require("lsp.sumneko_lua")
