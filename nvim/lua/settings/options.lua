@@ -39,7 +39,7 @@ vim.api.nvim_create_autocmd("FileType", {
 			and vim.fn.line("'\"") > 1
 			and vim.fn.line("'\"") <= vim.fn.line("$")
 		then
-			vim.cmd([[execute 'normal! g`"']])
+			vim.api.nvim_command([[execute 'normal! g`"']])
 		end
 	end,
 })
