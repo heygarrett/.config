@@ -34,12 +34,6 @@ local on_attach = function(client, bufnr)
 		})
 	end
 
-	local disable_format = {
-		jsonls = true,
-		sumneko_lua = true,
-		tsserver = true,
-	}
-
 	-- Format on save
 	if client.supports_method("textDocument/formatting") then
 		vim.api.nvim_create_autocmd("BufWritePre", {
@@ -47,7 +41,11 @@ local on_attach = function(client, bufnr)
 			buffer = bufnr,
 			callback = function()
 				vim.lsp.buf.format({
-					filter = function(f_client) return not disable_format[f_client.name] end,
+					filter = function(formatting_client)
+						return
+							#vim.lsp.get_active_clients({ bufnr = bufnr }) == 1
+								or formatting_client.name == "null-ls"
+					end,
 				})
 			end,
 		})
@@ -65,8 +63,12 @@ local on_attach = function(client, bufnr)
 	vim.api.nvim_create_user_command("Def", vim.lsp.buf.definition, {})
 	vim.api.nvim_create_user_command("Format", function()
 		vim.lsp.buf.format({
-			filter = function(f_client) return not disable_format[f_client.name] end,
 			async = true,
+			filter = function(formatting_client)
+				return
+					#vim.lsp.get_active_clients({ bufnr = bufnr }) == 1
+						or formatting_client.name == "null-ls"
+			end,
 		})
 	end, {})
 	vim.api.nvim_create_user_command("Rename", function(t)
