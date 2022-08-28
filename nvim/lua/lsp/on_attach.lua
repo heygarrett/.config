@@ -44,6 +44,7 @@ local on_attach = function(client, bufnr)
 	if client.supports_method("textDocument/formatting") then
 		vim.api.nvim_create_autocmd("BufWritePre", {
 			group = "on_attach",
+			buffer = bufnr,
 			callback = function()
 				vim.lsp.buf.format({
 					filter = function(f_client) return not disable_format[f_client.name] end,
