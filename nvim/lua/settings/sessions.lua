@@ -32,7 +32,7 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
 				function(input) save = input end
 			)
 		end
-		if save and not save:match("^n") then
+		if save and not save:match("^[nN]$") then
 			-- Close treesitter-context floating window
 			local success, treesitter_context = pcall(require, "treesitter-context")
 			if success then treesitter_context.disable() end
