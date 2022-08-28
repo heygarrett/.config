@@ -22,13 +22,13 @@ vim.opt.splitright = true
 vim.opt.termguicolors = true
 vim.opt.updatetime = 2000
 
-local options = vim.api.nvim_create_augroup("options", { clear = true })
+vim.api.nvim_create_augroup("options", { clear = true })
 vim.api.nvim_create_autocmd("CursorHold", {
-	group = options,
+	group = "options",
 	command = "silent! checktime",
 })
 vim.api.nvim_create_autocmd("FileType", {
-	group = options,
+	group = "options",
 	callback = function()
 		-- Disable automatic comments
 		vim.opt.formatoptions:remove({ "r", "o" })
