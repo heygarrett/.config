@@ -33,6 +33,7 @@ brew "ripgrep"
 brew "rust-analyzer"
 brew "starship"
 brew "tealdeer"
+brew "yaml-language-server"
 brew "yarn"
 brew "universal-ctags/universal-ctags/universal-ctags", args: ["HEAD"]
 cask "1password-cli"

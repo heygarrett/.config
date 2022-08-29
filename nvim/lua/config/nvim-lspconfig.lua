@@ -15,6 +15,7 @@ return {
 			"sourcekit",
 			"tsserver",
 			"vimls",
+			"yamlls",
 		}
 
 		local on_attach = require("lsp.on_attach")

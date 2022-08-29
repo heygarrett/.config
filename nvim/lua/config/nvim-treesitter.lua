@@ -21,6 +21,7 @@ return {
 				"toml",
 				"typescript",
 				"vim",
+				"yaml",
 			},
 			auto_install = true,
 			highlight = {
