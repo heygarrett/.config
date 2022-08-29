@@ -16,9 +16,10 @@ local on_attach = function(client, bufnr)
 	vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist)
 	vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
 	vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
-
 	-- LSP settings
 	local opts = { buffer = bufnr }
+	vim.keymap.set("i", "<c-s>", vim.lsp.buf.signature_help, opts)
+	vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, opts)
 	vim.api.nvim_create_user_command("Actions", vim.lsp.buf.code_action, {})
 	vim.api.nvim_create_user_command("Def", vim.lsp.buf.definition, {})
 	vim.api.nvim_create_user_command("Rename", function(t)
@@ -32,8 +33,6 @@ local on_attach = function(client, bufnr)
 			)
 		end
 	end, { nargs = "?" })
-	vim.keymap.set("i", "<c-s>", vim.lsp.buf.signature_help, opts)
-	vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, opts)
 end
 
 return on_attach
