@@ -8,6 +8,7 @@ return {
 		treesitter.setup({
 			ensure_installed = {
 				"bash",
+				"dockerfile",
 				"fish",
 				"go",
 				"json",

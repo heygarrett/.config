@@ -9,6 +9,7 @@ return {
 
 		local servers = {
 			"bashls",
+			"dockerls",
 			"jsonls",
 			"pyright",
 			"rust_analyzer",
