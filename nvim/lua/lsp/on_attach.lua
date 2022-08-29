@@ -8,19 +8,7 @@ local on_attach = function(client, bufnr)
 
 	-- Format on save
 	if client.supports_method("textDocument/formatting") then
-		vim.api.nvim_create_autocmd("BufWritePre", {
-			group = "on_attach",
-			buffer = bufnr,
-			callback = function()
-				vim.lsp.buf.format({
-					filter = function(formatting_client)
-						return
-							#vim.lsp.get_active_clients({ bufnr = bufnr }) == 1
-								or formatting_client.name == "null-ls"
-					end,
-				})
-			end,
-		})
+		require("lsp.formatting").setup(bufnr)
 	end
 
 	-- Diagnostics
@@ -33,16 +21,6 @@ local on_attach = function(client, bufnr)
 	local opts = { buffer = bufnr }
 	vim.api.nvim_create_user_command("Actions", vim.lsp.buf.code_action, {})
 	vim.api.nvim_create_user_command("Def", vim.lsp.buf.definition, {})
-	vim.api.nvim_create_user_command("Format", function()
-		vim.lsp.buf.format({
-			async = true,
-			filter = function(formatting_client)
-				return
-					#vim.lsp.get_active_clients({ bufnr = bufnr }) == 1
-						or formatting_client.name == "null-ls"
-			end,
-		})
-	end, {})
 	vim.api.nvim_create_user_command("Rename", function(t)
 		if t.args ~= "" then
 			vim.lsp.buf.rename(t.args)
