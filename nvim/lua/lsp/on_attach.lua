@@ -1,4 +1,5 @@
 vim.api.nvim_create_augroup("on_attach", { clear = true })
+require("lsp.diagnostics")
 
 local on_attach = function(client, bufnr)
 	-- Use omnicomplete with LSP
@@ -11,11 +12,6 @@ local on_attach = function(client, bufnr)
 		require("lsp.formatting").setup(bufnr)
 	end
 
-	-- Diagnostics
-	vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float)
-	vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist)
-	vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
-	vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
 	-- LSP settings
 	local opts = { buffer = bufnr }
 	vim.keymap.set("i", "<c-s>", vim.lsp.buf.signature_help, opts)

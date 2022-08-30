@@ -4,8 +4,6 @@ return {
 		local loaded, lspconfig = pcall(require, "lspconfig")
 		if not loaded then return end
 
-		require("lsp.diagnostics")
-
 		local servers = {
 			"bashls",
 			"dockerls",
