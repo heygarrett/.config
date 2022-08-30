@@ -6,7 +6,7 @@ end
 
 M.setup = function(bufnr)
 	-- User command
-	vim.api.nvim_create_user_command("Format", function()
+	vim.api.nvim_buf_create_user_command(bufnr, "Format", function()
 		vim.lsp.buf.format({
 			async = true,
 			filter = function(client) return formatting_conditions(client, bufnr) end,
