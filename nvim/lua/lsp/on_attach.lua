@@ -1,4 +1,3 @@
-vim.api.nvim_create_augroup("on_attach", { clear = true })
 require("lsp.diagnostics")
 
 local on_attach = function(client, bufnr)

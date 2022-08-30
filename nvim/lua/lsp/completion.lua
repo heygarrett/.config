@@ -13,7 +13,7 @@ M.setup = function(bufnr)
 	end, { expr = true })
 	-- Auto-complete
 	vim.api.nvim_create_autocmd("TextChangedI", {
-		group = "on_attach",
+		group = vim.api.nvim_create_augroup("completion", { clear = true }),
 		buffer = bufnr,
 		callback = function()
 			if vim.opt_local.omnifunc:get() == "" then return end
