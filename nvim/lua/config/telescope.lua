@@ -56,12 +56,11 @@ return {
 
 		telescope.setup({
 			pickers = {
+				git_bcommits = {
+					mappings = { i = { ["<c-r>r"] = interactive_rebase } },
+				},
 				git_commits = {
-					mappings = {
-						i = {
-							["<c-r>r"] = interactive_rebase,
-						},
-					},
+					mappings = { i = { ["<c-r>r"] = interactive_rebase } },
 				},
 			},
 		})
