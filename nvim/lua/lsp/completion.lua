@@ -14,7 +14,6 @@ M.setup = function(bufnr)
 	-- Auto-complete
 	vim.api.nvim_create_autocmd("TextChangedI", {
 		group = vim.api.nvim_create_augroup("completion", { clear = true }),
-		buffer = bufnr,
 		callback = function()
 			if vim.opt_local.omnifunc:get() == "" then return end
 			if vim.g.pum_timer then vim.fn.timer_stop(vim.g.pum_timer) end
