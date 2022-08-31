@@ -1,7 +1,7 @@
 [user]
 	name = Garrett Oreilly
 	email = hey@heygarrett.com
-	signingkey = 532D9ADF4303874E
+	signingKey = /Users/garrett/.ssh/id_ed25519.pub
 [commit]
 	gpgsign = true
 [core]
@@ -10,6 +10,7 @@
 	pager = less -x1,5
 [gpg]
 	program = /opt/homebrew/bin/gpg
+	format = ssh
 [fetch]
 	prune = true
 [init]
@@ -23,3 +24,7 @@
 	rebase = true
 [rebase]
 	autoStash = true
+[tag]
+	gpgsign = true
+[gpg "ssh"]
+	allowedSignersFile = /Users/garrett/.config/git/allowed_signers
