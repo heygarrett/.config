@@ -1,7 +1,7 @@
 [user]
 	name = Garrett Oreilly
 	email = hey@heygarrett.com
-	signingKey = /Users/garrett/.ssh/id_ed25519.pub
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBygFvCSAToUZZeOru46pxOc2XW44w351Ds+SzbtaEg2
 [commit]
 	gpgsign = true
 [core]
@@ -28,3 +28,4 @@
 	gpgsign = true
 [gpg "ssh"]
 	allowedSignersFile = /Users/garrett/.config/git/allowed_signers
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
