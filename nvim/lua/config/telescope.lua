@@ -45,22 +45,40 @@ return {
 			end
 		end, { nargs = "?" })
 
+		local actions = require("telescope.actions")
+		local action_state = require("telescope.actions.state")
+
 		local interactive_rebase = function(prompt_bufnr)
-			local actions = require("telescope.actions")
-			local action_state = require("telescope.actions.state")
 			local commit = action_state.get_selected_entry().value
 			actions.close(prompt_bufnr)
 			vim.api.nvim_command("tabnew | terminal git rebase --interactive " .. commit)
 			vim.api.nvim_command("norm a")
 		end
 
+		local copy_commit = function(prompt_bufnr)
+			local commit = action_state.get_selected_entry().value
+			actions.close(prompt_bufnr)
+			vim.fn.setreg("+", commit)
+			vim.notify(("Commit %s copied to clipboard!"):format(commit))
+		end
+
 		telescope.setup({
 			pickers = {
 				git_bcommits = {
-					mappings = { i = { ["<c-r>r"] = interactive_rebase } },
+					mappings = {
+						i = {
+							["<c-r>r"] = interactive_rebase,
+							["<c-r>y"] = copy_commit,
+						},
+					},
 				},
 				git_commits = {
-					mappings = { i = { ["<c-r>r"] = interactive_rebase } },
+					mappings = {
+						i = {
+							["<c-r>r"] = interactive_rebase,
+							["<c-r>y"] = copy_commit,
+						},
+					},
 				},
 			},
 		})
