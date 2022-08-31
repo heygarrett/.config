@@ -59,7 +59,10 @@ return {
 			local commit = action_state.get_selected_entry().value
 			actions.close(prompt_bufnr)
 			vim.fn.setreg("+", commit)
-			vim.notify(("Commit %s copied to clipboard!"):format(commit))
+			vim.fn.timer_start(
+				500,
+				function() vim.notify(("Commit %s copied to clipboard!"):format(commit)) end
+			)
 		end
 
 		telescope.setup({
