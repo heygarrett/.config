@@ -38,7 +38,6 @@ packer.startup({
 			require("config.guess-indent"),
 			require("config.null-ls"),
 			require("config.nvim-lspconfig"),
-			require("config.nvim-notify"),
 			require("config.nvim-treesitter"),
 			require("config.nvim-treesitter-context"),
 			require("config.telescope"),
