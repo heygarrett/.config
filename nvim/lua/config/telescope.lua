@@ -59,9 +59,9 @@ return {
 			local commit = action_state.get_selected_entry().value
 			actions.close(prompt_bufnr)
 			vim.fn.setreg("+", commit)
-			vim.fn.timer_start(
-				500,
-				function() vim.notify(("Commit %s copied to clipboard!"):format(commit)) end
+			vim.defer_fn(
+				function() vim.notify(("Commit %s copied to clipboard!"):format(commit)) end,
+				500
 			)
 		end
 
