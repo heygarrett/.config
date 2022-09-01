@@ -13,8 +13,11 @@ M.setup = function(bufnr)
 		})
 	end, {})
 	-- Format on save
+	vim.api.nvim_create_augroup("formatting", { clear = false })
+	vim.api.nvim_clear_autocmds({ group = "formatting", buffer = bufnr })
 	vim.api.nvim_create_autocmd("BufWritePre", {
-		group = vim.api.nvim_create_augroup("formatting", { clear = true }),
+		group = "formatting",
+		buffer = bufnr,
 		callback = function()
 			vim.lsp.buf.format({
 				filter = function(client) return formatting_conditions(client, bufnr) end,
