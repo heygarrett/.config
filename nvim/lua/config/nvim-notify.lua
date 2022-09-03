@@ -6,7 +6,6 @@ return {
 
 		notify.setup({
 			render = "minimal",
-			timeout = 1000,
 		})
 
 		vim.notify = notify

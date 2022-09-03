@@ -12,12 +12,18 @@ vim.api.nvim_create_autocmd("VimEnter", {
 		if not utils.launched_by_user() then return end
 		if vim.fn.filereadable("Session.vim") == 1 then
 			vim.api.nvim_command("silent! source Session.vim")
-			vim.defer_fn(function() vim.notify("Loaded session!") end, 500)
+			vim.defer_fn(
+				function() vim.notify("Loaded session!", nil, { timeout = 1000 }) end,
+				500
+			)
 		else
 			vim.api.nvim_command("edit .")
 			vim.api.nvim_command("mksession")
 			if vim.fn.filereadable("Session.vim") == 1 then
-				vim.defer_fn(function() vim.notify("Created session!") end, 500)
+				vim.defer_fn(
+					function() vim.notify("Created session!", nil, { timeout = 1000 }) end,
+					500
+				)
 			end
 		end
 	end,
