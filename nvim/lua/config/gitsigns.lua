@@ -7,24 +7,17 @@ return {
 		vim.opt.signcolumn = "yes:1"
 		gitsigns.setup({
 			on_attach = function(bufnr)
-				local gs = package.loaded.gitsigns
-				local function map(mode, l, r, opts)
-					opts = opts or {}
-					opts.buffer = bufnr
-					vim.keymap.set(mode, l, r, opts)
-				end
-
-				map("n", "]h", function()
+				local opts = { buffer = bufnr, expr = true }
+				vim.keymap.set("n", "]h", function()
 					if vim.wo.diff then return "]h" end
-					vim.schedule(function() gs.next_hunk() end)
+					vim.schedule(function() gitsigns.next_hunk() end)
 					return "<Ignore>"
-				end, { expr = true })
-
-				map("n", "[h", function()
+				end, opts)
+				vim.keymap.set("n", "[h", function()
 					if vim.wo.diff then return "[h" end
-					vim.schedule(function() gs.prev_hunk() end)
+					vim.schedule(function() gitsigns.prev_hunk() end)
 					return "<Ignore>"
-				end, { expr = true })
+				end, opts)
 
 				local function hunk_range(stage, selection)
 					if selection.range ~= 0 then
@@ -41,17 +34,17 @@ return {
 					end
 				end
 
-				vim.api.nvim_create_user_command("Diff", gs.preview_hunk, {})
+				vim.api.nvim_create_user_command("Diff", gitsigns.preview_hunk, {})
 				vim.api.nvim_create_user_command(
 					"Blame",
-					function() gs.blame_line({ full = true }) end,
+					function() gitsigns.blame_line({ full = true }) end,
 					{}
 				)
 				vim.api.nvim_create_user_command(
 					"Reset",
 					function(selection)
 						hunk_range(
-							{ hunk = gs.reset_hunk, buffer = gs.reset_buffer },
+							{ hunk = gitsigns.reset_hunk, buffer = gitsigns.reset_buffer },
 							selection
 						)
 					end,
@@ -61,7 +54,7 @@ return {
 					"Stage",
 					function(selection)
 						hunk_range(
-							{ hunk = gs.stage_hunk, buffer = gs.stage_buffer },
+							{ hunk = gitsigns.stage_hunk, buffer = gitsigns.stage_buffer },
 							selection
 						)
 					end,
@@ -69,9 +62,9 @@ return {
 				)
 				vim.api.nvim_create_user_command("Unstage", function(selection)
 					if selection.range == 0 then
-						gs.undo_stage_hunk()
+						gitsigns.undo_stage_hunk()
 					else
-						gs.reset_buffer_index()
+						gitsigns.reset_buffer_index()
 					end
 				end, { range = true })
 			end,
