@@ -18,7 +18,6 @@ M.setup = function(bufnr)
 		group = "completion",
 		buffer = bufnr,
 		callback = function()
-			if vim.opt_local.omnifunc:get() == "" then return end
 			if vim.g.pum_timer then vim.fn.timer_stop(vim.g.pum_timer) end
 			if
 				vim.fn
