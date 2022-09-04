@@ -15,8 +15,13 @@ local on_attach = function(client, bufnr)
 	local opts = { buffer = bufnr }
 	vim.keymap.set("i", "<c-s>", vim.lsp.buf.signature_help, opts)
 	vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, opts)
-	vim.api.nvim_buf_create_user_command(bufnr, "Actions", vim.lsp.buf.code_action, {})
 	vim.api.nvim_buf_create_user_command(bufnr, "Def", vim.lsp.buf.definition, {})
+	vim.api.nvim_buf_create_user_command(
+		bufnr,
+		"Actions",
+		function() vim.lsp.buf.code_action() end,
+		{}
+	)
 	vim.api.nvim_buf_create_user_command(bufnr, "Rename", function(t)
 		if t.args ~= "" then
 			vim.lsp.buf.rename(t.args)
