@@ -6,7 +6,7 @@ local on_attach = function(client, bufnr)
 		require("lsp.completion").setup(bufnr)
 	end
 
-	-- Format on save
+	-- Formatting user command and autocmd
 	if client.supports_method("textDocument/formatting") then
 		require("lsp.formatting").setup(bufnr)
 	end
