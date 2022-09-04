@@ -26,11 +26,9 @@ local on_attach = function(client, bufnr)
 		if t.args ~= "" then
 			vim.lsp.buf.rename(t.args)
 		else
-			vim.api.nvim_feedkeys(
-				("q:aRename %s"):format(vim.fn.expand("<cword>")),
-				"in",
-				true
-			)
+			local esc = vim.api.nvim_replace_termcodes("<esc>", true, true, true)
+			local keys = ("q:aRename %s%s"):format(vim.fn.expand("<cword>"), esc)
+			vim.api.nvim_feedkeys(keys, "in", false)
 		end
 	end, { nargs = "?" })
 end

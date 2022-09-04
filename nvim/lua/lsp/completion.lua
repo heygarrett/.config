@@ -27,7 +27,9 @@ M.setup = function(bufnr)
 			then
 				vim.g.pum_timer = vim.fn.timer_start(400, function()
 					if vim.fn.mode():match("^[^i]") then return end
-					vim.api.nvim_feedkeys("", "n", true)
+					local keys =
+						vim.api.nvim_replace_termcodes("<c-x><c-o>", true, true, true)
+					vim.api.nvim_feedkeys(keys, "n", false)
 				end)
 			end
 		end,
