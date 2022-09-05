@@ -6,7 +6,7 @@ return {
 
 		notify.setup({
 			render = "minimal",
-			minimum_width = 30,
+			minimum_width = 0,
 		})
 
 		vim.notify = notify
