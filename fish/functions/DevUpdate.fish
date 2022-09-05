@@ -7,6 +7,6 @@ function DevUpdate
 	hr
 	pushd $HOME/.config
 	nvim nvim/plugin/packer.lua \
-		"+PackerSnapshotDelete latest" "+PackerSnapshot latest" "+PackerSync"
+		"+PackerSnapshotDelete latest" "+PackerSnapshot latest" "+PackerSync --preview"
 	popd
 end
