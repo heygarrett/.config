@@ -23,10 +23,6 @@ vim.opt.termguicolors = true
 vim.opt.updatetime = 2000
 
 vim.api.nvim_create_augroup("options", { clear = true })
-vim.api.nvim_create_autocmd("CursorHold", {
-	group = "options",
-	command = "silent! checktime",
-})
 vim.api.nvim_create_autocmd("FileType", {
 	group = "options",
 	callback = function()
@@ -48,4 +44,8 @@ vim.api.nvim_create_autocmd("FileType", {
 			vim.api.nvim_command([[execute 'normal! g`"']])
 		end
 	end,
+})
+vim.api.nvim_create_autocmd("CursorHold", {
+	group = "options",
+	command = "silent! checktime",
 })
