@@ -26,12 +26,6 @@ vim.api.nvim_create_augroup("options", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
 	group = "options",
 	callback = function()
-		-- Enable colorcolumn in middle of window
-		-- (accounts for wide gutters in large files)
-		local gutter_diff = tostring(vim.fn.line("$")):len() - 3
-		local column_number = gutter_diff > 0 and 97 - gutter_diff or 97
-		if vim.opt.modifiable:get() then vim.opt.colorcolumn = tostring(column_number) end
-		if not vim.opt.modifiable:get() then vim.opt.colorcolumn = "0" end
 		-- Disable automatic comments
 		vim.opt.formatoptions:remove({ "r", "o" })
 		-- Restore cursor position
