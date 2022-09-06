@@ -22,32 +22,16 @@ vim.opt.splitright = true
 vim.opt.termguicolors = true
 vim.opt.updatetime = 2000
 
-local function calculate_colorcolumn()
-	-- Number of windows in current tab
-	local tab_windows = vim.fn.tabpagewinnr(vim.fn.tabpagenr(), "$")
-	local win_width = vim.fn.winwidth(0)
-	-- Find center column
-	local center = tab_windows == 1 and math.ceil(win_width / 2) or win_width
-	-- Get size of signcolumn if defined
-	local sign_col = vim.opt.signcolumn:get():match("%d+")
-	-- signcolumn can't be less than 2
-	sign_col = sign_col and math.max(sign_col, 2) or 0
-	-- Get width of largest line number
-	local num_width =
-		math.max(vim.opt.numberwidth:get(), tostring(vim.fn.line("$")):len() + 1)
-	-- Account for the gutter difference
-	local cc_pos = center - (sign_col + num_width)
-
-	return tostring(cc_pos)
-end
-
 vim.api.nvim_create_augroup("options", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
 	group = "options",
 	callback = function()
-		-- Enable centered colorcolumn if buffer is modifiable
-		if vim.opt.modifiable:get() then vim.opt.colorcolumn = calculate_colorcolumn() end
-		if not vim.opt.modifiable:get() then vim.opt.colorcolumn = "" end
+		-- Enable colorcolumn in middle of window
+		-- (accounts for wide gutters in large files)
+		local gutter_diff = tostring(vim.fn.line("$")):len() - 3
+		local column_number = gutter_diff > 0 and 97 - gutter_diff or 97
+		if vim.opt.modifiable:get() then vim.opt.colorcolumn = tostring(column_number) end
+		if not vim.opt.modifiable:get() then vim.opt.colorcolumn = "0" end
 		-- Disable automatic comments
 		vim.opt.formatoptions:remove({ "r", "o" })
 		-- Restore cursor position
