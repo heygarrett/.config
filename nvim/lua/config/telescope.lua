@@ -51,7 +51,12 @@ return {
 		local interactive_rebase = function(prompt_bufnr)
 			local commit = action_state.get_selected_entry().value
 			actions.close(prompt_bufnr)
-			vim.api.nvim_command("tabnew | terminal git rebase --interactive " .. commit)
+			vim.api.nvim_exec("tabnew | terminal", false)
+			local term_channel = vim.opt_local.channel:get()
+			vim.api.nvim_chan_send(
+				term_channel,
+				("git rebase --interactive %s\r"):format(commit)
+			)
 			vim.api.nvim_command("norm a")
 		end
 
