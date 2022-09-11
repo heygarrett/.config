@@ -7,7 +7,7 @@ return {
 		vim.keymap.set({ "n", "t" }, "<leader>t", function()
 			if vim.opt_local.buftype:get() ~= "prompt" then
 				FTerm.toggle()
-				vim.api.nvim_command("checktime")
+				vim.api.nvim_cmd({ cmd = "checktime" }, { output = false })
 			end
 		end)
 	end,

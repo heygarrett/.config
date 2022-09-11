@@ -11,14 +11,21 @@ vim.api.nvim_create_autocmd("VimEnter", {
 		if vim.fn.argc() > 0 then return end
 		if not utils.launched_by_user() then return end
 		if vim.fn.filereadable("Session.vim") == 1 then
-			vim.api.nvim_command("silent! source Session.vim")
+			vim.api.nvim_cmd({
+				mods = { emsg_silent = true },
+				cmd = "source",
+				args = { "Session.vim" },
+			}, { output = false })
 			vim.defer_fn(
 				function() vim.notify("Loaded session!", nil, { timeout = 1000 }) end,
 				500
 			)
 		else
-			vim.api.nvim_command("edit .")
-			vim.api.nvim_command("mksession")
+			vim.api.nvim_cmd({
+				cmd = "edit",
+				args = { "." },
+			}, { output = false })
+			vim.api.nvim_cmd({ cmd = "mksession" }, { output = false })
 			if vim.fn.filereadable("Session.vim") == 1 then
 				vim.defer_fn(
 					function() vim.notify("Created session!", nil, { timeout = 1000 }) end,
@@ -48,10 +55,10 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
 			local success, treesitter_context = pcall(require, "treesitter-context")
 			if success then treesitter_context.disable() end
 			-- Prevent arg list from getting saved in session
-			vim.api.nvim_cmd(
-				{ range = { 0, vim.fn.argc() }, cmd = "argdelete" },
-				{ output = false }
-			)
+			vim.api.nvim_cmd({
+				range = { 0, vim.fn.argc() },
+				cmd = "argdelete",
+			}, { output = false })
 			-- Prevent terminal buffers from getting saved in session
 			vim.api.nvim_cmd({
 				mods = { emsg_silent = true },
@@ -60,7 +67,10 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
 				args = { "term://*" },
 			}, { output = false })
 			-- Save session
-			vim.api.nvim_cmd({ cmd = "mksession", bang = true }, { output = false })
+			vim.api.nvim_cmd({
+				cmd = "mksession",
+				bang = true,
+			}, { output = false })
 		end
 	end,
 })

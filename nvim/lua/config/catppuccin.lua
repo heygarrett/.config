@@ -6,6 +6,9 @@ return {
 		if not loaded then return end
 
 		vim.g.catppuccin_flavour = "mocha"
-		vim.api.nvim_command("colorscheme catppuccin")
+		vim.api.nvim_cmd({
+			cmd = "colorscheme",
+			args = { "catppuccin" },
+		}, { output = false })
 	end,
 }
