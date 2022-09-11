@@ -1,5 +1,6 @@
 return {
 	"neovim/nvim-lspconfig",
+	after = "catppuccin",
 	config = function()
 		local loaded, lspconfig = pcall(require, "lspconfig")
 		if not loaded then return end
