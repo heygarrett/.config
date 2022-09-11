@@ -3,14 +3,17 @@ local M = {}
 M.setup = function(bufnr)
 	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 	vim.keymap.set("i", "<c-space>", "<c-x><c-o>")
+
 	-- https://github.com/vim/vim/issues/1653
 	vim.keymap.set("i", "<cr>", function()
-		if vim.fn.pumvisible() == 1 and vim.fn.complete_info()["selected"] == -1 then
+		local pum_info = vim.fn.complete_info({ "mode", "selected" })
+		if pum_info["mode"] ~= "" and pum_info["selected"] == -1 then
 			return "<c-e><cr>"
 		else
 			return "<cr>"
 		end
 	end, { expr = true })
+
 	-- Auto-complete
 	vim.api.nvim_create_augroup("completion", { clear = false })
 	vim.api.nvim_clear_autocmds({ group = "completion", buffer = bufnr })
