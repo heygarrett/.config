@@ -16,11 +16,10 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt_local.tabstop = vim.opt_global.tabstop:get()
 		-- Run guess-indent
 		if vim.fn.exists(":GuessIndent") == 2 then
-			vim.api.nvim_cmd({
-				mods = { silent = true },
-				cmd = "GuessIndent",
+			vim.cmd.GuessIndent({
 				args = { "auto_cmd" },
-			}, { output = false })
+				mods = { silent = true },
+			})
 		end
 		-- Set whitespace characters for indentation with spaces
 		if vim.opt_local.expandtab:get() then

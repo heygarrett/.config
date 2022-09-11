@@ -1,10 +1,7 @@
 for _, type in ipairs({ "Error", "Warn", "Hint", "Info" }) do
 	local hl = "DiagnosticSign" .. type
 	vim.fn.sign_define(hl, { text = "", texthl = hl, numhl = hl })
-	vim.api.nvim_cmd({
-		cmd = "highlight",
-		args = { "DiagnosticUnderline" .. type, "gui=underline" },
-	}, { output = false })
+	vim.cmd.highlight({ "DiagnosticUnderline" .. type, "gui=underline" })
 end
 
 vim.diagnostic.config({
