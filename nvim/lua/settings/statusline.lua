@@ -10,13 +10,12 @@ local function get_branch_name()
 end
 
 local function get_file_name()
-	local user = vim.fn.system("echo $USER"):gsub("\n", "")
 	local root_path = vim.fn.getcwd()
 	local root_dir = root_path:match("[^/]+$")
 	local home_path = vim.fn.expand("%:~")
 	local overlap, _ = home_path:find(root_dir)
 	if home_path == "" then
-		return root_path:gsub("/Users/" .. user, "~")
+		return root_path:gsub(vim.env.HOME, "~")
 	elseif overlap then
 		return home_path:sub(overlap)
 	else
