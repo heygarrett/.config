@@ -21,12 +21,13 @@ M.setup = function(bufnr)
 		group = "completion",
 		buffer = bufnr,
 		callback = function()
+			if vim.fn.pumvisible() ~= 0 then return end
 			if vim.g.pum_timer then vim.fn.timer_stop(vim.g.pum_timer) end
 			if
-				vim.fn
-					.getline(".")
-					:sub(vim.fn.col(".") - 1, vim.fn.col(".") - 1)
-					:match("[%w_.]")
+				vim.api
+					.nvim_get_current_line()
+					:sub(1, vim.api.nvim_win_get_cursor(0)[2])
+					:match("[%w_.]$")
 			then
 				vim.g.pum_timer = vim.fn.timer_start(300, function()
 					if vim.fn.mode():match("^[^i]") then return end
