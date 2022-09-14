@@ -36,6 +36,7 @@ packer.startup({
 			require("config.dash"),
 			require("config.gitsigns"),
 			require("config.guess-indent"),
+			require("config.mason"),
 			require("config.null-ls"),
 			require("config.nvim-lspconfig"),
 			require("config.nvim-notify"),
