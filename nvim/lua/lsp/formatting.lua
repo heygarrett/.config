@@ -1,7 +1,12 @@
 local M = {}
 
-local function formatting_conditions(client, bufnr)
-	return #vim.lsp.get_active_clients({ bufnr = bufnr }) == 1 or client.name == "null-ls"
+local function formatting_conditions(client)
+	local disabled_for = {
+		["lua-language-server"] = true,
+		jsonls = true,
+		tsserver = true,
+	}
+	return not disabled_for[client]
 end
 
 M.setup = function(bufnr)
@@ -9,7 +14,7 @@ M.setup = function(bufnr)
 	vim.api.nvim_buf_create_user_command(bufnr, "Format", function()
 		vim.lsp.buf.format({
 			async = true,
-			filter = function(client) return formatting_conditions(client, bufnr) end,
+			filter = function(client) return formatting_conditions(client) end,
 		})
 	end, {})
 	-- Format on save
@@ -20,7 +25,7 @@ M.setup = function(bufnr)
 		buffer = bufnr,
 		callback = function()
 			vim.lsp.buf.format({
-				filter = function(client) return formatting_conditions(client, bufnr) end,
+				filter = function(client) return formatting_conditions(client) end,
 			})
 		end,
 	})
