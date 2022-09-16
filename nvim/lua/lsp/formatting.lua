@@ -2,11 +2,11 @@ local M = {}
 
 local function formatting_conditions(client)
 	local disabled_for = {
-		["lua-language-server"] = true,
 		jsonls = true,
+		sumneko_lua = true,
 		tsserver = true,
 	}
-	return not disabled_for[client]
+	return not disabled_for[client.name]
 end
 
 M.setup = function(bufnr)
