@@ -46,40 +46,44 @@ local function get_diagnostics()
 	local diagnostics = vim.diagnostic.get(0)
 	if #diagnostics == 0 or vim.fn.mode():match("^i") then return nil end
 
-	local severities = { ERROR = 0, WARN = 0, HINT = 0, INFO = 0 }
+	local severities = {
+		ERROR = { match = "Error", count = 0 },
+		WARN = { match = "Warn", count = 0 },
+		HINT = { match = "Hint", count = 0 },
+		INFO = { match = "Info", count = 0 },
+	}
+
 	for _, v in ipairs(diagnostics) do
 		for k, _ in pairs(severities) do
 			if v["severity"] == vim.diagnostic.severity[k] then
-				severities[k] = severities[k] + 1
+				severities[k].count = severities[k].count + 1
 			end
 		end
 	end
 
 	local output = {}
-	if severities["ERROR"] > 0 then
-		table.insert(
-			output,
-			("%s%d%s"):format("%#DiagnosticVirtualTextError#", severities["ERROR"], "%*")
-		)
+	for _, v in pairs(severities) do
+		if v.count > 0 then
+			table.insert(
+				output,
+				table.concat({
+					"%#DiagnosticVirtualText",
+					v.match,
+					"#",
+					v.count,
+					"%*",
+				})
+			)
+		end
 	end
-	if severities["WARN"] > 0 then
-		table.insert(
-			output,
-			("%s%d%s"):format("%#DiagnosticVirtualTextWarn#", severities["WARN"], "%*")
-		)
-	end
-	if severities["HINT"] > 0 then
-		table.insert(
-			output,
-			("%s%d%s"):format("%#DiagnosticVirtualTextHint#", severities["HINT"], "%*")
-		)
-	end
-	if severities["INFO"] > 0 then
-		table.insert(
-			output,
-			("%s%d%s"):format("%#DiagnosticVirtualTextInfo#", severities["INFO"], "%*")
-		)
-	end
+
+	table.sort(output, function(a, b)
+		local sort_order = { Error = 1, Warn = 2, Hint = 3, Info = 4 }
+		local a_sev = a:match("(%u%l+)#")
+		local b_sev = b:match("(%u%l+)#")
+
+		return sort_order[a_sev] < sort_order[b_sev]
+	end)
 
 	return table.concat(output, " ")
 end
