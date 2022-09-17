@@ -145,11 +145,11 @@ function Status_Line()
 	local left_string_length = vim.api.nvim_eval_statusline(left_string, {})["width"]
 
 	local right_table = {}
-	local diagnostics, search_count = get_diagnostics(), get_search_count()
+	local search_count = get_search_count()
+	if search_count then table.insert(right_table, search_count) end
+	local diagnostics = get_diagnostics()
 	if diagnostics then table.insert(right_table, diagnostics) end
-	if search_count then
-		table.insert(right_table, search_count)
-	elseif vim.b.gitsigns_status and vim.b.gitsigns_status ~= "" then
+	if vim.b.gitsigns_status and vim.b.gitsigns_status ~= "" then
 		table.insert(right_table, vim.b.gitsigns_status)
 	end
 	table.insert(right_table, vim.api.nvim_eval_statusline("%Y", {})["str"]:lower())
