@@ -10,7 +10,7 @@ local function get_branch_name()
 end
 
 local function get_file_name()
-	local root_path = vim.fn.getcwd()
+	local root_path = vim.loop.cwd()
 	local root_dir = root_path:match("[^/]+$")
 	local home_path = vim.fn.expand("%:~")
 	local overlap, _ = home_path:find(root_dir)
@@ -20,16 +20,6 @@ local function get_file_name()
 		return home_path:sub(overlap)
 	else
 		return home_path
-	end
-end
-
-local function get_modified_flag()
-	if not vim.opt.modifiable:get() then
-		return "[-]"
-	elseif vim.opt.modified:get() then
-		return "[+]"
-	else
-		return nil
 	end
 end
 
@@ -88,23 +78,13 @@ local function get_diagnostics()
 	return table.concat(output, " ")
 end
 
-local function get_file_type()
-	local file_type = vim.opt.filetype:get()
-	if file_type ~= "" then
-		return file_type
-	else
-		return nil
-	end
-end
-
 local function get_progress()
-	if vim.fn.line(".") == 1 then
+	local p = vim.api.nvim_eval_statusline("%p", {})["str"]
+	if p == "0" then
 		return "top"
-	elseif vim.fn.line(".") == vim.fn.line("$") then
+	elseif p == "100" then
 		return "bot"
 	else
-		local p = vim.fn.line(".") / vim.fn.line("$") * 100
-		p = p % 1 >= 0.5 and math.ceil(p) or math.floor(p)
 		return ("%02d%s"):format(p, "%%")
 	end
 end
@@ -114,7 +94,6 @@ vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "FocusGained" }, {
 	callback = function()
 		vim.b.branch_name = get_branch_name()
 		vim.b.file_name = get_file_name()
-		vim.b.file_type = get_file_type()
 	end,
 })
 
@@ -126,8 +105,7 @@ local function generate_left(branch, file)
 	if branch then table.insert(left, branch) end
 	table.insert(left, file)
 	left = { table.concat(left, " | ") }
-	local modified_flag = get_modified_flag()
-	if modified_flag then table.insert(left, modified_flag) end
+	table.insert(left, "%m")
 	return table.concat(left, " ")
 end
 
@@ -161,6 +139,7 @@ end
 
 function Status_Line()
 	local left_string = generate_left()
+	local left_string_length = vim.api.nvim_eval_statusline(left_string, {})["width"]
 
 	local right_table = {}
 	local diagnostics, search_count = get_diagnostics(), get_search_count()
@@ -170,14 +149,13 @@ function Status_Line()
 	elseif vim.b.gitsigns_status and vim.b.gitsigns_status ~= "" then
 		table.insert(right_table, vim.b.gitsigns_status)
 	end
-	if vim.b.file_type then table.insert(right_table, vim.b.file_type) end
+	table.insert(right_table, vim.api.nvim_eval_statusline("%Y", {})["str"]:lower())
 	table.insert(right_table, get_progress())
 	local right_string = table.concat(right_table, " | ")
-	local right_string_length =
-		right_string:gsub("%%#%a+#", ""):gsub("%%%*", ""):gsub("%%%%", "%"):len()
+	local right_string_length = vim.api.nvim_eval_statusline(right_string, {})["width"]
 
 	local divider = " | "
-	local length = left_string:len() + divider:len() + right_string_length
+	local length = left_string_length + divider:len() + right_string_length
 	local overflow = length - vim.fn.winwidth(0)
 	if overflow < 0 then divider = "%=" end
 	if overflow > 0 then
