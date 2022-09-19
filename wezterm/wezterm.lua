@@ -1,13 +1,14 @@
 local wezterm = require("wezterm")
 
 return {
-	use_fancy_tab_bar = false,
-	tab_bar_at_bottom = true,
+	color_scheme = "Catppuccin Mocha",
 	font = wezterm.font("Monocraft"),
 	font_size = 10.5,
 	harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
-	color_scheme = "Catppuccin Mocha",
 	native_macos_fullscreen_mode = true,
+	tab_bar_at_bottom = true,
+	use_fancy_tab_bar = false,
+
 	keys = {
 		{
 			key = "f",
