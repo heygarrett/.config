@@ -7,6 +7,7 @@ return {
 	harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
 	native_macos_fullscreen_mode = true,
 	tab_bar_at_bottom = true,
+	tab_max_width = 1000,
 	use_fancy_tab_bar = false,
 
 	keys = {
