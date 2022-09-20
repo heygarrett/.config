@@ -1,6 +1,6 @@
-require("lsp.diagnostics")
-
 local on_attach = function(client, bufnr)
+	require("lsp.diagnostics")
+
 	-- Use omnicomplete with LSP
 	if client.supports_method("textDocument/completion") then
 		require("lsp.completion").setup(bufnr)
