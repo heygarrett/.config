@@ -20,6 +20,5 @@ return {
 		mason_null_ls.setup({
 			automatic_installation = true,
 		})
-		mason_null_ls.check_install(true)
 	end,
 }
