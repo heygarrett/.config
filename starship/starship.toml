@@ -1,0 +1,8 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+[git_status]
+ahead = "^"
+behind = "v"
+deleted = "x"
+diverged = "Y"
+renamed = ">"
