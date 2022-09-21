@@ -2,7 +2,7 @@
 
 [git_status]
 ahead = "^"
-behind = "v"
+behind = "⌄"
 deleted = "x"
 diverged = "Y"
 renamed = ">"
