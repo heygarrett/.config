@@ -1,3 +1,8 @@
+vim.diagnostic.config({
+	virtual_text = false,
+	float = { source = "always" },
+})
+
 for _, type in ipairs({ "Error", "Warn", "Hint", "Info" }) do
 	local hl = "DiagnosticSign" .. type
 	vim.fn.sign_define(hl, { text = "", texthl = hl, numhl = hl })
@@ -16,11 +21,6 @@ for _, type in ipairs({ "Error", "Warn", "Hint", "Info" }) do
 		},
 	})
 end
-
-vim.diagnostic.config({
-	virtual_text = false,
-	float = { source = "always" },
-})
 
 vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float)
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist)
