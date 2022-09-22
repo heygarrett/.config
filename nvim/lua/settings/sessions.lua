@@ -1,6 +1,6 @@
 local utils = require("settings.utils")
 
-vim.opt.sessionoptions:remove("winsize")
+vim.opt.sessionoptions = { "help", "tabpages" }
 
 vim.api.nvim_create_augroup("sessions", { clear = true })
 -- Load or create session on launch
