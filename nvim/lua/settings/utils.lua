@@ -1,9 +1,6 @@
 -- Sort lines by length
 vim.api.nvim_create_user_command("Sort", function(t)
-	local line_list = {}
-	for n = t.line1, t.line2 do
-		line_list[#line_list + 1] = vim.fn.getline(n)
-	end
+	local line_list = vim.api.nvim_buf_get_lines(0, t.line1 - 1, t.line2, true)
 	table.sort(line_list, function(a, b)
 		local a_len = vim.fn.strdisplaywidth(a)
 		local b_len = vim.fn.strdisplaywidth(b)
@@ -15,7 +12,7 @@ vim.api.nvim_create_user_command("Sort", function(t)
 			return a_len < b_len
 		end
 	end)
-	vim.fn.setline(t.line1, line_list)
+	vim.api.nvim_buf_set_lines(0, t.line1 - 1, t.line2, true, line_list)
 end, { range = "%", bang = true })
 
 local M = {}
