@@ -6,24 +6,6 @@ return {
 		if not loaded then return end
 
 		treesitter.setup({
-			ensure_installed = {
-				"bash",
-				"dockerfile",
-				"fish",
-				"go",
-				"json",
-				"jsonc",
-				"lua",
-				"markdown",
-				"markdown_inline",
-				"python",
-				"rust",
-				"swift",
-				"toml",
-				"typescript",
-				"vim",
-				"yaml",
-			},
 			auto_install = true,
 			highlight = {
 				enable = true,
