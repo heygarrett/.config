@@ -66,13 +66,7 @@ return {
 			actions.close(prompt_bufnr)
 			vim.fn.setreg("+", commit)
 			vim.defer_fn(
-				function()
-					vim.notify(
-						("Commit %s copied to clipboard!"):format(commit),
-						nil,
-						{ timeout = 1000 }
-					)
-				end,
+				function() vim.notify(("Commit %s copied to clipboard!"):format(commit)) end,
 				500
 			)
 		end
