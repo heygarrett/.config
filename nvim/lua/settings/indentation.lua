@@ -15,7 +15,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt_local.softtabstop = vim.opt_global.softtabstop:get()
 		vim.opt_local.tabstop = vim.opt_global.tabstop:get()
 		-- Run guess-indent
-		if vim.fn.exists(":GuessIndent") == 2 then
+		if package.loaded["guess-indent"] then
 			vim.cmd.GuessIndent({
 				args = { "auto_cmd" },
 				mods = { silent = true },
