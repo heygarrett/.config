@@ -30,7 +30,7 @@ M.setup = function(bufnr)
 					:match("[%w_.]$")
 			then
 				vim.g.pum_timer = vim.fn.timer_start(300, function()
-					if vim.fn.mode():match("^[^i]") then return end
+					if vim.api.nvim_get_mode()["mode"]:match("^[^i]") then return end
 					local keys =
 						vim.api.nvim_replace_termcodes("<c-x><c-o>", true, true, true)
 					vim.api.nvim_feedkeys(keys, "n", false)
