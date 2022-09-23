@@ -24,7 +24,7 @@ local function get_file_name()
 end
 
 local function get_search_count()
-	if vim.v.hlsearch == 1 and vim.fn.mode():match("n") then
+	if vim.v.hlsearch == 1 and vim.api.nvim_get_mode()["mode"]:match("n") then
 		local search_count = vim.fn.searchcount({ maxcount = 0 })
 		return ("%d/%d"):format(search_count["current"], search_count["total"])
 	else
@@ -34,7 +34,9 @@ end
 
 local function get_diagnostics()
 	local diagnostics = vim.diagnostic.get(0)
-	if #diagnostics == 0 or vim.fn.mode():match("^i") then return nil end
+	if #diagnostics == 0 or vim.api.nvim_get_mode()["mode"]:match("^i") then
+		return nil
+	end
 
 	local severities = {
 		ERROR = { match = "Error", count = 0 },
@@ -159,7 +161,7 @@ function Status_Line()
 
 	local divider = " | "
 	local length = left_string_length + divider:len() + right_string_length
-	local overflow = length - vim.fn.winwidth(0)
+	local overflow = length - vim.api.nvim_win_get_width(0)
 	if overflow < 0 then divider = "%=" end
 	if overflow > 0 then
 		local trunc_branch, trunc_file = truncate(overflow)
