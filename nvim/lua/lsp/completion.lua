@@ -31,9 +31,11 @@ M.setup = function(bufnr)
 			then
 				vim.g.pum_timer = vim.fn.timer_start(300, function()
 					if vim.api.nvim_get_mode()["mode"]:match("^[^i]") then return end
-					local keys =
-						vim.api.nvim_replace_termcodes("<c-x><c-o>", true, true, true)
-					vim.api.nvim_feedkeys(keys, "n", false)
+					vim.api.nvim_feedkeys(
+						vim.api.nvim_eval([["\<c-x>\<c-o>"]]),
+						"n",
+						false
+					)
 				end)
 			end
 		end,
