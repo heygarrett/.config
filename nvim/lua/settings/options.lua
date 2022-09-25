@@ -30,12 +30,16 @@ vim.api.nvim_create_autocmd("FileType", {
 		vim.opt.formatoptions:remove({ "r", "o" })
 		-- Restore cursor position
 		local exclude = { diff = true, gitcommit = true, gitrebase = true }
+		local position_line = vim.api.nvim_buf_get_mark(0, '"')[1]
 		if
 			not exclude[vim.opt_local.filetype:get()]
-			and vim.fn.line("'\"") > 1
-			and vim.fn.line("'\"") <= vim.fn.line("$")
+			and position_line >= 1
+			and position_line <= vim.api.nvim_buf_line_count(0)
 		then
-			vim.cmd.execute([['normal! g`"']])
+			vim.cmd.normal({
+				bang = true,
+				args = { [[g`"]] },
+			})
 		end
 	end,
 })
