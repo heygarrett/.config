@@ -13,7 +13,10 @@ vim.api.nvim_create_autocmd("VimEnter", {
 		if vim.fn.filereadable("Session.vim") == 1 then
 			vim.cmd.source({
 				args = { "Session.vim" },
-				mods = { emsg_silent = true },
+				mods = {
+					silent = false,
+					emsg_silent = true,
+				},
 			})
 			vim.defer_fn(function() vim.notify("Loaded session!") end, 500)
 		else
