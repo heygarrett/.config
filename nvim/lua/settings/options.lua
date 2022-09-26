@@ -45,5 +45,9 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 vim.api.nvim_create_autocmd("CursorHold", {
 	group = "options",
-	command = "silent! checktime",
+	callback = function()
+		vim.cmd.checktime({
+			mods = { emsg_silent = true },
+		})
+	end,
 })
