@@ -47,20 +47,23 @@ return {
 
 		local actions = require("telescope.actions")
 		local action_state = require("telescope.actions.state")
-
-		local interactive_rebase = function(prompt_bufnr)
-			local commit = action_state.get_selected_entry().value
-			actions.close(prompt_bufnr)
+		local function new_tab_with_command(cmd, commit)
 			vim.cmd.tabnew()
 			vim.cmd.terminal()
 			local term_channel = vim.opt_local.channel:get()
 			vim.api.nvim_chan_send(
 				term_channel,
-				("git rebase --interactive %s\r"):format(commit)
+				table.concat({ cmd, commit }, " ") .. "\r"
 			)
 			vim.cmd.normal({
 				args = { "a" },
 			})
+		end
+
+		local interactive_rebase = function(prompt_bufnr)
+			local commit = action_state.get_selected_entry().value
+			actions.close(prompt_bufnr)
+			new_tab_with_command("git rebase --interactive", commit)
 		end
 
 		local copy_commit = function(prompt_bufnr)
