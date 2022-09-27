@@ -4,7 +4,9 @@ return {
 		"nvim-treesitter/nvim-treesitter-context",
 		"nvim-treesitter/nvim-treesitter-textobjects",
 	},
-	run = [[if exists(":TSUpdate") | TSUpdate | endif]],
+	run = function()
+		if package.loaded["nvim-treesitter.configs"] then vim.cmd.TSUpdate() end
+	end,
 	config = function()
 		local loaded, treesitter = pcall(require, "nvim-treesitter.configs")
 		if not loaded then return end
