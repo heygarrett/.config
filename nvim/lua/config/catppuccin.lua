@@ -6,6 +6,8 @@ return {
 		if not loaded then return end
 
 		vim.g.catppuccin_flavour = "mocha"
-		vim.cmd.colorscheme("catppuccin")
+		vim.cmd.colorscheme({
+			args = { "catppuccin" },
+		})
 	end,
 }

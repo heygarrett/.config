@@ -58,7 +58,9 @@ return {
 				term_channel,
 				("git rebase --interactive %s\r"):format(commit)
 			)
-			vim.cmd.normal("a")
+			vim.cmd.normal({
+				args = { "a" },
+			})
 		end
 
 		local copy_commit = function(prompt_bufnr)

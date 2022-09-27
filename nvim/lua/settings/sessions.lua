@@ -20,7 +20,9 @@ vim.api.nvim_create_autocmd("VimEnter", {
 			})
 			vim.defer_fn(function() vim.notify("Loaded session!") end, 500)
 		else
-			vim.cmd.edit(".")
+			vim.cmd.edit({
+				args = { "." },
+			})
 			vim.cmd.mksession()
 			if vim.fn.filereadable("Session.vim") == 1 then
 				vim.defer_fn(function() vim.notify("Created session!") end, 500)
@@ -45,7 +47,9 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
 		end
 		if save and not save:match("^[nN]$") then
 			-- Prevent arg list from getting saved in session
-			vim.cmd.argdelete({ range = { 0, vim.fn.argc() } })
+			vim.cmd.argdelete({
+				range = { 0, vim.fn.argc() },
+			})
 			-- Prevent terminal buffers from getting saved in session
 			vim.cmd.bdelete({
 				bang = true,
@@ -53,7 +57,9 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
 				mods = { emsg_silent = true },
 			})
 			-- Save session
-			vim.cmd.mksession({ bang = true })
+			vim.cmd.mksession({
+				bang = true,
+			})
 		end
 	end,
 })
