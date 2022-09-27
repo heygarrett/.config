@@ -66,6 +66,12 @@ return {
 			new_tab_with_command("git rebase --interactive", commit)
 		end
 
+		local commit_info = function(prompt_bufnr)
+			local commit = action_state.get_selected_entry().value
+			actions.close(prompt_bufnr)
+			new_tab_with_command("git show", commit)
+		end
+
 		local copy_commit = function(prompt_bufnr)
 			local commit = action_state.get_selected_entry().value
 			actions.close(prompt_bufnr)
@@ -82,6 +88,7 @@ return {
 					mappings = {
 						i = {
 							["<c-r>r"] = interactive_rebase,
+							["<c-r>s"] = commit_info,
 							["<c-r>y"] = copy_commit,
 						},
 					},
@@ -90,6 +97,7 @@ return {
 					mappings = {
 						i = {
 							["<c-r>r"] = interactive_rebase,
+							["<c-r>s"] = commit_info,
 							["<c-r>y"] = copy_commit,
 						},
 					},
