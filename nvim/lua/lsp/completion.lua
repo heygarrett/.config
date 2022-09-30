@@ -27,7 +27,7 @@ M.setup = function(bufnr)
 				vim.api
 					.nvim_get_current_line()
 					:sub(1, vim.api.nvim_win_get_cursor(0)[2])
-					:match("[%w_.]$")
+					:match("[%w_.@-]$")
 			then
 				vim.g.pum_timer = vim.fn.timer_start(300, function()
 					if vim.api.nvim_get_mode()["mode"]:match("^[^i]") then return end
