@@ -35,7 +35,6 @@ packer.startup({
 			"wbthomason/packer.nvim",
 			require("config.FTerm"),
 			require("config.catppuccin"),
-			require("config.dash"),
 			require("config.gitsigns"),
 			require("config.guess-indent"),
 			require("config.mason"),
