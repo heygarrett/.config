@@ -1,26 +1,26 @@
 vim.g.netrw_banner = 0
-vim.opt.breakindent = true
+vim.o.breakindent = true
+vim.o.confirm = true
+vim.o.cursorline = true
+vim.o.foldenable = false
+vim.o.foldmethod = "indent"
+vim.o.ignorecase = true
+vim.o.keywordprg = ":help"
+vim.o.linebreak = true
+vim.o.list = true
+vim.o.mouse = "a"
+vim.o.number = true
+vim.o.scrolloff = 3
+vim.o.showmatch = true
+vim.o.smartcase = true
+vim.o.splitbelow = true
+vim.o.splitright = true
+vim.o.termguicolors = true
+vim.o.updatetime = 2000
 vim.opt.clipboard:append("unnamedplus")
 vim.opt.completeopt = { "menuone", "noselect" }
-vim.opt.confirm = true
-vim.opt.cursorline = true
-vim.opt.foldenable = false
-vim.opt.foldmethod = "indent"
-vim.opt.ignorecase = true
-vim.opt.keywordprg = ":help"
-vim.opt.linebreak = true
-vim.opt.list = true
-vim.opt.mouse = "a"
-vim.opt.number = true
 vim.opt.path:append("**")
-vim.opt.scrolloff = 3
 vim.opt.shortmess:append("Scs")
-vim.opt.showmatch = true
-vim.opt.smartcase = true
-vim.opt.splitbelow = true
-vim.opt.splitright = true
-vim.opt.termguicolors = true
-vim.opt.updatetime = 2000
 
 vim.api.nvim_create_augroup("options", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
@@ -32,7 +32,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		local exclude = { diff = true, gitcommit = true, gitrebase = true }
 		local position_line = vim.api.nvim_buf_get_mark(0, [["]])[1]
 		if
-			not exclude[vim.opt_local.filetype:get()]
+			not exclude[vim.bo.filetype]
 			and position_line >= 1
 			and position_line <= vim.api.nvim_buf_line_count(0)
 		then

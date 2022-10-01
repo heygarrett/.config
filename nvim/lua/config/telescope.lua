@@ -50,7 +50,7 @@ return {
 		local function new_tab_with_command(cmd, commit)
 			vim.cmd.tabnew()
 			vim.cmd.terminal()
-			local term_channel = vim.opt_local.channel:get()
+			local term_channel = vim.bo.channel
 			vim.api.nvim_chan_send(
 				term_channel,
 				table.concat({ cmd, commit }, " ") .. "\r"

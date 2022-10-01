@@ -5,7 +5,7 @@ return {
 		if not loaded then return end
 
 		vim.keymap.set({ "n", "t" }, "<leader>t", function()
-			if vim.opt_local.buftype:get() ~= "prompt" then
+			if vim.bo.buftype ~= "prompt" then
 				FTerm.toggle()
 				vim.cmd.checktime()
 			end

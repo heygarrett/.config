@@ -172,4 +172,4 @@ function Status_Line()
 	return table.concat({ "%<", left_string, divider, right_string })
 end
 
-vim.opt.statusline = "%{%v:lua.Status_Line()%}"
+vim.o.statusline = "%{%v:lua.Status_Line()%}"

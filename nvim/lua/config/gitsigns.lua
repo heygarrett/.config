@@ -4,7 +4,7 @@ return {
 		local loaded, gitsigns = pcall(require, "gitsigns")
 		if not loaded then return end
 
-		vim.opt.signcolumn = "yes:1"
+		vim.o.signcolumn = "yes:1"
 		gitsigns.setup({
 			on_attach = function(bufnr)
 				local opts = { buffer = bufnr, expr = true }
