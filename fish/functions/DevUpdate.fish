@@ -1,5 +1,5 @@
 function DevUpdate
-	brew update && brew reinstall neovim && brew upgrade --fetch-HEAD
+	brew update && brew upgrade --fetch-HEAD
 	hr
 	npm --global update
 	hr
