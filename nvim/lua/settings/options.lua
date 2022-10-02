@@ -1,5 +1,6 @@
 vim.g.netrw_banner = 0
 vim.o.breakindent = true
+vim.o.colorcolumn = "90"
 vim.o.confirm = true
 vim.o.cursorline = true
 vim.o.foldenable = false
