@@ -1,5 +1,7 @@
 local utils = require("settings.utils")
 
+---Get the name of the current branch
+---@return string | nil
 local function get_branch_name()
 	local branch = vim.fn.system("git branch --show-current 2> /dev/null")
 	if branch ~= "" and utils.launched_by_user() then
@@ -9,6 +11,8 @@ local function get_branch_name()
 	end
 end
 
+---Get name of the current file
+---@return string
 local function get_file_name()
 	local root_path = vim.loop.cwd()
 	local root_dir = root_path:match("[^/]+$")
@@ -23,6 +27,7 @@ local function get_file_name()
 	end
 end
 
+---Set buffer variables for branch and file names as frequently as they may change
 vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "FocusGained" }, {
 	group = vim.api.nvim_create_augroup("statusline", { clear = true }),
 	callback = function()
@@ -31,6 +36,8 @@ vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "FocusGained" }, {
 	end,
 })
 
+---Get instance and count of search matches
+---@return string | nil
 local function get_search_count()
 	if vim.v.hlsearch == 1 and vim.api.nvim_get_mode().mode:match("n") then
 		local search_count = vim.fn.searchcount({ maxcount = 0 })
@@ -40,6 +47,8 @@ local function get_search_count()
 	end
 end
 
+---Get formatted and highlighted string of diagnostic counts
+---@return string | nil
 local function get_diagnostics()
 	local diagnostics = vim.diagnostic.get(0)
 	if #diagnostics == 0 or vim.api.nvim_get_mode().mode:match("^i") then return nil end
@@ -86,6 +95,8 @@ local function get_diagnostics()
 	return table.concat(output, " ")
 end
 
+---Get location in current buffer as a percentage
+---@return string
 local function get_progress()
 	local p = vim.api.nvim_eval_statusline("%p", {}).str
 	if p == "0" then
@@ -97,6 +108,10 @@ local function get_progress()
 	end
 end
 
+---Format string for left side of statusline
+---@param branch string | nil
+---@param file string | nil
+---@return string
 local function generate_left(branch, file)
 	branch = branch or vim.b.branch_name
 	file = file or vim.b.file_name
@@ -112,6 +127,10 @@ local function generate_left(branch, file)
 	return table.concat(left, " ")
 end
 
+---Truncate branch and file names for narrow window
+---@param overflow number
+---@return string | nil
+---@return string
 local function truncate(overflow)
 	local min_width = 15
 	local new_branch = vim.b.branch_name
@@ -140,6 +159,8 @@ local function truncate(overflow)
 	return new_branch, new_file
 end
 
+---Generate statusline
+---@return string
 function Status_Line()
 	local left_string = generate_left()
 	local left_string_length =
