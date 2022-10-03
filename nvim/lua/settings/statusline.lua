@@ -32,9 +32,9 @@ vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "FocusGained" }, {
 })
 
 local function get_search_count()
-	if vim.v.hlsearch == 1 and vim.api.nvim_get_mode()["mode"]:match("n") then
+	if vim.v.hlsearch == 1 and vim.api.nvim_get_mode().mode:match("n") then
 		local search_count = vim.fn.searchcount({ maxcount = 0 })
-		return ("%d/%d"):format(search_count["current"], search_count["total"])
+		return ("%d/%d"):format(search_count.current, search_count.total)
 	else
 		return nil
 	end
@@ -42,9 +42,7 @@ end
 
 local function get_diagnostics()
 	local diagnostics = vim.diagnostic.get(0)
-	if #diagnostics == 0 or vim.api.nvim_get_mode()["mode"]:match("^i") then
-		return nil
-	end
+	if #diagnostics == 0 or vim.api.nvim_get_mode().mode:match("^i") then return nil end
 
 	local severities = {
 		ERROR = { match = "Error", count = 0 },
@@ -55,7 +53,7 @@ local function get_diagnostics()
 
 	for _, v in ipairs(diagnostics) do
 		for k, _ in pairs(severities) do
-			if v["severity"] == vim.diagnostic.severity[k] then
+			if v.severity == vim.diagnostic.severity[k] then
 				severities[k].count = severities[k].count + 1
 			end
 		end
@@ -89,7 +87,7 @@ local function get_diagnostics()
 end
 
 local function get_progress()
-	local p = vim.api.nvim_eval_statusline("%p", {})["str"]
+	local p = vim.api.nvim_eval_statusline("%p", {}).str
 	if p == "0" then
 		return "top"
 	elseif p == "100" then
@@ -108,7 +106,7 @@ local function generate_left(branch, file)
 	table.insert(left, file)
 	left = { table.concat(left, " | ") }
 
-	local modified_flag = vim.api.nvim_eval_statusline("%m", {})["str"]
+	local modified_flag = vim.api.nvim_eval_statusline("%m", {}).str
 	if modified_flag ~= "" then table.insert(left, modified_flag) end
 
 	return table.concat(left, " ")
@@ -145,7 +143,7 @@ end
 function Status_Line()
 	local left_string = generate_left()
 	local left_string_length =
-		vim.api.nvim_eval_statusline(left_string, { maxwidth = 0 })["width"]
+		vim.api.nvim_eval_statusline(left_string, { maxwidth = 0 }).width
 
 	local right_table = {}
 	local search_count = get_search_count()
@@ -155,10 +153,10 @@ function Status_Line()
 	if vim.b.gitsigns_status and vim.b.gitsigns_status ~= "" then
 		table.insert(right_table, vim.b.gitsigns_status)
 	end
-	table.insert(right_table, vim.api.nvim_eval_statusline("%Y", {})["str"]:lower())
+	table.insert(right_table, vim.api.nvim_eval_statusline("%Y", {}).str:lower())
 	table.insert(right_table, get_progress())
 	local right_string = table.concat(right_table, " | ")
-	local right_string_length = vim.api.nvim_eval_statusline(right_string, {})["width"]
+	local right_string_length = vim.api.nvim_eval_statusline(right_string, {}).width
 
 	local divider = " | "
 	local length = left_string_length + divider:len() + right_string_length

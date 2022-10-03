@@ -25,12 +25,12 @@ return {
 							selection.line1 == 1
 							and selection.line2 == vim.fn.line("$")
 						then
-							stage["buffer"]()
+							stage.buffer()
 						else
-							stage["hunk"]({ selection.line1, selection.line2 })
+							stage.hunk({ selection.line1, selection.line2 })
 						end
 					else
-						stage["hunk"]()
+						stage.hunk()
 					end
 				end
 

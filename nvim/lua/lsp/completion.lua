@@ -7,7 +7,7 @@ M.setup = function(bufnr)
 	-- https://github.com/vim/vim/issues/1653
 	vim.keymap.set("i", "<cr>", function()
 		local pum_info = vim.fn.complete_info({ "mode", "selected" })
-		if pum_info["mode"] ~= "" and pum_info["selected"] == -1 then
+		if pum_info.mode ~= "" and pum_info.selected == -1 then
 			return "<c-e><cr>"
 		else
 			return "<cr>"
@@ -30,7 +30,7 @@ M.setup = function(bufnr)
 					:match("[%w_.@-]$")
 			then
 				vim.g.pum_timer = vim.fn.timer_start(300, function()
-					if vim.api.nvim_get_mode()["mode"]:match("^[^i]") then return end
+					if vim.api.nvim_get_mode().mode:match("^[^i]") then return end
 					vim.api.nvim_feedkeys(
 						vim.api.nvim_eval([["\<c-x>\<c-o>"]]),
 						"n",
