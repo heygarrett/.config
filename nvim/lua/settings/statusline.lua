@@ -23,6 +23,14 @@ local function get_file_name()
 	end
 end
 
+vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "FocusGained" }, {
+	group = vim.api.nvim_create_augroup("statusline", { clear = true }),
+	callback = function()
+		vim.b.branch_name = get_branch_name()
+		vim.b.file_name = get_file_name()
+	end,
+})
+
 local function get_search_count()
 	if vim.v.hlsearch == 1 and vim.api.nvim_get_mode()["mode"]:match("n") then
 		local search_count = vim.fn.searchcount({ maxcount = 0 })
@@ -90,14 +98,6 @@ local function get_progress()
 		return ("%02d%s"):format(p, "%%")
 	end
 end
-
-vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "FocusGained" }, {
-	group = vim.api.nvim_create_augroup("statusline", { clear = true }),
-	callback = function()
-		vim.b.branch_name = get_branch_name()
-		vim.b.file_name = get_file_name()
-	end,
-})
 
 local function generate_left(branch, file)
 	branch = branch or vim.b.branch_name
