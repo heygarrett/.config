@@ -13,7 +13,10 @@ return {
 
 		treesitter.setup({
 			auto_install = true,
-			highlight = { enable = true },
+			highlight = {
+				enable = true,
+				disable = { "make" },
+			},
 			textobjects = {
 				select = {
 					enable = true,
