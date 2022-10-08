@@ -1,7 +1,7 @@
 local M = {}
 
 M.setup = function(bufnr)
-	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+	vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
 	vim.keymap.set("i", "<c-space>", "<c-x><c-o>")
 
 	-- https://github.com/vim/vim/issues/1653
