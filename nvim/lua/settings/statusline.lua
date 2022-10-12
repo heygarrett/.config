@@ -172,7 +172,8 @@ function Status_Line()
 	if vim.b.gitsigns_status ~= "" then
 		table.insert(right_table, vim.b.gitsigns_status)
 	end
-	table.insert(right_table, vim.api.nvim_eval_statusline("%Y", {}).str:lower())
+	local file_type = vim.api.nvim_eval_statusline("%Y", {}).str:lower()
+	if file_type ~= "" then table.insert(right_table, file_type) end
 	table.insert(right_table, get_progress())
 	local right_string = table.concat(right_table, " | ")
 	local right_string_length = vim.api.nvim_eval_statusline(right_string, {}).width
