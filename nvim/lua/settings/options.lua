@@ -24,6 +24,7 @@ vim.opt.path:append("**")
 vim.opt.shortmess:append("Scs")
 
 vim.api.nvim_create_augroup("options", { clear = true })
+
 vim.api.nvim_create_autocmd("FileType", {
 	group = "options",
 	callback = function()
@@ -44,11 +45,22 @@ vim.api.nvim_create_autocmd("FileType", {
 		end
 	end,
 })
+
 vim.api.nvim_create_autocmd("CursorHold", {
 	group = "options",
 	callback = function()
 		vim.cmd.checktime({
 			mods = { emsg_silent = true },
 		})
+	end,
+})
+
+vim.api.nvim_create_autocmd("VimResized", {
+	group = "options",
+	callback = function()
+		if vim.api.nvim_get_mode().mode:match("^i") then
+			vim.api.nvim_feedkeys(vim.api.nvim_eval([["\<esc>"]]), "n", false)
+		end
+		vim.api.nvim_feedkeys(vim.api.nvim_eval([["\<c-w>="]]), "n", false)
 	end,
 })
