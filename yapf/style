@@ -1,0 +1,8 @@
+[style]
+column_limit = 90
+continuation_align_style = fixed
+dedent_closing_brackets = true
+split_all_top_level_comma_separated_values = true
+split_before_dot = true
+split_before_first_argument = true
+use_tabs = true
