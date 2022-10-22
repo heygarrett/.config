@@ -17,7 +17,7 @@ for _, type in ipairs({ "Error", "Warn", "Hint", "Info" }) do
 	})
 	-- Text highlighting
 	vim.cmd.highlight({
-		args = { hl_virtual_text, "gui=NONE" },
+		args = { hl_virtual_text, "gui=underline" },
 	})
 	vim.cmd.highlight({
 		bang = true,
