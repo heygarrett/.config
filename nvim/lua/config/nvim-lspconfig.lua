@@ -12,6 +12,7 @@ return {
 			"bashls",
 			"dockerls",
 			"jsonls",
+			"marksman",
 			"pyright",
 			"rust_analyzer",
 			"sourcekit",
