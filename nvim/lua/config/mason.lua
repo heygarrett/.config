@@ -1,24 +1,35 @@
 return {
-	"williamboman/mason.nvim",
-	requires = {
-		"williamboman/mason-lspconfig.nvim",
-		"jayp0521/mason-null-ls.nvim",
+	{
+		"williamboman/mason.nvim",
+		config = function()
+			local loaded_mason, mason = pcall(require, "mason")
+			if not loaded_mason then return end
+
+			mason.setup()
+		end,
 	},
-	config = function()
-		local loaded_mason, mason = pcall(require, "mason")
-		if not loaded_mason then return end
-		mason.setup()
+	{
+		"williamboman/mason-lspconfig.nvim",
+		as = "mason-lspconfig",
+		config = function()
+			local loaded, mason_lspconfig = pcall(require, "mason-lspconfig")
+			if not loaded then return end
 
-		local loaded_mason_lspconfig, mason_lspconfig = pcall(require, "mason-lspconfig")
-		if not loaded_mason_lspconfig then return end
-		mason_lspconfig.setup({
-			automatic_installation = true,
-		})
+			mason_lspconfig.setup({
+				automatic_installation = true,
+			})
+		end,
+	},
+	{
+		"jayp0521/mason-null-ls.nvim",
+		after = "null-ls",
+		config = function()
+			local loaded, mason_null_ls = pcall(require, "mason-null-ls")
+			if not loaded then return end
 
-		local loaded_mason_null_ls, mason_null_ls = pcall(require, "mason-null-ls")
-		if not loaded_mason_null_ls then return end
-		mason_null_ls.setup({
-			automatic_installation = true,
-		})
-	end,
+			mason_null_ls.setup({
+				automatic_installation = true,
+			})
+		end,
+	},
 }
