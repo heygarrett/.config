@@ -1,6 +1,7 @@
 return {
 	{
 		"williamboman/mason.nvim",
+		as = "mason",
 		config = function()
 			local loaded_mason, mason = pcall(require, "mason")
 			if not loaded_mason then return end
@@ -11,6 +12,7 @@ return {
 	{
 		"williamboman/mason-lspconfig.nvim",
 		as = "mason-lspconfig",
+		after = "mason",
 		config = function()
 			local loaded, mason_lspconfig = pcall(require, "mason-lspconfig")
 			if not loaded then return end

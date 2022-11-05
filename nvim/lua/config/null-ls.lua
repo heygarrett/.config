@@ -1,6 +1,7 @@
 return {
 	"jose-elias-alvarez/null-ls.nvim",
 	as = "null-ls",
+	after = "mason",
 	requires = {
 		"nvim-lua/plenary.nvim",
 		-- treesitter needed for todo_comments
