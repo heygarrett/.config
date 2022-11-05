@@ -7,8 +7,8 @@ return {
 		silicon.setup({
 			theme = "Dracula",
 			font = "Monocraft",
-			padHoriz = "40",
-			padVert = "50",
+			padHoriz = "30",
+			padVert = "30",
 		})
 
 		vim.api.nvim_create_user_command(
