@@ -5,8 +5,9 @@ return {
 		local loaded, catppuccin = pcall(require, "catppuccin")
 		if not loaded then return end
 
-		vim.g.catppuccin_flavour = "mocha"
-		catppuccin.setup()
+		catppuccin.setup({
+			flavour = "mocha",
+		})
 		vim.cmd.colorscheme({
 			args = { "catppuccin" },
 		})
