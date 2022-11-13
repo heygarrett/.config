@@ -6,7 +6,6 @@ vim.diagnostic.config({
 for _, type in ipairs({ "Error", "Warn", "Hint", "Info" }) do
 	local hl_sign = "DiagnosticSign" .. type
 	local hl_underline = "DiagnosticUnderline" .. type
-	local hl_virtual_text = "DiagnosticVirtualText" .. type
 	-- Sign column highlighting
 	vim.cmd.sign({
 		args = { "undefine", hl_sign },
@@ -17,11 +16,7 @@ for _, type in ipairs({ "Error", "Warn", "Hint", "Info" }) do
 	})
 	-- Text highlighting
 	vim.cmd.highlight({
-		args = { hl_virtual_text, "gui=underline" },
-	})
-	vim.cmd.highlight({
-		bang = true,
-		args = { "link", hl_underline, hl_virtual_text },
+		args = { hl_underline, "gui=underline" },
 	})
 end
 
