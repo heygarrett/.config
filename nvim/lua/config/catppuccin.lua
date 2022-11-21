@@ -7,9 +7,7 @@ return {
 
 		catppuccin.setup({
 			flavour = "mocha",
-			styles = {
-				conditionals = {},
-			},
+			no_italic = true,
 		})
 		vim.cmd.colorscheme({
 			args = { "catppuccin" },
