@@ -34,9 +34,21 @@ return {
 			end
 		end, {})
 		-- LSP lists
-		vim.api.nvim_create_user_command("Defs", builtin.lsp_definitions, {})
-		vim.api.nvim_create_user_command("Imps", builtin.lsp_implementations, {})
-		vim.api.nvim_create_user_command("Refs", builtin.lsp_references, {})
+		vim.api.nvim_create_user_command(
+			"Defs",
+			function() builtin.lsp_definitions({ jump_type = "never" }) end,
+			{}
+		)
+		vim.api.nvim_create_user_command(
+			"Imps",
+			function() builtin.lsp_implementations({ jump_type = "never" }) end,
+			{}
+		)
+		vim.api.nvim_create_user_command(
+			"Refs",
+			function() builtin.lsp_references({ jump_type = "never" }) end,
+			{}
+		)
 		vim.api.nvim_create_user_command("Diags", function(t)
 			if t.args == "all" then
 				builtin.diagnostics({ bufnr = nil })
