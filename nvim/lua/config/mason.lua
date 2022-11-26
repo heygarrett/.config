@@ -34,4 +34,18 @@ return {
 			})
 		end,
 	},
+	{
+		"jayp0521/mason-nvim-dap.nvim",
+		after = "mason",
+		config = function()
+			local loaded, mason_nvim_dap = pcall(require, "mason-nvim-dap")
+			if not loaded then return end
+
+			mason_nvim_dap.setup({
+				ensure_installed = { "python" },
+				automatic_setup = true,
+			})
+			mason_nvim_dap.setup_handlers()
+		end,
+	},
 }

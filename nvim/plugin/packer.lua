@@ -45,6 +45,7 @@ packer.startup({
 			require("config.guess-indent"),
 			require("config.mason"),
 			require("config.null-ls"),
+			require("config.nvim-dap"),
 			require("config.nvim-lspconfig"),
 			require("config.nvim-notify"),
 			require("config.nvim-snippy"),
