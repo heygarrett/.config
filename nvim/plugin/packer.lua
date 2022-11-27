@@ -50,6 +50,7 @@ packer.startup({
 			require("config.nvim-notify"),
 			require("config.nvim-snippy"),
 			require("config.nvim-treesitter"),
+			require("config.sibling-swap"),
 			require("config.silicon"),
 			require("config.telescope"),
 		})
