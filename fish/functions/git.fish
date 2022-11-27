@@ -1,8 +1,9 @@
 function git
-	if [ $argv[-1] = "--force" ]
-		read -fP "Did you mean --force-with-lease? [Y/n] " lease
-		if [ $lease != "n" ]
-			set argv[-1] "--force-with-lease"
+	set index (contains --index -- "--force" $argv)
+	if contains "push" $argv; and test -n "$index"
+		read -fP "Did you mean --force-with-lease? [Y/n] " lease; or return
+		if test "$lease" != "n"
+			set argv[$index] "--force-with-lease"
 		end
 	end
 	command git $argv
