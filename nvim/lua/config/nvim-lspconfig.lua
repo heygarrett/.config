@@ -15,6 +15,7 @@ return {
 			"jsonls",
 			"marksman",
 			"pyright",
+			"ruby_ls",
 			"rust_analyzer",
 			"sourcekit",
 			"tsserver",
