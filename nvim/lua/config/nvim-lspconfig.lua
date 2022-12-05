@@ -4,9 +4,10 @@ return {
 		"catppuccin",
 		"mason-lspconfig",
 	},
+	requires = "folke/neodev.nvim",
 	config = function()
-		local loaded, lspconfig = pcall(require, "lspconfig")
-		if not loaded then return end
+		local lspconfig_loaded, lspconfig = pcall(require, "lspconfig")
+		if not lspconfig_loaded then return end
 
 		local servers = {
 			"bashls",
@@ -27,18 +28,17 @@ return {
 				on_attach = on_attach,
 			})
 		end
+
+		local neodev_loaded, neodev = pcall(require, "neodev")
+		if not neodev_loaded then return end
+
+		neodev.setup()
 		lspconfig.sumneko_lua.setup({
 			on_attach = on_attach,
 			settings = {
 				Lua = {
-					runtime = {
-						version = "LuaJIT",
-					},
-					diagnostics = {
-						globals = { "vim" },
-					},
-					workspace = {
-						library = vim.api.nvim_get_runtime_file("", true),
+					completion = {
+						callSnippet = "Replace",
 					},
 					telemetry = {
 						enable = false,
