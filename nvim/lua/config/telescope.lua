@@ -117,5 +117,11 @@ return {
 			},
 		})
 		require("telescope").load_extension("fzf")
+
+		vim.api.nvim_create_autocmd("User", {
+			group = vim.api.nvim_create_augroup("telescope", { clear = true }),
+			pattern = "TelescopePreviewerLoaded",
+			callback = function() vim.o.wrap = true end,
+		})
 	end,
 }
