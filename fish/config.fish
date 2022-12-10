@@ -4,3 +4,4 @@ if test -e "$op_ssh"
 	set -x SSH_AUTH_SOCK "$op_ssh"
 end
 starship init fish | source
+direnv hook fish | source
