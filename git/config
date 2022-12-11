@@ -31,5 +31,3 @@
 	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
 [push]
 	autoSetupRemote = true
-[alias]
-	dac = !git diff --staged && cz commit
