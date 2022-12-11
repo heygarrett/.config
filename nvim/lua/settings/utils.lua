@@ -19,13 +19,21 @@ local M = {}
 
 -- Check nvim's parent process
 M.launched_by_user = function()
-	local parent_process = vim.fn.system(
+	-- If the parent process is not fish then nvim was not launched by the user
+	local fish_parent = vim.fn.system(
 		string.format(
 			"ps -o ppid= -p %s | xargs ps -o comm= -p | tr -d '\n'",
 			vim.fn.getpid()
 		)
-	)
-	return parent_process == "-fish"
+	) == "-fish"
+	-- If there's only one buffer and it's not in the cwd
+	-- then nvim was prorably not launched by the user
+	-- This is for fish binding Option-V
+	local multiple_buffers = #vim.api.nvim_list_bufs() > 1
+	local file_path = vim.fn.expand("%:p")
+	local file_in_cwd = file_path:match("^" .. vim.loop.cwd()) or file_path == ""
+
+	return fish_parent and (multiple_buffers or file_in_cwd)
 end
 
 return M
