@@ -36,5 +36,25 @@ return {
 			mods = "CTRL|SHIFT",
 			action = wezterm.action.ActivatePaneDirection("Right"),
 		},
+		{
+			key = "{",
+			mods = "OPT|SHIFT",
+			action = wezterm.action.RotatePanes("CounterClockwise"),
+		},
+		{
+			key = "}",
+			mods = "OPT|SHIFT",
+			action = wezterm.action.RotatePanes("Clockwise"),
+		},
+		{
+			key = "Tab",
+			mods = "OPT|SHIFT",
+			action = wezterm.action.MoveTabRelative(-1),
+		},
+		{
+			key = "Tab",
+			mods = "OPT",
+			action = wezterm.action.MoveTabRelative(1),
+		},
 	},
 }
