@@ -1,5 +1,6 @@
 # This file contains fish universal variable definitions.
 # VERSION: 3.0
+SETUVAR --export AG_FEATURES:off
 SETUVAR --export EDITOR:nvim\x20\x2d\x2dcmd\x20\x27let\x20g\x3alaunched_by_shell\x3d1\x27
 SETUVAR --export HOMEBREW_BUNDLE_FILE:/Users/garrett/\x2econfig/homebrew/Brewfile
 SETUVAR --export HOMEBREW_NO_ANALYTICS:1
