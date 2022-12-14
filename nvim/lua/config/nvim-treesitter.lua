@@ -24,6 +24,7 @@ return {
 
 			treesitter.setup({
 				auto_install = true,
+				ignore_install = { "gitcommit" },
 				highlight = {
 					enable = true,
 					disable = { "make" },
