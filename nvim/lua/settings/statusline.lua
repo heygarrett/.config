@@ -12,7 +12,7 @@ end
 ---Get name of the current file
 ---@return string
 local function get_file_name()
-	local root_path = vim.loop.cwd()
+	local root_path = vim.fn.getcwd()
 	local root_dir = root_path:match("[^/]+$")
 	local home_path = vim.fn.expand("%:~")
 	local overlap, _ = home_path:find(root_dir)
