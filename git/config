@@ -5,7 +5,6 @@
 [commit]
 	gpgsign = true
 [core]
-	editor = nvim
 	autocrlf = input
 	pager = less -x1,5
 [gpg]
