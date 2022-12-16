@@ -2,6 +2,7 @@ return {
 	"nvim-telescope/telescope.nvim",
 	requires = {
 		"nvim-lua/plenary.nvim",
+		"nvim-telescope/telescope-file-browser.nvim",
 		{
 			"nvim-telescope/telescope-fzf-native.nvim",
 			run = "make",
@@ -116,7 +117,18 @@ return {
 				},
 			},
 		})
-		require("telescope").load_extension("fzf")
+		telescope.load_extension("fzf")
+
+		telescope.load_extension("file_browser")
+		vim.api.nvim_create_user_command("Dir", function()
+			local current_dir = vim.fn.expand("%:h")
+			telescope.extensions.file_browser.file_browser({
+				path = current_dir ~= "" and current_dir or nil,
+				grouped = true,
+				hidden = true,
+				dir_icon = "",
+			})
+		end, {})
 
 		vim.api.nvim_create_autocmd("User", {
 			group = vim.api.nvim_create_augroup("telescope", { clear = true }),

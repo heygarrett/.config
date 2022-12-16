@@ -19,21 +19,17 @@ vim.api.nvim_create_autocmd("VimEnter", {
 			})
 			vim.defer_fn(function() vim.notify("Loaded session!") end, 500)
 		else
-			vim.cmd.edit({
-				args = { "." },
+			vim.cmd.mksession({
+				mods = {
+					emsg_silent = true,
+				},
 			})
-			vim.cmd.mksession()
 			if vim.fn.filereadable("Session.vim") == 1 then
 				vim.defer_fn(function() vim.notify("Created session!") end, 500)
 			end
 		end
-	end,
-})
-vim.api.nvim_create_autocmd("SessionLoadPost", {
-	group = "sessions",
-	callback = function()
 		if #vim.api.nvim_list_bufs() == 1 and vim.fn.expand("%:p") == "" then
-			vim.cmd.Ex()
+			vim.cmd.Dir()
 		end
 	end,
 })
