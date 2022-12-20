@@ -43,6 +43,7 @@ packer.startup({
 			require("config.catppuccin"),
 			require("config.gitsigns"),
 			require("config.guess-indent"),
+			require("config.lir"),
 			require("config.mason"),
 			require("config.null-ls"),
 			require("config.nvim-dap"),

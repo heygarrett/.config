@@ -1,4 +1,4 @@
-vim.opt.sessionoptions = { "help", "tabpages" }
+vim.opt.sessionoptions = { "blank", "help", "tabpages" }
 
 vim.api.nvim_create_augroup("sessions", { clear = true })
 
@@ -29,7 +29,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 			end
 		end
 		if #vim.api.nvim_list_bufs() == 1 and vim.fn.expand("%:p") == "" then
-			vim.cmd.Dir()
+			vim.cmd.Lir()
 		end
 	end,
 })
