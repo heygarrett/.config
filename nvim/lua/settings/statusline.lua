@@ -165,7 +165,8 @@ function Status_Line()
 		vim.api.nvim_eval_statusline(left_string, { maxwidth = 0 }).width
 
 	local right_table = {}
-	table.insert(right_table, get_search_count())
+	local search_count = get_search_count()
+	if search_count then table.insert(right_table, search_count) end
 	table.insert(right_table, get_diagnostics())
 	if vim.b.gitsigns_status ~= "" then
 		table.insert(right_table, vim.b.gitsigns_status)

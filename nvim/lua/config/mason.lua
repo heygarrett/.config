@@ -1,7 +1,7 @@
 return {
 	{
 		"williamboman/mason.nvim",
-		as = "mason",
+		name = "mason",
 		config = function()
 			local loaded_mason, mason = pcall(require, "mason")
 			if not loaded_mason then return end
@@ -11,8 +11,7 @@ return {
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
-		as = "mason-lspconfig",
-		after = "mason",
+		name = "mason-lspconfig",
 		config = function()
 			local loaded, mason_lspconfig = pcall(require, "mason-lspconfig")
 			if not loaded then return end
@@ -23,8 +22,7 @@ return {
 		end,
 	},
 	{
-		"jayp0521/mason-null-ls.nvim",
-		after = "null-ls",
+		"jay-babu/mason-null-ls.nvim",
 		config = function()
 			local loaded, mason_null_ls = pcall(require, "mason-null-ls")
 			if not loaded then return end
@@ -36,7 +34,6 @@ return {
 	},
 	{
 		"jayp0521/mason-nvim-dap.nvim",
-		after = "mason",
 		config = function()
 			local loaded, mason_nvim_dap = pcall(require, "mason-nvim-dap")
 			if not loaded then return end

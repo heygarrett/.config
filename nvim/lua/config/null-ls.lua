@@ -1,8 +1,7 @@
 return {
 	"jose-elias-alvarez/null-ls.nvim",
-	as = "null-ls",
-	after = "mason",
-	requires = {
+	name = "null-ls",
+	dependencies = {
 		"nvim-lua/plenary.nvim",
 		-- treesitter needed for todo_comments
 		"nvim-treesitter/nvim-treesitter",

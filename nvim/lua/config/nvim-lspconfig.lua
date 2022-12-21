@@ -1,10 +1,6 @@
 return {
 	"neovim/nvim-lspconfig",
-	after = {
-		"catppuccin",
-		"mason-lspconfig",
-	},
-	requires = "folke/neodev.nvim",
+	dependencies = { "folke/neodev.nvim" },
 	config = function()
 		local lspconfig_loaded, lspconfig = pcall(require, "lspconfig")
 		if not lspconfig_loaded then return end
@@ -40,6 +36,9 @@ return {
 				Lua = {
 					completion = {
 						callSnippet = "Replace",
+					},
+					workspace = {
+						checkThirdParty = false,
 					},
 					telemetry = {
 						enable = false,

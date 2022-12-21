@@ -15,7 +15,7 @@ return {
 	},
 	{
 		"nvim-treesitter/nvim-treesitter",
-		run = function()
+		build = function()
 			if package.loaded["nvim-treesitter.configs"] then vim.cmd.TSUpdate() end
 		end,
 		config = function()

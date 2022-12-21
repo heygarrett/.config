@@ -1,6 +1,6 @@
 return {
 	"Wansmer/sibling-swap.nvim",
-	requires = "nvim-treesitter/nvim-treesitter",
+	dependencies = { "nvim-treesitter/nvim-treesitter" },
 	config = function()
 		local loaded, sibling_swap = pcall(require, "sibling-swap")
 		if not loaded then return end

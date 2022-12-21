@@ -1,6 +1,6 @@
 return {
 	"catppuccin/nvim",
-	as = "catppuccin",
+	name = "catppuccin",
 	config = function()
 		local loaded, catppuccin = pcall(require, "catppuccin")
 		if not loaded then return end
