@@ -1,15 +1,9 @@
 return {
 	"jose-elias-alvarez/null-ls.nvim",
-	name = "null-ls",
-	dependencies = {
-		"nvim-lua/plenary.nvim",
-		-- treesitter needed for todo_comments
-		"nvim-treesitter/nvim-treesitter",
-	},
+	dependencies = "nvim-lua/plenary.nvim",
+	lazy = false,
 	config = function()
-		local loaded, null_ls = pcall(require, "null-ls")
-		if not loaded then return end
-
+		local null_ls = require("null-ls")
 		null_ls.setup({
 			debug = false,
 			sources = {
