@@ -1,63 +1,89 @@
+local builtins = function() return require("telescope.builtin") end
+
 return {
 	"nvim-telescope/telescope.nvim",
-	requires = {
+	dependencies = {
 		"nvim-lua/plenary.nvim",
-		"nvim-telescope/telescope-file-browser.nvim",
 		{
 			"nvim-telescope/telescope-fzf-native.nvim",
-			run = "make",
+			build = "make",
 		},
 	},
-	config = function()
-		local loaded, telescope = pcall(require, "telescope")
-		if not loaded then return end
-
-		local builtin = require("telescope.builtin")
-		vim.api.nvim_create_user_command("Bcommits", builtin.git_bcommits, {})
-		vim.api.nvim_create_user_command("Commits", builtin.git_commits, {})
-		vim.api.nvim_create_user_command("Grep", builtin.live_grep, {})
-		vim.api.nvim_create_user_command("Help", builtin.help_tags, {})
-		vim.api.nvim_create_user_command("Status", builtin.git_status, {})
-		vim.api.nvim_create_user_command("Tele", builtin.resume, {})
+	init = function()
+		vim.api.nvim_create_user_command(
+			"Bcommits",
+			function() builtins().git_bcommits() end,
+			{}
+		)
 		vim.api.nvim_create_user_command(
 			"Buffers",
-			function() builtin.buffers({ sort_lastused = true }) end,
+			function() builtins().buffers({ sort_lastused = true }) end,
+			{}
+		)
+		vim.api.nvim_create_user_command(
+			"Commands",
+			function() builtins().commands() end,
+			{}
+		)
+		vim.api.nvim_create_user_command(
+			"Commits",
+			function() builtins().git_commits() end,
 			{}
 		)
 		vim.api.nvim_create_user_command("Find", function()
 			if vim.fn.system("git rev-parse --is-inside-work-tree"):match("true") then
-				builtin.git_files({
-					use_git_root = false,
-					show_untracked = true,
-				})
+				builtins().git_files({ use_git_root = false, show_untracked = true })
 			else
-				builtin.find_files({ hidden = true })
+				builtins().find_files({ hidden = true })
 			end
 		end, {})
+		vim.api.nvim_create_user_command(
+			"Grep",
+			function() builtins().live_grep() end,
+			{}
+		)
+		vim.api.nvim_create_user_command(
+			"Help",
+			function() builtins().help_tags() end,
+			{}
+		)
+		vim.api.nvim_create_user_command(
+			"Keymaps",
+			function() builtins().keymaps() end,
+			{}
+		)
+		vim.api.nvim_create_user_command(
+			"Status",
+			function() builtins().git_status() end,
+			{}
+		)
+		vim.api.nvim_create_user_command("Tele", function() builtins().resume() end, {})
 		-- LSP lists
 		vim.api.nvim_create_user_command(
 			"Defs",
-			function() builtin.lsp_definitions({ jump_type = "never" }) end,
-			{}
-		)
-		vim.api.nvim_create_user_command(
-			"Imps",
-			function() builtin.lsp_implementations({ jump_type = "never" }) end,
-			{}
-		)
-		vim.api.nvim_create_user_command(
-			"Refs",
-			function() builtin.lsp_references({ jump_type = "never" }) end,
+			function() builtins().lsp_definitions({ jump_type = "never" }) end,
 			{}
 		)
 		vim.api.nvim_create_user_command("Diags", function(t)
 			if t.args == "all" then
-				builtin.diagnostics({ bufnr = nil })
+				builtins().diagnostics({ bufnr = nil })
 			else
-				builtin.diagnostics({ bufnr = 0 })
+				builtins().diagnostics({ bufnr = 0 })
 			end
 		end, { nargs = "?" })
-
+		vim.api.nvim_create_user_command(
+			"Imps",
+			function() builtins().lsp_implementations({ jump_type = "never" }) end,
+			{}
+		)
+		vim.api.nvim_create_user_command(
+			"Refs",
+			function() builtins().lsp_references({ jump_type = "never" }) end,
+			{}
+		)
+	end,
+	config = function()
+		local telescope = require("telescope")
 		local actions = require("telescope.actions")
 		local action_state = require("telescope.actions.state")
 		local function new_tab_with_command(cmd, commit)
@@ -89,6 +115,7 @@ return {
 			local commit = action_state.get_selected_entry().value
 			actions.close(prompt_bufnr)
 			vim.fn.setreg("+", commit)
+			---@diagnostic disable: param-type-mismatch
 			vim.defer_fn(
 				function() vim.notify(("Commit %s copied to clipboard!"):format(commit)) end,
 				500
@@ -124,20 +151,6 @@ return {
 			},
 		})
 		telescope.load_extension("fzf")
-
-		telescope.load_extension("file_browser")
-		vim.api.nvim_create_user_command(
-			"Dir",
-			function()
-				telescope.extensions.file_browser.file_browser({
-					path = "%:p:h",
-					grouped = true,
-					hidden = true,
-					dir_icon = "",
-				})
-			end,
-			{}
-		)
 
 		vim.api.nvim_create_autocmd("User", {
 			group = vim.api.nvim_create_augroup("telescope", { clear = true }),

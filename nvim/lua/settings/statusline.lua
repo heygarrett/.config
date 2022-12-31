@@ -12,14 +12,12 @@ end
 ---Get name of the current file
 ---@return string
 local function get_file_name()
-	local root_path = vim.fn.getcwd()
-	local root_dir = root_path:match("[^/]+$")
+	local cwd = vim.fn.getcwd()
+	local cwd_tail = cwd:match("[^/]+$")
 	local home_path = vim.fn.expand("%:~")
-	local overlap, _ = home_path:find(root_dir)
-	if home_path == "" then
-		return root_path:gsub(vim.env.HOME, "~")
-	elseif overlap then
-		return home_path:sub(overlap)
+	local tail_start, tail_end = home_path:find(cwd_tail)
+	if tail_start and tail_end ~= #home_path then
+		return table.concat({ cwd_tail, vim.fn.expand("%:.") }, "/")
 	else
 		return home_path
 	end
@@ -165,7 +163,8 @@ function Status_Line()
 		vim.api.nvim_eval_statusline(left_string, { maxwidth = 0 }).width
 
 	local right_table = {}
-	table.insert(right_table, get_search_count())
+	local search_count = get_search_count()
+	if search_count then table.insert(right_table, search_count) end
 	table.insert(right_table, get_diagnostics())
 	if vim.b.gitsigns_status ~= "" then
 		table.insert(right_table, vim.b.gitsigns_status)

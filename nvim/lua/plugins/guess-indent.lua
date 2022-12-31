@@ -1,10 +1,8 @@
 return {
 	"NMAC427/guess-indent.nvim",
+	lazy = false,
 	config = function()
-		local loaded, guess_indent = pcall(require, "guess-indent")
-		if not loaded then return end
-
-		guess_indent.setup({
+		require("guess-indent").setup({
 			auto_cmd = false,
 			filetype_exclude = {
 				"diff",

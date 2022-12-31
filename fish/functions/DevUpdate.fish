@@ -6,7 +6,6 @@ function DevUpdate
 	fisher update
 	hr
 	pushd $HOME/.config
-	nvim nvim/plugin/packer.lua \
-		"+PackerSnapshotDelete latest" "+PackerSnapshot latest" "+PackerSync --preview"
+	nvim -c "autocmd User VeryLazy Lazy sync" nvim/lua/plugins
 	popd
 end

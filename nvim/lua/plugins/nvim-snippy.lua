@@ -1,15 +1,16 @@
+local snippy = function() return require("snippy") end
+
 return {
 	"dcampos/nvim-snippy",
-	config = function()
-		local loaded, snippy = pcall(require, "snippy")
-		if not loaded then return end
-
+	keys = "<c-x><c-o>",
+	init = function()
 		vim.api.nvim_create_autocmd("CompleteDone", {
 			group = vim.api.nvim_create_augroup("snippy", { clear = true }),
-			callback = function() snippy.complete_done() end,
+			callback = function() snippy().complete_done() end,
 		})
-
-		snippy.setup({
+	end,
+	config = function()
+		snippy().setup({
 			mappings = {
 				is = {
 					["<tab>"] = "next",
