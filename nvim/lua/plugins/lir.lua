@@ -1,31 +1,33 @@
 return {
 	"tamago324/lir.nvim",
-	config = function()
-		local loaded, lir = pcall(require, "lir")
-		if not loaded then return end
-
-		vim.g.loaded_netrw = 1
-		vim.g.loaded_netrwPlugin = 1
-
-		local actions = require("lir.actions")
-		lir.setup({
-			show_hidden_files = true,
-			mappings = {
-				["<cr>"] = actions.edit,
-				["-"] = actions.up,
-				["d"] = actions.mkdir,
-				["D"] = actions.wipeout,
-				["%"] = actions.newfile,
-				["R"] = function() actions.rename(false) end,
-				["r"] = actions.reload,
-			},
-		})
-
+	dir = "~/repos/forks/lir.nvim",
+	lazy = false,
+	init = function()
 		vim.api.nvim_create_user_command("Lir", function()
-			local directory = vim.fn.expand("%:p:h")
+			require("lir")
 			vim.cmd.edit({
-				args = { directory },
+				args = { vim.fn.expand("%:p:h") },
 			})
 		end, {})
+	end,
+	config = function()
+		local actions = require("lir.actions")
+		require("lir").setup({
+			show_hidden_files = true,
+			hide_cursor = true,
+			mappings = {
+				-- navigation
+				["-"] = actions.up,
+				["<cr>"] = actions.edit,
+				["<c-v>"] = function() actions.vsplit(false) end,
+				-- modification
+				["<c-d>"] = actions.mkdir,
+				["%"] = actions.newfile,
+				["R"] = function() actions.rename(false) end,
+				["D"] = actions.wipeout,
+				-- miscellaneous
+				["<c-r>"] = actions.reload,
+			},
+		})
 	end,
 }
