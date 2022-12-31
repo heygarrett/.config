@@ -1,43 +1,32 @@
 return {
 	{
 		"williamboman/mason.nvim",
-		name = "mason",
-		config = function()
-			local loaded_mason, mason = pcall(require, "mason")
-			if not loaded_mason then return end
-
-			mason.setup()
-		end,
+		lazy = false,
+		config = true,
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
-		name = "mason-lspconfig",
+		lazy = false,
 		config = function()
-			local loaded, mason_lspconfig = pcall(require, "mason-lspconfig")
-			if not loaded then return end
-
-			mason_lspconfig.setup({
+			require("mason-lspconfig").setup({
 				automatic_installation = true,
 			})
 		end,
 	},
 	{
 		"jay-babu/mason-null-ls.nvim",
+		lazy = false,
 		config = function()
-			local loaded, mason_null_ls = pcall(require, "mason-null-ls")
-			if not loaded then return end
-
-			mason_null_ls.setup({
+			require("mason-null-ls").setup({
 				automatic_installation = true,
 			})
 		end,
 	},
 	{
-		"jayp0521/mason-nvim-dap.nvim",
+		"jay-babu/mason-nvim-dap.nvim",
+		lazy = false,
 		config = function()
-			local loaded, mason_nvim_dap = pcall(require, "mason-nvim-dap")
-			if not loaded then return end
-
+			local mason_nvim_dap = require("mason-nvim-dap")
 			mason_nvim_dap.setup({
 				ensure_installed = { "python" },
 				automatic_setup = true,
