@@ -1,12 +1,10 @@
 return {
 	"catppuccin/nvim",
 	name = "catppuccin",
+	lazy = false,
 	config = function()
-		local loaded, catppuccin = pcall(require, "catppuccin")
-		if not loaded then return end
-
 		local palette = require("catppuccin.palettes").get_palette()
-		catppuccin.setup({
+		require("catppuccin").setup({
 			flavour = "mocha",
 			no_italic = true,
 			color_overrides = {
