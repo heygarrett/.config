@@ -1,9 +1,8 @@
 return {
 	"rcarriga/nvim-notify",
+	lazy = false,
 	config = function()
-		local loaded, notify = pcall(require, "notify")
-		if not loaded then return end
-
+		local notify = require("notify")
 		notify.setup({
 			render = "minimal",
 			minimum_width = 0,
