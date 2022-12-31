@@ -1,5 +1,6 @@
 return {
 	"neovim/nvim-lspconfig",
+	version = "*",
 	dependencies = "folke/neodev.nvim",
 	lazy = false,
 	config = function()

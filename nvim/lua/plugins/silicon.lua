@@ -1,5 +1,6 @@
 return {
 	"NarutoXY/silicon.lua",
+	version = "*",
 	init = function()
 		vim.api.nvim_create_user_command(
 			"Silicon",

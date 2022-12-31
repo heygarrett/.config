@@ -1,5 +1,6 @@
 return {
 	"NMAC427/guess-indent.nvim",
+	version = "*",
 	lazy = false,
 	config = function()
 		require("guess-indent").setup({

@@ -1,5 +1,6 @@
 return {
 	"tamago324/lir.nvim",
+	version = "*",
 	dir = "~/repos/forks/lir.nvim",
 	lazy = false,
 	init = function()

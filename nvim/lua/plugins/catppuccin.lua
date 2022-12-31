@@ -1,6 +1,7 @@
 return {
 	"catppuccin/nvim",
 	name = "catppuccin",
+	version = "*",
 	lazy = false,
 	config = function()
 		local palette = require("catppuccin.palettes").get_palette()

@@ -1,11 +1,13 @@
 return {
 	{
 		"williamboman/mason.nvim",
+		version = "*",
 		lazy = false,
 		config = true,
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
+		version = "*",
 		lazy = false,
 		config = function()
 			require("mason-lspconfig").setup({
@@ -15,6 +17,7 @@ return {
 	},
 	{
 		"jay-babu/mason-null-ls.nvim",
+		version = "*",
 		lazy = false,
 		config = function()
 			require("mason-null-ls").setup({
@@ -24,6 +27,7 @@ return {
 	},
 	{
 		"jay-babu/mason-nvim-dap.nvim",
+		version = "*",
 		lazy = false,
 		config = function()
 			local mason_nvim_dap = require("mason-nvim-dap")
