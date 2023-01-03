@@ -3,6 +3,16 @@ local wezterm = require("wezterm")
 return {
 	color_scheme = "Catppuccin Mocha",
 	font = wezterm.font("Monocraft"),
+	-- Disable bold text
+	font_rules = {
+		{
+			intensity = "Bold",
+			font = wezterm.font({
+				family = "Monocraft",
+				weight = "Regular",
+			}),
+		},
+	},
 	font_size = 10.5,
 	harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
 	native_macos_fullscreen_mode = true,
