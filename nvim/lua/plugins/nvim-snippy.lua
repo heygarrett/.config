@@ -2,7 +2,6 @@ local snippy = function() return require("snippy") end
 
 return {
 	"dcampos/nvim-snippy",
-	version = "*",
 	keys = "<c-x><c-o>",
 	init = function()
 		vim.api.nvim_create_autocmd("CompleteDone", {

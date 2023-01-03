@@ -1,6 +1,5 @@
 return {
 	"jose-elias-alvarez/null-ls.nvim",
-	version = "*",
 	dependencies = "nvim-lua/plenary.nvim",
 	lazy = false,
 	config = function()

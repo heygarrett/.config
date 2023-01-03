@@ -2,7 +2,6 @@ local dap = function() return require("dap") end
 
 return {
 	"mfussenegger/nvim-dap",
-	version = "*",
 	init = function()
 		vim.api.nvim_create_user_command(
 			"DBreakpoint",
