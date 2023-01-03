@@ -1,34 +1,22 @@
 return {
 	"neovim/nvim-lspconfig",
-	version = "*",
-	dependencies = "folke/neodev.nvim",
+	dependencies = {
+		"folke/neodev.nvim",
+		"VonHeikemen/lsp-zero.nvim",
+	},
 	lazy = false,
 	config = function()
 		require("neodev").setup()
 
-		local servers = {
-			"bashls",
-			"dockerls",
-			"jsonls",
-			"marksman",
-			"pyright",
-			"rust_analyzer",
-			"sourcekit",
-			"tsserver",
-			"vimls",
-			"yamlls",
-		}
-
-		local lspconfig = require("lspconfig")
-		local on_attach = require("lsp.on_attach")
-		for _, s in ipairs(servers) do
-			lspconfig[s].setup({
-				on_attach = on_attach,
-			})
-		end
-
-		lspconfig.sumneko_lua.setup({
-			on_attach = on_attach,
+		local lsp_zero = require("lsp-zero")
+		lsp_zero.set_preferences({
+			suggest_lsp_servers = true,
+			setup_servers_on_start = true,
+			set_lsp_keymaps = false,
+			call_servers = "local",
+		})
+		lsp_zero.on_attach(require("lsp.on_attach"))
+		lsp_zero.configure("sumneko_lua", {
 			settings = {
 				Lua = {
 					completion = {
@@ -43,5 +31,6 @@ return {
 				},
 			},
 		})
+		lsp_zero.setup()
 	end,
 }
