@@ -124,6 +124,7 @@ return {
 
 		telescope.setup({
 			defaults = {
+				wrap_results = true,
 				sorting_strategy = "ascending",
 				layout_config = {
 					prompt_position = "top",
