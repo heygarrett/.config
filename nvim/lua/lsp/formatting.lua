@@ -3,15 +3,19 @@ local M = {}
 M.setup = function(bufnr)
 	-- user command: Format
 	vim.api.nvim_buf_create_user_command(bufnr, "Format", function()
-		-- Disable formatting for specific servers
+		-- Use null-ls sources when available
 		vim.lsp.buf.format({
 			filter = function(client)
-				local disabled_for = {
-					jsonls = true,
-					sumneko_lua = true,
-					tsserver = true,
-				}
-				return not disabled_for[client.name]
+				if client.name == "null-ls" then
+					return true
+				elseif package.loaded["null-ls"] then
+					return #require("null-ls.sources").get_available(
+						vim.bo.filetype,
+						"NULL_LS_FORMATTING"
+					) == 0
+				else
+					return true
+				end
 			end,
 		})
 		-- Retab after formatting
