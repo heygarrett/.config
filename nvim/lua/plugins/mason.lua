@@ -6,10 +6,23 @@ return {
 	},
 	{
 		"williamboman/mason-lspconfig.nvim",
-		lazy = false,
 		config = function()
-			require("mason-lspconfig").setup({
-				automatic_installation = true,
+			local mason_lspconfig = require("mason-lspconfig")
+			mason_lspconfig.setup()
+			vim.api.nvim_create_autocmd("FileType", {
+				group = vim.api.nvim_create_augroup("mason-lspconfig", { clear = true }),
+				callback = function(t)
+					if vim.bo[t.buf].buftype ~= "" then return end
+					local available_servers =
+						mason_lspconfig.get_available_servers({ filetype = t.match })
+					local installed_servers = mason_lspconfig.get_installed_servers()
+					for _, available in ipairs(available_servers) do
+						for _, installed in ipairs(installed_servers) do
+							if available == installed then return end
+						end
+					end
+					vim.schedule(vim.cmd.LspInstall)
+				end,
 			})
 		end,
 	},
