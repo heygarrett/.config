@@ -6,6 +6,6 @@ function DevUpdate
 	fisher update
 	hr
 	pushd $HOME/.config
-	nvim -c "autocmd User VeryLazy Lazy sync" nvim/lua/plugins
+	nvim -c "autocmd User VeryLazy ++once Lazy sync" nvim/lua/plugins
 	popd
 end
