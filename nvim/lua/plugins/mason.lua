@@ -10,6 +10,7 @@ return {
 			local mason_lspconfig = require("mason-lspconfig")
 			mason_lspconfig.setup()
 			local ignored_filetypes = {
+				diff = true,
 				fish = true,
 				gitcommit = true,
 			}
