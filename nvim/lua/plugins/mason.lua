@@ -9,9 +9,14 @@ return {
 		config = function()
 			local mason_lspconfig = require("mason-lspconfig")
 			mason_lspconfig.setup()
+			local ignored_filetypes = {
+				fish = true,
+				gitcommit = true,
+			}
 			vim.api.nvim_create_autocmd("FileType", {
 				group = vim.api.nvim_create_augroup("mason-lspconfig", { clear = true }),
 				callback = function(t)
+					if ignored_filetypes[t.match] then return end
 					if vim.bo[t.buf].buftype ~= "" then return end
 					local available_servers =
 						mason_lspconfig.get_available_servers({ filetype = t.match })
