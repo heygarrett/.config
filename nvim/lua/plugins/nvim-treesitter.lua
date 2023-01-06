@@ -9,7 +9,7 @@ return {
 	config = function()
 		require("nvim-treesitter.configs").setup({
 			auto_install = true,
-			ignore_install = { "gitcommit" },
+			ignore_install = { "diff", "gitcommit" },
 			highlight = {
 				enable = true,
 				disable = { "make" },
