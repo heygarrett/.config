@@ -1,9 +1,9 @@
 {
   "FTerm.nvim": { "branch": "master", "commit": "d1320892cc2ebab472935242d9d992a2c9570180" },
-  "catppuccin": { "branch": "main", "commit": "3020af75aae098a77737d91ee37c7147c8450d99" },
   "editorconfig.nvim": { "branch": "master", "commit": "4b0da4c50727551bfabde7b8a1f7499e2abc0d2f" },
   "gitsigns.nvim": { "branch": "main", "commit": "d4f8c01280413919349f5df7daccd0c172143d7c" },
   "guess-indent.nvim": { "branch": "main", "commit": "c37467baa1a51b74ed767cbe0540fce44e03d828" },
+  "kanagawa.nvim": { "branch": "master", "commit": "476eb2289d47d132ebacc1a4d459e3204866599b" },
   "lazy.nvim": { "branch": "main", "commit": "e89e938991701cef7b9ace1913a7251c4c0fa46c" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "aa25b4153d2f2636c3b3a8c8360349d2b29e7ae3" },
   "mason-null-ls.nvim": { "branch": "main", "commit": "c4b4a6fe3cb8d8590b831c22b3475166dc9a894e" },

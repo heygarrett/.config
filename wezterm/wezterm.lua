@@ -1,7 +1,7 @@
 local wezterm = require("wezterm")
 
 return {
-	color_scheme = "Catppuccin Mocha",
+	color_scheme = "kanagawabones",
 	font = wezterm.font("Monocraft"),
 	-- Disable bold text
 	font_rules = {
