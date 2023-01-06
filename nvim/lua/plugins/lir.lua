@@ -1,6 +1,6 @@
 return {
-	"tamago324/lir.nvim",
-	dir = "~/repos/forks/lir.nvim",
+	-- "tamago324/lir.nvim",
+	"heygarrett/lir.nvim",
 	lazy = false,
 	init = function()
 		vim.api.nvim_create_user_command("Lir", function()
