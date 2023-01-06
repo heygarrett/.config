@@ -17,6 +17,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 					emsg_silent = true,
 				},
 			})
+			---@diagnostic disable-next-line: param-type-mismatch
 			vim.defer_fn(function() vim.notify("Loaded session!") end, 500)
 		else
 			vim.cmd.mksession({
@@ -25,6 +26,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 				},
 			})
 			if vim.fn.filereadable("Session.vim") == 1 then
+				---@diagnostic disable-next-line: param-type-mismatch
 				vim.defer_fn(function() vim.notify("Created session!") end, 500)
 			end
 		end
