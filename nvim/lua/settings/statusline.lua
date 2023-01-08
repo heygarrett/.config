@@ -114,7 +114,7 @@ local function generate_left(branch, file)
 
 	local left = {}
 	if branch then table.insert(left, branch) end
-	table.insert(left, file)
+	if file ~= "" then table.insert(left, file) end
 	left = { table.concat(left, " | ") }
 
 	local modified_flag = vim.api.nvim_eval_statusline("%m", {}).str
