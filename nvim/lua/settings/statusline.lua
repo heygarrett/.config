@@ -14,10 +14,14 @@ end
 local function get_file_name()
 	local cwd = vim.fn.getcwd()
 	local cwd_tail = cwd:match("[^/]+$")
-	local home_path = vim.fn.expand("%:~")
+	local file_path = vim.api.nvim_buf_get_name(0)
+	if vim.startswith(file_path, "oil://") then
+		file_path = file_path:gsub("oil://", ""):gsub("/$", "")
+	end
+	local home_path = vim.fn.fnamemodify(file_path, ":~")
 	local tail_start, tail_end = home_path:find(cwd_tail)
 	if tail_start and tail_end ~= #home_path then
-		return table.concat({ cwd_tail, vim.fn.expand("%:.") }, "/")
+		return table.concat({ cwd_tail, vim.fn.fnamemodify(file_path, ":.") }, "/")
 	else
 		return home_path
 	end

@@ -30,8 +30,8 @@ vim.api.nvim_create_autocmd("VimEnter", {
 				vim.defer_fn(function() vim.notify("Created session!") end, 500)
 			end
 		end
-		if #vim.api.nvim_list_bufs() == 1 and vim.fn.expand("%:p") == "" then
-			vim.cmd.Lir()
+		if #vim.api.nvim_list_bufs() == 1 and vim.api.nvim_buf_get_name(0) == "" then
+			vim.cmd.Oil()
 		end
 	end,
 })
