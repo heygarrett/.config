@@ -131,6 +131,13 @@ return {
 				},
 			},
 			pickers = {
+				help_tags = {
+					mappings = {
+						i = {
+							["<cr>"] = actions.select_vertical,
+						},
+					},
+				},
 				git_bcommits = {
 					mappings = {
 						i = {
