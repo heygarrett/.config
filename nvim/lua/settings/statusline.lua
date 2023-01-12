@@ -3,7 +3,8 @@
 local function get_branch_name()
 	local branch = vim.fn.system("git branch --show-current 2> /dev/null")
 	if branch ~= "" and not vim.g.launched_by_shell then
-		return branch:gsub("\n", "")
+		local branch_name, _ = branch:gsub("\n", "")
+		return branch_name
 	else
 		return nil
 	end
