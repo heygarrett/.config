@@ -10,9 +10,9 @@ local function get_branch_name()
 	end
 end
 
----Get name of the current file
+---Get name of the current buffer
 ---@return string
-local function get_file_name()
+local function get_buffer_name()
 	local cwd = vim.fn.getcwd()
 	local cwd_tail = cwd:match("[^/]+$")
 	local file_path = vim.api.nvim_buf_get_name(0):gsub("/$", "")
@@ -29,12 +29,12 @@ local function get_file_name()
 	return buffer_name
 end
 
----Set buffer variables for branch and file names as frequently as they may change
+---Set buffer variables for branch and buffer names as frequently as they may change
 vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "FocusGained" }, {
 	group = vim.api.nvim_create_augroup("statusline", { clear = true }),
 	callback = function()
 		vim.b.branch_name = get_branch_name()
-		vim.b.file_name = get_file_name()
+		vim.b.buffer_name = get_buffer_name()
 	end,
 })
 
@@ -112,15 +112,15 @@ end
 
 ---Format string for left side of statusline
 ---@param branch string | nil
----@param file string | nil
+---@param buffer string | nil
 ---@return string
-local function generate_left(branch, file)
+local function generate_left(branch, buffer)
 	branch = branch or vim.b.branch_name
-	file = file or vim.b.file_name
+	buffer = buffer or vim.b.buffer_name
 
 	local left = {}
 	if branch then table.insert(left, branch) end
-	if file ~= "" then table.insert(left, file) end
+	if buffer ~= "" then table.insert(left, buffer) end
 	left = { table.concat(left, " | ") }
 
 	local modified_flag = vim.api.nvim_eval_statusline("%m", {}).str
@@ -129,14 +129,14 @@ local function generate_left(branch, file)
 	return table.concat(left, " ")
 end
 
----Truncate branch and file names for narrow window
+---Truncate branch and buffer names for narrow window
 ---@param overflow number
 ---@return string | nil
 ---@return string
 local function truncate(overflow)
 	local min_width = 15
 	local new_branch = vim.b.branch_name
-	local new_file = vim.b.file_name
+	local new_buffer = vim.b.buffer_name
 
 	if vim.b.branch_name and vim.b.branch_name:len() > min_width then
 		if vim.b.branch_name:len() - overflow >= min_width then
@@ -149,16 +149,16 @@ local function truncate(overflow)
 		new_branch = new_branch:gsub(".$", ">")
 	end
 
-	if overflow > 0 and vim.b.file_name:len() > min_width then
-		if vim.b.file_name:len() - overflow >= min_width then
-			new_file = vim.b.file_name:sub(overflow + 1)
+	if overflow > 0 and vim.b.buffer_name:len() > min_width then
+		if vim.b.buffer_name:len() - overflow >= min_width then
+			new_buffer = vim.b.buffer_name:sub(overflow + 1)
 		else
-			new_file = vim.b.file_name:sub(vim.b.file_name:len() - min_width + 1)
+			new_buffer = vim.b.buffer_name:sub(vim.b.buffer_name:len() - min_width + 1)
 		end
-		new_file = new_file:gsub("^.", "<")
+		new_buffer = new_buffer:gsub("^.", "<")
 	end
 
-	return new_branch, new_file
+	return new_branch, new_buffer
 end
 
 ---Generate statusline
@@ -186,8 +186,8 @@ function Status_Line()
 	local overflow = length - vim.api.nvim_win_get_width(0)
 	if overflow < 0 then divider = "%=" end
 	if overflow > 0 then
-		local trunc_branch, trunc_file = truncate(overflow)
-		left_string = generate_left(trunc_branch, trunc_file)
+		local trunc_branch, trunc_buffer = truncate(overflow)
+		left_string = generate_left(trunc_branch, trunc_buffer)
 	end
 
 	return table.concat({ "%<", left_string, divider, right_string })
