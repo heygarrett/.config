@@ -37,8 +37,8 @@ return {
 				vim.api.nvim_create_user_command("Diff", gitsigns.preview_hunk_inline, {})
 				vim.api.nvim_create_user_command(
 					"Patch",
-					function() gitsigns.diffthis() end,
-					{}
+					function(t) gitsigns.diffthis(t.args) end,
+					{ nargs = "?" }
 				)
 				vim.api.nvim_create_user_command(
 					"Blame",
