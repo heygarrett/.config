@@ -42,16 +42,4 @@ return {
 			})
 		end,
 	},
-	{
-		"jay-babu/mason-nvim-dap.nvim",
-		lazy = false,
-		config = function()
-			local mason_nvim_dap = require("mason-nvim-dap")
-			mason_nvim_dap.setup({
-				ensure_installed = { "python" },
-				automatic_setup = true,
-			})
-			mason_nvim_dap.setup_handlers()
-		end,
-	},
 }
