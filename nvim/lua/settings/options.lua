@@ -58,9 +58,12 @@ vim.api.nvim_create_autocmd("CursorHold", {
 vim.api.nvim_create_autocmd("VimResized", {
 	group = "options",
 	callback = function()
-		if vim.api.nvim_get_mode().mode:match("^i") then
+		local mode = vim.api.nvim_get_mode().mode
+		if vim.startswith(mode, "i") then
 			vim.api.nvim_feedkeys(vim.api.nvim_eval([["\<esc>"]]), "n", false)
 		end
-		vim.api.nvim_feedkeys(vim.api.nvim_eval([["\<c-w>="]]), "n", false)
+		if not vim.startswith(mode, "t") then
+			vim.api.nvim_feedkeys(vim.api.nvim_eval([["\<c-w>="]]), "n", false)
+		end
 	end,
 })
