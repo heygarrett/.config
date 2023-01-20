@@ -8,6 +8,7 @@ return {
 			},
 			keymaps = {
 				["<c-v>"] = "actions.select_vsplit",
+				["<c-x>"] = "actions.select_split",
 			},
 		})
 	end,
