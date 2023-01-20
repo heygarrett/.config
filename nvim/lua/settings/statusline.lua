@@ -16,7 +16,7 @@ local function get_buffer_name()
 	local cwd = vim.fn.getcwd()
 	local cwd_tail = cwd:match("[^/]+$")
 	local file_path = vim.api.nvim_buf_get_name(0):gsub("/$", "")
-	local _, split, prefix = file_path:find("^(%w+://)")
+	local _, split, prefix = file_path:find("^(.+://)")
 	if split then file_path = file_path:sub(split + 1) end
 	local buffer_name = vim.fn.fnamemodify(file_path, ":~")
 
