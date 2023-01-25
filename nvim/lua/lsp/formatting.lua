@@ -8,9 +8,7 @@ M.setup = function(bufnr)
 		-- Use null-ls sources when available
 		vim.lsp.buf.format({
 			filter = function(client)
-				if client.name == "null-ls" then
-					return true
-				elseif package.loaded["null-ls"] then
+				if package.loaded["null-ls"] and client.name ~= "null-ls" then
 					return #require("null-ls.sources").get_available(
 						vim.bo.filetype,
 						"NULL_LS_FORMATTING"
