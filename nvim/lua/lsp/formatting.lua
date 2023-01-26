@@ -3,8 +3,6 @@ local M = {}
 M.setup = function(bufnr)
 	-- user command: Format
 	vim.api.nvim_buf_create_user_command(bufnr, "Format", function()
-		-- Watch for changes when formatting
-		local pre_format_changed_tick = vim.api.nvim_buf_get_changedtick(bufnr)
 		-- Use null-ls sources when available
 		vim.lsp.buf.format({
 			filter = function(client)
@@ -18,15 +16,19 @@ M.setup = function(bufnr)
 				end
 			end,
 		})
-		-- Retab after formatting iff changes were made
-		local post_format_changed_tick = vim.api.nvim_buf_get_changedtick(bufnr)
-		if post_format_changed_tick ~= pre_format_changed_tick then
-			vim.bo.tabstop = 2
+
+		-- Retab if formatting changes the indentation type
+		local guess_indent = package.loaded["guess-indent"]
+		if not guess_indent then return end
+		local indent = guess_indent.guess_from_buffer()
+		-- xnor
+		if (indent == "tabs") == vim.bo.expandtab then
+			local tabstop = vim.bo.tabstop
+			if indent ~= "tabs" then vim.bo.tabstop = indent end
 			vim.cmd.retab({
 				bang = true,
 			})
-			---@diagnostic disable-next-line: undefined-field
-			vim.bo.tabstop = vim.go.tabstop
+			if vim.bo.tabstop ~= tabstop then vim.bo.tabstop = tabstop end
 		end
 	end, {})
 
