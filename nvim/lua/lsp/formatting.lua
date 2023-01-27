@@ -24,7 +24,9 @@ M.setup = function(bufnr)
 		-- xnor
 		if (indent == "tabs") == vim.bo.expandtab then
 			local tabstop = vim.bo.tabstop
-			if indent ~= "tabs" then vim.bo.tabstop = indent end
+			if indent ~= "tabs" and vim.bo.tabstop ~= indent then
+				vim.bo.tabstop = indent
+			end
 			vim.cmd.retab({
 				bang = true,
 			})
