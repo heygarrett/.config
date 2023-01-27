@@ -23,9 +23,9 @@ vim.api.nvim_create_autocmd("FileType", {
 		end
 		-- Set whitespace characters for indentation with spaces
 		if vim.bo.expandtab then
-			local lms = ":" .. (" "):rep(vim.bo.tabstop - 1)
-			vim.opt_local.listchars:remove("lead")
-			vim.opt_local.listchars:append({ leadmultispace = lms })
+			vim.opt_local.listchars:append({
+				leadmultispace = ":" .. (" "):rep(vim.bo.tabstop - 1),
+			})
 		end
 	end,
 })
