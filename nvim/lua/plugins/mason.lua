@@ -9,12 +9,19 @@ return {
 		config = function()
 			local mason_lspconfig = require("mason-lspconfig")
 			mason_lspconfig.setup()
-			local ignored_filetypes = {
-				diff = true,
-				fish = true,
-				gitcommit = true,
-				oil = true,
-			}
+			local ignored_filetypes = setmetatable({
+				"diff",
+				"fish",
+				"git%w+",
+				"oil",
+			}, {
+				__index = function(tbl, key)
+					for _, ft in ipairs(tbl) do
+						if key:match("^" .. ft .. "$") then return true end
+					end
+					return false
+				end,
+			})
 			vim.api.nvim_create_autocmd("FileType", {
 				group = vim.api.nvim_create_augroup("mason-lspconfig", { clear = true }),
 				callback = function(t)
