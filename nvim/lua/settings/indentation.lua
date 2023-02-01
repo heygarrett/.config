@@ -9,21 +9,21 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 	group = vim.api.nvim_create_augroup("indentation", { clear = true }),
 	callback = function()
 		-- Override ftplugin indentation settings
+		vim.bo.expandtab = vim.go.expandtab
 		vim.bo.shiftwidth = vim.go.shiftwidth
 		vim.bo.softtabstop = vim.go.softtabstop
 
-		if not vim.b.editorconfig or next(vim.b.editorconfig) == nil then
-			-- Override only if not set by editorconfig
-			vim.bo.expandtab = vim.go.expandtab
-
-			-- Run guess-indent
-			if package.loaded["guess-indent"] then
-				vim.cmd.GuessIndent({
-					args = { "auto_cmd" },
-					mods = { silent = true },
-				})
-			end
+		-- Run guess-indent
+		if package.loaded["guess-indent"] then
+			vim.cmd.GuessIndent({
+				args = { "auto_cmd" },
+				mods = { silent = true },
+			})
 		end
+
+		-- Run editorconfig
+		local editorconfig = package.loaded["editorconfig"]
+		if editorconfig then editorconfig.config() end
 
 		if vim.bo.expandtab then
 			-- Set whitespace characters for indentation with spaces
@@ -31,6 +31,7 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 				leadmultispace = ":" .. (" "):rep(vim.bo.tabstop - 1),
 			})
 		else
+			-- Override tabstop if we're using tabs
 			vim.bo.tabstop = vim.go.tabstop
 		end
 	end,
