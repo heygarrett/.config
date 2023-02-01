@@ -35,7 +35,8 @@ return {
 							if available == installed then return end
 						end
 					end
-					vim.schedule(vim.cmd.LspInstall)
+					---@diagnostic disable-next-line: param-type-mismatch
+					vim.defer_fn(vim.cmd.LspInstall, 500)
 				end,
 			})
 		end,
