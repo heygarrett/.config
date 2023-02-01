@@ -29,6 +29,7 @@ return {
 					if vim.bo[t.buf].buftype ~= "" then return end
 					local available_servers =
 						mason_lspconfig.get_available_servers({ filetype = t.match })
+					if #available_servers == 0 then return end
 					local installed_servers = mason_lspconfig.get_installed_servers()
 					for _, available in ipairs(available_servers) do
 						for _, installed in ipairs(installed_servers) do
