@@ -28,8 +28,6 @@ vim.api.nvim_create_augroup("options", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
 	group = "options",
 	callback = function()
-		-- Disable automatic comments
-		vim.opt.formatoptions:remove({ "r", "o" })
 		-- Restore cursor position
 		local exclude = { diff = true, gitcommit = true, gitrebase = true }
 		local position_line = vim.api.nvim_buf_get_mark(0, [["]])[1]
