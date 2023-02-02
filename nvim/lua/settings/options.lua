@@ -4,7 +4,6 @@ vim.o.breakindent = true
 vim.o.colorcolumn = "90"
 vim.o.confirm = true
 vim.o.cursorline = true
-vim.o.foldmethod = "manual"
 vim.o.ignorecase = true
 vim.o.keywordprg = ":vertical help"
 vim.o.linebreak = true

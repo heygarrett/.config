@@ -1,3 +1,4 @@
+require("settings.folds")
 require("settings.indentation")
 require("settings.navigation")
 require("settings.options")
