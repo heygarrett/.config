@@ -10,10 +10,7 @@ return {
 			local mason_lspconfig = require("mason-lspconfig")
 			mason_lspconfig.setup()
 			local ignored_filetypes = setmetatable({
-				"diff",
-				"fish",
 				"git%w+",
-				"oil",
 			}, {
 				__index = function(tbl, key)
 					for _, ft in ipairs(tbl) do
