@@ -6,6 +6,7 @@ function _G.fold_text()
 	return table.concat({ prefix, number_of_lines, "lines folded" }, " ")
 end
 
+vim.opt.fillchars:append({ fold = " " })
 vim.o.foldmethod = "indent"
 vim.o.foldtext = "v:lua.fold_text()"
 
