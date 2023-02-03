@@ -7,14 +7,6 @@ function _G.fold_text()
 end
 
 vim.opt.fillchars:append({ fold = " " })
+vim.o.foldenable = false
 vim.o.foldmethod = "indent"
 vim.o.foldtext = "v:lua.fold_text()"
-
-vim.api.nvim_create_autocmd("FileType", {
-	group = vim.api.nvim_create_augroup("folds", { clear = true }),
-	callback = function()
-		if vim.bo.buftype ~= "" then
-			vim.wo.foldenable = false
-		end
-	end,
-})
