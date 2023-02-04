@@ -21,8 +21,12 @@ M.setup = function(bufnr)
 		group = "completion",
 		buffer = bufnr,
 		callback = function()
-			if vim.fn.pumvisible() ~= 0 then return end
-			if vim.g.pum_timer then vim.fn.timer_stop(vim.g.pum_timer) end
+			if vim.fn.pumvisible() ~= 0 then
+				return
+			end
+			if vim.g.pum_timer then
+				vim.fn.timer_stop(vim.g.pum_timer)
+			end
 			if
 				vim.api
 					.nvim_get_current_line()
@@ -30,7 +34,9 @@ M.setup = function(bufnr)
 					:match("[%w_.@-]$")
 			then
 				vim.g.pum_timer = vim.fn.timer_start(300, function()
-					if vim.api.nvim_get_mode().mode:match("^[^i]") then return end
+					if vim.api.nvim_get_mode().mode:match("^[^i]") then
+						return
+					end
 					vim.api.nvim_feedkeys(
 						vim.api.nvim_eval([["\<c-x>\<c-o>"]]),
 						"n",

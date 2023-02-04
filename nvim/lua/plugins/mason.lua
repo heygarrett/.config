@@ -14,7 +14,9 @@ return {
 			}, {
 				__index = function(tbl, key)
 					for _, ft in ipairs(tbl) do
-						if key:match("^" .. ft .. "$") then return true end
+						if key:match("^" .. ft .. "$") then
+							return true
+						end
 					end
 					return false
 				end,
@@ -22,15 +24,23 @@ return {
 			vim.api.nvim_create_autocmd("FileType", {
 				group = vim.api.nvim_create_augroup("mason-lspconfig", { clear = true }),
 				callback = function(t)
-					if ignored_filetypes[t.match] then return end
-					if vim.bo[t.buf].buftype ~= "" then return end
+					if ignored_filetypes[t.match] then
+						return
+					end
+					if vim.bo[t.buf].buftype ~= "" then
+						return
+					end
 					local available_servers =
 						mason_lspconfig.get_available_servers({ filetype = t.match })
-					if #available_servers == 0 then return end
+					if #available_servers == 0 then
+						return
+					end
 					local installed_servers = mason_lspconfig.get_installed_servers()
 					for _, available in ipairs(available_servers) do
 						for _, installed in ipairs(installed_servers) do
-							if available == installed then return end
+							if available == installed then
+								return
+							end
 						end
 					end
 					---@diagnostic disable-next-line: param-type-mismatch

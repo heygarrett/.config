@@ -1,2 +1,2 @@
-collapse_simple_statement = "Always"
+collapse_simple_statement = "FunctionOnly"
 column_width = 90

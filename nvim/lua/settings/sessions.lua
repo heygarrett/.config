@@ -7,8 +7,12 @@ vim.api.nvim_create_autocmd("VimEnter", {
 	group = "sessions",
 	nested = true,
 	callback = function()
-		if vim.fn.argc() > 0 then return end
-		if vim.g.launched_by_shell then return end
+		if vim.fn.argc() > 0 then
+			return
+		end
+		if vim.g.launched_by_shell then
+			return
+		end
 		if vim.fn.filereadable("Session.vim") == 1 then
 			vim.cmd.source({
 				args = { "Session.vim" },
@@ -40,8 +44,12 @@ vim.api.nvim_create_autocmd("VimEnter", {
 vim.api.nvim_create_autocmd("VimLeavePre", {
 	group = "sessions",
 	callback = function()
-		if vim.g.launched_by_shell then return end
-		if vim.fn.filereadable("Session.vim") == 0 then return end
+		if vim.g.launched_by_shell then
+			return
+		end
+		if vim.fn.filereadable("Session.vim") == 0 then
+			return
+		end
 		-- Save session when a session exists and arg list is empty
 		local save = "yes"
 		if vim.fn.argc() > 0 then

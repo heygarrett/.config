@@ -19,7 +19,9 @@ M.setup = function(bufnr)
 
 		-- Retab if formatting changes the indentation type
 		local guess_indent = package.loaded["guess-indent"]
-		if not guess_indent then return end
+		if not guess_indent then
+			return
+		end
 		local indent = guess_indent.guess_from_buffer()
 		-- xnor
 		if (indent == "tabs") == vim.bo.expandtab then
@@ -30,7 +32,9 @@ M.setup = function(bufnr)
 			vim.cmd.retab({
 				bang = true,
 			})
-			if vim.bo.tabstop ~= tabstop then vim.bo.tabstop = tabstop end
+			if vim.bo.tabstop ~= tabstop then
+				vim.bo.tabstop = tabstop
+			end
 		end
 	end, {})
 

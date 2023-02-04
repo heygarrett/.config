@@ -23,7 +23,9 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 
 		-- Run editorconfig
 		local editorconfig = package.loaded["editorconfig"]
-		if editorconfig then editorconfig.config() end
+		if editorconfig then
+			editorconfig.config()
+		end
 
 		if vim.bo.expandtab then
 			-- Set whitespace characters for indentation with spaces

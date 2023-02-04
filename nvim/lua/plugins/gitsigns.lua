@@ -9,12 +9,16 @@ return {
 			on_attach = function(bufnr)
 				local opts = { buffer = bufnr, expr = true }
 				vim.keymap.set("n", "]h", function()
-					if vim.wo.diff then return "]h" end
+					if vim.wo.diff then
+						return "]h"
+					end
 					vim.schedule(function() gitsigns.next_hunk() end)
 					return "<Ignore>"
 				end, opts)
 				vim.keymap.set("n", "[h", function()
-					if vim.wo.diff then return "[h" end
+					if vim.wo.diff then
+						return "[h"
+					end
 					vim.schedule(function() gitsigns.prev_hunk() end)
 					return "<Ignore>"
 				end, opts)

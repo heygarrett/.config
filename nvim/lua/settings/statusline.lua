@@ -17,14 +17,18 @@ local function get_buffer_name()
 	local cwd_tail = cwd:match("[^/]+$")
 	local file_path = vim.api.nvim_buf_get_name(0):gsub("/$", "")
 	local _, split, prefix = file_path:find("^(.+://)")
-	if split then file_path = file_path:sub(split + 1) end
+	if split then
+		file_path = file_path:sub(split + 1)
+	end
 	local buffer_name = vim.fn.fnamemodify(file_path, ":~")
 
 	local tail_start, tail_end = buffer_name:find(cwd_tail)
 	if tail_start and tail_end ~= #buffer_name then
 		buffer_name = table.concat({ cwd_tail, vim.fn.fnamemodify(file_path, ":.") }, "/")
 	end
-	if prefix then buffer_name = prefix .. buffer_name end
+	if prefix then
+		buffer_name = prefix .. buffer_name
+	end
 
 	return buffer_name
 end
@@ -53,7 +57,9 @@ end
 ---@return string | nil
 local function get_diagnostics()
 	local diagnostics = vim.diagnostic.get(0)
-	if #diagnostics == 0 or vim.api.nvim_get_mode().mode:match("^i") then return nil end
+	if #diagnostics == 0 or vim.api.nvim_get_mode().mode:match("^i") then
+		return nil
+	end
 
 	local severities = {
 		ERROR = { match = "Error", count = 0 },
@@ -119,12 +125,18 @@ local function generate_left(branch, buffer)
 	buffer = buffer or vim.b.buffer_name
 
 	local left = {}
-	if branch then table.insert(left, branch) end
-	if buffer ~= "" then table.insert(left, buffer) end
+	if branch then
+		table.insert(left, branch)
+	end
+	if buffer ~= "" then
+		table.insert(left, buffer)
+	end
 	left = { table.concat(left, " | ") }
 
 	local modified_flag = vim.api.nvim_eval_statusline("%m", {}).str
-	if modified_flag ~= "" then table.insert(left, modified_flag) end
+	if modified_flag ~= "" then
+		table.insert(left, modified_flag)
+	end
 
 	return table.concat(left, " ")
 end
@@ -170,13 +182,17 @@ function Status_Line()
 
 	local right_table = {}
 	local search_count = get_search_count()
-	if search_count then table.insert(right_table, search_count) end
+	if search_count then
+		table.insert(right_table, search_count)
+	end
 	table.insert(right_table, get_diagnostics())
 	if vim.b.gitsigns_status ~= "" then
 		table.insert(right_table, vim.b.gitsigns_status)
 	end
 	local file_type = vim.api.nvim_eval_statusline("%Y", {}).str:lower()
-	if file_type ~= "" then table.insert(right_table, file_type) end
+	if file_type ~= "" then
+		table.insert(right_table, file_type)
+	end
 	table.insert(right_table, get_progress())
 	local right_string = table.concat(right_table, " | ")
 	local right_string_length = vim.api.nvim_eval_statusline(right_string, {}).width
@@ -184,7 +200,9 @@ function Status_Line()
 	local divider = " | "
 	local length = left_string_length + divider:len() + right_string_length
 	local overflow = length - vim.api.nvim_win_get_width(0)
-	if overflow < 0 then divider = "%=" end
+	if overflow < 0 then
+		divider = "%="
+	end
 	if overflow > 0 then
 		local trunc_branch, trunc_buffer = truncate(overflow)
 		left_string = generate_left(trunc_branch, trunc_buffer)
