@@ -7,10 +7,11 @@ M.setup = function(bufnr)
 		vim.lsp.buf.format({
 			filter = function(client)
 				if package.loaded["null-ls"] and client.name ~= "null-ls" then
-					return #require("null-ls.sources").get_available(
+					local no_null_ls_sources = #require("null-ls.sources").get_available(
 						vim.bo.filetype,
 						"NULL_LS_FORMATTING"
 					) == 0
+					return no_null_ls_sources
 				else
 					return true
 				end
