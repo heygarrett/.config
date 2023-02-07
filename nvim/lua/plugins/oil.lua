@@ -7,8 +7,14 @@ return {
 				show_hidden = true,
 			},
 			keymaps = {
-				["<c-v>"] = "actions.select_vsplit",
-				["<c-x>"] = "actions.select_split",
+				["<C-r>"] = "actions.refresh",
+				["<C-l>"] = false,
+
+				["<C-v>"] = "actions.select_vsplit",
+				["<C-s>"] = false,
+
+				["<C-x>"] = "actions.select_split",
+				["<C-h>"] = false,
 			},
 		})
 	end,
