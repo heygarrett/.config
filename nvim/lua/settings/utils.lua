@@ -20,13 +20,20 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	group = vim.api.nvim_create_augroup("utils", { clear = true }),
 	callback = function()
 		if vim.v.operator ~= "y" or vim.v.register ~= "+" then
+			-- Exit early if we're not yanking to the system clipboard
 			return
 		end
 		local yanked_text = vim.fn.getreg()
 		local global_depth = 0
 		local line_list = {}
+		-- Split on new lines
 		for line in yanked_text:gmatch("[^\n]+") do
-			local line_depth = (line:match("^%s+") or ""):len()
+			local leading_whitespace = line:match("^%s+")
+			if not leading_whitespace then
+				-- Exit early if any line lacks preceding whitespace
+				return
+			end
+			local line_depth = leading_whitespace:len()
 			if global_depth == 0 or line_depth < global_depth then
 				global_depth = line_depth
 			end
@@ -34,12 +41,10 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 		end
 
 		local chomp = "no"
-		if global_depth > 0 then
-			vim.ui.input(
-				{ prompt = "Chomp indentation? [y/N] " },
-				function(input) chomp = input end
-			)
-		end
+		vim.ui.input(
+			{ prompt = "Chomp indentation? [y/N] " },
+			function(input) chomp = input end
+		)
 		if chomp and not chomp:match("^[nN]$") then
 			for index, line in ipairs(line_list) do
 				line_list[index] = line:sub(global_depth + 1)
