@@ -40,12 +40,16 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 			table.insert(line_list, line)
 		end
 
-		local chomp = "no"
-		vim.ui.input(
-			{ prompt = "Chomp indentation? [y/N] " },
-			function(input) chomp = input end
-		)
-		if chomp and not chomp:match("^[nN]$") then
+		local chomp = "n"
+		repeat
+			vim.ui.input({ prompt = "Chomp indentation? [y/N] " }, function(input)
+				if input then
+					chomp = input
+				end
+			end)
+		until chomp:match("^[YyNn]$")
+
+		if chomp:match("^[Yy]$") then
 			for index, line in ipairs(line_list) do
 				line_list[index] = line:sub(global_depth + 1)
 			end

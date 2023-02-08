@@ -51,15 +51,20 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
 			return
 		end
 		-- Save session when a session exists and arg list is empty
-		local save = "yes"
+		local save = "y"
 		if vim.fn.argc() > 0 then
 			-- Ask iff session exists but arg list is not empty
-			vim.ui.input(
-				{ prompt = "Save session? [y/N] " },
-				function(input) save = input end
-			)
+			repeat
+				vim.ui.input({ prompt = "Save session? [y/N] " }, function(input)
+					if input then
+						save = input
+					else
+						save = "n"
+					end
+				end)
+			until save:match("^[YyNn]$")
 		end
-		if save and not save:match("^[nN]$") then
+		if save:match("^[Yy]$") then
 			-- Prevent arg list from getting saved in session
 			vim.cmd.argdelete({
 				range = { 0, vim.fn.argc() },
