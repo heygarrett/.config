@@ -15,45 +15,23 @@ vim.api.nvim_create_user_command("Sort", function(t)
 	vim.api.nvim_buf_set_lines(0, t.line1 - 1, t.line2, true, line_list)
 end, { range = "%", bang = true })
 
--- Option to copy code without leading indents
-vim.api.nvim_create_autocmd("TextYankPost", {
-	group = vim.api.nvim_create_augroup("utils", { clear = true }),
-	callback = function()
-		if vim.v.operator ~= "y" or vim.v.register ~= "+" then
-			-- Exit early if we're not yanking to the system clipboard
+-- Copy code without leading indents
+vim.api.nvim_create_user_command("Chomp", function(tbl)
+	local line_list = vim.api.nvim_buf_get_lines(0, tbl.line1 - 1, tbl.line2, true)
+	local global_depth = 0
+	for _, line in ipairs(line_list) do
+		local leading_whitespace = line:match("^%s+")
+		-- Exit early if there's no whitespace to chomp
+		if not leading_whitespace then
 			return
 		end
-		local yanked_text = vim.fn.getreg()
-		local global_depth = 0
-		local line_list = {}
-		-- Split on new lines
-		for line in yanked_text:gmatch("[^\n]+") do
-			local leading_whitespace = line:match("^%s+")
-			if not leading_whitespace then
-				-- Exit early if any line lacks preceding whitespace
-				return
-			end
-			local line_depth = leading_whitespace:len()
-			if global_depth == 0 or line_depth < global_depth then
-				global_depth = line_depth
-			end
-			table.insert(line_list, line)
+		local line_depth = leading_whitespace:len()
+		if global_depth == 0 or line_depth < global_depth then
+			global_depth = line_depth
 		end
-
-		local chomp = "n"
-		repeat
-			vim.ui.input({ prompt = "Chomp indentation? [y/N] " }, function(input)
-				if input then
-					chomp = input
-				end
-			end)
-		until chomp:match("^[YyNn]$")
-
-		if chomp:match("^[Yy]$") then
-			for index, line in ipairs(line_list) do
-				line_list[index] = line:sub(global_depth + 1)
-			end
-			vim.fn.setreg(vim.v.register, table.concat(line_list, "\n"))
-		end
-	end,
-})
+	end
+	for index, line in ipairs(line_list) do
+		line_list[index] = line:sub(global_depth + 1)
+	end
+	vim.fn.setreg("+", table.concat(line_list, "\n"))
+end, { range = true })
