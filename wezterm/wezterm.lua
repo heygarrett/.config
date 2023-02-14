@@ -1,20 +1,25 @@
 local wezterm = require("wezterm")
 
+local typeface = "Monocraft"
+
 return {
 	color_scheme = "kanagawabones",
-	font = wezterm.font("Monocraft"),
+
+	font = wezterm.font(typeface),
+	font_size = 10.5,
+	line_height = 1,
+	harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
 	-- Disable bold text
 	font_rules = {
 		{
 			intensity = "Bold",
 			font = wezterm.font({
-				family = "Monocraft",
+				family = typeface,
 				weight = "Regular",
 			}),
 		},
 	},
-	font_size = 10.5,
-	harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
+
 	native_macos_fullscreen_mode = true,
 	tab_bar_at_bottom = true,
 	tab_max_width = 1000,
