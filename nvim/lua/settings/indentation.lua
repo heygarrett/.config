@@ -22,8 +22,8 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 		end
 
 		-- Run editorconfig
-		local editorconfig = package.loaded["editorconfig"]
-		if editorconfig then
+		local loaded, editorconfig = pcall(require, "editorconfig")
+		if loaded then
 			editorconfig.config()
 		end
 
