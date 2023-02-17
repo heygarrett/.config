@@ -1,4 +1,6 @@
 *.netrwhist
 .DS_Store
+.direnv
+.envrc
 Session.vim
 tags
