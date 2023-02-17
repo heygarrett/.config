@@ -59,7 +59,7 @@ SETUVAR fish_pager_color_selected_background:\x2d\x2dreverse
 SETUVAR fish_pager_color_selected_completion:\x1d
 SETUVAR fish_pager_color_selected_description:\x1d
 SETUVAR fish_pager_color_selected_prefix:\x1d
-SETUVAR fish_user_paths:/Users/garrett/\x2ecargo/bin\x1e/opt/homebrew/bin\x1e/opt/homebrew/sbin\x1e/opt/homebrew/opt/fzf/bin
+SETUVAR fish_user_paths:/Users/garrett/\x2elocal/bin\x1e/Users/garrett/\x2ecargo/bin\x1e/opt/homebrew/bin\x1e/opt/homebrew/sbin\x1e/opt/homebrew/opt/fzf/bin
 SETUVAR fish_vi_force_cursor:true
 SETUVAR sponge_allow_previously_successful:true
 SETUVAR sponge_delay:2
