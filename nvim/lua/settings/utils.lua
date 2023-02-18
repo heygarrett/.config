@@ -35,3 +35,23 @@ vim.api.nvim_create_user_command("Chomp", function(tbl)
 	end
 	vim.fn.setreg("+", table.concat(line_list, "\n"))
 end, { range = true })
+
+-- Combine two tabs into a split
+-- split + tab = Stab
+vim.api.nvim_create_user_command("Stab", function(tbl)
+	local options = { [""] = true, next = true, previous = true }
+	if not options[tbl.args] then
+		return
+	end
+	if tbl.args ~= "previous" then
+		vim.cmd.tabnext()
+	end
+	local window = vim.api.nvim_get_current_win()
+	local buffer = vim.api.nvim_win_get_buf(window)
+	vim.cmd.tabprevious()
+	vim.cmd.sbuffer({
+		args = { buffer },
+		mods = { vertical = true },
+	})
+	vim.api.nvim_win_close(window, false)
+end, { nargs = "?" })
