@@ -2,3 +2,7 @@ use_ruby() {
 	layout ruby
 	export SOLARGRAPH_CACHE=~/.cache/solargraph
 }
+
+layout_rust() {
+	PATH_add ~/dev/rust/cargo/bin
+}
