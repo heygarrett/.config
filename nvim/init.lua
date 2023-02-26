@@ -17,7 +17,7 @@ require("lazy").setup("plugins", {
 		lazy = true,
 	},
 	install = {
-		colorscheme = {},
+		colorscheme = { "kanagawa" },
 	},
 	rtp = {
 		disabled_plugins = {
