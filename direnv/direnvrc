@@ -8,3 +8,7 @@ use_ruby() {
 layout_rust() {
 	PATH_add ~/dev/rust/cargo/bin
 }
+
+layout_go() {
+	PATH_add $GOPATH/bin
+}
