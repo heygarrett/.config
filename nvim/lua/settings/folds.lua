@@ -16,3 +16,21 @@ vim.o.foldenable = false
 vim.o.foldmethod = "indent"
 vim.o.foldtext = "v:lua.fold_text()"
 vim.opt.fillchars:append({ fold = " " })
+
+vim.api.nvim_create_autocmd("BufEnter", {
+	desc = "Enable folding and expand all folds",
+	group = vim.api.nvim_create_augroup("folds", { clear = true }),
+	callback = function()
+		if vim.wo.foldenable or vim.bo.buftype ~= "" then
+			return
+		end
+		vim.schedule(
+			function()
+				vim.cmd.normal({
+					args = { "zR" },
+					mods = { emsg_silent = true },
+				})
+			end
+		)
+	end,
+})
