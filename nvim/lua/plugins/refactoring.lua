@@ -6,7 +6,7 @@ return {
 	init = function()
 		vim.api.nvim_create_user_command(
 			"Refactor",
-			refactoring().select_refactor,
+			function() refactoring().select_refactor() end,
 			{ range = true }
 		)
 	end,
