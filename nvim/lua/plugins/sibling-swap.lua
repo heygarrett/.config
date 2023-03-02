@@ -2,6 +2,7 @@ local sibling_swap = function() return require("sibling-swap") end
 
 return {
 	"Wansmer/sibling-swap.nvim",
+	lazy = true,
 	init = function()
 		-- Swap forward and back
 		vim.keymap.set("n", "<leader>f", function() sibling_swap().swap_with_right() end)

@@ -1,5 +1,6 @@
 return {
 	"numToStr/FTerm.nvim",
+	lazy = true,
 	init = function()
 		vim.keymap.set("n", "<leader>t", function()
 			if vim.bo.buftype ~= "prompt" then

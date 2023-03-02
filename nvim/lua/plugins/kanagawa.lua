@@ -1,6 +1,5 @@
 return {
 	"rebelot/kanagawa.nvim",
-	lazy = false,
 	config = function()
 		local default_colors = require("kanagawa.colors").setup()
 		local overrides = {

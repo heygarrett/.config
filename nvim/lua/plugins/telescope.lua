@@ -2,6 +2,7 @@ local builtins = function() return require("telescope.builtin") end
 
 return {
 	"nvim-telescope/telescope.nvim",
+	lazy = true,
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		{

@@ -1,7 +1,6 @@
 return {
 	{
 		"williamboman/mason.nvim",
-		lazy = false,
 		config = true,
 	},
 	{
@@ -51,7 +50,6 @@ return {
 	},
 	{
 		"jay-babu/mason-null-ls.nvim",
-		lazy = false,
 		config = function()
 			require("mason-null-ls").setup({
 				automatic_installation = true,

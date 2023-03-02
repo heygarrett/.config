@@ -5,7 +5,6 @@ return {
 		"nvim-treesitter/nvim-treesitter-textobjects",
 	},
 	build = function() vim.cmd.TSUpdate() end,
-	lazy = false,
 	config = function()
 		require("nvim-treesitter.configs").setup({
 			auto_install = true,
