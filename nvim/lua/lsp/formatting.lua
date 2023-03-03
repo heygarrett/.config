@@ -19,8 +19,8 @@ M.setup = function(bufnr)
 		})
 
 		-- Retab if formatting changes the indentation type
-		local guess_indent = package.loaded["guess-indent"]
-		if not guess_indent then
+		local loaded, guess_indent = pcall(require, "guess-indent")
+		if not loaded then
 			return
 		end
 		local indent = guess_indent.guess_from_buffer()
