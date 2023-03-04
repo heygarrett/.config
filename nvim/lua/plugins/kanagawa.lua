@@ -1,17 +1,18 @@
 return {
 	"rebelot/kanagawa.nvim",
 	config = function()
-		local default_colors = require("kanagawa.colors").setup()
-		local overrides = {
-			CursorLineNr = { fg = default_colors.lightBlue },
-		}
 		require("kanagawa").setup({
-			overrides = overrides,
-			commentStyle = {},
-			keywordStyle = {},
-			statementStyle = {},
-			variablebuiltinStyle = {},
-			specialReturn = false,
+			commentStyle = { italic = false },
+			keywordStyle = { italic = false },
+			colors = {
+				theme = { all = { ui = { bg_gutter = "none" } } },
+			},
+			overrides = function(colors)
+				return {
+					CursorLineNr = { fg = colors.palette.lightBlue },
+					["@keyword.return"] = { fg = colors.theme.syn.keyword },
+				}
+			end,
 		})
 		vim.cmd.colorscheme({
 			args = { "kanagawa" },
