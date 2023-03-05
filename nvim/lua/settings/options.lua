@@ -1,7 +1,6 @@
 vim.g.mapleader = " "
 vim.g.netrw_banner = 0
 vim.o.breakindent = true
-vim.o.colorcolumn = "90"
 vim.o.confirm = true
 vim.o.cursorline = true
 vim.o.ignorecase = true
@@ -62,6 +61,24 @@ vim.api.nvim_create_autocmd("VimResized", {
 		end
 		if not vim.startswith(mode, "t") then
 			vim.api.nvim_feedkeys(vim.api.nvim_eval([["\<c-w>="]]), "n", false)
+		end
+	end,
+})
+
+vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI", "TextChangedP" }, {
+	group = "options",
+	desc = "dynamic color column",
+	callback = function()
+		if vim.bo.buftype ~= "" then
+			return
+		end
+		local colorcolumn = 90
+		local current_line = vim.api.nvim_get_current_line()
+		local line_length = vim.fn.strdisplaywidth(current_line)
+		if line_length >= colorcolumn - 5 then
+			vim.o.colorcolumn = tostring(colorcolumn)
+		else
+			vim.o.colorcolumn = ""
 		end
 	end,
 })
