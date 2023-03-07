@@ -12,6 +12,11 @@ return {
 	},
 	init = function()
 		vim.api.nvim_create_user_command(
+			"Autocommands",
+			function() builtins().autocommands() end,
+			{ desc = "Telescope picker: autocommands" }
+		)
+		vim.api.nvim_create_user_command(
 			"Bcommits",
 			function() builtins().git_bcommits() end,
 			{}
