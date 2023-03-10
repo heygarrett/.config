@@ -17,7 +17,8 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 		---@diagnostic enable: undefined-field
 
 		-- Run guess-indent
-		if package.loaded["guess-indent"] then
+		local gi_loaded, _ = pcall(require, "guess-indent")
+		if gi_loaded then
 			vim.cmd.GuessIndent({
 				args = { "auto_cmd" },
 				mods = { silent = true },
@@ -25,8 +26,8 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 		end
 
 		-- Run editorconfig
-		local loaded, editorconfig = pcall(require, "editorconfig")
-		if loaded then
+		local ec_loaded, editorconfig = pcall(require, "editorconfig")
+		if ec_loaded then
 			editorconfig.config()
 		end
 
