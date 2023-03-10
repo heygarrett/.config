@@ -2,9 +2,8 @@ local M = {}
 
 M.setup = function(bufnr)
 	vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
-	vim.keymap.set("i", "<c-space>", "<c-x><c-o>")
+	vim.keymap.set("i", "<c-space>", "<c-x><c-o>", { desc = "omnicompletion" })
 
-	-- https://github.com/vim/vim/issues/1653
 	vim.keymap.set("i", "<cr>", function()
 		local pum_info = vim.fn.complete_info({ "mode", "selected" })
 		if pum_info.mode ~= "" and pum_info.selected == -1 then
@@ -12,12 +11,16 @@ M.setup = function(bufnr)
 		else
 			return "<cr>"
 		end
-	end, { expr = true })
+	end, {
+		expr = true,
+		desc = "workaround for pop-up menu issue in vim",
+		-- https://github.com/vim/vim/issues/1653
+	})
 
-	-- Auto-complete
 	vim.api.nvim_create_augroup("completion", { clear = false })
 	vim.api.nvim_clear_autocmds({ group = "completion", buffer = bufnr })
 	vim.api.nvim_create_autocmd("TextChangedI", {
+		desc = "auto-completion",
 		group = "completion",
 		buffer = bufnr,
 		callback = function()

@@ -7,6 +7,6 @@ return {
 				require("FTerm").toggle()
 				vim.cmd.checktime()
 			end
-		end)
+		end, { desc = "toggle FTerm" })
 	end,
 }

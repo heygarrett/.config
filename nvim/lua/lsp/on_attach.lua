@@ -20,14 +20,25 @@ local on_attach = function(client, bufnr)
 	end
 
 	-- Other LSP keymaps and user commands
-	vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, { buffer = bufnr })
-	vim.keymap.set("i", "<c-s>", vim.lsp.buf.signature_help, { buffer = bufnr })
-	vim.api.nvim_buf_create_user_command(bufnr, "Def", vim.lsp.buf.definition, {})
+	vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, {
+		buffer = bufnr,
+		desc = "display hover information",
+	})
+	vim.keymap.set("i", "<c-s>", vim.lsp.buf.signature_help, {
+		buffer = bufnr,
+		desc = "signature help",
+	})
+	vim.api.nvim_buf_create_user_command(
+		bufnr,
+		"Def",
+		vim.lsp.buf.definition,
+		{ desc = "go to LSP definition" }
+	)
 	vim.api.nvim_buf_create_user_command(
 		bufnr,
 		"Actions",
 		function() vim.lsp.buf.code_action() end,
-		{}
+		{ desc = "code actions" }
 	)
 	vim.api.nvim_buf_create_user_command(bufnr, "Rename", function(t)
 		if t.args ~= "" then
@@ -39,7 +50,10 @@ local on_attach = function(client, bufnr)
 			)
 			vim.api.nvim_feedkeys(keys, "in", false)
 		end
-	end, { nargs = "?" })
+	end, {
+		nargs = "?",
+		desc = "rename references to symbol under the cursor",
+	})
 end
 
 return on_attach

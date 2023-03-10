@@ -25,9 +25,9 @@ vim.opt.shortmess:append("Scs")
 vim.api.nvim_create_augroup("options", { clear = true })
 
 vim.api.nvim_create_autocmd("FileType", {
+	desc = "restore cursor position",
 	group = "options",
 	callback = function()
-		-- Restore cursor position
 		local exclude = { diff = true, gitcommit = true, gitrebase = true }
 		local position_line = vim.api.nvim_buf_get_mark(0, [["]])[1]
 		if
@@ -44,6 +44,7 @@ vim.api.nvim_create_autocmd("FileType", {
 })
 
 vim.api.nvim_create_autocmd("CursorHold", {
+	desc = "check if any buffers were changed outside of nvim on cursor hold",
 	group = "options",
 	callback = function()
 		vim.cmd.checktime({
@@ -53,6 +54,7 @@ vim.api.nvim_create_autocmd("CursorHold", {
 })
 
 vim.api.nvim_create_autocmd("VimResized", {
+	desc = "resize splits when vim is resized",
 	group = "options",
 	callback = function()
 		local mode = vim.api.nvim_get_mode().mode
@@ -66,8 +68,8 @@ vim.api.nvim_create_autocmd("VimResized", {
 })
 
 vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI", "TextChangedP" }, {
-	group = "options",
 	desc = "dynamic color column",
+	group = "options",
 	callback = function()
 		if vim.bo.buftype ~= "" then
 			return

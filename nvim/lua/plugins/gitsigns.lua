@@ -6,21 +6,28 @@ return {
 		vim.o.signcolumn = "yes:1"
 		gitsigns.setup({
 			on_attach = function(bufnr)
-				local opts = { buffer = bufnr, expr = true }
 				vim.keymap.set("n", "]h", function()
 					if vim.wo.diff then
 						return "]h"
 					end
 					vim.schedule(function() gitsigns.next_hunk() end)
 					return "<Ignore>"
-				end, opts)
+				end, {
+					buffer = bufnr,
+					expr = true,
+					desc = "gitsigns: go to next hunk",
+				})
 				vim.keymap.set("n", "[h", function()
 					if vim.wo.diff then
 						return "[h"
 					end
 					vim.schedule(function() gitsigns.prev_hunk() end)
 					return "<Ignore>"
-				end, opts)
+				end, {
+					buffer = bufnr,
+					expr = true,
+					desc = "gitsigns: go to previous hunk",
+				})
 
 				local function hunk_range(stage, selection)
 					if selection.range ~= 0 then
@@ -37,18 +44,25 @@ return {
 					end
 				end
 
-				vim.api.nvim_create_user_command("Diff", gitsigns.preview_hunk_inline, {})
+				vim.api.nvim_create_user_command(
+					"Diff",
+					gitsigns.preview_hunk_inline,
+					{ desc = "gitsigns: preview hunk diff" }
+				)
 				vim.api.nvim_create_user_command("Patch", function(t)
 					local base = t.args ~= "" and t.args or nil
 					gitsigns.diffthis(base)
 					vim.cmd.wincmd({
 						args = { "h" },
 					})
-				end, { nargs = "?" })
+				end, {
+					nargs = "?",
+					desc = "gitsigns: diff whole buffer",
+				})
 				vim.api.nvim_create_user_command(
 					"Blame",
 					function() gitsigns.blame_line({ full = true }) end,
-					{}
+					{ desc = "gitsigns: blame current line" }
 				)
 				vim.api.nvim_create_user_command(
 					"Reset",
@@ -58,7 +72,10 @@ return {
 							selection
 						)
 					end,
-					{ range = true }
+					{
+						range = true,
+						desc = "gitsigns: reset",
+					}
 				)
 				vim.api.nvim_create_user_command(
 					"Stage",
@@ -68,7 +85,10 @@ return {
 							selection
 						)
 					end,
-					{ range = true }
+					{
+						range = true,
+						desc = "gitsigns: stage hunk",
+					}
 				)
 				vim.api.nvim_create_user_command("Unstage", function(selection)
 					if selection.range == 0 then
@@ -76,7 +96,10 @@ return {
 					else
 						gitsigns.reset_buffer_index()
 					end
-				end, { range = true })
+				end, {
+					range = true,
+					desc = "gitsigns: unstage hunk",
+				})
 			end,
 		})
 	end,

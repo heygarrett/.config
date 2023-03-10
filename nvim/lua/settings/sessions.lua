@@ -2,8 +2,8 @@ vim.opt.sessionoptions = { "blank", "help", "tabpages" }
 
 vim.api.nvim_create_augroup("sessions", { clear = true })
 
--- Load or create session on launch
 vim.api.nvim_create_autocmd("VimEnter", {
+	desc = "load or create session on launch",
 	group = "sessions",
 	nested = true,
 	callback = function()
@@ -40,8 +40,8 @@ vim.api.nvim_create_autocmd("VimEnter", {
 	end,
 })
 
--- Overwrite existing session when exiting
 vim.api.nvim_create_autocmd("VimLeavePre", {
+	desc = "overwrite existing session when exiting",
 	group = "sessions",
 	callback = function()
 		if vim.g.launched_by_shell then

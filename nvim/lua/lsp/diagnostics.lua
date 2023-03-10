@@ -20,7 +20,28 @@ for _, type in ipairs({ "Error", "Warn", "Hint", "Info" }) do
 	})
 end
 
-vim.keymap.set("n", "<leader>d", vim.diagnostic.open_float)
-vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist)
-vim.keymap.set("n", "[d", vim.diagnostic.goto_prev)
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next)
+vim.keymap.set(
+	"n",
+	"<leader>d",
+	vim.diagnostic.open_float,
+	{ desc = "show diagnostics in a floating window" }
+)
+vim.keymap.set(
+	"n",
+	"<leader>q",
+	vim.diagnostic.setloclist,
+	{ desc = "add buffer diagnostics to location list" }
+)
+vim.keymap.set(
+	"n",
+	"[d",
+	vim.diagnostic.goto_prev,
+	{ desc = "go to previous diagnostic" }
+)
+-- stylua: ignore
+vim.keymap.set(
+	"n",
+	"]d",
+	vim.diagnostic.goto_next,
+	{ desc = "go to next diagnostic" }
+)

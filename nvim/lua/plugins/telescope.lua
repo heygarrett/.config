@@ -19,22 +19,22 @@ return {
 		vim.api.nvim_create_user_command(
 			"Bcommits",
 			function() builtins().git_bcommits() end,
-			{}
+			{ desc = "Telescope picker: buffer commits" }
 		)
 		vim.api.nvim_create_user_command(
 			"Buffers",
 			function() builtins().buffers({ sort_lastused = true }) end,
-			{}
+			{ desc = "Telescope picker: buffers" }
 		)
 		vim.api.nvim_create_user_command(
 			"Commands",
 			function() builtins().commands() end,
-			{}
+			{ desc = "Telescope picker: user commands" }
 		)
 		vim.api.nvim_create_user_command(
 			"Commits",
 			function() builtins().git_commits() end,
-			{}
+			{ desc = "Telescope picker: commits" }
 		)
 		vim.api.nvim_create_user_command("Find", function()
 			if vim.fn.system("git rev-parse --is-inside-work-tree"):match("true") then
@@ -42,33 +42,37 @@ return {
 			else
 				builtins().find_files({ hidden = true })
 			end
-		end, {})
+		end, { desc = "Telescope picker: find files" })
 		vim.api.nvim_create_user_command(
 			"Grep",
 			function() builtins().live_grep() end,
-			{}
+			{ desc = "Telescope picker: grep" }
 		)
 		vim.api.nvim_create_user_command(
 			"Help",
 			function() builtins().help_tags() end,
-			{}
+			{ desc = "Telescope picker: help tags" }
 		)
 		vim.api.nvim_create_user_command(
 			"Keymaps",
 			function() builtins().keymaps() end,
-			{}
+			{ desc = "Telescope picker: keymaps" }
 		)
 		vim.api.nvim_create_user_command(
 			"Status",
 			function() builtins().git_status() end,
-			{}
+			{ desc = "Telescope picker: git status" }
 		)
-		vim.api.nvim_create_user_command("Tele", function() builtins().resume() end, {})
+		vim.api.nvim_create_user_command(
+			"Tele",
+			function() builtins().resume() end,
+			{ desc = "Telescope picker: resume" }
+		)
 		-- LSP lists
 		vim.api.nvim_create_user_command(
 			"Defs",
 			function() builtins().lsp_definitions({ jump_type = "never" }) end,
-			{}
+			{ desc = "Telescope picker: LSP definitions" }
 		)
 		vim.api.nvim_create_user_command("Diags", function(t)
 			if t.args == "all" then
@@ -76,16 +80,19 @@ return {
 			else
 				builtins().diagnostics({ bufnr = 0 })
 			end
-		end, { nargs = "?" })
+		end, {
+			nargs = "?",
+			desc = "Telescope picker: diagnostics",
+		})
 		vim.api.nvim_create_user_command(
 			"Imps",
 			function() builtins().lsp_implementations({ jump_type = "never" }) end,
-			{}
+			{ desc = "Telescope picker: LSP implementations" }
 		)
 		vim.api.nvim_create_user_command(
 			"Refs",
 			function() builtins().lsp_references({ jump_type = "never" }) end,
-			{}
+			{ desc = "Telescope picker: LSP references" }
 		)
 	end,
 	config = function()
@@ -167,6 +174,7 @@ return {
 		telescope.load_extension("fzf")
 
 		vim.api.nvim_create_autocmd("User", {
+			desc = "wrap text in Telescope pickers",
 			group = vim.api.nvim_create_augroup("telescope", { clear = true }),
 			pattern = "TelescopePreviewerLoaded",
 			callback = function() vim.o.wrap = true end,

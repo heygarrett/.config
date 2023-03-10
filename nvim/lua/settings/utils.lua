@@ -1,4 +1,3 @@
--- Sort lines by length
 vim.api.nvim_create_user_command("Sort", function(t)
 	local line_list = vim.api.nvim_buf_get_lines(0, t.line1 - 1, t.line2, true)
 	table.sort(line_list, function(a, b)
@@ -13,9 +12,12 @@ vim.api.nvim_create_user_command("Sort", function(t)
 		end
 	end)
 	vim.api.nvim_buf_set_lines(0, t.line1 - 1, t.line2, true, line_list)
-end, { range = "%", bang = true })
+end, {
+	range = "%",
+	bang = true,
+	desc = "sort lines by length",
+})
 
--- Copy code without leading indents
 vim.api.nvim_create_user_command("Chomp", function(tbl)
 	local line_list = vim.api.nvim_buf_get_lines(0, tbl.line1 - 1, tbl.line2, true)
 	local global_depth = 0
@@ -34,10 +36,11 @@ vim.api.nvim_create_user_command("Chomp", function(tbl)
 		line_list[index] = line:sub(global_depth + 1)
 	end
 	vim.fn.setreg("+", table.concat(line_list, "\n"))
-end, { range = true })
+end, {
+	range = true,
+	desc = "yank and remove unnecessary leading whitespace",
+})
 
--- Combine two tabs into a split
--- split + tab = Stab
 vim.api.nvim_create_user_command("Stab", function(tbl)
 	local options = { [""] = true, next = true, previous = true }
 	if not options[tbl.args] then
@@ -54,4 +57,7 @@ vim.api.nvim_create_user_command("Stab", function(tbl)
 		mods = { vertical = true },
 	})
 	vim.api.nvim_win_close(window, false)
-end, { nargs = "?" })
+end, {
+	nargs = "?",
+	desc = "create a split from two tabs",
+})

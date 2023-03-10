@@ -6,6 +6,7 @@ vim.o.tabstop = 4
 vim.opt.listchars = { lead = "·", tab = "| ", trail = "·" }
 
 vim.api.nvim_create_autocmd("BufWinEnter", {
+	desc = "indentation settings",
 	group = vim.api.nvim_create_augroup("indentation", { clear = true }),
 	callback = function()
 		-- Override ftplugin indentation settings

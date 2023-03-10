@@ -7,7 +7,10 @@ return {
 		vim.api.nvim_create_user_command(
 			"Refactor",
 			function() refactoring().select_refactor() end,
-			{ range = true }
+			{
+				range = true,
+				desc = "open refactoring.nvim menu",
+			}
 		)
 	end,
 	config = function()

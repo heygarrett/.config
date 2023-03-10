@@ -33,8 +33,8 @@ local function get_buffer_name()
 	return buffer_name
 end
 
----Set buffer variables for branch and buffer names as frequently as they may change
 vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "FocusGained" }, {
+	desc = "keep branch and buffer name variables updated",
 	group = vim.api.nvim_create_augroup("statusline", { clear = true }),
 	callback = function()
 		vim.b.branch_name = get_branch_name()

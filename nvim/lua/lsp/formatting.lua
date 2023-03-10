@@ -37,12 +37,13 @@ M.setup = function(bufnr)
 				vim.bo.tabstop = tabstop
 			end
 		end
-	end, {})
+	end, { desc = "formatting" })
 
 	-- autocmd: Format on save
 	vim.api.nvim_create_augroup("formatting", { clear = false })
 	vim.api.nvim_clear_autocmds({ group = "formatting", buffer = bufnr })
 	vim.api.nvim_create_autocmd("BufWritePre", {
+		desc = "auto-formatting",
 		group = "formatting",
 		buffer = bufnr,
 		callback = function() vim.cmd.Format() end,
