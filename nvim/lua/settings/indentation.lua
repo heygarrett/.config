@@ -10,9 +10,11 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 	group = vim.api.nvim_create_augroup("indentation", { clear = true }),
 	callback = function()
 		-- Override ftplugin indentation settings
+		---@diagnostic disable: undefined-field
 		vim.bo.expandtab = vim.go.expandtab
 		vim.bo.shiftwidth = vim.go.shiftwidth
 		vim.bo.softtabstop = vim.go.softtabstop
+		---@diagnostic enable: undefined-field
 
 		-- Run guess-indent
 		if package.loaded["guess-indent"] then
@@ -35,6 +37,7 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 			})
 		else
 			-- Override tabstop if we're using tabs
+			---@diagnostic disable-next-line: undefined-field
 			vim.bo.tabstop = vim.go.tabstop
 		end
 	end,
