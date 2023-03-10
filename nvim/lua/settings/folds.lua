@@ -6,10 +6,12 @@ function _G.fold_text()
 	local preview =
 		vim.api.nvim_buf_get_lines(0, vim.v.foldstart - 1, vim.v.foldstart, true)[1]
 	local stripped_preview = preview:gsub("^%s+", "")
-	return table.concat(
-		{ prefix, number_of_lines, "lines folded:", stripped_preview },
-		" "
-	)
+	return table.concat({
+		prefix,
+		number_of_lines,
+		"lines folded:",
+		stripped_preview,
+	}, " ")
 end
 
 vim.o.foldenable = false
