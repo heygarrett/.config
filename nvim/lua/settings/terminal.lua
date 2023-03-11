@@ -13,9 +13,9 @@ vim.api.nvim_create_autocmd("TermOpen", {
 vim.api.nvim_create_autocmd("TermClose", {
 	desc = "close terminal when process ends",
 	group = "terminal",
-	callback = function()
-		if vim.bo.buftype == "terminal" then
-			vim.api.nvim_win_close(0, false)
+	callback = function(tbl)
+		if vim.bo[tbl.buf].buftype == "terminal" then
+			vim.api.nvim_buf_delete(tbl.buf, {})
 		end
 	end,
 })
