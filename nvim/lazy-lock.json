@@ -22,5 +22,6 @@
   "sibling-swap.nvim": { "branch": "main", "commit": "fc147057da778e9903264d715b676ada4fcb7bd8" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "580b6c48651cabb63455e97d7e131ed557b8c7e2" },
   "telescope.nvim": { "branch": "master", "commit": "a3f17d3baf70df58b9d3544ea30abe52a7a832c2" },
-  "treesj": { "branch": "main", "commit": "19e1150d52ae16bac2465bcd7633c05702b5ae59" }
+  "treesj": { "branch": "main", "commit": "19e1150d52ae16bac2465bcd7633c05702b5ae59" },
+  "vim-just": { "branch": "master", "commit": "838c9096d4c5d64d1000a6442a358746324c2123" }
 }
