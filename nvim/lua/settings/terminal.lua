@@ -15,7 +15,8 @@ vim.api.nvim_create_autocmd("TermClose", {
 	group = "terminal",
 	callback = function(tbl)
 		if vim.bo[tbl.buf].buftype == "terminal" then
-			vim.api.nvim_buf_delete(tbl.buf, {})
+			-- nvim errors on exit without force
+			vim.api.nvim_buf_delete(tbl.buf, { force = true })
 		end
 	end,
 })
