@@ -1,24 +1,24 @@
 local M = {}
 
 M.setup = function(bufnr)
-	-- user command: Format
 	vim.api.nvim_buf_create_user_command(bufnr, "Format", function()
-		-- Use null-ls sources when available
 		vim.lsp.buf.format({
 			filter = function(client)
+				-- Use null-ls sources when available
 				if package.loaded["null-ls"] and client.name ~= "null-ls" then
-					local no_null_ls_sources = #require("null-ls.sources").get_available(
-						vim.bo.filetype,
-						"NULL_LS_FORMATTING"
-					) == 0
-					return no_null_ls_sources
+					local null_ls_source_count =
+						#require("null-ls.sources").get_available(
+							vim.bo.filetype,
+							"NULL_LS_FORMATTING"
+						)
+					return null_ls_source_count == 0
 				else
 					return true
 				end
 			end,
 		})
 
-		-- Retab if formatting changes the indentation type
+		-- Retab if indentation type changes when formatting
 		local loaded, guess_indent = pcall(require, "guess-indent")
 		if not loaded then
 			return
@@ -37,13 +37,12 @@ M.setup = function(bufnr)
 				vim.bo.tabstop = tabstop
 			end
 		end
-	end, { desc = "formatting" })
+	end, { desc = "synchronous formatting" })
 
-	-- autocmd: Format on save
 	vim.api.nvim_create_augroup("formatting", { clear = false })
 	vim.api.nvim_clear_autocmds({ group = "formatting", buffer = bufnr })
 	vim.api.nvim_create_autocmd("BufWritePre", {
-		desc = "auto-formatting",
+		desc = "format on save",
 		group = "formatting",
 		buffer = bufnr,
 		callback = function() vim.cmd.Format() end,
