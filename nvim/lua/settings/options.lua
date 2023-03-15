@@ -76,7 +76,11 @@ vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI", "TextChangedP" }, {
 		end
 		local colorcolumn = 90
 		local current_line = vim.api.nvim_get_current_line()
-		local line_length = vim.fn.strdisplaywidth(current_line)
+		-- `current_line` might be a blob instead of a string (eg, expanding snippets)
+		local measured, line_length = pcall(vim.fn.strdisplaywidth, current_line)
+		if not measured then
+			return
+		end
 		if line_length >= colorcolumn - 5 then
 			vim.o.colorcolumn = tostring(colorcolumn)
 		else
