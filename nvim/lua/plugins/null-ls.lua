@@ -17,7 +17,6 @@ return {
 					env = { PRETTIERD_LOCAL_PRETTIER_ONLY = true },
 				}),
 			},
-			on_attach = require("lsp.on_attach"),
 		})
 	end,
 }

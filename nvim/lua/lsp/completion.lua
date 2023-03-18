@@ -2,7 +2,10 @@ local M = {}
 
 M.setup = function(bufnr)
 	vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
-	vim.keymap.set("i", "<c-space>", "<c-x><c-o>", { desc = "omnicompletion" })
+	vim.keymap.set("i", "<c-space>", "<c-x><c-o>", {
+		buffer = bufnr,
+		desc = "omnicompletion",
+	})
 
 	vim.keymap.set("i", "<cr>", function()
 		local pum_info = vim.fn.complete_info({ "mode", "selected" })
