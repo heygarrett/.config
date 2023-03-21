@@ -21,7 +21,8 @@ M.setup = function(bufnr, client)
 
 	-- Override nvim, which sets omnifunc based on completionProvider
 	vim.bo[bufnr].omnifunc = ""
-	if client.server_capabilities.completionProvider.resolveProvider then
+	local completion_provider = client.server_capabilities.completionProvider
+	if completion_provider and completion_provider.resolveProvider then
 		-- We set it based on completionProvider.resolveProvider
 		vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
 		vim.api.nvim_create_augroup("completion", { clear = false })
