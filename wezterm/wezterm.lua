@@ -5,7 +5,10 @@ local typeface = "Monocraft"
 return {
 	color_scheme = "kanagawabones",
 
-	font = wezterm.font(typeface),
+	font = wezterm.font_with_fallback({
+		typeface,
+		"Symbols Nerd Font",
+	}),
 	font_size = 10.5,
 	line_height = 1,
 	harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
