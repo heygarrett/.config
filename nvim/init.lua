@@ -21,9 +21,11 @@ require("lazy").setup("plugins", {
 	install = {
 		colorscheme = { "kanagawa" },
 	},
-	rtp = {
-		disabled_plugins = {
-			"netrwPlugin",
+	performance = {
+		rtp = {
+			disabled_plugins = {
+				"netrwPlugin",
+			},
 		},
 	},
 })
