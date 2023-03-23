@@ -8,7 +8,6 @@
 	autocrlf = input
 	pager = less -x1,5
 [gpg]
-	program = /opt/homebrew/bin/gpg
 	format = ssh
 [fetch]
 	prune = true
