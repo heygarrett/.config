@@ -1,5 +1,4 @@
-require("settings")
-require("lsp")
+require("my.settings")
 
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
@@ -13,7 +12,7 @@ if not vim.loop.fs_stat(lazypath) then
 	})
 end
 vim.opt.runtimepath:prepend(lazypath)
-require("lazy").setup("plugins", {
+require("lazy").setup("my.plugins", {
 	defaults = {
 		lazy = false,
 		version = "*",

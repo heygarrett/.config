@@ -1,8 +1,0 @@
-require("settings.folds")
-require("settings.indentation")
-require("settings.navigation")
-require("settings.options")
-require("settings.sessions")
-require("settings.statusline")
-require("settings.terminal")
-require("settings.utils")
