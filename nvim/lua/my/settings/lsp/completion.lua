@@ -38,13 +38,15 @@ M.setup = function(bufnr, client)
 				if vim.g.pum_timer then
 					vim.fn.timer_stop(vim.g.pum_timer)
 				end
-				local trigger_characters =
-					client.server_capabilities.completionProvider.triggerCharacters
 				if
 					vim.api
 						.nvim_get_current_line()
 						:sub(1, vim.api.nvim_win_get_cursor(0)[2])
-						:match(("[%s]$"):format(table.concat(trigger_characters)))
+						:match(
+							("[%s]$"):format(
+								table.concat(completion_provider.triggerCharacters)
+							)
+						)
 				then
 					vim.g.pum_timer = vim.fn.timer_start(300, function()
 						if vim.api.nvim_get_mode().mode:match("^[^i]") then
