@@ -83,7 +83,7 @@ vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI", "TextChangedP" }, {
 		end
 		if line_length >= colorcolumn - 5 then
 			vim.o.colorcolumn = tostring(colorcolumn)
-		else
+		elseif vim.o.colorcolumn ~= "" then
 			vim.o.colorcolumn = ""
 		end
 	end,
