@@ -57,13 +57,10 @@ vim.api.nvim_create_autocmd("VimResized", {
 	desc = "resize splits when vim is resized",
 	group = "options",
 	callback = function()
-		local mode = vim.api.nvim_get_mode().mode
-		if vim.startswith(mode, "i") then
-			vim.api.nvim_feedkeys(vim.api.nvim_eval([["\<esc>"]]), "n", false)
+		if vim.api.nvim_get_mode().mode ~= "n" then
+			vim.api.nvim_feedkeys(vim.api.nvim_eval([["\<c-\>\<c-n>"]]), "n", false)
 		end
-		if not vim.startswith(mode, "t") then
-			vim.api.nvim_feedkeys(vim.api.nvim_eval([["\<c-w>="]]), "n", false)
-		end
+		vim.api.nvim_feedkeys(vim.api.nvim_eval([["\<c-w>="]]), "n", false)
 	end,
 })
 
