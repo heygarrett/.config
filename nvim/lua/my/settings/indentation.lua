@@ -33,10 +33,15 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 
 		if vim.bo.expandtab then
 			-- Set whitespace characters for indentation with spaces
-			vim.opt_local.listchars:append({
-				leadmultispace = ":" .. (" "):rep(vim.bo.tabstop - 1),
-			})
+			vim.opt_local.listchars = vim.tbl_extend(
+				"force",
+				vim.opt_global.listchars:get(),
+				{ leadmultispace = ":" .. (" "):rep(vim.bo.tabstop - 1) }
+			)
 		else
+			-- Remove leadmultispace from listchars
+			---@diagnostic disable-next-line: undefined-field
+			vim.wo.listchars = vim.go.listchars
 			-- Override tabstop if we're using tabs
 			---@diagnostic disable-next-line: undefined-field
 			vim.bo.tabstop = vim.go.tabstop
