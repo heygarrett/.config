@@ -19,6 +19,7 @@ M.setup = function(bufnr, client)
 		-- https://github.com/vim/vim/issues/1653
 	})
 
+	-- TODO: figure out why this breaks when using :e on open buffer
 	-- Override nvim, which sets omnifunc based on completionProvider
 	vim.bo[bufnr].omnifunc = ""
 	local completion_provider = client.server_capabilities.completionProvider
