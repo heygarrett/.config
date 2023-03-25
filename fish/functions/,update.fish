@@ -1,4 +1,4 @@
-function DevUpdate
+function ,update
 	brew update && brew upgrade --fetch-HEAD
 	hr
 	npm --global update
