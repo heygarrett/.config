@@ -20,7 +20,7 @@ M.setup = function(bufnr, client)
 	})
 
 	-- enable auto-completion not more than once
-	if vim.b[bufnr].autocomplete_enabled then
+	if vim.b[bufnr].completion_server then
 		return
 	end
 
@@ -69,7 +69,7 @@ M.setup = function(bufnr, client)
 			end,
 		})
 
-		vim.b[bufnr].autocomplete_enabled = true
+		vim.b[bufnr].completion_server = client.name
 	end
 end
 
