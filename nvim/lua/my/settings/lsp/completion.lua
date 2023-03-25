@@ -48,7 +48,9 @@ M.setup = function(bufnr, client)
 						.nvim_get_current_line()
 						:sub(1, vim.api.nvim_win_get_cursor(0)[2])
 						:match(
-							("[%s]$"):format(
+							-- match letters with %w
+							("[%%w%s]$"):format(
+								-- also match trigger characters from the language server
 								table.concat(completion_provider.triggerCharacters)
 							)
 						)
