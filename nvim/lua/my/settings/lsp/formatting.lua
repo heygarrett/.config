@@ -21,24 +21,28 @@ M.setup = function(bufnr, client)
 				end
 			end,
 		})
-		-- Retab if indentation type changes when formatting
+
+		-- Determine indentation after formatting
 		local gi_loaded, guess_indent = pcall(require, "guess-indent")
 		if not gi_loaded then
 			return
 		end
 		local indent = guess_indent.guess_from_buffer()
-		-- xnor
+
+		-- Match indentation to value of expandtab
+		---@diagnostic disable: undefined-field
 		if (indent == "tabs") == vim.bo.expandtab then
-			local tabstop = vim.bo.tabstop
-			if indent ~= "tabs" and vim.bo.tabstop ~= indent then
+			-- stylua: ignore
+			local preferred_tabstop =
+				vim.bo.expandtab and vim.bo.tabstop or vim.go.tabstop
+			---@diagnostic enable: undefined-field
+			if indent ~= "tabs" then
 				vim.bo.tabstop = indent
 			end
 			vim.cmd.retab({
 				bang = true,
 			})
-			if vim.bo.tabstop ~= tabstop then
-				vim.bo.tabstop = tabstop
-			end
+			vim.bo.tabstop = preferred_tabstop
 		end
 	end, { desc = "synchronous formatting" })
 
