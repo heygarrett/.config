@@ -14,7 +14,11 @@ M.setup = function(bufnr, client)
 		-- Run formatter
 		vim.lsp.buf.format({
 			filter = function(format_client)
-				return format_client.name == "null-ls" and null_ls_formatting_available
+				if format_client.name == "null-ls" then
+					return null_ls_formatting_available
+				else
+					return true
+				end
 			end,
 		})
 		-- Retab if indentation type changes when formatting
