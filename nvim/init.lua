@@ -15,7 +15,6 @@ vim.opt.runtimepath:prepend(lazypath)
 require("lazy").setup("my.plugins", {
 	defaults = {
 		lazy = false,
-		version = "*",
 	},
 	install = {
 		colorscheme = { "kanagawa" },
