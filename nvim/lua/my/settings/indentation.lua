@@ -1,4 +1,4 @@
--- Defaults for tabs
+-- Default to tabs
 vim.o.expandtab = false
 vim.o.shiftwidth = 0
 vim.o.softtabstop = -1
