@@ -14,15 +14,9 @@ return {
 				lspconfig.lua_ls.setup({
 					settings = {
 						Lua = {
-							completion = {
-								callSnippet = "Replace",
-							},
-							workspace = {
-								checkThirdParty = false,
-							},
-							telemetry = {
-								enable = false,
-							},
+							completion = { callSnippet = "Replace" },
+							workspace = { checkThirdParty = false },
+							telemetry = { enable = false },
 						},
 					},
 				})
