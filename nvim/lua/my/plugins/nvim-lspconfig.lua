@@ -21,6 +21,14 @@ return {
 					},
 				})
 			end,
+			["yamlls"] = function()
+				lspconfig.yamlls.setup({
+					settings = {
+						yaml = { keyOrdering = false },
+						redhat = { telemetry = { enabled = false } },
+					},
+				})
+			end,
 		})
 	end,
 }
