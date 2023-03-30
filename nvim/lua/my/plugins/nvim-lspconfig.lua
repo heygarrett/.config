@@ -20,6 +20,14 @@ return {
 					},
 				})
 			end,
+			["tsserver"] = function()
+				lspconfig.tsserver.setup({
+					init_options = {
+						-- prevent omni completion from inserting extra period
+						completionDisableFilterText = true,
+					},
+				})
+			end,
 			["yamlls"] = function()
 				lspconfig.yamlls.setup({
 					settings = {
