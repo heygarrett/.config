@@ -16,7 +16,6 @@ return {
 						Lua = {
 							completion = { callSnippet = "Replace" },
 							workspace = { checkThirdParty = false },
-							telemetry = { enable = false },
 						},
 					},
 				})
@@ -25,7 +24,6 @@ return {
 				lspconfig.yamlls.setup({
 					settings = {
 						yaml = { keyOrdering = false },
-						redhat = { telemetry = { enabled = false } },
 					},
 				})
 			end,
