@@ -22,7 +22,8 @@ local function get_buffer_name()
 	end
 	local buffer_name = vim.fn.fnamemodify(file_path, ":~")
 
-	local tail_start, tail_end = buffer_name:find(cwd_tail)
+	-- `find` with `plain` substring (disable pattern matching)
+	local tail_start, tail_end = buffer_name:find(cwd_tail, 1, true)
 	if tail_start and tail_end ~= #buffer_name then
 		buffer_name = table.concat({ cwd_tail, vim.fn.fnamemodify(file_path, ":.") }, "/")
 	end
