@@ -18,6 +18,7 @@ vim.o.foldenable = false
 vim.o.foldmethod = "indent"
 vim.o.foldtext = "v:lua.fold_text()"
 vim.opt.fillchars:append({ fold = " " })
+vim.g.markdown_folding = 1
 
 vim.api.nvim_create_autocmd("BufEnter", {
 	desc = "Enable folding and expand all folds",
@@ -25,6 +26,15 @@ vim.api.nvim_create_autocmd("BufEnter", {
 	callback = function()
 		if vim.wo.foldenable or vim.bo.buftype ~= "" then
 			return
+		end
+		-- Markdown files opened from oil.nvim don't load the Markdown ftplugin
+		-- so we load it manually
+		-- TODO: file an issue
+		if vim.bo.filetype == "markdown" then
+			vim.b.did_ftplugin = nil
+			vim.cmd.runtime({
+				args = { "ftplugin/markdown.vim" },
+			})
 		end
 		vim.schedule(
 			function()
