@@ -17,7 +17,7 @@ M.setup = function(bufnr, client)
 				if format_client.name == "null-ls" then
 					return null_ls_formatting_available
 				else
-					return true
+					return not null_ls_formatting_available
 				end
 			end,
 		})
