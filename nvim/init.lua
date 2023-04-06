@@ -16,6 +16,10 @@ require("lazy").setup("my.plugins", {
 	defaults = {
 		lazy = false,
 	},
+	dev = {
+		path = "~/dev/repos",
+		fallback = true,
+	},
 	install = {
 		colorscheme = { "kanagawa" },
 	},
