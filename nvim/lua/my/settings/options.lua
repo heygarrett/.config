@@ -16,6 +16,7 @@ vim.o.smartcase = true
 vim.o.splitbelow = true
 vim.o.splitright = true
 vim.o.termguicolors = true
+vim.o.textwidth = 90
 vim.o.updatetime = 2000
 vim.opt.clipboard:append("unnamedplus")
 vim.opt.completeopt = { "menuone", "noselect" }
@@ -71,17 +72,16 @@ vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI", "TextChangedP" }, {
 		if vim.bo.buftype ~= "" then
 			return
 		end
-		local colorcolumn = 90
 		local current_line = vim.api.nvim_get_current_line()
 		-- `current_line` might be a blob instead of a string (eg, expanding snippets)
 		local measured, line_length = pcall(vim.fn.strdisplaywidth, current_line)
 		if not measured then
 			return
 		end
-		if line_length >= colorcolumn - 5 then
-			vim.o.colorcolumn = tostring(colorcolumn)
-		elseif vim.o.colorcolumn ~= "" then
-			vim.o.colorcolumn = ""
+		if line_length >= vim.bo.textwidth - 5 then
+			vim.wo.colorcolumn = "+1"
+		elseif vim.wo.colorcolumn ~= "" then
+			vim.wo.colorcolumn = ""
 		end
 	end,
 })
