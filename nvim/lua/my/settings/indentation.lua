@@ -12,21 +12,15 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 	desc = "indentation settings",
 	group = vim.api.nvim_create_augroup("indentation", { clear = true }),
 	callback = function(args)
-		-- Override ftplugin indentation settings
-		---@diagnostic disable: undefined-field
+		-- Override expandtab set by ftplugins
+		---@diagnostic disable-next-line: undefined-field
 		vim.bo.expandtab = vim.go.expandtab
-		vim.bo.softtabstop = vim.go.softtabstop
-		---@diagnostic enable: undefined-field
 
 		-- Run editorconfig
 		local ec_loaded, editorconfig = pcall(require, "editorconfig")
 		if ec_loaded then
 			editorconfig.config(args.buf)
 		end
-
-		-- Override shiftwidth set by editorconfig
-		---@diagnostic disable-next-line: undefined-field
-		vim.bo.shiftwidth = vim.go.shiftwidth
 
 		-- Run guess-indent (which defers to editorconfig)
 		local gi_loaded, _ = pcall(require, "guess-indent")
@@ -36,6 +30,12 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 				mods = { silent = true },
 			})
 		end
+
+		-- Always use value of tabstop for shiftwidth and softtabstop
+		---@diagnostic disable: undefined-field
+		vim.bo.shiftwidth = vim.go.shiftwidth
+		vim.bo.softtabstop = vim.go.softtabstop
+		---@diagnostic enable: undefined-field
 
 		if vim.bo.expandtab then
 			-- Set whitespace characters for indentation with spaces
