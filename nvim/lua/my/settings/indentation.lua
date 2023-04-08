@@ -6,7 +6,7 @@ vim.o.tabstop = 4
 vim.opt.listchars = { lead = "·", tab = "| ", trail = "·" }
 
 -- Don't run editorconfig automatically
-vim.g.editorconfig_enable = false
+vim.g.editorconfig = false
 
 vim.api.nvim_create_autocmd("BufWinEnter", {
 	desc = "indentation settings",
@@ -17,10 +17,7 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 		vim.bo.expandtab = vim.go.expandtab
 
 		-- Run editorconfig
-		local ec_loaded, editorconfig = pcall(require, "editorconfig")
-		if ec_loaded then
-			editorconfig.config(args.buf)
-		end
+		require("editorconfig").config(args.buf)
 
 		-- Run guess-indent (which defers to editorconfig)
 		local gi_loaded, _ = pcall(require, "guess-indent")
