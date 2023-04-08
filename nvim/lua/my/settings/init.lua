@@ -1,5 +1,5 @@
 require("my.settings.lsp")
-require("my.settings.folds")
+require("my.settings.folding")
 require("my.settings.indentation")
 require("my.settings.navigation")
 require("my.settings.options")
