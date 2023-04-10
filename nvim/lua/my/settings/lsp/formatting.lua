@@ -14,11 +14,10 @@ M.setup = function(bufnr, client)
 		-- Run formatter
 		vim.lsp.buf.format({
 			filter = function(format_client)
-				if format_client.name == "null-ls" then
-					return null_ls_formatting_available
-				else
-					return not null_ls_formatting_available
-				end
+				-- stylua: ignore
+				local xnor =
+					(format_client.name == "null-ls") == null_ls_formatting_available
+				return xnor
 			end,
 		})
 
