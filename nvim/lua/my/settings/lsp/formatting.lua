@@ -14,9 +14,9 @@ M.setup = function(bufnr, client)
 		-- Run formatter
 		vim.lsp.buf.format({
 			filter = function(format_client)
-				-- stylua: ignore
-				local xnor =
+				local xnor = (
 					(format_client.name == "null-ls") == null_ls_formatting_available
+				)
 				return xnor
 			end,
 		})
@@ -31,9 +31,9 @@ M.setup = function(bufnr, client)
 		-- Match indentation to value of expandtab
 		---@diagnostic disable: undefined-field
 		if (indent == "tabs") == vim.bo.expandtab then
-			-- stylua: ignore
-			local preferred_tabstop =
+			local preferred_tabstop = (
 				vim.bo.expandtab and vim.bo.tabstop or vim.go.tabstop
+			)
 			---@diagnostic enable: undefined-field
 			if indent ~= "tabs" then
 				vim.bo.tabstop = indent
