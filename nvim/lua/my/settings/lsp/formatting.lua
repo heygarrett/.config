@@ -52,12 +52,7 @@ M.setup = function(bufnr, client)
 			desc = "format on save",
 			group = "formatting",
 			buffer = bufnr,
-			callback = function()
-				if client.name == "null-ls" and not null_ls_formatting_available then
-					return
-				end
-				vim.cmd.Format()
-			end,
+			callback = function() vim.cmd.Format() end,
 		})
 	end
 end
