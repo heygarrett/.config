@@ -9,10 +9,10 @@ vim.keymap.set("n", "k", "gk", { desc = "go up to one display line" })
 
 local group = vim.api.nvim_create_augroup("navigation", { clear = true })
 
-vim.api.nvim_create_autocmd("WinEnter", {
+vim.api.nvim_create_autocmd("BufEnter", {
 	group = group,
 	callback = function()
-		if vim.api.nvim_win_get_config(0).relative ~= "" then
+		if vim.fn.win_gettype() ~= "" then
 			-- don't resize floating windows
 			return
 		end
