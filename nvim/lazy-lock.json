@@ -22,5 +22,6 @@
   "telescope.nvim": { "branch": "master", "commit": "713d26b98583b160b50fb827adb751f768238ed3" },
   "treesj": { "branch": "main", "commit": "cba4aca075e4a9687cfd34b40328cac06126bc07" },
   "vim-just": { "branch": "master", "commit": "2cf3acc4a7c0f9d2adc2b2fd3400557ab7d4e5b4" },
+  "xbase": { "branch": "master", "commit": "e45698afa7d4f57a7c0e648481ba3acbc7a8585a" },
   "zone.nvim": { "branch": "main", "commit": "f51c9e1097d4a77a78ff60c7649f4cbeded71b2f" }
 }
