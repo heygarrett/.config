@@ -10,16 +10,13 @@ M.setup = function(bufnr, client)
 		null_ls_formatting_available = #null_ls_formatting_sources ~= 0
 	end
 
+	-- Exit early if client is null-ls xor null-ls sources are available
+	if (client.name == "null-ls") ~= null_ls_formatting_available then
+		return
+	end
+
 	vim.api.nvim_buf_create_user_command(bufnr, "Format", function()
-		-- Run formatter
-		vim.lsp.buf.format({
-			filter = function(format_client)
-				local xnor = (
-					(format_client.name == "null-ls") == null_ls_formatting_available
-				)
-				return xnor
-			end,
-		})
+		vim.lsp.buf.format()
 
 		-- Determine indentation after formatting
 		local gi_loaded, guess_indent = pcall(require, "guess-indent")
