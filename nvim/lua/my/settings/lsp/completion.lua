@@ -19,11 +19,6 @@ M.setup = function(bufnr, client)
 		-- https://github.com/vim/vim/issues/1653
 	})
 
-	-- enable auto-completion not more than once
-	if vim.b[bufnr].completion_server then
-		return
-	end
-
 	-- Exit early if this server doesn't provide completion
 	local completion_provider = client.server_capabilities.completionProvider
 	if not completion_provider then
@@ -63,8 +58,6 @@ M.setup = function(bufnr, client)
 			end
 		end,
 	})
-
-	vim.b[bufnr].completion_server = client.name
 end
 
 return M
