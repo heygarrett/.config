@@ -43,18 +43,13 @@ M.setup = function(bufnr, client)
 				if vim.g.pum_timer then
 					vim.fn.timer_stop(vim.g.pum_timer)
 				end
-				if
-					vim.api
-						.nvim_get_current_line()
-						:sub(1, vim.api.nvim_win_get_cursor(0)[2])
-						:match(
-							-- match letters with %w
-							("[%%w%s]$"):format(
-								-- also match trigger characters from the language server
-								table.concat(completion_provider.triggerCharacters)
-							)
-						)
-				then
+
+				local current_line = vim.api.nvim_get_current_line()
+				local cursor_position = vim.api.nvim_win_get_cursor(0)[2]
+				local text_before_cursor = current_line:sub(1, cursor_position)
+				local trigger_characters = table.concat(completion_provider.triggerCharacters)
+				local trigger_pattern = ("[%%w%s]$"):format(trigger_characters)
+				if text_before_cursor:match(trigger_pattern) then
 					vim.g.pum_timer = vim.fn.timer_start(300, function()
 						if vim.api.nvim_get_mode().mode:match("^[^i]") then
 							return
