@@ -33,7 +33,7 @@ M.setup = function(bufnr, client)
 			)
 			---@diagnostic enable: undefined-field
 			if indent ~= "tabs" then
-				vim.bo.tabstop = indent
+				vim.bo.tabstop = tonumber(indent)
 			end
 			vim.cmd.retab({
 				bang = true,
