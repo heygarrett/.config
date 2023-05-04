@@ -6,19 +6,6 @@ M.setup = function(bufnr, client)
 		desc = "omnicompletion",
 	})
 
-	vim.keymap.set("i", "<cr>", function()
-		local pum_info = vim.fn.complete_info({ "mode", "selected" })
-		if pum_info.mode ~= "" and pum_info.selected == -1 then
-			return "<c-e><cr>"
-		else
-			return "<cr>"
-		end
-	end, {
-		expr = true,
-		desc = "workaround for pop-up menu issue in vim",
-		-- https://github.com/vim/vim/issues/1653
-	})
-
 	-- Exit early if this server doesn't provide completion
 	local completion_provider = client.server_capabilities.completionProvider
 	if not completion_provider then
