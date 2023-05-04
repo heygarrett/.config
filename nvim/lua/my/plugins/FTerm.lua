@@ -1,5 +1,5 @@
 return {
-	"numToStr/FTerm.nvim",
+	"https://github.com/numToStr/FTerm.nvim",
 	lazy = true,
 	init = function()
 		vim.keymap.set("n", "<leader>t", function()

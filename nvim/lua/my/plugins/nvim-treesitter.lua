@@ -1,9 +1,9 @@
 return {
-	"nvim-treesitter/nvim-treesitter",
+	"https://github.com/nvim-treesitter/nvim-treesitter",
 	dependencies = {
 		-- not sure I get value from this plugin
 		-- "nvim-treesitter/nvim-treesitter-context",
-		"nvim-treesitter/nvim-treesitter-textobjects",
+		"https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
 	},
 	build = function() vim.cmd.TSUpdate() end,
 	config = function()

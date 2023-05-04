@@ -1,5 +1,5 @@
 return {
-	"rebelot/kanagawa.nvim",
+	"https://github.com/rebelot/kanagawa.nvim",
 	config = function()
 		require("kanagawa").setup({
 			commentStyle = { italic = false },

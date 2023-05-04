@@ -1,5 +1,5 @@
 return {
-	"rcarriga/nvim-notify",
+	"https://github.com/rcarriga/nvim-notify",
 	config = function()
 		local notify = require("notify")
 		notify.setup({

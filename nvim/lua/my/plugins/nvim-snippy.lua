@@ -1,7 +1,7 @@
 local snippy = function() return require("snippy") end
 
 return {
-	"dcampos/nvim-snippy",
+	"https://github.com/dcampos/nvim-snippy",
 	lazy = true,
 	keys = "<c-x><c-o>",
 	init = function()

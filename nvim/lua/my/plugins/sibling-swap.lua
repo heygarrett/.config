@@ -1,7 +1,7 @@
 local sibling_swap = function() return require("sibling-swap") end
 
 return {
-	"Wansmer/sibling-swap.nvim",
+	"https://github.com/Wansmer/sibling-swap.nvim",
 	lazy = true,
 	init = function()
 		-- Swap forward and back

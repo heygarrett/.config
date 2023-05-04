@@ -1,5 +1,5 @@
 return {
-	"stevearc/oil.nvim",
+	"https://github.com/stevearc/oil.nvim",
 	config = function()
 		require("oil").setup({
 			view_options = {

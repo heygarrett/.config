@@ -1,11 +1,11 @@
 return {
 	{
-		"williamboman/mason.nvim",
+		"https://github.com/williamboman/mason.nvim",
 		build = ":MasonUpdate",
 		config = true,
 	},
 	{
-		"williamboman/mason-lspconfig.nvim",
+		"https://github.com/williamboman/mason-lspconfig.nvim",
 		config = function()
 			local mason_lspconfig = require("mason-lspconfig")
 			mason_lspconfig.setup()
@@ -51,7 +51,7 @@ return {
 		end,
 	},
 	{
-		"jay-babu/mason-null-ls.nvim",
+		"https://github.com/jay-babu/mason-null-ls.nvim",
 		config = function()
 			require("mason-null-ls").setup({
 				automatic_installation = true,
