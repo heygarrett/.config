@@ -1,16 +1,16 @@
 local M = {}
 
 M.setup = function(bufnr, client)
-	vim.keymap.set("i", "<c-space>", "<c-x><c-o>", {
-		buffer = bufnr,
-		desc = "omnicompletion",
-	})
-
 	-- Exit early if this server doesn't provide completion
 	local completion_provider = client.server_capabilities.completionProvider
 	if not completion_provider then
 		return
 	end
+
+	vim.keymap.set("i", "<c-space>", "<c-x><c-o>", {
+		buffer = bufnr,
+		desc = "omnicompletion",
+	})
 
 	vim.api.nvim_create_augroup("completion", { clear = false })
 	vim.api.nvim_clear_autocmds({ group = "completion", buffer = bufnr })
