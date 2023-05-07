@@ -18,17 +18,3 @@ end, {
 	desc = "workaround for pop-up menu issue in vim",
 	-- https://github.com/vim/vim/issues/1653
 })
-
-local group = vim.api.nvim_create_augroup("navigation", { clear = true })
-
-vim.api.nvim_create_autocmd("BufEnter", {
-	group = group,
-	callback = function()
-		if vim.fn.win_gettype() ~= "" then
-			-- don't resize floating windows
-			return
-		end
-		vim.cmd.resize()
-	end,
-	desc = "turn horizontal splits into a vertical accordion",
-})
