@@ -98,7 +98,11 @@ return {
 		local telescope = require("telescope")
 		local actions = require("telescope.actions")
 		local action_state = require("telescope.actions.state")
-		local function new_tab_with_command(cmd, commit)
+		local function new_tab_with_command(cmd, commit, opts)
+			opts = opts or nil
+			if opts and opts.parent then
+				commit = commit .. "~"
+			end
 			vim.cmd.tabnew()
 			vim.cmd.terminal()
 			local term_channel = vim.bo.channel
@@ -113,8 +117,14 @@ return {
 
 		local interactive_rebase = function(prompt_bufnr)
 			local commit = action_state.get_selected_entry().value
+			local parent = true
+			vim.ui.input({ prompt = "Rebase parent commit? [Y/n] " }, function(input)
+				if input:match("^[Nn]") then
+					parent = false
+				end
+			end)
 			actions.close(prompt_bufnr)
-			new_tab_with_command("git rebase --interactive", commit)
+			new_tab_with_command("git rebase --interactive", commit, { parent = parent })
 		end
 
 		local commit_info = function(prompt_bufnr)
