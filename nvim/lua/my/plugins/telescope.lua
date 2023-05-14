@@ -115,35 +115,6 @@ return {
 			})
 		end
 
-		local interactive_rebase = function(prompt_bufnr)
-			local commit = action_state.get_selected_entry().value
-			local parent = true
-			vim.ui.input({ prompt = "Rebase parent commit? [Y/n] " }, function(input)
-				if input:match("^[Nn]") then
-					parent = false
-				end
-			end)
-			actions.close(prompt_bufnr)
-			new_tab_with_command("git rebase --interactive", commit, { parent = parent })
-		end
-
-		local commit_info = function(prompt_bufnr)
-			local commit = action_state.get_selected_entry().value
-			actions.close(prompt_bufnr)
-			new_tab_with_command("git show", commit)
-		end
-
-		local copy_commit = function(prompt_bufnr)
-			local commit = action_state.get_selected_entry().value
-			actions.close(prompt_bufnr)
-			vim.fn.setreg("+", commit)
-			---@diagnostic disable: param-type-mismatch
-			vim.defer_fn(
-				function() vim.notify(("Commit %s copied to clipboard!"):format(commit)) end,
-				500
-			)
-		end
-
 		telescope.setup({
 			defaults = {
 				wrap_results = true,
@@ -160,33 +131,66 @@ return {
 						},
 					},
 				},
-				git_bcommits = {
-					mappings = {
-						i = {
-							["<c-r>r"] = interactive_rebase,
-							["<c-r>s"] = commit_info,
-							["<c-r>y"] = copy_commit,
-						},
-					},
-				},
-				git_commits = {
-					mappings = {
-						i = {
-							["<c-r>r"] = interactive_rebase,
-							["<c-r>s"] = commit_info,
-							["<c-r>y"] = copy_commit,
-						},
-					},
-				},
 			},
 		})
 		telescope.load_extension("fzf")
 
+		local group = vim.api.nvim_create_augroup("telescope", { clear = true })
+
 		vim.api.nvim_create_autocmd("User", {
 			desc = "wrap text in Telescope pickers",
-			group = vim.api.nvim_create_augroup("telescope", { clear = true }),
+			group = group,
 			pattern = "TelescopePreviewerLoaded",
 			callback = function() vim.o.wrap = true end,
+		})
+
+		vim.api.nvim_create_autocmd("FileType", {
+			desc = "Picker commands",
+			group = group,
+			pattern = "TelescopePrompt",
+			callback = function(tbl)
+				local picker = action_state.get_current_picker(tbl.buf).prompt_title
+
+				if picker:match("Commits") then
+					-- Commands for commit pickers
+
+					vim.api.nvim_buf_create_user_command(tbl.buf, "Show", function()
+						local commit = action_state.get_selected_entry().value
+						actions.close(tbl.buf)
+						new_tab_with_command("git show", commit)
+					end, { desc = "Commit summary" })
+
+					vim.api.nvim_buf_create_user_command(tbl.buf, "Yank", function()
+						local commit = action_state.get_selected_entry().value
+						actions.close(tbl.buf)
+						vim.fn.setreg("+", commit)
+						---@diagnostic disable: param-type-mismatch
+						vim.defer_fn(
+							function() vim.notify(commit .. " copied to clipboard!") end,
+							500
+						)
+					end, { desc = "Copy commit hash" })
+
+					vim.api.nvim_buf_create_user_command(tbl.buf, "Rebase", function()
+						local commit = action_state.get_selected_entry().value
+						local parent = true
+						vim.ui.input(
+							{ prompt = "Rebase parent commit? [Y/n] " },
+							function(input)
+								if input:match("^[Nn]") then
+									parent = false
+								end
+							end
+						)
+						actions.close(tbl.buf)
+						new_tab_with_command(
+							"git rebase --interactive",
+							commit,
+							{ parent = parent }
+						)
+					end, { desc = "Interactive rebase" })
+				end
+			end,
 		})
 	end,
 }
