@@ -98,21 +98,26 @@ return {
 		local telescope = require("telescope")
 		local actions = require("telescope.actions")
 		local action_state = require("telescope.actions.state")
+		---Open a new terminal tab with a shell command
+		---@param cmd string
+		---@param commit string
+		---@param opts table | nil
 		local function new_tab_with_command(cmd, commit, opts)
-			opts = opts or nil
-			if opts and opts.parent then
+			opts = opts or {}
+			local assembled_command = table.concat({ cmd, commit }, " ")
+			if opts.parent then
 				commit = commit .. "~"
+			end
+			if opts.run ~= false then
+				assembled_command = assembled_command .. "\r"
 			end
 			vim.cmd.tabnew()
 			vim.cmd.terminal()
 			local term_channel = vim.bo.channel
-			vim.api.nvim_chan_send(
-				term_channel,
-				table.concat({ cmd, commit }, " ") .. "\r"
-			)
-			vim.cmd.normal({
-				args = { "a" },
-			})
+			vim.api.nvim_chan_send(term_channel, assembled_command)
+			if opts.run == false then
+				vim.api.nvim_feedkeys(vim.api.nvim_eval([["\<esc>"]]) .. "I", "t", false)
+			end
 		end
 
 		telescope.setup({
