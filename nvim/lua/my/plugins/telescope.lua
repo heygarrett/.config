@@ -165,7 +165,7 @@ return {
 						new_tab_with_command("git show", commit)
 					end, { desc = "Commit summary" })
 
-					vim.api.nvim_buf_create_user_command(tbl.buf, "Yank", function()
+					vim.keymap.set("i", "<c-t>", function()
 						local commit = action_state.get_selected_entry().value
 						actions.close(tbl.buf)
 						vim.fn.setreg("+", commit)
@@ -174,7 +174,15 @@ return {
 							function() vim.notify(commit .. " copied to clipboard!") end,
 							500
 						)
-					end, { desc = "Copy commit hash" })
+						vim.cmd.tabnew()
+						vim.cmd.terminal()
+						vim.cmd.normal({
+							args = { "a" },
+						})
+					end, {
+						buffer = tbl.buf,
+						desc = "Yank commit hash and open new terminal",
+					})
 
 					vim.api.nvim_buf_create_user_command(tbl.buf, "Rebase", function()
 						local commit = action_state.get_selected_entry().value
