@@ -98,27 +98,6 @@ return {
 		local telescope = require("telescope")
 		local actions = require("telescope.actions")
 		local action_state = require("telescope.actions.state")
-		---Open a new terminal tab with a shell command
-		---@param cmd string
-		---@param commit string
-		---@param opts table | nil
-		local function new_tab_with_command(cmd, commit, opts)
-			opts = opts or {}
-			local assembled_command = table.concat({ cmd, commit }, " ")
-			if opts.parent then
-				commit = commit .. "~"
-			end
-			if opts.run ~= false then
-				assembled_command = assembled_command .. "\r"
-			end
-			vim.cmd.tabnew()
-			vim.cmd.terminal()
-			local term_channel = vim.bo.channel
-			vim.api.nvim_chan_send(term_channel, assembled_command)
-			if opts.run == false then
-				vim.api.nvim_feedkeys(vim.api.nvim_eval([["\<esc>"]]) .. "I", "t", false)
-			end
-		end
 
 		telescope.setup({
 			defaults = {
@@ -150,21 +129,13 @@ return {
 		})
 
 		vim.api.nvim_create_autocmd("FileType", {
-			desc = "Picker commands",
+			desc = "Picker commands/keymaps",
 			group = group,
 			pattern = "TelescopePrompt",
 			callback = function(tbl)
 				local picker = action_state.get_current_picker(tbl.buf).prompt_title
 
 				if picker:match("Commits") then
-					-- Commands for commit pickers
-
-					vim.api.nvim_buf_create_user_command(tbl.buf, "Show", function()
-						local commit = action_state.get_selected_entry().value
-						actions.close(tbl.buf)
-						new_tab_with_command("git show", commit)
-					end, { desc = "Commit summary" })
-
 					vim.keymap.set("i", "<c-t>", function()
 						local commit = action_state.get_selected_entry().value
 						actions.close(tbl.buf)
@@ -183,25 +154,6 @@ return {
 						buffer = tbl.buf,
 						desc = "Yank commit hash and open new terminal",
 					})
-
-					vim.api.nvim_buf_create_user_command(tbl.buf, "Rebase", function()
-						local commit = action_state.get_selected_entry().value
-						local parent = true
-						vim.ui.input(
-							{ prompt = "Rebase parent commit? [Y/n] " },
-							function(input)
-								if input:match("^[Nn]") then
-									parent = false
-								end
-							end
-						)
-						actions.close(tbl.buf)
-						new_tab_with_command(
-							"git rebase --interactive",
-							commit,
-							{ parent = parent }
-						)
-					end, { desc = "Interactive rebase" })
 				end
 			end,
 		})
