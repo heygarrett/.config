@@ -6,3 +6,6 @@ behind = "⌄"
 deleted = "x"
 diverged = "Y"
 renamed = ">"
+
+[directory]
+truncate_to_repo = false
