@@ -1,6 +1,10 @@
 local M = {}
 
 M.setup = function(bufnr, client)
+	-- Exit early if client is null-ls
+	if client.name == "null-ls" then
+		return
+	end
 	-- Exit early if this server doesn't provide completion
 	local completion_provider = client.server_capabilities.completionProvider
 	if not completion_provider then
