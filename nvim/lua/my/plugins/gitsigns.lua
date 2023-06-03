@@ -52,9 +52,6 @@ return {
 				vim.api.nvim_create_user_command("Patch", function(t)
 					local base = t.args ~= "" and t.args or nil
 					gitsigns.diffthis(base)
-					vim.cmd.wincmd({
-						args = { "h" },
-					})
 				end, {
 					nargs = "?",
 					desc = "gitsigns: diff whole buffer",
