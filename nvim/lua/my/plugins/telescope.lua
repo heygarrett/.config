@@ -15,11 +15,23 @@ return {
 			function() builtins().autocommands() end,
 			{ desc = "Telescope picker: autocommands" }
 		)
-		vim.api.nvim_create_user_command(
-			"Bcommits",
-			function() builtins().git_bcommits() end,
-			{ desc = "Telescope picker: buffer commits" }
-		)
+		vim.api.nvim_create_user_command("Bcommits", function(t)
+			if t.args == "" then
+				builtins().git_bcommits()
+			else
+				builtins().git_bcommits({
+					git_command = {
+						"git",
+						"log",
+						t.args .. "..HEAD",
+						"--oneline",
+					},
+				})
+			end
+		end, {
+			nargs = "?",
+			desc = "Telescope picker: buffer commits",
+		})
 		vim.api.nvim_create_user_command(
 			"Buffers",
 			function() builtins().buffers({ sort_lastused = true }) end,
@@ -30,11 +42,23 @@ return {
 			function() builtins().commands() end,
 			{ desc = "Telescope picker: user commands" }
 		)
-		vim.api.nvim_create_user_command(
-			"Commits",
-			function() builtins().git_commits() end,
-			{ desc = "Telescope picker: commits" }
-		)
+		vim.api.nvim_create_user_command("Commits", function(t)
+			if t.args == "" then
+				builtins().git_commits()
+			else
+				builtins().git_commits({
+					git_command = {
+						"git",
+						"log",
+						t.args .. "..HEAD",
+						"--oneline",
+					},
+				})
+			end
+		end, {
+			nargs = "?",
+			desc = "Telescope picker: commits",
+		})
 		vim.api.nvim_create_user_command("Find", function()
 			if vim.fn.system("git rev-parse --is-inside-work-tree"):match("true") then
 				builtins().git_files({ use_git_root = false, show_untracked = true })
