@@ -1,13 +1,16 @@
 ---Get the name of the current branch
 ---@return string | nil
 local function get_branch_name()
-	local branch = vim.fn.system({ "git", "branch", "--show-current", "2>/dev/null" })
-	if branch ~= "" and not vim.g.launched_by_shell then
-		local branch_name, _ = branch:gsub("\n", "")
-		return branch_name
-	else
+	if vim.g.launched_by_shell then
 		return nil
 	end
+	local branch = vim.fn.system({ "git", "branch", "--show-current" })
+	if vim.v.shell_error ~= 0 then
+		return nil
+	end
+
+	local branch_name, _ = branch:gsub("\n", "")
+	return branch_name
 end
 
 ---Get name of the current buffer
