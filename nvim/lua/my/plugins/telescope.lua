@@ -136,6 +136,12 @@ return {
 					mirror = true,
 					preview_height = 0.75,
 				},
+				mappings = {
+					i = {
+						["<c-s>"] = actions.cycle_previewers_next,
+						["<c-a>"] = actions.cycle_previewers_prev,
+					},
+				},
 			},
 			pickers = {
 				help_tags = {
