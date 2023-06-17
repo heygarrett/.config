@@ -172,12 +172,11 @@ return {
 				local picker = action_state.get_current_picker(tbl.buf).prompt_title
 
 				if picker:match("Commits") then
-					vim.api.nvim_feedkeys(
-						vim.api.nvim_eval([["\<c-s>\<c-s>"]]),
-						"t",
-						true
-					)
-					vim.keymap.set("i", "<c-t>", function()
+					if not picker:match("BCommits") then
+						actions.cycle_previewers_next(tbl.buf)
+						actions.cycle_previewers_next(tbl.buf)
+					end
+					vim.keymap.set("i", "<cr>", function()
 						local commit = action_state.get_selected_entry().value
 						actions.close(tbl.buf)
 						vim.fn.setreg("+", commit)
@@ -188,9 +187,12 @@ return {
 						)
 						vim.cmd.tabnew()
 						vim.cmd.terminal()
-						vim.cmd.normal({
-							args = { "a" },
-						})
+						vim.api.nvim_chan_send(vim.bo.channel, "clear\r")
+						vim.api.nvim_chan_send(
+							vim.bo.channel,
+							table.concat({ "git", "show", commit }, " ") .. "\r"
+						)
+						vim.api.nvim_feedkeys("a", "t", false)
 					end, {
 						buffer = tbl.buf,
 						desc = "Yank commit hash and open new terminal",
