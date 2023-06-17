@@ -62,7 +62,8 @@ return {
 			desc = "Telescope picker: commits",
 		})
 		vim.api.nvim_create_user_command("Find", function()
-			if vim.fn.system("git rev-parse --is-inside-work-tree"):match("true") then
+			vim.fn.system({ "git", "rev-parse", "--is-inside-work-tree" })
+			if vim.v.shell_error == 0 then
 				builtins().git_files({ use_git_root = false, show_untracked = true })
 			else
 				builtins().find_files({ hidden = true })
