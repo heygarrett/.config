@@ -172,6 +172,11 @@ return {
 				local picker = action_state.get_current_picker(tbl.buf).prompt_title
 
 				if picker:match("Commits") then
+					vim.api.nvim_feedkeys(
+						vim.api.nvim_eval([["\<c-s>\<c-s>"]]),
+						"t",
+						true
+					)
 					vim.keymap.set("i", "<c-t>", function()
 						local commit = action_state.get_selected_entry().value
 						actions.close(tbl.buf)
