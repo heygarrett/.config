@@ -2,12 +2,10 @@ local builtins = function() return require("telescope.builtin") end
 
 return {
 	"https://github.com/nvim-telescope/telescope.nvim",
-	enabled = false,
 	dependencies = {
 		"https://github.com/nvim-lua/plenary.nvim",
 		{
 			"https://github.com/nvim-telescope/telescope-fzf-native.nvim",
-			enabled = false,
 			build = "make",
 		},
 	},

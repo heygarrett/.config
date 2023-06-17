@@ -1,5 +1,6 @@
 return {
 	"https://github.com/ibhagwan/fzf-lua",
+	enabled = false,
 	config = function()
 		local fzf_lua = require("fzf-lua")
 
