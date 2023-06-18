@@ -15,7 +15,7 @@ return {
 			function() builtins().autocommands() end,
 			{ desc = "Telescope picker: autocommands" }
 		)
-		vim.api.nvim_create_user_command("Bcommits", function(t)
+		vim.api.nvim_create_user_command("BCommits", function(t)
 			if t.args == "" then
 				builtins().git_bcommits()
 			else
