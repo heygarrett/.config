@@ -130,9 +130,11 @@ return {
 				sorting_strategy = "ascending",
 				layout_strategy = "vertical",
 				layout_config = {
-					prompt_position = "top",
-					mirror = true,
-					preview_height = 0.75,
+					vertical = {
+						prompt_position = "top",
+						mirror = true,
+						preview_height = 0.75,
+					},
 				},
 				mappings = {
 					i = {
