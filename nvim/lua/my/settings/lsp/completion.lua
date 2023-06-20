@@ -1,13 +1,20 @@
 local M = {}
 
 M.setup = function(bufnr, client)
-	-- Exit early if client is null-ls
-	if client.name == "null-ls" then
+	-- Determine availablity of null-ls completion
+	local null_ls_completion_available = false
+	local sources_loaded, null_ls_sources = pcall(require, "null-ls.sources")
+	if sources_loaded then
+		local null_ls_completion_sources =
+			null_ls_sources.get_available(vim.bo.filetype, "NULL_LS_COMPLETION")
+		null_ls_completion_available = #null_ls_completion_sources ~= 0
+	end
+	-- Exit early if client is null-ls and it does not have any completion sources
+	if client.name == "null-ls" and not null_ls_completion_available then
 		return
 	end
 	-- Exit early if this server doesn't provide completion
-	local completion_provider = client.server_capabilities.completionProvider
-	if not completion_provider then
+	if vim.bo[bufnr].omnifunc == "" then
 		return
 	end
 
@@ -33,7 +40,9 @@ M.setup = function(bufnr, client)
 			local current_line = vim.api.nvim_get_current_line()
 			local cursor_position = vim.api.nvim_win_get_cursor(0)[2]
 			local text_before_cursor = current_line:sub(1, cursor_position)
-			local trigger_characters = table.concat(completion_provider.triggerCharacters)
+			local trigger_characters = table.concat(
+				client.server_capabilities.completionProvider.triggerCharacters
+			)
 			local trigger_pattern = ("[%%w%s]$"):format(trigger_characters)
 			if text_before_cursor:match(trigger_pattern) then
 				vim.g.pum_timer = vim.fn.timer_start(300, function()
