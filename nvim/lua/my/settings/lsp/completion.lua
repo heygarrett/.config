@@ -14,7 +14,7 @@ M.setup = function(bufnr, client)
 		return
 	end
 	-- Exit early if this server doesn't provide completion
-	if vim.bo[bufnr].omnifunc == "" then
+	if not client.supports_method("textDocument/completion") then
 		return
 	end
 
