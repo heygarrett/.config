@@ -35,7 +35,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 			end
 		end
 		if #vim.api.nvim_list_bufs() == 1 and vim.api.nvim_buf_get_name(0) == "" then
-			vim.cmd.Oil()
+			vim.cmd.Ex()
 		end
 	end,
 })
