@@ -62,8 +62,9 @@ return {
 						return
 					end
 					mini_files.close()
+					local previous_tab_path = mini_files.get_latest_path()
 					vim.cmd.tabedit({ args = { entry_path } })
-					vim.cmd.Ex()
+					mini_files.open(previous_tab_path)
 				end, {
 					buffer = buf_id,
 					desc = "open mini.files entry in new tab",
