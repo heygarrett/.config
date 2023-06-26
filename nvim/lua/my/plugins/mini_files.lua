@@ -75,6 +75,22 @@ return {
 					function() mini_files.open(vim.fn.getcwd()) end,
 					{ desc = "jump to cwd in mini.files browser" }
 				)
+				vim.api.nvim_create_autocmd("BufLeave", {
+					desc = "close mini.files if it loses focus",
+					group = group,
+					buffer = buf_id,
+					callback = function()
+						vim.api.nvim_create_autocmd("BufEnter", {
+							group = group,
+							once = true,
+							callback = function()
+								if not vim.startswith(vim.bo.filetype, "minifiles") then
+									vim.api.nvim_buf_call(buf_id, mini_files.close)
+								end
+							end,
+						})
+					end,
+				})
 			end,
 		})
 	end,
