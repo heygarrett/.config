@@ -34,6 +34,7 @@ return {
 						return utils.root_has_file_matches("stylua")
 					end,
 				}),
+				null_ls.builtins.formatting.swift_format,
 				null_ls.builtins.formatting.yapf,
 			},
 		})
