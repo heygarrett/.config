@@ -1,7 +1,8 @@
 return {
 	"https://github.com/stevearc/oil.nvim",
 	config = function()
-		require("oil").setup({
+		local oil = require("oil")
+		oil.setup({
 			view_options = {
 				show_hidden = true,
 			},
@@ -16,5 +17,12 @@ return {
 				["<C-h>"] = false,
 			},
 		})
+
+		vim.cmd.delcommand("Oil")
+		vim.api.nvim_create_user_command(
+			"Ex",
+			function() oil.open() end,
+			{ desc = "Open file browser" }
+		)
 	end,
 }
