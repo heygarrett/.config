@@ -50,9 +50,6 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
 		if vim.fn.filereadable("Session.vim") == 0 then
 			return
 		end
-		if vim.bo.filetype:match("git") then
-			return
-		end
 		-- Save session when a session exists and arg list is empty
 		local save = "y"
 		if vim.fn.argc() > 0 then
