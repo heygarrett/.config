@@ -1,0 +1,26 @@
+return {
+	"https://github.com/hrsh7th/nvim-cmp",
+	lazy = true,
+	event = "LspAttach",
+	dependencies = {
+		"https://github.com/hrsh7th/cmp-nvim-lsp",
+		"https://github.com/hrsh7th/cmp-buffer",
+		"https://github.com/hrsh7th/cmp-path",
+		"https://github.com/dcampos/cmp-snippy",
+	},
+	config = function()
+		local cmp = require("cmp")
+		cmp.setup({
+			view = { entries = "native" },
+			sources = cmp.config.sources({
+				{ name = "nvim_lsp" },
+				{ name = "snippy" },
+			}, {
+				{ name = "buffer" },
+			}),
+			snippet = {
+				expand = function(args) require("snippy").expand_snippet(args.body) end,
+			},
+		})
+	end,
+}

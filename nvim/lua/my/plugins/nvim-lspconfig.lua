@@ -8,10 +8,16 @@ return {
 		require("neodev").setup()
 
 		local lspconfig = require("lspconfig")
+		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 		require("mason-lspconfig").setup_handlers({
-			function(server_name) lspconfig[server_name].setup({}) end,
+			function(server_name)
+				lspconfig[server_name].setup({
+					capabilities = capabilities,
+				})
+			end,
 			["lua_ls"] = function()
 				lspconfig.lua_ls.setup({
+					capabilities = capabilities,
 					settings = {
 						Lua = {
 							completion = { callSnippet = "Replace" },
@@ -22,6 +28,7 @@ return {
 			end,
 			["tsserver"] = function()
 				lspconfig.tsserver.setup({
+					capabilities = capabilities,
 					init_options = {
 						-- prevent omni completion from inserting extra period
 						completionDisableFilterText = true,
@@ -30,6 +37,7 @@ return {
 			end,
 			["yamlls"] = function()
 				lspconfig.yamlls.setup({
+					capabilities = capabilities,
 					settings = {
 						yaml = { keyOrdering = false },
 					},
