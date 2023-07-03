@@ -10,12 +10,15 @@ return {
 		local lspconfig = require("lspconfig")
 		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 		require("mason-lspconfig").setup_handlers({
+			-- Mason language servers with default setups
 			function(server_name)
 				lspconfig[server_name].setup({
 					capabilities = capabilities,
 				})
 			end,
-			["lua_ls"] = function()
+
+			-- Mason language servers with custom setups
+			lua_ls = function()
 				lspconfig.lua_ls.setup({
 					capabilities = capabilities,
 					settings = {
@@ -26,7 +29,7 @@ return {
 					},
 				})
 			end,
-			["tsserver"] = function()
+			tsserver = function()
 				lspconfig.tsserver.setup({
 					capabilities = capabilities,
 					init_options = {
@@ -35,7 +38,7 @@ return {
 					},
 				})
 			end,
-			["yamlls"] = function()
+			yamlls = function()
 				lspconfig.yamlls.setup({
 					capabilities = capabilities,
 					settings = {
