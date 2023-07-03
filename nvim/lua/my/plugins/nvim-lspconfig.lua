@@ -47,5 +47,10 @@ return {
 				})
 			end,
 		})
+
+		-- Non-Mason language servers
+		lspconfig.sourcekit.setup({
+			capabilities = capabilities,
+		})
 	end,
 }
