@@ -25,7 +25,6 @@
 [tag]
 	gpgsign = true
 [gpg "ssh"]
-	allowedSignersFile = /Users/garrett/.config/git/allowed_signers
 	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
 [push]
 	autoSetupRemote = true
