@@ -23,5 +23,10 @@ return {
 			function() pickers.watch({}) end,
 			{ desc = "xbase watch" }
 		)
+		vim.api.nvim_create_user_command(
+			"Log",
+			function() require("xbase.logger").toggle(false, true) end,
+			{ desc = "xbase log" }
+		)
 	end,
 }
