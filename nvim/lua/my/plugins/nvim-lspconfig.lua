@@ -51,6 +51,11 @@ return {
 		-- Non-Mason language servers
 		lspconfig.sourcekit.setup({
 			capabilities = capabilities,
+			root_dir = require("lspconfig.util").root_pattern(
+				"Package.swift",
+				"*.xcodeproj",
+				".git"
+			),
 		})
 	end,
 }
