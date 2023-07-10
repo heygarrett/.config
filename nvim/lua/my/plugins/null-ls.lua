@@ -1,5 +1,6 @@
 return {
 	"https://github.com/jose-elias-alvarez/null-ls.nvim",
+	cond = false,
 	dependencies = "https://github.com/nvim-lua/plenary.nvim",
 	config = function()
 		local null_ls = require("null-ls")
