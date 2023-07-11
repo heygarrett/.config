@@ -29,7 +29,7 @@ vim.api.nvim_create_autocmd("BufEnter", {
 				args = { "ftplugin/markdown.vim" },
 			})
 		end
-		vim.schedule(
+		vim.schedule_wrap(
 			function()
 				vim.cmd.normal({
 					args = { "zR" },
