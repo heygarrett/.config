@@ -1,18 +1,6 @@
 local M = {}
 
 M.setup = function(bufnr, client)
-	-- Determine availablity of null-ls completion
-	local null_ls_completion_available = false
-	local sources_loaded, null_ls_sources = pcall(require, "null-ls.sources")
-	if sources_loaded then
-		local null_ls_completion_sources =
-			null_ls_sources.get_available(vim.bo.filetype, "NULL_LS_COMPLETION")
-		null_ls_completion_available = #null_ls_completion_sources ~= 0
-	end
-	-- Exit early if client is null-ls and it does not have any completion sources
-	if client.name == "null-ls" and not null_ls_completion_available then
-		return
-	end
 	-- Exit early if this server doesn't provide completion
 	if not client.supports_method("textDocument/completion") then
 		return

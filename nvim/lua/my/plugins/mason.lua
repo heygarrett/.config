@@ -38,13 +38,4 @@ return {
 			})
 		end,
 	},
-	{
-		"https://github.com/jay-babu/mason-null-ls.nvim",
-		cond = false,
-		config = function()
-			require("mason-null-ls").setup({
-				automatic_installation = true,
-			})
-		end,
-	},
 }
