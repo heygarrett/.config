@@ -21,6 +21,9 @@ return {
 			snippet = {
 				expand = function(args) require("snippy").expand_snippet(args.body) end,
 			},
+			mapping = cmp.mapping.preset.insert({
+				["<c-y>"] = cmp.mapping.confirm({ select = true }),
+			}),
 		})
 	end,
 }
