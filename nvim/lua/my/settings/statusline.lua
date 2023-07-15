@@ -111,7 +111,7 @@ end
 ---@return string
 local function get_progress()
 	local p = vim.api.nvim_eval_statusline("%p", {}).str
-	if p == "0" then
+	if p == "0" or vim.fn.line(".") == 1 then
 		return "top"
 	elseif p == "100" then
 		return "bot"
