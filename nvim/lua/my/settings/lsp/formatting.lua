@@ -24,21 +24,18 @@ local function efm_available(filetype)
 	if filetype == "lua" then
 		return find_config_file("stylua")
 	elseif
-		vim.tbl_contains(
-			{
-				"css",
-				"html",
-				"javascript",
-				"javascriptreact",
-				"json",
-				"jsonc",
-				"scss",
-				"typescript",
-				"typescriptreact",
-				"yaml",
-			},
-			filetype
-		)
+		vim.tbl_contains({
+			"css",
+			"html",
+			"javascript",
+			"javascriptreact",
+			"json",
+			"jsonc",
+			"scss",
+			"typescript",
+			"typescriptreact",
+			"yaml",
+		}, filetype)
 	then
 		return find_config_file("prettier")
 	elseif vim.tbl_contains({ "fish", "python", "swift" }, filetype) then
