@@ -78,6 +78,9 @@ M.setup = function(bufnr, client)
 				bang = true,
 			})
 			vim.bo.tabstop = preferred_tabstop
+			if not vim.bo.expandtab then
+				vim.bo.shiftwidth = 0
+			end
 		end
 	end, { desc = "synchronous formatting" })
 
