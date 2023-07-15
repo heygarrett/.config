@@ -27,22 +27,29 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 			})
 		end
 
-		-- Always use value of tabstop for shiftwidth and softtabstop
-		vim.bo.shiftwidth = vim.go.shiftwidth
-		vim.bo.softtabstop = vim.go.softtabstop
-
-		if vim.bo.expandtab then
-			-- Set whitespace characters for indentation with spaces
-			vim.opt_local.listchars = vim.tbl_extend(
-				"force",
-				vim.opt_global.listchars:get(),
-				{ leadmultispace = ":" .. (" "):rep(vim.bo.tabstop - 1) }
-			)
-		else
-			-- Remove leadmultispace from listchars
-			vim.wo.listchars = vim.go.listchars
-			-- Override tabstop if we're using tabs
-			vim.bo.tabstop = vim.go.tabstop
-		end
+		-- Finalize listchars and reset softtabstop
+		vim.cmd.Relist()
 	end,
+})
+
+vim.api.nvim_create_user_command("Relist", function(tbl)
+	if vim.bo.expandtab then
+		-- Set whitespace characters for indentation with spaces
+		vim.opt_local.listchars = vim.tbl_extend(
+			"force",
+			vim.opt_global.listchars:get(),
+			{ leadmultispace = ":" .. (" "):rep(vim.bo.shiftwidth - 1) }
+		)
+	else
+		-- Remove leadmultispace from listchars
+		vim.wo.listchars = vim.go.listchars
+		-- Override tabstop if we're using tabs
+		vim.bo.tabstop = vim.go.tabstop
+	end
+
+	-- Reset softtabstop
+	vim.bo.softtabstop = vim.go.softtabstop
+end, {
+	nargs = "?",
+	desc = "re-set listchars",
 })
