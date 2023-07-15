@@ -13,7 +13,6 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 	group = vim.api.nvim_create_augroup("indentation", { clear = true }),
 	callback = function(args)
 		-- Override expandtab set by ftplugins
-		---@diagnostic disable-next-line: undefined-field
 		vim.bo.expandtab = vim.go.expandtab
 
 		-- Run editorconfig
@@ -29,10 +28,8 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 		end
 
 		-- Always use value of tabstop for shiftwidth and softtabstop
-		---@diagnostic disable: undefined-field
 		vim.bo.shiftwidth = vim.go.shiftwidth
 		vim.bo.softtabstop = vim.go.softtabstop
-		---@diagnostic enable: undefined-field
 
 		if vim.bo.expandtab then
 			-- Set whitespace characters for indentation with spaces
@@ -43,10 +40,8 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 			)
 		else
 			-- Remove leadmultispace from listchars
-			---@diagnostic disable-next-line: undefined-field
 			vim.wo.listchars = vim.go.listchars
 			-- Override tabstop if we're using tabs
-			---@diagnostic disable-next-line: undefined-field
 			vim.bo.tabstop = vim.go.tabstop
 		end
 	end,

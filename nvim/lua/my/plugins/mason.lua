@@ -32,7 +32,6 @@ return {
 							end
 						end
 					end
-					---@diagnostic disable-next-line: param-type-mismatch
 					vim.defer_fn(vim.cmd.LspInstall, 500)
 				end,
 			})

@@ -180,7 +180,6 @@ return {
 						local commit = action_state.get_selected_entry().value
 						actions.close(tbl.buf)
 						vim.fn.setreg("+", commit)
-						---@diagnostic disable: param-type-mismatch
 						vim.defer_fn(
 							function() vim.notify(commit .. " copied to clipboard!") end,
 							500

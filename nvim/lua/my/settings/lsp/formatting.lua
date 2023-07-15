@@ -67,12 +67,10 @@ M.setup = function(bufnr, client)
 		local indent = guess_indent.guess_from_buffer()
 
 		-- Match indentation to value of expandtab
-		---@diagnostic disable: undefined-field
 		if (indent == "tabs") == vim.bo.expandtab then
 			local preferred_tabstop = (
 				vim.bo.expandtab and vim.bo.tabstop or vim.go.tabstop
 			)
-			---@diagnostic enable: undefined-field
 			if indent ~= "tabs" then
 				vim.bo.tabstop = tonumber(indent)
 			end
