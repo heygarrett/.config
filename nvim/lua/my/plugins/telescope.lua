@@ -118,6 +118,16 @@ return {
 			function() builtins().lsp_references({ jump_type = "never" }) end,
 			{ desc = "Telescope picker: LSP references" }
 		)
+		vim.api.nvim_create_user_command("Symbols", function(tbl)
+			if tbl.args == "all" then
+				builtins().lsp_dynamic_workspace_symbols()
+			else
+				builtins().lsp_document_symbols()
+			end
+		end, {
+			nargs = "?",
+			desc = "Telescope picker: LSP symbols",
+		})
 	end,
 	config = function()
 		local telescope = require("telescope")
