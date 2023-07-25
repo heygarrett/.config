@@ -22,6 +22,9 @@ vim.api.nvim_create_user_command("Chomp", function(tbl)
 	local line_list = vim.api.nvim_buf_get_lines(0, tbl.line1 - 1, tbl.line2, true)
 	local global_depth = 0
 	for _, line in ipairs(line_list) do
+		if #line == 0 then
+			goto continue
+		end
 		local leading_whitespace = line:match("^%s+")
 		-- Exit early if there's no whitespace to chomp
 		if not leading_whitespace then
@@ -31,6 +34,7 @@ vim.api.nvim_create_user_command("Chomp", function(tbl)
 		if global_depth == 0 or line_depth < global_depth then
 			global_depth = line_depth
 		end
+		::continue::
 	end
 	for index, line in ipairs(line_list) do
 		line_list[index] = line:sub(global_depth + 1)
