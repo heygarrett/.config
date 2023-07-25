@@ -18,7 +18,7 @@ end, {
 	desc = "sort lines by length",
 })
 
-vim.api.nvim_create_user_command("Chomp", function(tbl)
+vim.api.nvim_create_user_command("Gobble", function(tbl)
 	local line_list = vim.api.nvim_buf_get_lines(0, tbl.line1 - 1, tbl.line2, true)
 	local global_depth = 0
 	for _, line in ipairs(line_list) do
