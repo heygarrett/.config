@@ -31,6 +31,7 @@ local function efm_available(filetype)
 			"javascriptreact",
 			"json",
 			"jsonc",
+			"markdown",
 			"scss",
 			"typescript",
 			"typescriptreact",

@@ -32,6 +32,7 @@ local languages = {
 			formatStdin = true,
 		},
 	},
+	markdown = { prettier },
 	python = {
 		{
 			formatCommand = "yapf --quiet",
