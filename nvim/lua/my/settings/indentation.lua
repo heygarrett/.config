@@ -32,7 +32,7 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 	end,
 })
 
-vim.api.nvim_create_user_command("Relist", function(tbl)
+vim.api.nvim_create_user_command("Relist", function()
 	if vim.bo.expandtab then
 		-- Set whitespace characters for indentation with spaces
 		vim.opt_local.listchars = vim.tbl_extend(
@@ -49,7 +49,5 @@ vim.api.nvim_create_user_command("Relist", function(tbl)
 
 	-- Reset softtabstop
 	vim.bo.softtabstop = vim.go.softtabstop
-end, {
-	nargs = "?",
-	desc = "re-set listchars",
-})
+end, { desc = "re-set listchars" })
+
