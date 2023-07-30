@@ -206,6 +206,18 @@ return {
 						buffer = tbl.buf,
 						desc = "Yank commit hash and open new terminal",
 					})
+				elseif picker:match("Status") then
+					vim.keymap.set("i", "<c-r>", function()
+						vim.fn.system({
+							"git",
+							"restore",
+							action_state.get_selected_entry().value,
+						})
+						builtins().git_status()
+					end, {
+						buffer = tbl.buf,
+						desc = "Restore file",
+					})
 				end
 			end,
 		})
