@@ -45,12 +45,11 @@ end, {
 	desc = "yank and remove unnecessary leading whitespace",
 })
 
-vim.api.nvim_create_user_command("Stab", function(tbl)
-	local options = { [""] = true, next = true, previous = true }
-	if not options[tbl.args] then
+vim.api.nvim_create_user_command("Stab", function()
+	local success, choice = pcall(vim.fn.confirm, "Which direction?", "&Next\n&previous")
+	if not success then
 		return
-	end
-	if tbl.args ~= "previous" then
+	elseif choice == 1 then
 		vim.cmd.tabnext()
 	end
 	local window = vim.api.nvim_get_current_win()
@@ -62,6 +61,5 @@ vim.api.nvim_create_user_command("Stab", function(tbl)
 	})
 	vim.api.nvim_win_close(window, false)
 end, {
-	nargs = "?",
 	desc = "create a split from two tabs",
 })
