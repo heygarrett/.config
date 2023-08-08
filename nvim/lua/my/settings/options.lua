@@ -15,6 +15,7 @@ vim.o.showtabline = 2
 vim.o.smartcase = true
 vim.o.splitbelow = true
 vim.o.splitright = true
+vim.o.statuscolumn = "%=%l %s"
 vim.o.termguicolors = true
 vim.o.textwidth = 90
 vim.o.updatetime = 2000
