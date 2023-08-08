@@ -19,6 +19,7 @@ vim.o.statuscolumn = "%=%l %s"
 vim.o.termguicolors = true
 vim.o.textwidth = 90
 vim.o.updatetime = 2000
+vim.o.wildmode = "longest:full"
 vim.opt.clipboard:append("unnamedplus")
 vim.opt.completeopt = { "menuone", "noselect" }
 vim.opt.path:append("**")
