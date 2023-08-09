@@ -1,4 +1,5 @@
 local builtins = function() return require("telescope.builtin") end
+local helpers = require("my.helpers")
 
 return {
 	"https://github.com/nvim-telescope/telescope.nvim",
@@ -30,6 +31,7 @@ return {
 			end
 		end, {
 			nargs = "?",
+			complete = helpers.get_branches,
 			desc = "Telescope picker: buffer commits",
 		})
 		vim.api.nvim_create_user_command(
@@ -57,6 +59,7 @@ return {
 			end
 		end, {
 			nargs = "?",
+			complete = helpers.get_branches,
 			desc = "Telescope picker: commits",
 		})
 		vim.api.nvim_create_user_command("Find", function()
