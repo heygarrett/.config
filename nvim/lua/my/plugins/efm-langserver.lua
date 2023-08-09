@@ -1,13 +1,4 @@
-local prettier = {
-	formatCommand = "prettierd ${INPUT}",
-	formatStdin = true,
-	env = {
-		"PRETTIERD_LOCAL_PRETTIER_ONLY=1",
-	},
-}
-
 local languages = {
-	css = { prettier },
 	fish = {
 		{
 			-- TODO: Figure out why linting doesn't work
@@ -21,35 +12,49 @@ local languages = {
 			formatStdin = true,
 		},
 	},
-	html = { prettier },
-	javascript = { prettier },
-	javascriptreact = { prettier },
-	json = { prettier },
-	jsonc = { prettier },
 	lua = {
 		{
 			formatCommand = "stylua --search-parent-directories -",
 			formatStdin = true,
 		},
 	},
-	markdown = { prettier },
 	python = {
 		{
 			formatCommand = "yapf --quiet",
 			formatStdin = true,
 		},
 	},
-	scss = { prettier },
 	swift = {
 		{
 			formatCommand = "swift-format",
 			formatStdin = true,
 		},
 	},
-	typescript = { prettier },
-	typescriptreact = { prettier },
-	yaml = { prettier },
 }
+
+for _, ft in ipairs({
+	"css",
+	"html",
+	"javascript",
+	"javascriptreact",
+	"json",
+	"jsonc",
+	"markdown",
+	"scss",
+	"typescript",
+	"typescriptreact",
+	"yaml",
+}) do
+	languages[ft] = {
+		{
+			formatCommand = "prettierd ${INPUT}",
+			formatStdin = true,
+			env = {
+				"PRETTIERD_LOCAL_PRETTIER_ONLY=1",
+			},
+		},
+	}
+end
 
 return {
 	"https://github.com/mattn/efm-langserver",
