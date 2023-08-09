@@ -1,3 +1,5 @@
+local helpers = require("my.helpers")
+
 return {
 	"https://github.com/lewis6991/gitsigns.nvim",
 	config = function()
@@ -54,26 +56,7 @@ return {
 					gitsigns.diffthis(base)
 				end, {
 					nargs = "?",
-					complete = function(ArgLead)
-						local all_branches = vim.fn.system({
-							"git",
-							"branch",
-							"--all",
-							"--format=%(refname:short)",
-						})
-						if ArgLead then
-							---@type string[]
-							local filtered_branches = {}
-							for b in vim.gsplit(all_branches, "\n", { trimempty = true }) do
-								if vim.startswith(b, ArgLead) then
-									table.insert(filtered_branches, b)
-								end
-							end
-							return filtered_branches
-						else
-							return vim.split(all_branches, "\n", { trimempty = true })
-						end
-					end,
+					complete = helpers.get_branches,
 					desc = "gitsigns: diff whole buffer",
 				})
 				vim.api.nvim_create_user_command(
