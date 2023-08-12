@@ -20,6 +20,10 @@ local languages = {
 	},
 	python = {
 		{
+			formatCommand = "black --quiet -",
+			formatStdin = true,
+		},
+		{
 			formatCommand = "yapf --quiet",
 			formatStdin = true,
 		},

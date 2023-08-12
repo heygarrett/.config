@@ -39,7 +39,10 @@ local function efm_available(filetype)
 		}, filetype)
 	then
 		return find_config_file("prettier")
-	elseif vim.tbl_contains({ "fish", "python", "swift" }, filetype) then
+	elseif filetype == "python" then
+		local xor = vim.fn.executable("black") ~= vim.fn.executable("yapf")
+		return xor
+	elseif vim.tbl_contains({ "fish", "swift" }, filetype) then
 		return true
 	else
 		return false
