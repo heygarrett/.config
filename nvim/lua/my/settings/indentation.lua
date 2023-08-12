@@ -50,4 +50,3 @@ vim.api.nvim_create_user_command("Relist", function()
 	-- Reset softtabstop
 	vim.bo.softtabstop = vim.go.softtabstop
 end, { desc = "re-set listchars" })
-
