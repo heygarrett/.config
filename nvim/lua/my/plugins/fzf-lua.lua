@@ -1,3 +1,5 @@
+local helpers = require("my.helpers")
+
 return {
 	"https://github.com/ibhagwan/fzf-lua",
 	config = function()
@@ -23,6 +25,7 @@ return {
 			end
 		end, {
 			nargs = "?",
+			complete = helpers.get_branches,
 			desc = "fzf-lua picker: buffer commits",
 		})
 		vim.api.nvim_create_user_command(
@@ -50,6 +53,7 @@ return {
 			end
 		end, {
 			nargs = "?",
+			complete = helpers.get_branches,
 			desc = "fzf-lua picker: commits",
 		})
 		vim.api.nvim_create_user_command("Find", function()
