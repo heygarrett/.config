@@ -157,13 +157,16 @@ return {
 				},
 			},
 			actions = {
-				["default"] = actions.file_vsplit,
 				buffers = {
-					["ctrl-s"] = false,
+					["default"] = actions.buf_edit_or_qf,
+					["ctrl-t"] = actions.buf_tabedit,
+					["ctrl-v"] = actions.buf_vsplit,
 					["ctrl-x"] = actions.buf_split,
 				},
 				files = {
-					["ctrl-s"] = false,
+					["default"] = actions.file_edit_or_qf,
+					["ctrl-t"] = actions.file_tabedit,
+					["ctrl-v"] = actions.file_vsplit,
 					["ctrl-x"] = actions.file_split,
 				},
 			},
