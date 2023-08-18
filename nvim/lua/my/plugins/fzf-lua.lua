@@ -174,11 +174,13 @@ return {
 				commits = {
 					actions = {
 						["default"] = show_commit,
+						["ctrl-y"] = false,
 					},
 				},
 				bcommits = {
 					actions = {
 						["default"] = show_commit,
+						["ctrl-y"] = false,
 					},
 				},
 			},
