@@ -165,7 +165,8 @@ return {
 						["right"] = false,
 						["left"] = false,
 						["ctrl-x"] = false,
-						["tab"] = { actions.git_stage_unstage, actions.resume },
+						["ctrl-r"] = { fn = actions.git_reset, reload = true },
+						["tab"] = { fn = actions.git_stage_unstage, reload = true },
 					},
 				},
 				commits = {
