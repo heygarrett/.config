@@ -29,12 +29,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		})
 		vim.api.nvim_buf_create_user_command(
 			bufnr,
-			"Def",
-			vim.lsp.buf.definition,
-			{ desc = "go to LSP definition" }
-		)
-		vim.api.nvim_buf_create_user_command(
-			bufnr,
 			"Actions",
 			function() vim.lsp.buf.code_action() end,
 			{ desc = "code actions" }
