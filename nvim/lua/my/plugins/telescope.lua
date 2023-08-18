@@ -86,14 +86,14 @@ return {
 			{ desc = "Telescope picker: keymaps" }
 		)
 		vim.api.nvim_create_user_command(
+			"Picker",
+			function() builtins().resume() end,
+			{ desc = "Telescope picker: re-open last picker" }
+		)
+		vim.api.nvim_create_user_command(
 			"Status",
 			function() builtins().git_status() end,
 			{ desc = "Telescope picker: git status" }
-		)
-		vim.api.nvim_create_user_command(
-			"Tele",
-			function() builtins().resume() end,
-			{ desc = "Telescope picker: resume" }
 		)
 		-- LSP lists
 		vim.api.nvim_create_user_command(
