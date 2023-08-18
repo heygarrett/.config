@@ -66,7 +66,7 @@ return {
 		end, { desc = "fzf-lua picker: find files" })
 		vim.api.nvim_create_user_command(
 			"Grep",
-			fzf_lua.grep,
+			fzf_lua.live_grep_native,
 			{ desc = "fzf-lua picker: grep" }
 		)
 		vim.api.nvim_create_user_command("Help", fzf_lua.help_tags, {
