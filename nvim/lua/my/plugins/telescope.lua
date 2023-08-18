@@ -149,6 +149,7 @@ return {
 						preview_height = 0.75,
 					},
 				},
+				dynamic_preview_title = true,
 				mappings = {
 					i = {
 						["<c-s>"] = actions.cycle_previewers_next,
