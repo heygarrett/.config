@@ -129,7 +129,7 @@ return {
 		end, { desc = "fzf-lua picker: LSP symbols" })
 
 		local actions = require("fzf-lua.actions")
-		local show_commit = function(selected)
+		local copy_hash = function(selected)
 			local commit = selected[1]:match("[^ ]+")
 			vim.fn.setreg("+", commit)
 			---@diagnostic disable: param-type-mismatch
@@ -137,13 +137,6 @@ return {
 				function() vim.notify(commit .. " copied to clipboard!") end,
 				500
 			)
-			vim.cmd.tabnew()
-			vim.cmd.terminal()
-			vim.api.nvim_chan_send(
-				vim.bo.channel,
-				table.concat({ "git", "show", commit }, " ") .. "\r"
-			)
-			vim.api.nvim_feedkeys("a", "t", false)
 		end
 
 		fzf_lua.setup({
@@ -177,13 +170,13 @@ return {
 				},
 				commits = {
 					actions = {
-						["default"] = show_commit,
+						["default"] = copy_hash,
 						["ctrl-y"] = false,
 					},
 				},
 				bcommits = {
 					actions = {
-						["default"] = show_commit,
+						["default"] = copy_hash,
 						["ctrl-y"] = false,
 					},
 				},
