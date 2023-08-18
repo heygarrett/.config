@@ -86,11 +86,11 @@ return {
 
 		-- LSP
 		vim.api.nvim_create_user_command(
-			"Defs",
+			"Definitions",
 			fzf_lua.lsp_definitions,
 			{ desc = "fzf-lua picker: LSP definitions" }
 		)
-		vim.api.nvim_create_user_command("Diags", function()
+		vim.api.nvim_create_user_command("Diagnostics", function()
 			local success, choice = pcall(vim.fn.confirm, "", "&Document\n&workspace")
 			if not success then
 				return
@@ -104,12 +104,12 @@ return {
 			desc = "fzf-lua picker: diagnostics",
 		})
 		vim.api.nvim_create_user_command(
-			"Imps",
+			"Implementations",
 			fzf_lua.lsp_implementations,
 			{ desc = "fzf-lua picker: LSP implementations" }
 		)
 		vim.api.nvim_create_user_command(
-			"Refs",
+			"References",
 			fzf_lua.lsp_references,
 			{ desc = "fzf-lua picker: LSP references" }
 		)
