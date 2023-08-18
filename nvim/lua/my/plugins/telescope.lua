@@ -3,6 +3,7 @@ local helpers = require("my.helpers")
 
 return {
 	"https://github.com/nvim-telescope/telescope.nvim",
+	cond = false,
 	dependencies = {
 		"https://github.com/nvim-lua/plenary.nvim",
 		{
