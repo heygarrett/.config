@@ -170,6 +170,11 @@ return {
 					["ctrl-x"] = actions.file_split,
 				},
 			},
+			helptags = {
+				actions = {
+					["default"] = actions.help_vert,
+				},
+			},
 			git = {
 				status = {
 					actions = {
