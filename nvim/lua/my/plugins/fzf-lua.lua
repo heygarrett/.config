@@ -158,6 +158,14 @@ return {
 			},
 			actions = {
 				["default"] = actions.file_vsplit,
+				buffers = {
+					["ctrl-s"] = false,
+					["ctrl-x"] = actions.buf_split,
+				},
+				files = {
+					["ctrl-s"] = false,
+					["ctrl-x"] = actions.file_split,
+				},
 			},
 			git = {
 				status = {
