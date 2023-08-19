@@ -16,25 +16,27 @@ end
 ---Get name of the current buffer
 ---@return string
 local function get_buffer_name()
-	local cwd = vim.fn.getcwd()
-	local cwd_tail = cwd:match("[^/]+$")
-	local file_path = vim.api.nvim_buf_get_name(0):gsub("/$", "")
-	local _, split, prefix = file_path:find("^(.+://)")
-	if split then
-		file_path = file_path:sub(split + 1)
+	-- get root of cwd
+	local root_dir = vim.loop.cwd():match("[^/]+$")
+	-- strip potential prefix and get file path
+	local buf_name = vim.api.nvim_buf_get_name(0):gsub("/$", "")
+	local _, split, prefix = buf_name:find("^(.+://)")
+	local file_path = split and buf_name:sub(split + 1) or buf_name
+	-- format file path
+	---@type string
+	local formatted_file_path
+	local truncated_file_path = vim.fn.fnamemodify(file_path, ":.")
+	if vim.startswith(truncated_file_path, "/") or truncated_file_path == "" then
+		formatted_file_path = vim.fn.fnamemodify(file_path, ":~")
+	else
+		formatted_file_path = table.concat({ root_dir, truncated_file_path }, "/")
 	end
-	local buffer_name = vim.fn.fnamemodify(file_path, ":~")
-
-	-- `find` with `plain` substring (disable pattern matching)
-	local tail_start, tail_end = buffer_name:find(cwd_tail, 1, true)
-	if tail_start and tail_end ~= #buffer_name then
-		buffer_name = table.concat({ cwd_tail, vim.fn.fnamemodify(file_path, ":.") }, "/")
-	end
+	-- restore potential prefix
 	if prefix then
-		buffer_name = prefix .. buffer_name
+		formatted_file_path = prefix .. formatted_file_path
 	end
 
-	return buffer_name
+	return formatted_file_path
 end
 
 vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "FocusGained" }, {
