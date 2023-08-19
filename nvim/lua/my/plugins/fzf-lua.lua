@@ -59,7 +59,7 @@ return {
 		vim.api.nvim_create_user_command("Find", function()
 			vim.fn.system({ "git", "rev-parse", "--is-inside-work-tree" })
 			if vim.v.shell_error == 0 then
-				fzf_lua.git_files()
+				fzf_lua.git_files({ cwd = vim.loop.cwd() })
 			else
 				fzf_lua.files()
 			end
