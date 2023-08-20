@@ -1,61 +1,13 @@
 local M = {}
 
----@param formatter string
----@return boolean
-local function find_config_file(formatter)
-	local config_files = {
-		stylua = "stylua.toml",
-		prettier = "prettierrc",
-	}
-
-	local found_config = next(
-		vim.fs.find(
-			function(name) return name:match(config_files[formatter]) end,
-			{ upward = true, type = "file" }
-		)
-	)
-
-	return found_config and true or false
-end
-
----@param filetype string
----@return boolean
-local function efm_available(filetype)
-	if filetype == "lua" then
-		return find_config_file("stylua")
-	elseif
-		vim.tbl_contains({
-			"css",
-			"html",
-			"javascript",
-			"javascriptreact",
-			"json",
-			"jsonc",
-			"markdown",
-			"scss",
-			"typescript",
-			"typescriptreact",
-			"yaml",
-		}, filetype)
-	then
-		return find_config_file("prettier")
-	elseif filetype == "python" then
-		local xor = vim.fn.executable("black") ~= vim.fn.executable("yapf")
-		return xor
-	elseif vim.tbl_contains({ "fish", "swift" }, filetype) then
-		return true
-	else
-		return false
-	end
-end
-
 M.setup = function(bufnr, client)
 	vim.api.nvim_buf_create_user_command(bufnr, "Format", function()
 		-- Run formatter
 		vim.lsp.buf.format({
 			filter = function(format_client)
 				return (
-					(format_client.name == "efm") == efm_available(vim.bo[bufnr].filetype)
+					(format_client.name == "efm")
+					== (vim.b[bufnr].efm_formatting_available or false)
 				)
 			end,
 		})
