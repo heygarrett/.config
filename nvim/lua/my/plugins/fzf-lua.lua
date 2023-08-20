@@ -152,8 +152,8 @@ return {
 					["<c-u>"] = "preview-page-up",
 				},
 				fzf = {
-					["ctrl-d"] = "preview-page-down",
-					["ctrl-u"] = "preview-page-up",
+					["ctrl-d"] = "preview-half-page-down",
+					["ctrl-u"] = "preview-half-page-up",
 				},
 			},
 			actions = {
