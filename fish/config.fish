@@ -20,12 +20,6 @@ if not infocmp wezterm &>/dev/null
 	rm $tempfile
 end
 
-# configure Hammerspoon to use ~/.config
-if not defaults read org.hammerspoon.Hammerspoon MJConfigFile &>/dev/null
-	defaults write org.hammerspoon.Hammerspoon MJConfigFile \
-		"~/.config/hammerspoon/init.lua"
-end
-
 # set up 1Password ssh agent
 set --local op_ssh ~/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
 if test -e "$op_ssh"
