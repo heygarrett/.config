@@ -173,6 +173,7 @@ return {
 			helptags = {
 				actions = {
 					["default"] = actions.help_vert,
+					["ctrl-x"] = actions.help,
 				},
 			},
 			git = {
