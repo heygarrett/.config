@@ -187,12 +187,25 @@ return {
 					},
 				},
 				commits = {
+					cmd = "git log --color --pretty=format:" .. table.concat({
+						"'%C(yellow)%h%Creset",
+						"%Cgreen(%><(12)%cr%><|(12))%Creset",
+						"%s",
+						"%C(blue)<%ae>%Creset'",
+					}, " "),
 					actions = {
 						["default"] = copy_hash,
 						["ctrl-y"] = false,
 					},
 				},
 				bcommits = {
+					cmd = "git log --color --pretty=format:" .. table.concat({
+						"'%C(yellow)%h%Creset",
+						"%Cgreen(%><(12)%cr%><|(12))%Creset",
+						"%s",
+						"%C(blue)<%ae>%Creset'",
+						"<file>",
+					}, " "),
 					actions = {
 						["default"] = copy_hash,
 						["ctrl-y"] = false,
