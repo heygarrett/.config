@@ -6,6 +6,7 @@ if status is-login
 	set --global --export HOMEBREW_BUNDLE_FILE ~/.config/homebrew/Brewfile
 	set --global --export HOMEBREW_NO_ANALYTICS 1
 	set --global --export MANPAGER "$EDITOR +Man!"
+	set --global --export OP_CORE_DIRENV ~/dev/repos/core/.envrc
 	set --global --export STACK_XDG 1
 	set --global --export STARSHIP_CONFIG ~/.config/starship/starship.toml
 	set --global --export TEALDEER_CONFIG_DIR ~/.config/tealdeer
