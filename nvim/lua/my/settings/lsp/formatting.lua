@@ -1,6 +1,8 @@
 local M = {}
 
 M.setup = function(bufnr, client)
+	local guess_indent_loaded, guess_indent = pcall(require, "guess-indent")
+
 	vim.api.nvim_buf_create_user_command(bufnr, "Format", function()
 		-- Run formatter
 		vim.lsp.buf.format({
@@ -13,8 +15,7 @@ M.setup = function(bufnr, client)
 		})
 
 		-- Determine indentation after formatting
-		local gi_loaded, guess_indent = pcall(require, "guess-indent")
-		if not gi_loaded then
+		if not guess_indent_loaded then
 			return
 		end
 		local indent = guess_indent.guess_from_buffer()
