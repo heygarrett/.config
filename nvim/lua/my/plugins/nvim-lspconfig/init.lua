@@ -18,6 +18,18 @@ return {
 			end,
 
 			-- Mason language servers with custom setups
+			efm = function()
+				local efm_config = require("my.plugins.nvim-lspconfig.efm-langserver")
+				lspconfig.efm.setup({
+					filetypes = vim.tbl_keys(efm_config.languages),
+					init_options = { documentFormatting = true },
+					settings = {
+						rootMarkers = { vim.loop.cwd() },
+						languages = efm_config.languages,
+					},
+					on_attach = efm_config.on_attach,
+				})
+			end,
 			lua_ls = function()
 				lspconfig.lua_ls.setup({
 					capabilities = capabilities,
