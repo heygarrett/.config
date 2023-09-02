@@ -90,6 +90,11 @@ return {
 
 		-- LSP
 		vim.api.nvim_create_user_command(
+			"Actions",
+			fzf_lua.lsp_code_actions,
+			{ desc = "fzf-lua picker: code actions" }
+		)
+		vim.api.nvim_create_user_command(
 			"Definitions",
 			fzf_lua.lsp_definitions,
 			{ desc = "fzf-lua picker: LSP definitions" }

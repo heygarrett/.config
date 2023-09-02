@@ -27,12 +27,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			buffer = bufnr,
 			desc = "signature help",
 		})
-		vim.api.nvim_buf_create_user_command(
-			bufnr,
-			"Actions",
-			function() vim.lsp.buf.code_action() end,
-			{ desc = "code actions" }
-		)
 		vim.api.nvim_buf_create_user_command(bufnr, "Rename", function(t)
 			if t.args ~= "" then
 				vim.lsp.buf.rename(t.args)
