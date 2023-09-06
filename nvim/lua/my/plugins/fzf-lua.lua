@@ -183,6 +183,7 @@ return {
 			},
 			git = {
 				status = {
+					cmd = "git status --short --untracked-files",
 					actions = {
 						["right"] = false,
 						["left"] = false,
