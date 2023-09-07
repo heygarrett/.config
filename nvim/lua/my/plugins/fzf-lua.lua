@@ -164,21 +164,20 @@ return {
 			actions = {
 				buffers = {
 					["default"] = actions.buf_edit_or_qf,
+					["ctrl-s"] = actions.buf_split,
 					["ctrl-t"] = actions.buf_tabedit,
 					["ctrl-v"] = actions.buf_vsplit,
-					["ctrl-x"] = actions.buf_split,
 				},
 				files = {
 					["default"] = actions.file_edit_or_qf,
+					["ctrl-s"] = actions.file_split,
 					["ctrl-t"] = actions.file_tabedit,
 					["ctrl-v"] = actions.file_vsplit,
-					["ctrl-x"] = actions.file_split,
 				},
 			},
 			helptags = {
 				actions = {
 					["default"] = actions.help_vert,
-					["ctrl-x"] = actions.help,
 				},
 			},
 			git = {
@@ -187,8 +186,6 @@ return {
 					actions = {
 						["right"] = false,
 						["left"] = false,
-						["ctrl-x"] = false,
-						["ctrl-r"] = { fn = actions.git_reset, reload = true },
 						["tab"] = { fn = actions.git_stage_unstage, reload = true },
 					},
 				},
