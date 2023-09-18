@@ -145,6 +145,9 @@ return {
 		end
 
 		fzf_lua.setup({
+			fzf_opts = {
+				["--cycle"] = "",
+			},
 			winopts = {
 				preview = {
 					layout = "vertical",
