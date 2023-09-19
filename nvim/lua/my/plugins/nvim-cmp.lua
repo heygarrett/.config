@@ -4,6 +4,7 @@ return {
 	event = "LspAttach",
 	dependencies = {
 		"https://github.com/hrsh7th/cmp-nvim-lsp",
+		"https://github.com/hrsh7th/cmp-nvim-lsp-signature-help",
 		"https://github.com/hrsh7th/cmp-buffer",
 		"https://github.com/hrsh7th/cmp-path",
 		"https://github.com/dcampos/cmp-snippy",
@@ -15,6 +16,7 @@ return {
 			preselect = cmp.PreselectMode.None,
 			sources = cmp.config.sources({
 				{ name = "nvim_lsp" },
+				{ name = "nvim_lsp_signature_help" },
 				{ name = "snippy" },
 			}, {
 				{ name = "buffer" },
