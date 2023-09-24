@@ -3,7 +3,7 @@ local M = {}
 M.setup = function(bufnr, client)
 	local guess_indent_loaded, guess_indent = pcall(require, "guess-indent")
 
-	vim.api.nvim_buf_create_user_command(bufnr, "Format", function()
+	vim.api.nvim_buf_create_user_command(bufnr, "Format", function(tbl)
 		-- Run formatter
 		vim.lsp.buf.format({
 			filter = function(format_client)
@@ -22,6 +22,16 @@ M.setup = function(bufnr, client)
 
 		-- Match indentation to value of expandtab
 		if (indent == "tabs") == vim.bo.expandtab then
+			-- Prompt for retab if formatting manually
+			if tbl.args ~= "save" then
+				local success, choice = pcall(vim.fn.confirm, "Retab?", "&Yes\n&no")
+				if not success then
+					return
+				elseif choice == 2 then
+					return
+				end
+			end
+			-- then retab
 			local preferred_tabstop = (
 				vim.bo.expandtab and vim.bo.tabstop or vim.go.tabstop
 			)
@@ -36,7 +46,10 @@ M.setup = function(bufnr, client)
 				vim.bo.shiftwidth = 0
 			end
 		end
-	end, { desc = "synchronous formatting" })
+	end, {
+		nargs = "?",
+		desc = "synchronous formatting",
+	})
 
 	if client.server_capabilities.documentFormattingProvider then
 		vim.api.nvim_create_augroup("formatting", { clear = false })
@@ -45,7 +58,7 @@ M.setup = function(bufnr, client)
 			desc = "format on save",
 			group = "formatting",
 			buffer = bufnr,
-			callback = function() vim.cmd.Format() end,
+			callback = function() vim.cmd.Format({ args = { "save" } }) end,
 		})
 	end
 end
