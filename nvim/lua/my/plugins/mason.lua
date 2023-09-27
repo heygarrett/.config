@@ -9,12 +9,10 @@ return {
 		config = function()
 			local mason_lspconfig = require("mason-lspconfig")
 			mason_lspconfig.setup()
-			local ignored_filetypes = setmetatable({
-				"git%w+",
-			}, {
+			local ignored_filetypes = setmetatable({ "git", "text" }, {
 				__index = function(tbl, key)
 					for _, ft in ipairs(tbl) do
-						if key:match("^" .. ft .. "$") then
+						if key:match("^" .. ft) then
 							return true
 						end
 					end
