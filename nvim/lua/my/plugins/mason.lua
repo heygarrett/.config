@@ -9,11 +9,23 @@ return {
 		config = function()
 			local mason_lspconfig = require("mason-lspconfig")
 			mason_lspconfig.setup()
+			local ignored_filetypes = setmetatable({
+				"git%w+",
+			}, {
+				__index = function(tbl, key)
+					for _, ft in ipairs(tbl) do
+						if key:match("^" .. ft .. "$") then
+							return true
+						end
+					end
+					return false
+				end,
+			})
 			vim.api.nvim_create_autocmd("FileType", {
 				desc = "Auto-install language servers for new file types",
 				group = vim.api.nvim_create_augroup("mason-lspconfig", { clear = true }),
 				callback = function(t)
-					if t.match:match("git") then
+					if ignored_filetypes[t.match] then
 						return
 					end
 					if vim.bo[t.buf].buftype ~= "" then
