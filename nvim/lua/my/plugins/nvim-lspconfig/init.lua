@@ -8,14 +8,9 @@ return {
 		require("neodev").setup()
 
 		local lspconfig = require("lspconfig")
-		local capabilities = require("cmp_nvim_lsp").default_capabilities()
 		require("mason-lspconfig").setup_handlers({
 			-- Mason language servers with default setups
-			function(server_name)
-				lspconfig[server_name].setup({
-					capabilities = capabilities,
-				})
-			end,
+			function(server_name) lspconfig[server_name].setup({}) end,
 
 			-- Mason language servers with custom setups
 			efm = function()
@@ -32,10 +27,8 @@ return {
 			end,
 			lua_ls = function()
 				lspconfig.lua_ls.setup({
-					capabilities = capabilities,
 					settings = {
 						Lua = {
-							completion = { callSnippet = "Replace" },
 							workspace = { checkThirdParty = false },
 						},
 					},
@@ -43,7 +36,6 @@ return {
 			end,
 			tsserver = function()
 				lspconfig.tsserver.setup({
-					capabilities = capabilities,
 					init_options = {
 						-- prevent omni completion from inserting extra period
 						completionDisableFilterText = true,
@@ -52,7 +44,6 @@ return {
 			end,
 			yamlls = function()
 				lspconfig.yamlls.setup({
-					capabilities = capabilities,
 					settings = {
 						yaml = { keyOrdering = false },
 					},
@@ -62,7 +53,6 @@ return {
 
 		-- Non-Mason language servers
 		lspconfig.sourcekit.setup({
-			capabilities = capabilities,
 			root_dir = require("lspconfig.util").root_pattern(
 				"Package.swift",
 				"*.xcodeproj",
