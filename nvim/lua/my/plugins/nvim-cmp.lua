@@ -1,5 +1,6 @@
 return {
 	"https://github.com/hrsh7th/nvim-cmp",
+	cond = false,
 	lazy = true,
 	event = "LspAttach",
 	dependencies = {
