@@ -15,7 +15,7 @@ M.setup = function(bufnr, client)
 	vim.api.nvim_create_autocmd("CompleteDonePre", {
 		desc = "auto-apply additional edits (eg, resolve imports)",
 		group = group,
-		callback = function()
+		callback = function(opts)
 			local complete_info = vim.fn.complete_info({ "selected" })
 			if complete_info.selected == -1 then
 				-- exit early if pop-up menu closes without a selected item
@@ -32,7 +32,7 @@ M.setup = function(bufnr, client)
 			end
 			vim.lsp.util.apply_text_edits(
 				additional_text_edits,
-				bufnr,
+				opts.buf,
 				client.offset_encoding
 			)
 		end,
