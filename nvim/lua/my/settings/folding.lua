@@ -3,7 +3,10 @@ function _G.fold_text()
 		vim.api.nvim_buf_get_lines(0, vim.v.foldstart - 1, vim.v.foldstart, true)[1]
 	local preview = first_line:gsub("\t", (" "):rep(vim.bo.tabstop))
 	local number_of_lines = vim.v.foldend - vim.v.foldstart
-	local foldtext = ("%s +- %d lines below the fold -+"):format(preview, number_of_lines)
+	local foldtext = ("%s +- %d line(s) below the fold -+"):format(
+		preview,
+		number_of_lines
+	)
 	return foldtext
 end
 
