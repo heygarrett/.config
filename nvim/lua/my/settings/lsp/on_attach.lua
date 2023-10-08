@@ -33,11 +33,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			if t.args ~= "" then
 				vim.lsp.buf.rename(t.args)
 			else
-				local keys = ("q:aRename %s%s"):format(
-					vim.fn.expand("<cword>"),
-					vim.api.nvim_eval([["\<esc>"]])
-				)
-				vim.api.nvim_feedkeys(keys, "in", false)
+				vim.api.nvim_input(("q:aRename %s<esc>"):format(vim.fn.expand("<cword>")))
 			end
 		end, {
 			nargs = "?",
