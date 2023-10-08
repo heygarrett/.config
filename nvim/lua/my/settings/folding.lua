@@ -20,15 +20,6 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 		if vim.bo.buftype ~= "" then
 			return
 		end
-		-- Markdown files opened from oil.nvim don't load the Markdown ftplugin
-		-- so we load it manually
-		-- TODO: file an issue
-		if vim.bo.filetype == "markdown" then
-			vim.b.did_ftplugin = nil
-			vim.cmd.runtime({
-				args = { "ftplugin/markdown.vim" },
-			})
-		end
 		vim.cmd.normal({
 			args = { "zR" },
 			mods = { emsg_silent = true },
