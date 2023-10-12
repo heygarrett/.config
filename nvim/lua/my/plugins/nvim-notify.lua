@@ -8,6 +8,6 @@ return {
 			timeout = 1000,
 		})
 
-		vim.notify = notify
+		vim.notify = vim.schedule_wrap(notify.notify)
 	end,
 }
