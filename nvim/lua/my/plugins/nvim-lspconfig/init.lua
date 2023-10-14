@@ -59,5 +59,6 @@ return {
 				".git"
 			),
 		})
+		lspconfig.hls.setup({})
 	end,
 }
