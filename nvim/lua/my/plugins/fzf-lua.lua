@@ -56,14 +56,14 @@ return {
 			complete = helpers.get_branches,
 			desc = "fzf-lua picker: commits",
 		})
-		vim.api.nvim_create_user_command("Find", function()
-			vim.fn.system({ "git", "rev-parse", "--is-inside-work-tree" })
-			if vim.v.shell_error == 0 then
-				fzf_lua.git_files({ cwd = vim.loop.cwd() })
-			else
-				fzf_lua.files()
-			end
-		end, { desc = "fzf-lua picker: find files" })
+		-- vim.api.nvim_create_user_command("Find", function()
+		-- 	vim.fn.system({ "git", "rev-parse", "--is-inside-work-tree" })
+		-- 	if vim.v.shell_error == 0 then
+		-- 		fzf_lua.git_files({ cwd = vim.loop.cwd() })
+		-- 	else
+		-- 		fzf_lua.files()
+		-- 	end
+		-- end, { desc = "fzf-lua picker: find files" })
 		vim.api.nvim_create_user_command(
 			"Grep",
 			fzf_lua.live_grep_native,

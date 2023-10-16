@@ -4,6 +4,15 @@ return {
 		local pick = require("mini.pick")
 		pick.setup()
 
+		vim.api.nvim_create_user_command("Find", function()
+			vim.fn.system({ "git", "rev-parse", "--is-inside-work-tree" })
+			if vim.v.shell_error == 0 then
+				pick.builtin.files({ tool = "git" })
+			else
+				pick.builtin.files()
+			end
+		end, { desc = "mini.pick: find files" })
+
 		-- LSP lists
 		vim.api.nvim_create_user_command("References", function()
 			vim.lsp.buf.references({
