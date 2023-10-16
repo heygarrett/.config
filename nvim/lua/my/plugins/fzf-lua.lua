@@ -117,11 +117,11 @@ return {
 			fzf_lua.lsp_implementations,
 			{ desc = "fzf-lua picker: LSP implementations" }
 		)
-		vim.api.nvim_create_user_command(
-			"References",
-			fzf_lua.lsp_references,
-			{ desc = "fzf-lua picker: LSP references" }
-		)
+		-- vim.api.nvim_create_user_command(
+		-- 	"References",
+		-- 	fzf_lua.lsp_references,
+		-- 	{ desc = "fzf-lua picker: LSP references" }
+		-- )
 		vim.api.nvim_create_user_command("Symbols", function()
 			local success, choice = pcall(vim.fn.confirm, "", "&Document\n&workspace")
 			if not success then
