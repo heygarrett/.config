@@ -59,6 +59,10 @@ return {
 				".git"
 			),
 		})
-		lspconfig.hls.setup({})
+		lspconfig.hls.setup({
+			settings = {
+				haskell = { formattingProvider = "fourmolu" },
+			},
+		})
 	end,
 }
