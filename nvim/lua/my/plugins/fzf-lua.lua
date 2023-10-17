@@ -10,24 +10,24 @@ return {
 			fzf_lua.autocmds,
 			{ desc = "fzf-lua picker: autocommands" }
 		)
-		vim.api.nvim_create_user_command("BCommits", function(t)
-			if t.args == "" then
-				fzf_lua.git_bcommits()
-			else
-				fzf_lua.git_bcommits({
-					cmd = table.concat({
-						"git",
-						"log",
-						t.args .. "..HEAD",
-						"--oneline",
-					}, " "),
-				})
-			end
-		end, {
-			nargs = "?",
-			complete = helpers.get_branches,
-			desc = "fzf-lua picker: buffer commits",
-		})
+		-- vim.api.nvim_create_user_command("BCommits", function(t)
+		-- 	if t.args == "" then
+		-- 		fzf_lua.git_bcommits()
+		-- 	else
+		-- 		fzf_lua.git_bcommits({
+		-- 			cmd = table.concat({
+		-- 				"git",
+		-- 				"log",
+		-- 				t.args .. "..HEAD",
+		-- 				"--oneline",
+		-- 			}, " "),
+		-- 		})
+		-- 	end
+		-- end, {
+		-- 	nargs = "?",
+		-- 	complete = helpers.get_branches,
+		-- 	desc = "fzf-lua picker: buffer commits",
+		-- })
 		vim.api.nvim_create_user_command(
 			"Buffers",
 			fzf_lua.buffers,
@@ -38,24 +38,24 @@ return {
 			fzf_lua.commands,
 			{ desc = "fzf-lua picker: user commands" }
 		)
-		vim.api.nvim_create_user_command("Commits", function(t)
-			if t.args == "" then
-				fzf_lua.git_commits()
-			else
-				fzf_lua.git_commits({
-					cmd = table.concat({
-						"git",
-						"log",
-						t.args .. "..HEAD",
-						"--oneline",
-					}, " "),
-				})
-			end
-		end, {
-			nargs = "?",
-			complete = helpers.get_branches,
-			desc = "fzf-lua picker: commits",
-		})
+		-- vim.api.nvim_create_user_command("Commits", function(t)
+		-- 	if t.args == "" then
+		-- 		fzf_lua.git_commits()
+		-- 	else
+		-- 		fzf_lua.git_commits({
+		-- 			cmd = table.concat({
+		-- 				"git",
+		-- 				"log",
+		-- 				t.args .. "..HEAD",
+		-- 				"--oneline",
+		-- 			}, " "),
+		-- 		})
+		-- 	end
+		-- end, {
+		-- 	nargs = "?",
+		-- 	complete = helpers.get_branches,
+		-- 	desc = "fzf-lua picker: commits",
+		-- })
 		-- vim.api.nvim_create_user_command("Find", function()
 		-- 	vim.fn.system({ "git", "rev-parse", "--is-inside-work-tree" })
 		-- 	if vim.v.shell_error == 0 then
