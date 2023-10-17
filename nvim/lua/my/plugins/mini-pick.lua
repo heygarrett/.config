@@ -117,7 +117,7 @@ return {
 							items = vim.tbl_map(
 								function(item)
 									return ("%s:%d:%d: %s"):format(
-										vim.fn.fnamemodify(item.filename, ":."),
+										vim.fn.fnamemodify(item.filename, ":~:."),
 										item.lnum,
 										item.col,
 										item.text:gsub("\t", "")
