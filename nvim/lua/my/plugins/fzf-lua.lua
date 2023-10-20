@@ -10,60 +10,60 @@ return {
 			fzf_lua.autocmds,
 			{ desc = "fzf-lua picker: autocommands" }
 		)
-		-- vim.api.nvim_create_user_command("BCommits", function(t)
-		-- 	if t.args == "" then
-		-- 		fzf_lua.git_bcommits()
-		-- 	else
-		-- 		fzf_lua.git_bcommits({
-		-- 			cmd = table.concat({
-		-- 				"git",
-		-- 				"log",
-		-- 				t.args .. "..HEAD",
-		-- 				"--oneline",
-		-- 			}, " "),
-		-- 		})
-		-- 	end
-		-- end, {
-		-- 	nargs = "?",
-		-- 	complete = helpers.get_branches,
-		-- 	desc = "fzf-lua picker: buffer commits",
-		-- })
-		-- vim.api.nvim_create_user_command(
-		-- 	"Buffers",
-		-- 	fzf_lua.buffers,
-		-- 	{ desc = "fzf-lua picker: buffers" }
-		-- )
+		vim.api.nvim_create_user_command("BCommits", function(t)
+			if t.args == "" then
+				fzf_lua.git_bcommits()
+			else
+				fzf_lua.git_bcommits({
+					cmd = table.concat({
+						"git",
+						"log",
+						t.args .. "..HEAD",
+						"--oneline",
+					}, " "),
+				})
+			end
+		end, {
+			nargs = "?",
+			complete = helpers.get_branches,
+			desc = "fzf-lua picker: buffer commits",
+		})
+		vim.api.nvim_create_user_command(
+			"Buffers",
+			fzf_lua.buffers,
+			{ desc = "fzf-lua picker: buffers" }
+		)
 		vim.api.nvim_create_user_command(
 			"Commands",
 			fzf_lua.commands,
 			{ desc = "fzf-lua picker: user commands" }
 		)
-		-- vim.api.nvim_create_user_command("Commits", function(t)
-		-- 	if t.args == "" then
-		-- 		fzf_lua.git_commits()
-		-- 	else
-		-- 		fzf_lua.git_commits({
-		-- 			cmd = table.concat({
-		-- 				"git",
-		-- 				"log",
-		-- 				t.args .. "..HEAD",
-		-- 				"--oneline",
-		-- 			}, " "),
-		-- 		})
-		-- 	end
-		-- end, {
-		-- 	nargs = "?",
-		-- 	complete = helpers.get_branches,
-		-- 	desc = "fzf-lua picker: commits",
-		-- })
-		-- vim.api.nvim_create_user_command("Find", function()
-		-- 	vim.fn.system({ "git", "rev-parse", "--is-inside-work-tree" })
-		-- 	if vim.v.shell_error == 0 then
-		-- 		fzf_lua.git_files({ cwd = vim.loop.cwd() })
-		-- 	else
-		-- 		fzf_lua.files()
-		-- 	end
-		-- end, { desc = "fzf-lua picker: find files" })
+		vim.api.nvim_create_user_command("Commits", function(t)
+			if t.args == "" then
+				fzf_lua.git_commits()
+			else
+				fzf_lua.git_commits({
+					cmd = table.concat({
+						"git",
+						"log",
+						t.args .. "..HEAD",
+						"--oneline",
+					}, " "),
+				})
+			end
+		end, {
+			nargs = "?",
+			complete = helpers.get_branches,
+			desc = "fzf-lua picker: commits",
+		})
+		vim.api.nvim_create_user_command("Find", function()
+			vim.fn.system({ "git", "rev-parse", "--is-inside-work-tree" })
+			if vim.v.shell_error == 0 then
+				fzf_lua.git_files({ cwd = vim.loop.cwd() })
+			else
+				fzf_lua.files()
+			end
+		end, { desc = "fzf-lua picker: find files" })
 		vim.api.nvim_create_user_command(
 			"Grep",
 			fzf_lua.live_grep_native,
@@ -117,11 +117,11 @@ return {
 			fzf_lua.lsp_implementations,
 			{ desc = "fzf-lua picker: LSP implementations" }
 		)
-		-- vim.api.nvim_create_user_command(
-		-- 	"References",
-		-- 	fzf_lua.lsp_references,
-		-- 	{ desc = "fzf-lua picker: LSP references" }
-		-- )
+		vim.api.nvim_create_user_command(
+			"References",
+			fzf_lua.lsp_references,
+			{ desc = "fzf-lua picker: LSP references" }
+		)
 		vim.api.nvim_create_user_command("Symbols", function()
 			local success, choice = pcall(vim.fn.confirm, "", "&Document\n&workspace")
 			if not success then
