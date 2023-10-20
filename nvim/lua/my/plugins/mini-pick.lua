@@ -79,6 +79,26 @@ return {
 			desc = "mini.pick: buffer commits",
 		})
 
+		vim.api.nvim_create_user_command("Buffers", function()
+			pick.builtin.buffers(nil, {
+				mappings = {
+					delete_buffer = {
+						char = "<c-x>",
+						func = function()
+							local picker_items = pick.get_picker_items()
+							local current_index = pick.get_picker_matches().current_ind
+							vim.api.nvim_buf_delete(
+								pick.get_picker_matches().current.bufnr,
+								{}
+							)
+							picker_items[current_index] = nil
+							pick.set_picker_items(picker_items)
+						end,
+					},
+				},
+			})
+		end, { desc = "mini.pick: buffers" })
+
 		vim.api.nvim_create_user_command(
 			"Commits",
 			function(opts)

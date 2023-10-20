@@ -28,11 +28,11 @@ return {
 		-- 	complete = helpers.get_branches,
 		-- 	desc = "fzf-lua picker: buffer commits",
 		-- })
-		vim.api.nvim_create_user_command(
-			"Buffers",
-			fzf_lua.buffers,
-			{ desc = "fzf-lua picker: buffers" }
-		)
+		-- vim.api.nvim_create_user_command(
+		-- 	"Buffers",
+		-- 	fzf_lua.buffers,
+		-- 	{ desc = "fzf-lua picker: buffers" }
+		-- )
 		vim.api.nvim_create_user_command(
 			"Commands",
 			fzf_lua.commands,
