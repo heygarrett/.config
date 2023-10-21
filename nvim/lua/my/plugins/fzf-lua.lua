@@ -1,5 +1,30 @@
 local helpers = require("my.helpers")
 
+---@param opts { ref: string | nil, file: boolean | nil } | nil
+---@return string
+local function generate_git_command(opts)
+	opts = opts or {}
+	local command = {
+		"git",
+		"log",
+		"--color",
+		"--pretty=format:" .. ([['%s']]):format(table.concat({
+			"%C(yellow)%h%Creset",
+			"%Cgreen(%><(12)%cr%><|(12))%Creset",
+			"%s",
+			"%C(blue)<%ae>%Creset",
+		}, " ")),
+	}
+	if opts.ref then
+		table.insert(command, opts.ref .. "..HEAD")
+	end
+	if opts.file then
+		table.insert(command, "<file>")
+	end
+
+	return table.concat(command, " ")
+end
+
 return {
 	"https://github.com/ibhagwan/fzf-lua",
 	config = function()
@@ -12,15 +37,10 @@ return {
 		)
 		vim.api.nvim_create_user_command("BCommits", function(t)
 			if t.args == "" then
-				fzf_lua.git_bcommits()
+				fzf_lua.git_bcommits({ cmd = generate_git_command({ file = true }) })
 			else
 				fzf_lua.git_bcommits({
-					cmd = table.concat({
-						"git",
-						"log",
-						t.args .. "..HEAD",
-						"--oneline",
-					}, " "),
+					cmd = generate_git_command({ ref = t.args, file = true }),
 				})
 			end
 		end, {
@@ -43,12 +63,7 @@ return {
 				fzf_lua.git_commits()
 			else
 				fzf_lua.git_commits({
-					cmd = table.concat({
-						"git",
-						"log",
-						t.args .. "..HEAD",
-						"--oneline",
-					}, " "),
+					cmd = generate_git_command({ ref = t.args }),
 				})
 			end
 		end, {
@@ -192,25 +207,12 @@ return {
 					},
 				},
 				commits = {
-					cmd = "git log --color --pretty=format:" .. table.concat({
-						"'%C(yellow)%h%Creset",
-						"%Cgreen(%><(12)%cr%><|(12))%Creset",
-						"%s",
-						"%C(blue)<%ae>%Creset'",
-					}, " "),
 					actions = {
 						["default"] = copy_hash,
 						["ctrl-y"] = false,
 					},
 				},
 				bcommits = {
-					cmd = "git log --color --pretty=format:" .. table.concat({
-						"'%C(yellow)%h%Creset",
-						"%Cgreen(%><(12)%cr%><|(12))%Creset",
-						"%s",
-						"%C(blue)<%ae>%Creset'",
-						"<file>",
-					}, " "),
 					actions = {
 						["default"] = copy_hash,
 						["ctrl-y"] = false,
