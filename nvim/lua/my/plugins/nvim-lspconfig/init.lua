@@ -34,6 +34,24 @@ return {
 					},
 				})
 			end,
+			pylsp = function()
+				lspconfig.pylsp.setup({
+					settings = {
+						pylsp = {
+							plugins = {
+								autopep8 = {
+									-- disable formatting
+									enabled = false,
+								},
+								pycodestyle = {
+									-- allow tabs for indentation
+									ignore = { "W191" },
+								},
+							},
+						},
+					},
+				})
+			end,
 			tsserver = function()
 				lspconfig.tsserver.setup({
 					init_options = {
