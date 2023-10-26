@@ -1,15 +1,15 @@
 local wezterm = require("wezterm")
 
-local typeface = "Monocraft"
+local typeface = "Martian Mono"
 
 return {
 	color_scheme = "kanagawabones",
 
 	font = wezterm.font_with_fallback({
-		typeface,
+		{ family = typeface, stretch = "Expanded" },
 		"Symbols Nerd Font",
 	}),
-	font_size = 10.5,
+	font_size = 9,
 	line_height = 1,
 	harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
 	-- Disable bold text
