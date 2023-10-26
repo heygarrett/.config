@@ -217,7 +217,7 @@ return {
 						["default"] = copy_hash,
 						["ctrl-y"] = false,
 					},
-					preview = "git diff --color {1} -- <file>",
+					preview = "git diff --color {1} HEAD -- <file>",
 				},
 			},
 		})
