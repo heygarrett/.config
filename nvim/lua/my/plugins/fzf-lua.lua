@@ -198,6 +198,9 @@ return {
 					["default"] = actions.help_vert,
 				},
 			},
+			diagnostics = {
+				diag_source = true,
+			},
 			git = {
 				status = {
 					actions = {
