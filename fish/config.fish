@@ -1,3 +1,13 @@
+if status is-login
+	# PATH
+	fish_add_path --global \
+		~/.local/bin \
+		$GOPATH/bin \
+		/opt/homebrew/bin \
+		/opt/homebrew/sbin \
+		/opt/homebrew/opt/fzf/bin
+end
+
 # create XDG_RUNTIME_DIR
 if test ! -d ~/.runtime
 	mkdir ~/.runtime 2>/dev/null
