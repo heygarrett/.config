@@ -52,11 +52,11 @@ M.setup = function(bufnr, client)
 	})
 
 	if client.server_capabilities.documentFormattingProvider then
-		vim.api.nvim_create_augroup("formatting", { clear = false })
-		vim.api.nvim_clear_autocmds({ group = "formatting", buffer = bufnr })
+		local group = vim.api.nvim_create_augroup("formatting", { clear = false })
+		vim.api.nvim_clear_autocmds({ group = group, buffer = bufnr })
 		vim.api.nvim_create_autocmd("BufWritePre", {
 			desc = "format on save",
-			group = "formatting",
+			group = group,
 			buffer = bufnr,
 			callback = function() vim.cmd.Format({ args = { "save" } }) end,
 		})

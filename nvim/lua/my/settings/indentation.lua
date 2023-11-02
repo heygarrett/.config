@@ -8,9 +8,10 @@ vim.opt.listchars = { space = "·", tab = "| " }
 -- Don't run editorconfig automatically
 vim.g.editorconfig = false
 
+local group = vim.api.nvim_create_augroup("indentation", { clear = true })
 vim.api.nvim_create_autocmd("BufWinEnter", {
 	desc = "indentation settings",
-	group = vim.api.nvim_create_augroup("indentation", { clear = true }),
+	group = group,
 	callback = function(args)
 		-- Override expandtab set by ftplugins
 		vim.bo.expandtab = vim.go.expandtab

@@ -1,6 +1,7 @@
+local group = vim.api.nvim_create_augroup("lsp", { clear = true })
 vim.api.nvim_create_autocmd("LspAttach", {
 	desc = "LSP options, commands and keymaps",
-	group = vim.api.nvim_create_augroup("lsp", { clear = true }),
+	group = group,
 	callback = function(args)
 		local bufnr = args.buf
 		local client = vim.lsp.get_client_by_id(args.data.client_id)

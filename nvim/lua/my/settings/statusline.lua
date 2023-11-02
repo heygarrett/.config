@@ -39,9 +39,10 @@ local function get_buffer_name()
 	return formatted_file_path
 end
 
+local group = vim.api.nvim_create_augroup("statusline", { clear = true })
 vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "FocusGained" }, {
 	desc = "keep branch and buffer name variables updated",
-	group = vim.api.nvim_create_augroup("statusline", { clear = true }),
+	group = group,
 	callback = function()
 		vim.b.branch_name = get_branch_name()
 		vim.b.buffer_name = get_buffer_name()

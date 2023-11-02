@@ -29,7 +29,7 @@ local group = vim.api.nvim_create_augroup("options", { clear = true })
 
 vim.api.nvim_create_autocmd("FileType", {
 	desc = "restore cursor position",
-	group = "options",
+	group = group,
 	callback = function()
 		local exclude = { diff = true, gitcommit = true, gitrebase = true }
 		local position_line = vim.api.nvim_buf_get_mark(0, [["]])[1]
@@ -48,7 +48,7 @@ vim.api.nvim_create_autocmd("FileType", {
 
 vim.api.nvim_create_autocmd("CursorHold", {
 	desc = "check if any buffers were changed outside of nvim on cursor hold",
-	group = "options",
+	group = group,
 	callback = function()
 		vim.cmd.checktime({
 			mods = { emsg_silent = true },
@@ -58,7 +58,7 @@ vim.api.nvim_create_autocmd("CursorHold", {
 
 vim.api.nvim_create_autocmd("VimResized", {
 	desc = "resize splits when vim is resized",
-	group = "options",
+	group = group,
 	callback = function()
 		if vim.api.nvim_get_mode().mode ~= "n" then
 			vim.api.nvim_feedkeys(vim.api.nvim_eval([["\<c-\>\<c-n>"]]), "n", false)

@@ -19,9 +19,10 @@ return {
 					return false
 				end,
 			})
+			local group = vim.api.nvim_create_augroup("mason-lspconfig", { clear = true })
 			vim.api.nvim_create_autocmd("FileType", {
 				desc = "Auto-install language servers for new file types",
-				group = vim.api.nvim_create_augroup("mason-lspconfig", { clear = true }),
+				group = group,
 				callback = function(t)
 					if ignored_filetypes[t.match] then
 						return
