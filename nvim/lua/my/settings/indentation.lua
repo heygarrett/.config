@@ -19,8 +19,8 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 		require("editorconfig").config(args.buf)
 
 		-- Run guess-indent (which defers to editorconfig)
-		local gusess_indent_loaded, _ = pcall(require, "guess-indent")
-		if gusess_indent_loaded then
+		local guess_indent_loaded, _ = pcall(require, "guess-indent")
+		if guess_indent_loaded then
 			vim.cmd.GuessIndent({
 				args = { "auto_cmd" },
 				mods = { silent = true },
