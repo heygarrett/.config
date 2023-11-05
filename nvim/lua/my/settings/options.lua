@@ -31,13 +31,12 @@ vim.api.nvim_create_autocmd("FileType", {
 	desc = "restore cursor position",
 	group = group,
 	callback = function()
-		local exclude = { diff = true, gitcommit = true, gitrebase = true }
+		local exclude = { "diff", "gitcommit", "gitrebase" }
+		if vim.tbl_contains(exclude, vim.bo.filetype) then
+			return
+		end
 		local position_line = vim.api.nvim_buf_get_mark(0, [["]])[1]
-		if
-			not exclude[vim.bo.filetype]
-			and position_line >= 1
-			and position_line <= vim.api.nvim_buf_line_count(0)
-		then
+		if position_line >= 1 and position_line <= vim.api.nvim_buf_line_count(0) then
 			vim.cmd.normal({
 				bang = true,
 				args = { [[g`"]] },
