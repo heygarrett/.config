@@ -98,6 +98,11 @@ return {
 			{ desc = "fzf-lua picker: re-open last picker" }
 		)
 		vim.api.nvim_create_user_command(
+			"Stashes",
+			fzf_lua.git_stash,
+			{ desc = "fzf-lua picker: git stashes" }
+		)
+		vim.api.nvim_create_user_command(
 			"Status",
 			fzf_lua.git_status,
 			{ desc = "fzf-lua picker: git status" }
