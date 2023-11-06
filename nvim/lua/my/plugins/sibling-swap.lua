@@ -22,7 +22,9 @@ return {
 			"n",
 			"<leader>F",
 			function() sibling_swap().swap_with_right_with_opp() end,
-			{ desc = "sibling-swap: move item to the right and update operator" }
+			{
+				desc = "sibling-swap: move item to the right and update operator",
+			}
 		)
 		vim.keymap.set(
 			"n",

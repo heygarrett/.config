@@ -32,7 +32,10 @@ vim.api.nvim_create_autocmd("VimEnter", {
 				vim.defer_fn(function() vim.notify("Created session!") end, 500)
 			end
 		end
-		if #vim.api.nvim_list_bufs() == 1 and vim.api.nvim_buf_get_name(0) == "" then
+		if
+			#vim.api.nvim_list_bufs() == 1
+			and vim.api.nvim_buf_get_name(0) == ""
+		then
 			vim.cmd.Ex()
 		end
 	end,
@@ -52,7 +55,8 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
 		if vim.fn.argc() > 0 then
 			-- Ask iff session exists but arg list is not empty
 			::require_choice::
-			local success, choice = pcall(vim.fn.confirm, "Save session?", "&yes\n&No", 2)
+			local success, choice =
+				pcall(vim.fn.confirm, "Save session?", "&yes\n&No", 2)
 			if not success then
 				goto require_choice
 			elseif choice == 2 then

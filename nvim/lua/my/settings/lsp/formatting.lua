@@ -24,7 +24,8 @@ M.setup = function(bufnr, client)
 		if (indent == "tabs") == vim.bo.expandtab then
 			-- Prompt for retab if formatting manually
 			if tbl.args ~= "save" then
-				local success, choice = pcall(vim.fn.confirm, "Retab?", "&Yes\n&no")
+				local success, choice =
+					pcall(vim.fn.confirm, "Retab?", "&Yes\n&no")
 				if not success then
 					return
 				elseif choice == 2 then
@@ -52,7 +53,8 @@ M.setup = function(bufnr, client)
 	})
 
 	if client.server_capabilities.documentFormattingProvider then
-		local group = vim.api.nvim_create_augroup("formatting", { clear = false })
+		local group =
+			vim.api.nvim_create_augroup("formatting", { clear = false })
 		vim.api.nvim_clear_autocmds({ group = group, buffer = bufnr })
 		vim.api.nvim_create_autocmd("BufWritePre", {
 			desc = "format on save",

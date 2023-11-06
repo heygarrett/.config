@@ -37,7 +37,9 @@ return {
 		)
 		vim.api.nvim_create_user_command("BCommits", function(t)
 			if t.args == "" then
-				fzf_lua.git_bcommits({ cmd = generate_git_command({ file = true }) })
+				fzf_lua.git_bcommits({
+					cmd = generate_git_command({ file = true }),
+				})
 			else
 				fzf_lua.git_bcommits({
 					cmd = generate_git_command({ ref = t.args, file = true }),
@@ -120,7 +122,8 @@ return {
 			{ desc = "fzf-lua picker: LSP definitions" }
 		)
 		vim.api.nvim_create_user_command("Diagnostics", function()
-			local success, choice = pcall(vim.fn.confirm, "", "&Document\n&workspace")
+			local success, choice =
+				pcall(vim.fn.confirm, "", "&Document\n&workspace")
 			if not success then
 				return
 			elseif choice == 2 then
@@ -143,7 +146,8 @@ return {
 			{ desc = "fzf-lua picker: LSP references" }
 		)
 		vim.api.nvim_create_user_command("Symbols", function()
-			local success, choice = pcall(vim.fn.confirm, "", "&Document\n&workspace")
+			local success, choice =
+				pcall(vim.fn.confirm, "", "&Document\n&workspace")
 			if not success then
 				return
 			elseif choice == 2 then
@@ -211,7 +215,10 @@ return {
 					actions = {
 						["right"] = false,
 						["left"] = false,
-						["tab"] = { fn = actions.git_stage_unstage, reload = true },
+						["tab"] = {
+							fn = actions.git_stage_unstage,
+							reload = true,
+						},
 					},
 				},
 				commits = {

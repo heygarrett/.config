@@ -68,7 +68,10 @@ return {
 					"Reset",
 					function(selection)
 						hunk_range(
-							{ hunk = gitsigns.reset_hunk, buffer = gitsigns.reset_buffer },
+							{
+								hunk = gitsigns.reset_hunk,
+								buffer = gitsigns.reset_buffer,
+							},
 							selection
 						)
 					end,
@@ -81,7 +84,10 @@ return {
 					"Stage",
 					function(selection)
 						hunk_range(
-							{ hunk = gitsigns.stage_hunk, buffer = gitsigns.stage_buffer },
+							{
+								hunk = gitsigns.stage_hunk,
+								buffer = gitsigns.stage_buffer,
+							},
 							selection
 						)
 					end,

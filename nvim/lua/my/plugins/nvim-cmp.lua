@@ -23,7 +23,9 @@ return {
 				{ name = "buffer" },
 			}),
 			snippet = {
-				expand = function(args) require("snippy").expand_snippet(args.body) end,
+				expand = function(args)
+					require("snippy").expand_snippet(args.body)
+				end,
 			},
 			mapping = cmp.mapping.preset.insert({
 				["<c-f>"] = cmp.mapping.scroll_docs(4),

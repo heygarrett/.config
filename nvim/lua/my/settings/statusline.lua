@@ -26,10 +26,14 @@ local function get_buffer_name()
 	---@type string
 	local formatted_file_path
 	local truncated_file_path = vim.fn.fnamemodify(file_path, ":.")
-	if vim.startswith(truncated_file_path, "/") or truncated_file_path == "" then
+	if
+		vim.startswith(truncated_file_path, "/")
+		or truncated_file_path == ""
+	then
 		formatted_file_path = vim.fn.fnamemodify(file_path, ":~")
 	else
-		formatted_file_path = table.concat({ root_dir, truncated_file_path }, "/")
+		formatted_file_path =
+			table.concat({ root_dir, truncated_file_path }, "/")
 	end
 	-- restore potential prefix
 	if prefix then
@@ -172,7 +176,8 @@ local function truncate(overflow)
 		if vim.b.buffer_name:len() - overflow >= min_width then
 			new_buffer = vim.b.buffer_name:sub(overflow + 1)
 		else
-			new_buffer = vim.b.buffer_name:sub(vim.b.buffer_name:len() - min_width + 1)
+			new_buffer =
+				vim.b.buffer_name:sub(vim.b.buffer_name:len() - min_width + 1)
 		end
 		new_buffer = new_buffer:gsub("^.", "<")
 	end
@@ -202,7 +207,8 @@ function Status_Line()
 	end
 	table.insert(right_table, get_progress())
 	local right_string = table.concat(right_table, " | ")
-	local right_string_length = vim.api.nvim_eval_statusline(right_string, {}).width
+	local right_string_length =
+		vim.api.nvim_eval_statusline(right_string, {}).width
 
 	local divider = " | "
 	local length = left_string_length + divider:len() + right_string_length

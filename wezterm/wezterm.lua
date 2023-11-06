@@ -37,12 +37,16 @@ return {
 		{
 			key = "t",
 			mods = "CMD",
-			action = wezterm.action.SpawnCommandInNewTab({ cwd = wezterm.home_dir }),
+			action = wezterm.action.SpawnCommandInNewTab({
+				cwd = wezterm.home_dir,
+			}),
 		},
 		{
 			key = "Enter",
 			mods = "CTRL|SHIFT",
-			action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+			action = wezterm.action.SplitHorizontal({
+				domain = "CurrentPaneDomain",
+			}),
 		},
 		{
 			key = "{",

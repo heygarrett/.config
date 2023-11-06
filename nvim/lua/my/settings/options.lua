@@ -17,7 +17,7 @@ vim.o.splitbelow = true
 vim.o.splitright = true
 vim.o.statuscolumn = "%=%l %s"
 vim.o.termguicolors = true
-vim.o.textwidth = 90
+vim.o.textwidth = 80
 vim.o.updatetime = 2000
 vim.o.wildmode = "longest:full"
 vim.opt.clipboard:append("unnamedplus")
@@ -36,7 +36,10 @@ vim.api.nvim_create_autocmd("FileType", {
 			return
 		end
 		local position_line = vim.api.nvim_buf_get_mark(0, [["]])[1]
-		if position_line >= 1 and position_line <= vim.api.nvim_buf_line_count(0) then
+		if
+			position_line >= 1
+			and position_line <= vim.api.nvim_buf_line_count(0)
+		then
 			vim.cmd.normal({
 				bang = true,
 				args = { [[g`"]] },
@@ -60,7 +63,11 @@ vim.api.nvim_create_autocmd("VimResized", {
 	group = group,
 	callback = function()
 		if vim.api.nvim_get_mode().mode ~= "n" then
-			vim.api.nvim_feedkeys(vim.api.nvim_eval([["\<c-\>\<c-n>"]]), "n", false)
+			vim.api.nvim_feedkeys(
+				vim.api.nvim_eval([["\<c-\>\<c-n>"]]),
+				"n",
+				false
+			)
 		end
 		vim.api.nvim_feedkeys(vim.api.nvim_eval([["\<c-w>="]]), "n", false)
 	end,
@@ -85,7 +92,8 @@ vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI", "TextChangedP" }, {
 		end
 		local current_line = vim.api.nvim_get_current_line()
 		-- `current_line` might be a blob instead of a string (eg, expanding snippets)
-		local measured, line_length = pcall(vim.fn.strdisplaywidth, current_line)
+		local measured, line_length =
+			pcall(vim.fn.strdisplaywidth, current_line)
 		if not measured then
 			return
 		end

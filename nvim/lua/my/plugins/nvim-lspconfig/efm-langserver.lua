@@ -66,8 +66,9 @@ end
 
 M.on_attach = function(_, bufnr)
 	if vim.tbl_contains(M.format_with_prettier, vim.bo[bufnr].filetype) then
-		local prettierd_debug_info =
-			vim.fn.system("PRETTIERD_LOCAL_PRETTIER_ONLY=1 prettierd --debug-info .")
+		local prettierd_debug_info = vim.fn.system(
+			"PRETTIERD_LOCAL_PRETTIER_ONLY=1 prettierd --debug-info ."
+		)
 		if prettierd_debug_info:find("Loaded") then
 			vim.b[bufnr].efm_formatting_available = true
 		end
@@ -79,7 +80,9 @@ M.on_attach = function(_, bufnr)
 				{ upward = true, type = "file" }
 			)
 		)
-		vim.b[bufnr].efm_formatting_available = (found_stylua and found_stylua_toml)
+		vim.b[bufnr].efm_formatting_available = (
+			found_stylua and found_stylua_toml
+		)
 	elseif vim.bo[bufnr].filetype == "python" then
 		local xor = vim.fn.executable("black") ~= vim.fn.executable("yapf")
 		vim.b[bufnr].efm_formatting_available = xor
