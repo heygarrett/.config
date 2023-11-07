@@ -2,17 +2,14 @@ local M = {}
 
 M.setup = function(bufnr, client)
 	local guess_indent_loaded, guess_indent = pcall(require, "guess-indent")
+	local conform_loaded, conform = pcall(require, "conform")
+	if not conform_loaded then
+		return
+	end
 
-	vim.api.nvim_buf_create_user_command(bufnr, "Format", function(tbl)
+	vim.api.nvim_buf_create_user_command(bufnr, "Format", function(args)
 		-- Run formatter
-		vim.lsp.buf.format({
-			filter = function(format_client)
-				return (
-					(format_client.name == "efm")
-					== (vim.b[bufnr].efm_formatting_available or false)
-				)
-			end,
-		})
+		conform.format({ bufnr = bufnr, lsp_fallback = true })
 
 		-- Determine indentation after formatting
 		if not guess_indent_loaded then
@@ -23,9 +20,12 @@ M.setup = function(bufnr, client)
 		-- Match indentation to value of expandtab
 		if (indent == "tabs") == vim.bo.expandtab then
 			-- Prompt for retab if formatting manually
-			if tbl.args ~= "save" then
-				local success, choice =
-					pcall(vim.fn.confirm, "Retab?", "&Yes\n&no")
+			if args.args ~= "save" then
+				local success, choice = pcall(
+					vim.fn.confirm,
+					"Override formatter indentation?",
+					"&Yes\n&no"
+				)
 				if not success then
 					return
 				elseif choice == 2 then
