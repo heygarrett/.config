@@ -17,6 +17,7 @@ if status is-login
 	fish_add_path --global \
 		~/.local/bin \
 		$GOPATH/bin \
+		$CARGO_HOME/bin \
 		/opt/homebrew/bin \
 		/opt/homebrew/sbin \
 		/opt/homebrew/opt/fzf/bin
