@@ -1,6 +1,5 @@
 local linters_by_ft = {
 	fish = { "fish" },
-	python = { "ruff" },
 }
 
 ---@type string[]
