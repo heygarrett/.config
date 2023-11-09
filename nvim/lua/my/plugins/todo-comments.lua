@@ -20,6 +20,7 @@ return {
 	config = function()
 		require("todo-comments").setup({
 			signs = false,
+			highlight = { after = "" },
 		})
 	end,
 }
