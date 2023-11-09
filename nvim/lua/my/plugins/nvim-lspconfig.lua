@@ -58,17 +58,17 @@ return {
 		})
 
 		-- Non-Mason language servers
+		lspconfig.hls.setup({
+			settings = {
+				haskell = { formattingProvider = "fourmolu" },
+			},
+		})
 		lspconfig.sourcekit.setup({
 			root_dir = require("lspconfig.util").root_pattern(
 				"Package.swift",
 				"*.xcodeproj",
 				".git"
 			),
-		})
-		lspconfig.hls.setup({
-			settings = {
-				haskell = { formattingProvider = "fourmolu" },
-			},
 		})
 	end,
 }
