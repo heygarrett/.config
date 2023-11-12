@@ -27,14 +27,11 @@ return {
 					settings = {
 						pylsp = {
 							plugins = {
-								autopep8 = {
-									-- disable formatting
-									enabled = false,
-								},
-								pycodestyle = {
-									-- allow tabs for indentation
-									ignore = { "W191" },
-								},
+								-- disable formatting
+								autopep8 = { enabled = false },
+								yapf = { enabled = false },
+								-- allow tabs for indentation
+								pycodestyle = { ignore = { "W191" } },
 							},
 						},
 					},
