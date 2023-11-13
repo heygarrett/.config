@@ -6,7 +6,10 @@ return {
 	color_scheme = "kanagawabones",
 
 	font = wezterm.font_with_fallback({
-		{ family = typeface, stretch = "Expanded" },
+		{
+			family = typeface,
+			stretch = "Expanded",
+		},
 		"Symbols Nerd Font",
 	}),
 	font_size = 9,
@@ -16,9 +19,17 @@ return {
 	font_rules = {
 		{
 			intensity = "Bold",
+			italic = false,
 			font = wezterm.font({
 				family = typeface,
 				weight = "Regular",
+			}),
+		},
+		{
+			italic = true,
+			font = wezterm.font({
+				family = typeface,
+				weight = "ExtraLight",
 			}),
 		},
 	},
