@@ -7,6 +7,10 @@ return {
 	config = function()
 		require("nvim-treesitter.configs").setup({
 			auto_install = true,
+			ensure_installed = {
+				"comment",
+				"markdown_inline",
+			},
 			ignore_install = { "diff", "gitcommit" },
 			highlight = {
 				enable = true,
