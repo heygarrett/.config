@@ -229,15 +229,6 @@ return {
 						["default"] = copy_hash,
 						["ctrl-y"] = false,
 					},
-					preview = table.concat({
-						"git",
-						"diff",
-						"--color",
-						"$(git rev-list -1 {1}~ -- <file>)",
-						"{1}",
-						"--",
-						"<file>",
-					}, " "),
 				},
 			},
 		})
