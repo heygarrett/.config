@@ -1,9 +1,8 @@
 local helpers = require("my.helpers")
 
----@param opts { ref: string | nil, file: boolean | nil } | nil
+---@param opts { ref: string, file: boolean | nil }
 ---@return string
 local function generate_git_command(opts)
-	opts = opts or {}
 	local command = {
 		"git",
 		"log",
@@ -15,7 +14,7 @@ local function generate_git_command(opts)
 			"%C(blue)<%ae>%Creset",
 		}, " ")),
 	}
-	if opts.ref then
+	if opts.ref ~= "" then
 		table.insert(command, opts.ref .. "..HEAD")
 	end
 	if opts.file then
@@ -35,21 +34,19 @@ return {
 			fzf_lua.autocmds,
 			{ desc = "fzf-lua picker: autocommands" }
 		)
-		vim.api.nvim_create_user_command("BCommits", function(t)
-			if t.args == "" then
+		vim.api.nvim_create_user_command(
+			"BCommits",
+			function(tbl)
 				fzf_lua.git_bcommits({
-					cmd = generate_git_command({ file = true }),
+					cmd = generate_git_command({ ref = tbl.args, file = true }),
 				})
-			else
-				fzf_lua.git_bcommits({
-					cmd = generate_git_command({ ref = t.args, file = true }),
-				})
-			end
-		end, {
-			nargs = "?",
-			complete = helpers.get_branches,
-			desc = "fzf-lua picker: buffer commits",
-		})
+			end,
+			{
+				nargs = "?",
+				complete = helpers.get_branches,
+				desc = "fzf-lua picker: buffer commits",
+			}
+		)
 		vim.api.nvim_create_user_command(
 			"Buffers",
 			fzf_lua.buffers,
@@ -60,19 +57,19 @@ return {
 			fzf_lua.commands,
 			{ desc = "fzf-lua picker: user commands" }
 		)
-		vim.api.nvim_create_user_command("Commits", function(t)
-			if t.args == "" then
-				fzf_lua.git_commits()
-			else
+		vim.api.nvim_create_user_command(
+			"Commits",
+			function(tbl)
 				fzf_lua.git_commits({
-					cmd = generate_git_command({ ref = t.args }),
+					cmd = generate_git_command({ ref = tbl.args }),
 				})
-			end
-		end, {
-			nargs = "?",
-			complete = helpers.get_branches,
-			desc = "fzf-lua picker: commits",
-		})
+			end,
+			{
+				nargs = "?",
+				complete = helpers.get_branches,
+				desc = "fzf-lua picker: commits",
+			}
+		)
 		vim.api.nvim_create_user_command("Find", function()
 			vim.fn.system({ "git", "rev-parse", "--is-inside-work-tree" })
 			if vim.v.shell_error == 0 then
