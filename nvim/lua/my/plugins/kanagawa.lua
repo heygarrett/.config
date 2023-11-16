@@ -14,6 +14,8 @@ return {
 					CursorLineNr = { fg = colors.palette.lightBlue },
 					["@keyword.operator"] = { bold = false },
 					["@keyword.return"] = { fg = colors.theme.syn.keyword },
+					["@lsp.typemod.function.readonly"] = { bold = false },
+					["@string.escape"] = { bold = false },
 					["@variable.builtin"] = { italic = false },
 				}
 			end,
