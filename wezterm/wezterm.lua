@@ -3,7 +3,7 @@ local wezterm = require("wezterm")
 local typeface = "Martian Mono"
 
 return {
-	color_scheme = "Catppuccin Mocha",
+	color_scheme = "kanagawabones",
 
 	font = wezterm.font_with_fallback({
 		{
