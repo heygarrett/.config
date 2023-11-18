@@ -39,6 +39,13 @@ return {
 						return prettierd_info:find("Loaded") and true or false
 					end,
 				},
+				stylua = {
+					cwd = require("conform.util").root_file({
+						".stylua.toml",
+						"stylua.toml",
+					}),
+					require_cwd = true,
+				},
 			},
 		})
 	end,
