@@ -1,7 +1,7 @@
 local formatters_by_ft = {
 	fish = { "fish_indent" },
 	lua = { "stylua" },
-	python = { { "black" } },
+	python = { { "black", "yapf" } },
 	swift = { "swift_format" },
 }
 
