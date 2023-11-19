@@ -1,6 +1,5 @@
 if status is-login
 	# environment variables
-	set --global --export AG_FEATURES off
 	set --global --export CARGO_HOME ~/dev/rust/cargo
 	set --global --export EDITOR 'nvim --cmd "let g:launched_by_shell=1"'
 	set --global --export GHCUP_USE_XDG_DIRS 1
