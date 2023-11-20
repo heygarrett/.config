@@ -10,8 +10,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		require("my.settings.lsp.diagnostics")
 		-- Use omnicomplete with LSP
 		require("my.settings.lsp.completion").setup(bufnr, client)
-		-- Formatting user command and autocmd
-		require("my.settings.lsp.formatting").setup(bufnr, client)
 
 		-- Set border of floating window preview
 		local orig_util_open_floating_preview =
