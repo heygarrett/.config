@@ -27,6 +27,7 @@ return {
 	"https://github.com/stevearc/conform.nvim",
 	lazy = true,
 	config = function()
+		local util = require("conform.util")
 		require("conform").setup({
 			formatters_by_ft = formatters_by_ft,
 			formatters = {
@@ -40,11 +41,16 @@ return {
 					end,
 				},
 				stylua = {
-					cwd = require("conform.util").root_file({
+					cwd = util.root_file({
 						".stylua.toml",
 						"stylua.toml",
 					}),
 					require_cwd = true,
+				},
+				swift_format = {
+					cwd = util.root_file({ ".swift-format" }),
+					require_cwd = true,
+					prepend_args = { "--configuration", ".swift-format" },
 				},
 			},
 		})
