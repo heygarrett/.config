@@ -2,7 +2,7 @@ local formatters_by_ft = {
 	fish = { "fish_indent" },
 	lua = { "stylua" },
 	python = { { "black", "yapf" } },
-	swift = { "swift_format" },
+	swift = { { "swift_format", "swiftformat" } },
 }
 
 local format_with_prettier = {
@@ -55,6 +55,10 @@ return {
 					cwd = util.root_file({ ".swift-format" }),
 					require_cwd = true,
 					prepend_args = { "--configuration", ".swift-format" },
+				},
+				swiftformat = {
+					cwd = util.root_file({ ".swiftformat" }),
+					require_cwd = true,
 				},
 			},
 			format_on_save = function() vim.cmd.Format({ args = { "save" } }) end,
