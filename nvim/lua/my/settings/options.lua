@@ -64,13 +64,9 @@ vim.api.nvim_create_autocmd("VimResized", {
 	group = group,
 	callback = function()
 		if vim.api.nvim_get_mode().mode ~= "n" then
-			vim.api.nvim_feedkeys(
-				vim.api.nvim_eval([["\<c-\>\<c-n>"]]),
-				"n",
-				false
-			)
+			vim.api.nvim_input([[<c-\><c-n>]])
 		end
-		vim.api.nvim_feedkeys(vim.api.nvim_eval([["\<c-w>="]]), "n", false)
+		vim.api.nvim_input("<c-w>=")
 	end,
 })
 
