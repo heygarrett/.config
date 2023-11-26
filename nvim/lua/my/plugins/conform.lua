@@ -67,7 +67,10 @@ return {
 		local guess_indent_loaded, guess_indent = pcall(require, "guess-indent")
 		vim.api.nvim_create_user_command("Format", function(args)
 			-- Run formatter
-			conform.format({ lsp_fallback = true })
+			local formatted = conform.format({ lsp_fallback = true })
+			if not formatted then
+				return
+			end
 
 			-- Determine indentation after formatting
 			if not guess_indent_loaded then
