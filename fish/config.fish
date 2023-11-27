@@ -1,12 +1,12 @@
 if status is-login
 	# environment variables
 	set --global --export CARGO_HOME ~/dev/rust/cargo
-	set --global --export EDITOR 'nvim --cmd "let g:launched_by_shell=1"'
+	set --global --export EDITOR "nvim --cmd 'let g:launched_by_shell=1'"
 	set --global --export GHCUP_USE_XDG_DIRS 1
 	set --global --export GOPATH ~/dev/go
 	set --global --export HOMEBREW_BUNDLE_FILE ~/.config/homebrew/Brewfile
 	set --global --export HOMEBREW_NO_ANALYTICS 1
-	set --global --export MANPAGER 'nvim --cmd "let g:launched_by_shell=1" "+Man!"'
+	set --global --export MANPAGER "$EDITOR +Man!"
 	set --global --export RUSTUP_HOME ~/dev/rust/rustup
 	set --global --export STACK_XDG 1
 	set --global --export STARSHIP_CONFIG ~/.config/starship/starship.toml
