@@ -31,7 +31,7 @@ return {
 
 		vim.api.nvim_create_user_command(
 			"Autocommands",
-			fzf_lua.autocmds,
+			function() fzf_lua.autocmds() end,
 			{ desc = "fzf-lua picker: autocommands" }
 		)
 		vim.api.nvim_create_user_command(
@@ -49,12 +49,12 @@ return {
 		)
 		vim.api.nvim_create_user_command(
 			"Buffers",
-			fzf_lua.buffers,
+			function() fzf_lua.buffers() end,
 			{ desc = "fzf-lua picker: buffers" }
 		)
 		vim.api.nvim_create_user_command(
 			"Commands",
-			fzf_lua.commands,
+			function() fzf_lua.commands() end,
 			{ desc = "fzf-lua picker: user commands" }
 		)
 		vim.api.nvim_create_user_command(
@@ -80,42 +80,44 @@ return {
 		end, { desc = "fzf-lua picker: find files" })
 		vim.api.nvim_create_user_command(
 			"Grep",
-			fzf_lua.live_grep_native,
+			function() fzf_lua.live_grep_native() end,
 			{ desc = "fzf-lua picker: grep" }
 		)
-		vim.api.nvim_create_user_command("Help", fzf_lua.help_tags, {
-			desc = "fzf-lua picker: help tags",
-		})
+		vim.api.nvim_create_user_command(
+			"Help",
+			function() fzf_lua.help_tags() end,
+			{ desc = "fzf-lua picker: help tags" }
+		)
 		vim.api.nvim_create_user_command(
 			"Keymaps",
-			fzf_lua.keymaps,
+			function() fzf_lua.keymaps() end,
 			{ desc = "fzf-lua picker: keymaps" }
 		)
 		vim.api.nvim_create_user_command(
 			"Picker",
-			fzf_lua.resume,
+			function() fzf_lua.resume() end,
 			{ desc = "fzf-lua picker: re-open last picker" }
 		)
 		vim.api.nvim_create_user_command(
 			"Stashes",
-			fzf_lua.git_stash,
+			function() fzf_lua.git_stash() end,
 			{ desc = "fzf-lua picker: git stashes" }
 		)
 		vim.api.nvim_create_user_command(
 			"Status",
-			fzf_lua.git_status,
+			function() fzf_lua.git_status() end,
 			{ desc = "fzf-lua picker: git status" }
 		)
 
 		-- LSP
 		vim.api.nvim_create_user_command(
 			"Actions",
-			fzf_lua.lsp_code_actions,
+			function() fzf_lua.lsp_code_actions() end,
 			{ desc = "fzf-lua picker: code actions" }
 		)
 		vim.api.nvim_create_user_command(
 			"Definitions",
-			fzf_lua.lsp_definitions,
+			function() fzf_lua.lsp_definitions() end,
 			{ desc = "fzf-lua picker: LSP definitions" }
 		)
 		vim.api.nvim_create_user_command("Diagnostics", function()
@@ -134,12 +136,12 @@ return {
 		})
 		vim.api.nvim_create_user_command(
 			"Implementations",
-			fzf_lua.lsp_implementations,
+			function() fzf_lua.lsp_implementations() end,
 			{ desc = "fzf-lua picker: LSP implementations" }
 		)
 		vim.api.nvim_create_user_command(
 			"References",
-			fzf_lua.lsp_references,
+			function() fzf_lua.lsp_references() end,
 			{ desc = "fzf-lua picker: LSP references" }
 		)
 		vim.api.nvim_create_user_command("Symbols", function()
