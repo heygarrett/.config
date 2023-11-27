@@ -34,10 +34,10 @@ if status is-login
 	if not infocmp wezterm &>/dev/null
 		set --local tempfile $(mktemp)
 		set --local url $(
-		string join "" \
-		"https://raw.githubusercontent.com/" \
-		"wez/wezterm/master/termwiz/data/wezterm.terminfo"
-	)
+			string join "" \
+			"https://raw.githubusercontent.com/" \
+			"wez/wezterm/master/termwiz/data/wezterm.terminfo"
+		)
 		curl -o $tempfile $url &>/dev/null
 		tic -x -o ~/.terminfo $tempfile
 		rm $tempfile
