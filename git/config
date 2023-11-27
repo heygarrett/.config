@@ -30,3 +30,5 @@
 	autoSetupRemote = true
 [advice]
 	skippedCherryPicks = false
+[status]
+	showUntrackedFiles = all

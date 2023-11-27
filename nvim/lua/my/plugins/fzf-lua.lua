@@ -211,6 +211,7 @@ return {
 			},
 			git = {
 				status = {
+					cmd = "git status --short",
 					actions = {
 						["right"] = false,
 						["left"] = false,
