@@ -8,6 +8,8 @@ return {
 		require("neodev").setup()
 
 		local lspconfig = require("lspconfig")
+		local util = require("lspconfig.util")
+
 		require("mason-lspconfig").setup_handlers({
 			-- Mason language servers with default setups
 			function(server_name) lspconfig[server_name].setup({}) end,
@@ -40,13 +42,19 @@ return {
 		})
 
 		-- Non-Mason language servers
+		lspconfig.biome.setup({
+			-- TODO: file issue to update default config
+			cmd = { "node_modules/.bin/biome", "lsp-proxy" },
+			root_dir = util.root_pattern("biome.json"),
+			single_file_support = false,
+		})
 		lspconfig.hls.setup({
 			settings = {
 				haskell = { formattingProvider = "fourmolu" },
 			},
 		})
 		lspconfig.sourcekit.setup({
-			root_dir = require("lspconfig.util").root_pattern(
+			root_dir = util.root_pattern(
 				"Package.swift",
 				"*.xcodeproj",
 				".git"
