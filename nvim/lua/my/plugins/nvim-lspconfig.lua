@@ -45,7 +45,19 @@ return {
 		lspconfig.biome.setup({
 			-- TODO: file issue to update default config
 			cmd = { "node_modules/.bin/biome", "lsp-proxy" },
-			root_dir = util.root_pattern("biome.json"),
+			root_dir = function(filename)
+				local biome_config = vim.fs.find(
+					"biome.json",
+					{ upward = true, type = "file" }
+				)[1]
+				if not biome_config then
+					return nil
+				end
+
+				local find_root =
+					util.root_pattern("package.json", "node_modules")
+				return find_root(filename)
+			end,
 			single_file_support = false,
 		})
 		lspconfig.hls.setup({
