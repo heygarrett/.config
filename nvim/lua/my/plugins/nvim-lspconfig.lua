@@ -1,6 +1,5 @@
 return {
 	"https://github.com/neovim/nvim-lspconfig",
-	branch = "master",
 	dependencies = {
 		"https://github.com/folke/neodev.nvim",
 	},
