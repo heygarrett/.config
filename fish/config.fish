@@ -10,6 +10,7 @@ if status is-login
 	set --global --export RUSTUP_HOME ~/dev/rust/rustup
 	set --global --export STACK_XDG 1
 	set --global --export STARSHIP_CONFIG ~/.config/starship/starship.toml
+	set --global --export TEALDEER_CONFIG_DIR ~/.config/tealdeer
 	set --global --export XDG_RUNTIME_DIR ~/.runtime
 
 	# PATH
