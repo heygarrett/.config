@@ -7,10 +7,13 @@ vim.api.nvim_create_autocmd("VimEnter", {
 	group = group,
 	nested = true,
 	callback = function()
-		if vim.fn.argc() > 0 then
+		if vim.g.launched_by_shell then
 			return
 		end
-		if vim.g.launched_by_shell then
+		if vim.v.argv[#vim.v.argv] == "-" then
+			return
+		end
+		if vim.fn.argc() > 0 then
 			return
 		end
 		if vim.fn.filereadable("Session.vim") == 1 then
@@ -46,6 +49,9 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
 	group = group,
 	callback = function()
 		if vim.g.launched_by_shell then
+			return
+		end
+		if vim.v.argv[#vim.v.argv] == "-" then
 			return
 		end
 		if vim.fn.filereadable("Session.vim") == 0 then
