@@ -5,17 +5,25 @@ local formatters_by_ft = {
 	swift = { { "swift_format", "swiftformat" } },
 }
 
-local format_with_prettier = {
-	"css",
-	"html",
+local format_with_biome = {
 	"javascript",
 	"javascriptreact",
 	"json",
 	"jsonc",
+	"typescript",
+	"typescript.tsx",
+	"typescriptreact",
+}
+
+for _, ft in ipairs(format_with_biome) do
+	formatters_by_ft[ft] = { { "biome", "prettierd" } }
+end
+
+local format_with_prettier = {
+	"css",
+	"html",
 	"markdown",
 	"scss",
-	"typescript",
-	"typescriptreact",
 	"yaml",
 }
 
