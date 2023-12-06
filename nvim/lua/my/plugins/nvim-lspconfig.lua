@@ -45,11 +45,15 @@ return {
 			-- TODO: file issue to update default config
 			cmd = { "node_modules/.bin/biome", "lsp-proxy" },
 			root_dir = function(filename)
-				local biome_config = vim.fs.find(
-					"biome.json",
-					{ upward = true, type = "file" }
-				)[1]
-				if not biome_config then
+				local biome_paths = vim.fs.find("biome", {
+					upward = true,
+					type = "file",
+					path = "./node_modules/.bin/",
+				})
+				if
+					not next(biome_paths)
+					or vim.fn.executable(biome_paths[1]) ~= 1
+				then
 					return nil
 				end
 
