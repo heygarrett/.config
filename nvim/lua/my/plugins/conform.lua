@@ -46,11 +46,8 @@ return {
 				prettierd = {
 					env = { PRETTIERD_LOCAL_PRETTIER_ONLY = 1 },
 					condition = function()
-						local biome_config = vim.fs.find(
-							"biome.json",
-							{ upward = true, type = "file" }
-						)[1]
-						if biome_config then
+						local biome_info = conform.get_formatter_info("biome")
+						if biome_info.available then
 							return false
 						end
 
