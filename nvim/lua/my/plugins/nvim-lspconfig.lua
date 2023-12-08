@@ -23,15 +23,11 @@ return {
 					},
 				})
 			end,
-			vtsls = function()
-				lspconfig.vtsls.setup({
-					settings = {
-						javascript = {
-							format = { enable = false },
-						},
-						typescript = {
-							format = { enable = false },
-						},
+			tsserver = function()
+				lspconfig.tsserver.setup({
+					init_options = {
+						-- prevent omni completion from inserting extra period
+						completionDisableFilterText = true,
 					},
 				})
 			end,
