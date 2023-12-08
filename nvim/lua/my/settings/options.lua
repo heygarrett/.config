@@ -1,7 +1,6 @@
 vim.g.mapleader = " "
 vim.g.netrw_banner = 0
 vim.o.breakindent = true
-vim.o.colorcolumn = "+1"
 vim.o.confirm = true
 vim.o.cursorline = true
 vim.o.ignorecase = true
@@ -18,7 +17,7 @@ vim.o.splitbelow = true
 vim.o.splitright = true
 vim.o.statuscolumn = "%=%l %s"
 vim.o.termguicolors = true
-vim.o.textwidth = vim.b.editorconfig and vim.b.editorconfig.max_line_length
+vim.o.textwidth = 80
 vim.o.updatetime = 2000
 vim.o.wildmode = "longest:full"
 vim.opt.clipboard:append("unnamedplus")
@@ -75,4 +74,29 @@ vim.api.nvim_create_autocmd("FileType", {
 	group = group,
 	pattern = { "markdown", "text" },
 	callback = function() vim.bo.textwidth = 0 end,
+})
+
+vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI", "TextChangedP" }, {
+	desc = "dynamic color column",
+	group = group,
+	callback = function()
+		if vim.bo.buftype ~= "" then
+			return
+		end
+		if vim.bo.textwidth == 0 then
+			return
+		end
+		local current_line = vim.api.nvim_get_current_line()
+		-- `current_line` might be a blob instead of a string (eg, expanding snippets)
+		local measured, line_length =
+			pcall(vim.fn.strdisplaywidth, current_line)
+		if not measured then
+			return
+		end
+		if line_length >= vim.bo.textwidth - 5 then
+			vim.wo.colorcolumn = "+1"
+		elseif vim.wo.colorcolumn ~= "" then
+			vim.wo.colorcolumn = ""
+		end
+	end,
 })
