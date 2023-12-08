@@ -29,6 +29,10 @@ return {
 						-- prevent omni completion from inserting extra period
 						completionDisableFilterText = true,
 					},
+					on_attach = function(client)
+						-- stylua: ignore
+						client.server_capabilities.documentFormattingProvider = false
+					end,
 				})
 			end,
 			yamlls = function()
