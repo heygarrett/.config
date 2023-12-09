@@ -31,18 +31,18 @@ return {
 					desc = "gitsigns: go to previous hunk",
 				})
 
-				local function hunk_range(stage, selection)
+				local function hunk_range(action, selection)
 					if selection.range ~= 0 then
 						if
 							selection.line1 == 1
 							and selection.line2 == vim.fn.line("$")
 						then
-							stage.buffer()
+							action.buffer()
 						else
-							stage.hunk({ selection.line1, selection.line2 })
+							action.hunk({ selection.line1, selection.line2 })
 						end
 					else
-						stage.hunk()
+						action.hunk()
 					end
 				end
 
@@ -67,13 +67,10 @@ return {
 				vim.api.nvim_create_user_command(
 					"Reset",
 					function(selection)
-						hunk_range(
-							{
-								hunk = gitsigns.reset_hunk,
-								buffer = gitsigns.reset_buffer,
-							},
-							selection
-						)
+						hunk_range({
+							hunk = gitsigns.reset_hunk,
+							buffer = gitsigns.reset_buffer,
+						}, selection)
 					end,
 					{
 						range = true,
@@ -83,13 +80,10 @@ return {
 				vim.api.nvim_create_user_command(
 					"Stage",
 					function(selection)
-						hunk_range(
-							{
-								hunk = gitsigns.stage_hunk,
-								buffer = gitsigns.stage_buffer,
-							},
-							selection
-						)
+						hunk_range({
+							hunk = gitsigns.stage_hunk,
+							buffer = gitsigns.stage_buffer,
+						}, selection)
 					end,
 					{
 						range = true,
