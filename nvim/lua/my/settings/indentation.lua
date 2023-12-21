@@ -16,10 +16,10 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 		-- Override expandtab set by ftplugins
 		vim.bo.expandtab = vim.go.expandtab
 
-		-- Run editorconfig
+		-- Load editorconfig
 		require("editorconfig").config(args.buf)
 
-		-- Run guess-indent (which defers to editorconfig)
+		-- Run guess-indent
 		local guess_indent_loaded, _ = pcall(require, "guess-indent")
 		if guess_indent_loaded then
 			vim.cmd.GuessIndent({
