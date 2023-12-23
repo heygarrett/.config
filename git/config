@@ -14,10 +14,12 @@
 [init]
 	defaultBranch = main
 [merge]
-	tool = nvimdiff1
+	tool = nvimdiff
 [mergetool]
 	keepBackup = false
 	hideResolved = true
+[mergetool "vimdiff"]
+	layout = @LOCAL,REMOTE
 [pull]
 	rebase = true
 [rebase]
