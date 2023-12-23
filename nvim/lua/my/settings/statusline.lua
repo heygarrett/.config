@@ -5,7 +5,7 @@ local function get_branch_name()
 		return nil
 	end
 	local branch = vim.fn.system({ "git", "branch", "--show-current" })
-	if vim.v.shell_error ~= 0 then
+	if branch == "" or vim.v.shell_error ~= 0 then
 		return nil
 	end
 
