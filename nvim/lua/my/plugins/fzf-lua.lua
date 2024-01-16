@@ -210,6 +210,9 @@ return {
 				diag_source = true,
 			},
 			git = {
+				files = {
+					cmd = "git ls-files --cached --others --exclude-standard",
+				},
 				status = {
 					cmd = "git status --short",
 					actions = {
