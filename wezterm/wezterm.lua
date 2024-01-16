@@ -1,29 +1,17 @@
 local wezterm = require("wezterm")
 
-local typeface = "Martian Mono"
+local typeface = "Monaco"
 
 return {
 	color_scheme = "kanagawabones",
 
 	font = wezterm.font_with_fallback({
-		{
-			family = typeface,
-			stretch = "Expanded",
-		},
+		{ family = typeface },
 		"Symbols Nerd Font",
 	}),
-	font_size = 9,
-	line_height = 1,
+	font_size = 10.5,
+	line_height = 0.8,
 	harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
-	font_rules = {
-		{
-			italic = true,
-			font = wezterm.font({
-				family = typeface,
-				weight = "ExtraLight",
-			}),
-		},
-	},
 
 	native_macos_fullscreen_mode = true,
 	tab_bar_at_bottom = true,
