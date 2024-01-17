@@ -1,6 +1,6 @@
 local wezterm = require("wezterm")
 
-local typeface = "Monaco"
+local typeface = "Monocraft"
 
 return {
 	color_scheme = "kanagawabones",
@@ -9,8 +9,8 @@ return {
 		{ family = typeface },
 		"Symbols Nerd Font",
 	}),
-	font_size = 10.5,
-	line_height = 0.8,
+	font_size = 10,
+	line_height = 1,
 	harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
 
 	native_macos_fullscreen_mode = true,
