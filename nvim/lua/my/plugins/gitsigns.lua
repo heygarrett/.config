@@ -7,6 +7,7 @@ return {
 
 		vim.o.signcolumn = "yes:1"
 		gitsigns.setup({
+			attach_to_untracked = true,
 			on_attach = function(bufnr)
 				vim.keymap.set("n", "]h", function()
 					if vim.wo.diff then
