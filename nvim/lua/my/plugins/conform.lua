@@ -1,6 +1,6 @@
 local formatters_by_ft = {
 	fish = { "fish_indent" },
-	go = { { "golines", "goimports" } },
+	go = { "goimports" },
 	lua = { "stylua" },
 	python = { { "black", "yapf" } },
 	swift = { { "swift_format", "swiftformat" } },
