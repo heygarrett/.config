@@ -72,7 +72,6 @@ return {
 				swift_format = {
 					cwd = util.root_file({ ".swift-format" }),
 					require_cwd = true,
-					prepend_args = { "--configuration", ".swift-format" },
 				},
 				swiftformat = {
 					cwd = util.root_file({ ".swiftformat" }),
