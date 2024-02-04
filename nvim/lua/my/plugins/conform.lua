@@ -44,6 +44,10 @@ return {
 		conform.setup({
 			formatters_by_ft = formatters_by_ft,
 			formatters = {
+				biome = {
+					cwd = util.root_file("biome.json"),
+					require_cwd = true,
+				},
 				prettierd = {
 					env = { PRETTIERD_LOCAL_PRETTIER_ONLY = 1 },
 					condition = function()
