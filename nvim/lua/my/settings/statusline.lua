@@ -144,6 +144,9 @@ local function generate_left(branch, buffer)
 	end
 	left = { table.concat(left, " | ") }
 
+	if not vim.o.endofline then
+		table.insert(left, "[noeol]")
+	end
 	local modified_flag = vim.api.nvim_eval_statusline("%m", {}).str
 	if modified_flag ~= "" then
 		table.insert(left, modified_flag)
