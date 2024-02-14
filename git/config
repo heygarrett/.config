@@ -34,3 +34,5 @@
 	skippedCherryPicks = false
 [status]
 	showUntrackedFiles = all
+[rerere]
+	enabled = true
