@@ -123,7 +123,7 @@ local function get_progress()
 	elseif p == "100" then
 		return "bot"
 	else
-		return ("%02d%s"):format(p, "%%")
+		return p .. "%%"
 	end
 end
 
