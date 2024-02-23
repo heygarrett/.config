@@ -123,7 +123,15 @@ local function get_progress()
 	elseif p == "100" then
 		return "bot"
 	else
-		return p .. "%%"
+		---@type string
+		local result
+		local pnum = tonumber(p)
+		if pnum then
+			result = ("%02d"):format(pnum)
+		else
+			result = "--"
+		end
+		return result .. "%%"
 	end
 end
 
