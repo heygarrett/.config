@@ -20,8 +20,7 @@ if status is-login
 		$CARGO_HOME/bin \
 		/opt/homebrew/bin \
 		/opt/homebrew/sbin \
-		/opt/homebrew/opt/fzf/bin \
-		/opt/homebrew/opt/make/libexec/gnubin
+		/opt/homebrew/opt/fzf/bin
 
 	# create XDG_RUNTIME_DIR
 	if test ! -d ~/.runtime
