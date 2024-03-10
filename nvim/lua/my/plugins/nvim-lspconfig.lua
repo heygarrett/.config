@@ -68,6 +68,18 @@ return {
 				haskell = { formattingProvider = "fourmolu" },
 			},
 		})
+		lspconfig.rust_analyzer.setup({
+			settings = {
+				["rust-analyzer"] = {
+					rust = {
+						analyzerTargetDir = true,
+					},
+					checkOnSave = {
+						command = "clippy",
+					},
+				},
+			},
+		})
 		lspconfig.sourcekit.setup({
 			root_dir = util.root_pattern(
 				"Package.swift",
