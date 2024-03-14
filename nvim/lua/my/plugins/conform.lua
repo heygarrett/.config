@@ -51,11 +51,6 @@ return {
 				prettierd = {
 					env = { PRETTIERD_LOCAL_PRETTIER_ONLY = 1 },
 					condition = function()
-						local biome_info = conform.get_formatter_info("biome")
-						if biome_info.available then
-							return false
-						end
-
 						local prettierd_info = vim.fn.system(
 							"PRETTIERD_LOCAL_PRETTIER_ONLY=1 prettierd --debug-info ."
 						)
