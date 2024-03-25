@@ -11,14 +11,12 @@ return {
 			callback = function() snippy().complete_done() end,
 		})
 	end,
-	config = function()
-		snippy().setup({
-			mappings = {
-				is = {
-					["<tab>"] = "next",
-					["<s-tab>"] = "previous",
-				},
+	opts = {
+		mappings = {
+			is = {
+				["<tab>"] = "next",
+				["<s-tab>"] = "previous",
 			},
-		})
-	end,
+		},
+	},
 }
