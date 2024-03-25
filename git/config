@@ -24,6 +24,7 @@
 	rebase = true
 [rebase]
 	autoStash = true
+	updateRefs = true
 [tag]
 	gpgsign = true
 [gpg "ssh"]
