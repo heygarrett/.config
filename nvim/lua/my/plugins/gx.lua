@@ -9,11 +9,9 @@ return {
 		},
 	},
 	dependencies = { "https://github.com/nvim-lua/plenary.nvim" },
-	config = function()
-		require("gx").setup({
-			handlers = {
-				search = false,
-			},
-		})
-	end,
+	opts = {
+		handlers = {
+			search = false,
+		},
+	},
 }
