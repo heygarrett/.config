@@ -25,7 +25,7 @@ local function generate_git_command(opts)
 end
 
 return {
-	"https://github.com/ibhagwan/fzf-lua",
+	"https://codeberg.org/ibhagwan/fzf-lua",
 	config = function()
 		local fzf_lua = require("fzf-lua")
 
