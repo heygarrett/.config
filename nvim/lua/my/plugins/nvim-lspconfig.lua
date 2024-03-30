@@ -23,6 +23,20 @@ return {
 					},
 				})
 			end,
+			rust_analyzer = function()
+				lspconfig.rust_analyzer.setup({
+					settings = {
+						["rust-analyzer"] = {
+							rust = {
+								analyzerTargetDir = true,
+							},
+							checkOnSave = {
+								command = "clippy",
+							},
+						},
+					},
+				})
+			end,
 			tsserver = function()
 				lspconfig.tsserver.setup({
 					init_options = {
@@ -66,18 +80,6 @@ return {
 		lspconfig.hls.setup({
 			settings = {
 				haskell = { formattingProvider = "fourmolu" },
-			},
-		})
-		lspconfig.rust_analyzer.setup({
-			settings = {
-				["rust-analyzer"] = {
-					rust = {
-						analyzerTargetDir = true,
-					},
-					checkOnSave = {
-						command = "clippy",
-					},
-				},
 			},
 		})
 		lspconfig.sourcekit.setup({
