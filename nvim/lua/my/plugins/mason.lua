@@ -2,7 +2,7 @@ return {
 	{
 		"https://github.com/williamboman/mason.nvim",
 		build = ":MasonUpdate",
-		config = true,
+		opts = { PATH = "append" },
 	},
 	{
 		"https://github.com/williamboman/mason-lspconfig.nvim",
