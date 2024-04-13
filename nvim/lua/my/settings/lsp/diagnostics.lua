@@ -28,12 +28,6 @@ vim.keymap.set(
 )
 vim.keymap.set(
 	"n",
-	"<leader>q",
-	vim.diagnostic.setloclist,
-	{ desc = "add buffer diagnostics to location list" }
-)
-vim.keymap.set(
-	"n",
 	"[d",
 	vim.diagnostic.goto_prev,
 	{ desc = "go to previous diagnostic" }
