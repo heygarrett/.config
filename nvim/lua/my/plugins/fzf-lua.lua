@@ -120,20 +120,6 @@ return {
 			function() fzf_lua.lsp_definitions() end,
 			{ desc = "fzf-lua picker: LSP definitions" }
 		)
-		vim.api.nvim_create_user_command("Diagnostics", function()
-			local success, choice =
-				pcall(vim.fn.confirm, "", "&Document\n&workspace")
-			if not success then
-				return
-			elseif choice == 2 then
-				fzf_lua.diagnostics_workspace()
-			else
-				fzf_lua.diagnostics_document()
-			end
-		end, {
-			nargs = "?",
-			desc = "fzf-lua picker: diagnostics",
-		})
 		vim.api.nvim_create_user_command(
 			"Implementations",
 			function() fzf_lua.lsp_implementations() end,
