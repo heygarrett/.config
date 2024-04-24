@@ -6,7 +6,7 @@ return {
 	build = function() vim.cmd.TSUpdate() end,
 	opts = {
 		auto_install = true,
-		ensure_installed = { "markdown_inline" },
+		ensure_installed = { "comment", "markdown_inline" },
 		ignore_install = { "diff", "gitcommit" },
 		highlight = {
 			enable = true,
