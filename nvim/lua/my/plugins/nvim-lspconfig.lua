@@ -1,8 +1,6 @@
 return {
 	"https://github.com/neovim/nvim-lspconfig",
-	dependencies = {
-		"https://github.com/folke/neodev.nvim",
-	},
+	dependencies = { "https://github.com/folke/neodev.nvim" },
 	config = function()
 		require("neodev").setup()
 

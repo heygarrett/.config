@@ -1,5 +1,6 @@
 return {
 	"https://github.com/chrishrb/gx.nvim",
+	dependencies = { "https://github.com/nvim-lua/plenary.nvim" },
 	lazy = true,
 	keys = {
 		{
@@ -8,7 +9,6 @@ return {
 			mode = { "n", "x" },
 		},
 	},
-	dependencies = { "https://github.com/nvim-lua/plenary.nvim" },
 	opts = {
 		handlers = {
 			search = false,
