@@ -20,12 +20,27 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 		require("editorconfig").config(args.buf)
 
 		-- Run guess-indent
-		local guess_indent_loaded, _ = pcall(require, "guess-indent")
+		local guess_indent_loaded, guess_indent = pcall(require, "guess-indent")
 		if guess_indent_loaded then
+			-- defers to editorconfig
 			vim.cmd.GuessIndent({
 				args = { "auto_cmd" },
 				mods = { silent = true },
 			})
+			-- get indent size from buffer if editorconfig specifies spaces for
+			-- indentation but not the size of the indent
+			if
+				vim.b.editorconfig
+				and vim.b.editorconfig.indent_style == "space"
+			then
+				local indent = guess_indent.guess_from_buffer()
+				if indent ~= "tabs" then
+					vim.bo.tabstop = tonumber(indent)
+				end
+				if vim.b.editorconfig.indent_size then
+					vim.bo.tabstop = tonumber(vim.b.editorconfig.indent_size)
+				end
+			end
 		end
 
 		-- Finalize listchars and reset softtabstop
