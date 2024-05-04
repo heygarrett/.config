@@ -54,7 +54,7 @@ vim.api.nvim_create_user_command("Relist", function()
 		vim.opt_local.listchars = vim.tbl_extend(
 			"force",
 			vim.opt_global.listchars:get(),
-			{ leadmultispace = ":" .. (" "):rep(vim.bo.shiftwidth - 1) }
+			{ leadmultispace = ":" .. (" "):rep(vim.bo.tabstop - 1) }
 		)
 	else
 		-- Remove leadmultispace from listchars
@@ -63,6 +63,7 @@ vim.api.nvim_create_user_command("Relist", function()
 		vim.bo.tabstop = vim.go.tabstop
 	end
 
-	-- Reset softtabstop
+	-- Reset shiftwidth and softtabstop
+	vim.bo.shiftwidth = vim.go.shiftwidth
 	vim.bo.softtabstop = vim.go.softtabstop
 end, { desc = "re-set listchars" })
