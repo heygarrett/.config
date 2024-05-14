@@ -16,6 +16,11 @@ return {
 				["@keyword.return"] = { fg = colors.theme.syn.keyword },
 				["@lsp.typemod.function.readonly"] = { bold = false },
 				["@string.escape"] = { bold = false },
+				["@string.special.url"] = {
+					fg = colors.theme.syn.special1,
+					undercurl = false,
+					underline = true,
+				},
 				["@variable.builtin"] = { italic = false },
 			}
 		end,
