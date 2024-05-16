@@ -4,12 +4,12 @@ local function get_branch_name()
 	if vim.g.launched_by_shell then
 		return nil
 	end
-	local branch = vim.fn.system({ "git", "branch", "--show-current" })
-	if branch == "" or vim.v.shell_error ~= 0 then
+	local branch_cmd = vim.system({ "git", "branch", "--show-current" }):wait()
+	if branch_cmd.stdout == "" or branch_cmd.code ~= 0 then
 		return nil
 	end
 
-	local branch_name, _ = branch:gsub("\n", "")
+	local branch_name, _ = branch_cmd.stdout:gsub("\n", "")
 	return branch_name
 end
 
@@ -17,7 +17,7 @@ end
 ---@return string
 local function get_buffer_name()
 	-- get root of cwd
-	local root_dir = vim.loop.cwd():match("[^/]+$")
+	local root_dir = vim.uv.cwd():match("[^/]+$")
 	-- strip potential prefix and get file path
 	local buf_name = vim.api.nvim_buf_get_name(0):gsub("/$", "")
 	local _, split, prefix = buf_name:find("^(.+://)")

@@ -51,10 +51,15 @@ return {
 				prettierd = {
 					env = { PRETTIERD_LOCAL_PRETTIER_ONLY = 1 },
 					condition = function()
-						local prettierd_info = vim.fn.system(
-							"PRETTIERD_LOCAL_PRETTIER_ONLY=1 prettierd --debug-info ."
-						)
-						return prettierd_info:find("Loaded") and true or false
+						local prettierd_info_cmd = vim.system({
+							"prettierd",
+							"--debug-info",
+							".",
+						}, {
+							env = { ["PRETTIERD_LOCAL_PRETTIER_ONLY"] = "1" },
+						}):wait()
+						return prettierd_info_cmd.stdout:find("Loaded") and true
+							or false
 					end,
 				},
 				stylua = {
