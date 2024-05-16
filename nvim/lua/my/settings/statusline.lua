@@ -67,7 +67,7 @@ end
 ---Get formatted and highlighted string of diagnostic counts
 ---@return string | nil
 local function get_diagnostics()
-	local diagnostics = vim.diagnostic.get(0)
+	local diagnostics = vim.diagnostic.count(0)
 	if #diagnostics == 0 or vim.api.nvim_get_mode().mode:match("^i") then
 		return nil
 	end
@@ -79,10 +79,10 @@ local function get_diagnostics()
 		INFO = { match = "Info", count = 0 },
 	}
 
-	for _, v in ipairs(diagnostics) do
-		for k, _ in pairs(severities) do
-			if v.severity == vim.diagnostic.severity[k] then
-				severities[k].count = severities[k].count + 1
+	for d, c in ipairs(diagnostics) do
+		for s, _ in pairs(severities) do
+			if d == vim.diagnostic.severity[s] then
+				severities[s].count = c
 			end
 		end
 	end
