@@ -4,7 +4,6 @@ vim.o.breakindent = true
 vim.o.confirm = true
 vim.o.cursorline = true
 vim.o.ignorecase = true
-vim.o.keywordprg = ":vertical help"
 vim.o.linebreak = true
 vim.o.list = true
 vim.o.mouse = "a"

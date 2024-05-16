@@ -21,10 +21,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		end
 
 		-- Other LSP keymaps and user commands
-		vim.keymap.set("n", "<leader>h", vim.lsp.buf.hover, {
-			buffer = bufnr,
-			desc = "display hover information",
-		})
 		vim.keymap.set("i", "<c-s>", vim.lsp.buf.signature_help, {
 			buffer = bufnr,
 			desc = "signature help",
