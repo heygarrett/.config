@@ -67,6 +67,16 @@ return {
 			tsserver = function()
 				lspconfig.tsserver.setup({
 					init_options = {
+						preferences = {
+							includeInlayEnumMemberValueHints = true,
+							-- includeInlayFunctionLikeReturnTypeHints = false,
+							-- includeInlayFunctionParameterTypeHints = false,
+							includeInlayParameterNameHints = "all",
+							-- includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+							includeInlayPropertyDeclarationTypeHints = true,
+							-- includeInlayVariableTypeHints = false,
+							-- includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+						},
 						-- prevent omni completion from inserting extra period
 						completionDisableFilterText = true,
 					},
