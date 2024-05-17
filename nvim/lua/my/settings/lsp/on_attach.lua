@@ -20,6 +20,18 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			return orig_util_open_floating_preview(contents, syntax, opts, ...)
 		end
 
+		-- Enable inlay hints
+		vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+		vim.api.nvim_create_user_command(
+			"ToggleHints",
+			function()
+				vim.lsp.inlay_hint.enable(
+					not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 })
+				)
+			end,
+			{ desc = "toggle inlay hints" }
+		)
+
 		-- Other LSP keymaps and user commands
 		vim.keymap.set("i", "<c-s>", vim.lsp.buf.signature_help, {
 			buffer = bufnr,
