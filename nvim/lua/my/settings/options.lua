@@ -99,3 +99,13 @@ vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI", "TextChangedP" }, {
 		end
 	end,
 })
+
+vim.api.nvim_create_autocmd({ "FileType" }, {
+	desc = "force commentstring to include spaces",
+	group = group,
+	callback = function(args)
+		local cs = vim.bo[args.buf].commentstring
+		vim.bo[args.buf].commentstring = cs:gsub("(%S)%%s", "%1 %%s")
+			:gsub("%%s(%S)", "%%s %1")
+	end,
+})
