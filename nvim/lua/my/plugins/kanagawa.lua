@@ -11,7 +11,6 @@ return {
 			return {
 				Boolean = { bold = false },
 				CursorLineNr = { fg = colors.palette.lightBlue },
-				["@comment.todo"] = { link = "@text.todo" },
 				["@keyword.operator"] = { bold = false },
 				["@keyword.return"] = { fg = colors.theme.syn.keyword },
 				["@lsp.typemod.function.readonly"] = { bold = false },
