@@ -17,6 +17,18 @@ return {
 					settings = {
 						Lua = {
 							workspace = { checkThirdParty = false },
+							hint = {
+								enable = true,
+								-- ---@type "Auto" | "Enable" | "Disable"
+								-- arrayIndex = "Auto",
+								-- await = true,
+								-- ---@type "All" | "Literal" | "Disable"
+								-- paramName = "All",
+								-- paramType = true,
+								-- ---@type "All" | "SameLine" | "Disable"
+								-- semicolon = "SameLine",
+								-- setType = false,
+							},
 						},
 					},
 				})
