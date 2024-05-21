@@ -5,7 +5,6 @@ return {
 		require("neodev").setup()
 
 		local lspconfig = require("lspconfig")
-		local util = require("lspconfig.util")
 
 		require("mason-lspconfig").setup_handlers({
 			-- Mason language servers with default setups
@@ -131,20 +130,24 @@ return {
 		lspconfig.biome.setup({
 			-- TODO: file issue to update default config
 			cmd = { "node_modules/.bin/biome", "lsp-proxy" },
-			root_dir = function(filename)
-				local biome_paths = vim.fs.find("biome.json", { upward = true })
+			single_file_support = false,
+			root_dir = function()
+				local root = vim.fs.root(0, { "package.json", "node_modules" })
+				if not root then
+					return nil
+				end
+
+				local binary = root .. "/node_modules/.bin/biome"
+				local configs = vim.fs.find("biome.json", { upward = true })
 				if
-					not next(biome_paths)
-					or vim.fn.executable(biome_paths[1]) ~= 1
+					vim.fn.executable(binary) ~= 1
+					and vim.tbl_isempty(configs)
 				then
 					return nil
 				end
 
-				local find_root =
-					util.root_pattern("package.json", "node_modules")
-				return find_root(filename)
+				return root
 			end,
-			single_file_support = false,
 		})
 		lspconfig.hls.setup({
 			settings = {
@@ -152,11 +155,13 @@ return {
 			},
 		})
 		lspconfig.sourcekit.setup({
-			root_dir = util.root_pattern(
-				"Package.swift",
-				"*.xcodeproj",
-				".git"
-			),
+			root_dir = function()
+				return vim.fs.root(0, {
+					"Package.swift",
+					"*.xcodeproj",
+					".git",
+				})
+			end,
 		})
 	end,
 }
