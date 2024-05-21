@@ -53,12 +53,8 @@ return {
 				lspconfig.rust_analyzer.setup({
 					settings = {
 						["rust-analyzer"] = {
-							rust = {
-								analyzerTargetDir = true,
-							},
-							checkOnSave = {
-								command = "clippy",
-							},
+							rust = { analyzerTargetDir = true },
+							checkOnSave = { command = "clippy" },
 							inlayHints = {
 								-- bindingModeHints = { enable = false },
 								-- chainingHints = { enable = true },
