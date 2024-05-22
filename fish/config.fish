@@ -19,8 +19,7 @@ if status is-login
 		$GOPATH/bin \
 		$CARGO_HOME/bin \
 		/opt/homebrew/bin \
-		/opt/homebrew/sbin \
-		/opt/homebrew/opt/fzf/bin
+		/opt/homebrew/sbin
 
 	# create XDG_RUNTIME_DIR
 	if test ! -d ~/.runtime
@@ -54,3 +53,4 @@ end
 # extensions
 starship init fish | source
 direnv hook fish | source
+fzf --fish | source
