@@ -7,6 +7,7 @@ if status is-login
 	set --global --export HOMEBREW_BUNDLE_FILE ~/.config/homebrew/Brewfile
 	set --global --export HOMEBREW_NO_ANALYTICS 1
 	set --global --export MANPAGER "$EDITOR +Man!"
+	set --global --export OP_CONFIG_DIR ~/.config/op
 	set --global --export RUSTUP_HOME ~/dev/rust/rustup
 	set --global --export STACK_XDG 1
 	set --global --export STARSHIP_CONFIG ~/.config/starship/starship.toml
@@ -51,6 +52,7 @@ if status is-login
 end
 
 # extensions
+source ~/.config/op/plugins.sh 2>/dev/null
 starship init fish | source
 direnv hook fish | source
 fzf --fish | source
