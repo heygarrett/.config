@@ -133,7 +133,7 @@ return {
 					return nil
 				end
 
-				local binary = root .. "/node_modules/.bin/biome"
+				local binary = vim.fs.joinpath(root, "node_modules/.bin/biome")
 				local configs = vim.fs.find("biome.json", { upward = true })
 				if
 					vim.fn.executable(binary) ~= 1
