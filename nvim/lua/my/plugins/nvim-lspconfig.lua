@@ -100,7 +100,7 @@ return {
 							-- includeInlayFunctionParameterTypeHints = false,
 							includeInlayParameterNameHints = "all",
 							-- includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-							includeInlayPropertyDeclarationTypeHints = true,
+							-- includeInlayPropertyDeclarationTypeHints = true,
 							-- includeInlayVariableTypeHints = false,
 							-- includeInlayVariableTypeHintsWhenTypeMatchesName = false,
 						},
