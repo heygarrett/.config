@@ -1,5 +1,5 @@
 ---Get the name of the current branch
----@return string | nil
+---@return string?
 local function get_branch_name()
 	if vim.g.launched_by_shell then
 		return nil
@@ -59,7 +59,7 @@ vim.api.nvim_create_autocmd({ "CursorHold", "TextChanged" }, {
 })
 
 ---Get instance and count of search matches
----@return string | nil
+---@return string?
 local function get_search_count()
 	if vim.v.hlsearch == 1 and vim.api.nvim_get_mode().mode:match("n") then
 		local search_count = vim.fn.searchcount({ maxcount = 0 })
@@ -70,7 +70,7 @@ local function get_search_count()
 end
 
 ---Get formatted and highlighted string of diagnostic counts
----@return string | nil
+---@return string?
 local function get_diagnostics()
 	local diagnostics = vim.diagnostic.get(0)
 	if #diagnostics == 0 or vim.api.nvim_get_mode().mode:match("^i") then
@@ -141,8 +141,8 @@ local function get_progress()
 end
 
 ---Format string for left side of statusline
----@param branch string | nil
----@param buffer string | nil
+---@param branch string?
+---@param buffer string?
 ---@return string
 local function generate_left(branch, buffer)
 	branch = branch or vim.b.branch_name
@@ -170,7 +170,7 @@ end
 
 ---Truncate branch and buffer names for narrow window
 ---@param overflow number
----@return string | nil
+---@return string?
 ---@return string
 local function truncate(overflow)
 	local min_width = 15
