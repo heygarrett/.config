@@ -72,10 +72,10 @@ return {
 								-- 	mode = "prefix",
 								-- },
 								-- implicitDrops = { enable = false },
-								-- lifetimeElisionHints = {
-								-- 	enable = "never",
-								-- 	useParameterNames = false,
-								-- },
+								lifetimeElisionHints = {
+									enable = "always",
+									useParameterNames = false,
+								},
 								-- maxLength = 25,
 								-- parameterHints = { enable = true },
 								-- rangeExclusiveHints = { enable = false },
