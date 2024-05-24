@@ -52,6 +52,11 @@ vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "FocusGained" }, {
 		vim.b.buffer_name = get_buffer_name()
 	end,
 })
+vim.api.nvim_create_autocmd({ "CursorHold", "TextChanged" }, {
+	desc = "refresh statusline",
+	group = group,
+	callback = function() vim.cmd.redraws() end,
+})
 
 ---Get instance and count of search matches
 ---@return string | nil
