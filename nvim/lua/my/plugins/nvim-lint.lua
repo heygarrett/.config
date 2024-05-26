@@ -1,12 +1,11 @@
 local linters_by_ft = {
 	fish = { "fish" },
 }
-local filetypes = vim.tbl_keys(linters_by_ft)
 
 return {
 	"https://github.com/mfussenegger/nvim-lint",
 	lazy = true,
-	ft = filetypes,
+	ft = vim.tbl_keys(linters_by_ft),
 	config = function()
 		local lint = require("lint")
 
