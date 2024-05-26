@@ -1,12 +1,7 @@
 local linters_by_ft = {
 	fish = { "fish" },
 }
-
----@type string[]
-local filetypes = {}
-for k, _ in pairs(linters_by_ft) do
-	table.insert(filetypes, k)
-end
+local filetypes = vim.tbl_keys(linters_by_ft)
 
 return {
 	"https://github.com/mfussenegger/nvim-lint",
