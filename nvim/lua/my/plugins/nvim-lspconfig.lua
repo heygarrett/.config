@@ -79,7 +79,6 @@ return {
 								-- maxLength = 25,
 								-- parameterHints = { enable = true },
 								-- rangeExclusiveHints = { enable = false },
-								-- reborrowHints = { enable = never },
 								-- renderColons = true,
 								-- typeHints = {
 								-- 	enable = true,
