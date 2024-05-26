@@ -49,6 +49,13 @@ return {
 					},
 				})
 			end,
+			ruff = function()
+				lspconfig.ruff.setup({
+					on_attach = function(client)
+						client.server_capabilities.hoverProvider = false
+					end,
+				})
+			end,
 			rust_analyzer = function()
 				lspconfig.rust_analyzer.setup({
 					settings = {
