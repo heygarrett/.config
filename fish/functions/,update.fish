@@ -6,6 +6,6 @@ function ,update
 	fisher update
 	hr
 	pushd $HOME/.config
-	nvim -c "autocmd User VeryLazy ++once Lazy! restore | Lazy! clear | Lazy sync"
+	nvim "+Update"
 	popd
 end

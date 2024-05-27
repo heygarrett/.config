@@ -1,3 +1,18 @@
+vim.api.nvim_create_user_command("Update", function()
+	local group = vim.api.nvim_create_augroup("update", { clear = true })
+	vim.api.nvim_create_autocmd("User", {
+		pattern = "VeryLazy",
+		desc = "run Lazy sync",
+		group = group,
+		once = true,
+		callback = function() vim.cmd.Lazy({ args = { "sync" } }) end,
+	})
+	local _, mason_tool_installer = pcall(require, "mason-tool-installer")
+	if mason_tool_installer then
+		vim.cmd.MasonToolsUpdate()
+	end
+end, { desc = "update plugins and packages" })
+
 vim.api.nvim_create_user_command("Sort", function(t)
 	local line_list = vim.api.nvim_buf_get_lines(0, t.line1 - 1, t.line2, true)
 	table.sort(line_list, function(a, b)
