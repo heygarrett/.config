@@ -18,7 +18,7 @@ vim.o.statuscolumn = "%=%l %s"
 vim.o.termguicolors = true
 vim.o.textwidth = 80
 vim.o.updatetime = 2000
-vim.o.wildmode = "longest:full"
+vim.o.wildmode = "longest:full,full"
 vim.opt.completeopt = { "menuone", "noselect", "popup" }
 vim.opt.path:append("**")
 vim.opt.shortmess:append("Scs")
