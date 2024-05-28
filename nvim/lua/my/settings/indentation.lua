@@ -32,13 +32,11 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 			if
 				vim.b.editorconfig
 				and vim.b.editorconfig.indent_style == "space"
+				and not vim.b.editorconfig.indent_size
 			then
 				local indent = guess_indent.guess_from_buffer()
 				if indent ~= "tabs" then
 					vim.bo.tabstop = tonumber(indent)
-				end
-				if vim.b.editorconfig.indent_size then
-					vim.bo.tabstop = tonumber(vim.b.editorconfig.indent_size)
 				end
 			end
 		end
