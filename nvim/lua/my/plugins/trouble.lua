@@ -6,13 +6,15 @@ return {
 	keys = {
 		{
 			"<leader>q",
-			function() trouble().toggle() end,
+			function()
+				trouble().toggle({
+					mode = "diagnostics",
+					focus = true,
+				})
+			end,
 			mode = { "n" },
 			desc = "trouble: toggle diagnostics",
 		},
 	},
-	opts = {
-		mode = "document_diagnostics",
-		icons = false,
-	},
+	opts = {},
 }
