@@ -1,6 +1,0 @@
-#!/bin/sh
-
-use_ruby() {
-	layout ruby
-	export SOLARGRAPH_CACHE=~/.cache/solargraph
-}
