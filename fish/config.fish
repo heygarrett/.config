@@ -22,6 +22,11 @@ if status is-login
 		/opt/homebrew/bin \
 		/opt/homebrew/sbin
 
+	# settings
+	set --global fish_cursor_insert line
+	set --global fish_vi_force_cursor true
+	set --global sponge_purge_only_on_exit true
+
 	# create XDG_RUNTIME_DIR
 	if test ! -d ~/.runtime
 		mkdir ~/.runtime 2>/dev/null
