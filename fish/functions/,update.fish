@@ -3,8 +3,6 @@ function ,update
 	hr
 	npm --global update
 	hr
-	fisher update
-	hr
 	pushd $HOME/.config
 	nvim "+Update"
 	popd

@@ -25,7 +25,6 @@ if status is-login
 	# settings
 	set --global fish_cursor_insert line
 	set --global fish_vi_force_cursor true
-	set --global sponge_purge_only_on_exit true
 
 	# create XDG_RUNTIME_DIR
 	if test ! -d ~/.runtime
