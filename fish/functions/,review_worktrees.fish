@@ -8,6 +8,9 @@ function ,review_worktrees
 		end
 	end
 	set list_count (count $removal_list)
+	if test $list_count -eq 0
+		return
+	end
 	echo -e "\nWorktrees to remove:"
 	for wt in $removal_list
 		echo -e "\t"$wt
