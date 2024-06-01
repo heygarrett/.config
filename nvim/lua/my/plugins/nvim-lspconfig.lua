@@ -11,16 +11,6 @@ return {
 			function(server_name) lspconfig[server_name].setup({}) end,
 
 			-- Mason language servers with custom setups
-			eslint = function()
-				lspconfig.eslint.setup({
-					settings = {
-						-- https://github.com/neovim/nvim-lspconfig/pull/3183#issuecomment-2140017018
-						experimental = {
-							useFlatConfig = false,
-						},
-					},
-				})
-			end,
 			gopls = function()
 				lspconfig.gopls.setup({
 					settings = {
