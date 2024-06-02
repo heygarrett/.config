@@ -18,6 +18,8 @@ if status is-login
 	set --global --export STACK_XDG 1
 	set --global --export STARSHIP_CONFIG ~/.config/starship/starship.toml
 	set --global --export TEALDEER_CONFIG_DIR ~/.config/tealdeer
+	set --global --export TERMINFO $XDG_DATA_HOME/terminfo
+	set --global --export TERMINFO_DIRS $TERMINFO /usr/share/terminfo
 
 	# PATH
 	fish_add_path --global \
@@ -48,8 +50,8 @@ if status is-login
 			"https://raw.githubusercontent.com/" \
 			"wez/wezterm/master/termwiz/data/wezterm.terminfo"
 		)
-		curl -o $tempfile $url &>/dev/null
-		tic -x -o ~/.terminfo $tempfile
+		curl $url --output $tempfile &>/dev/null
+		tic -x $tempfile
 		rm $tempfile
 	end
 
