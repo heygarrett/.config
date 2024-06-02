@@ -1,3 +1,9 @@
+set --global --export XDG_CACHE_HOME $HOME/.cache
+set --global --export XDG_CONFIG_HOME $HOME/.config
+set --global --export XDG_DATA_HOME $HOME/.local/share
+set --global --export XDG_RUNTIME_DIR $HOME/.runtime
+set --global --export XDG_STATE_HOME $HOME/.local/state
+
 if status is-login
 	# environment variables
 	set --global --export CARGO_HOME ~/dev/rust/cargo
@@ -12,7 +18,6 @@ if status is-login
 	set --global --export STACK_XDG 1
 	set --global --export STARSHIP_CONFIG ~/.config/starship/starship.toml
 	set --global --export TEALDEER_CONFIG_DIR ~/.config/tealdeer
-	set --global --export XDG_RUNTIME_DIR ~/.runtime
 
 	# PATH
 	fish_add_path --global \
