@@ -78,7 +78,6 @@ return {
 					require_cwd = true,
 				},
 			},
-			format_on_save = function() vim.cmd.Format({ args = { "save" } }) end,
 		})
 
 		local guess_indent_loaded, guess_indent = pcall(require, "guess-indent")
@@ -128,6 +127,13 @@ return {
 		end, {
 			nargs = "?",
 			desc = "synchronous formatting",
+		})
+
+		local group = vim.api.nvim_create_augroup("conform", { clear = true })
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			desc = "format on save",
+			group = group,
+			callback = function() vim.cmd.Format({ args = { "save" } }) end,
 		})
 	end,
 }
