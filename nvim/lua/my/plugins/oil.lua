@@ -16,7 +16,6 @@ return {
 	config = function(_, opts)
 		local oil = require("oil")
 		oil.setup(opts)
-		vim.cmd.delcommand("Oil")
 		vim.api.nvim_create_user_command(
 			"Ex",
 			function() oil.open() end,
