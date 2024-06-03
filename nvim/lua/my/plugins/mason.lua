@@ -6,7 +6,7 @@ return {
 	},
 	{
 		"https://github.com/williamboman/mason-lspconfig.nvim",
-		config = true,
+		opts = {},
 	},
 	{
 		"https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim",
