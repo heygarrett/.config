@@ -29,7 +29,6 @@ return {
 				lspconfig.lua_ls.setup({
 					settings = {
 						Lua = {
-							workspace = { checkThirdParty = false },
 							hint = {
 								enable = true,
 								-- ---@type "Auto" | "Enable" | "Disable"
@@ -44,6 +43,40 @@ return {
 							},
 						},
 					},
+					on_init = function(client)
+						local ok, workspace_folder =
+							pcall(unpack, client.workspace_folders)
+						if not ok then
+							return
+						end
+						local path = workspace_folder.name
+						if
+							vim.uv.fs_stat(path .. "/.luarc.json")
+							or vim.uv.fs_stat(path .. "/.luarc.jsonc")
+						then
+							return
+						end
+
+						client.config.settings.Lua = vim.tbl_deep_extend(
+							"force",
+							client.config.settings.Lua,
+							{
+								runtime = { version = "LuaJIT" },
+								workspace = {
+									checkThirdParty = false,
+									library = {
+										"${3rd}/luv/library",
+										unpack(
+											vim.api.nvim_get_runtime_file(
+												"",
+												true
+											)
+										),
+									},
+								},
+							}
+						)
+					end,
 				})
 			end,
 			ruff = function()
