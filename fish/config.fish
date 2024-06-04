@@ -6,12 +6,15 @@ set --global --export XDG_STATE_HOME $HOME/.local/state
 
 if status is-login
 	# environment variables
+	set --global --export ANDROID_HOME $HOME/.android
+	set --global --export ANDROID_USER_HOME $ANDROID_HOME
 	set --global --export CARGO_HOME $XDG_DATA_HOME/cargo
 	set --global --export EDITOR "nvim --cmd 'let g:launched_by_shell=1'"
 	set --global --export GHCUP_USE_XDG_DIRS 1
 	set --global --export GOPATH $XDG_DATA_HOME/go
 	set --global --export HOMEBREW_BUNDLE_FILE $XDG_CONFIG_HOME/homebrew/Brewfile
 	set --global --export HOMEBREW_NO_ANALYTICS 1
+	set --global --export JAVA_HOME (/usr/libexec/java_home)
 	set --global --export MANPAGER "$EDITOR +Man!"
 	set --global --export NPM_CONFIG_USERCONFIG $XDG_CONFIG_HOME/npm/npmrc
 	set --global --export OP_CONFIG_DIR $XDG_CONFIG_HOME/op
