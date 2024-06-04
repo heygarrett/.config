@@ -13,6 +13,7 @@ if status is-login
 	set --global --export HOMEBREW_BUNDLE_FILE $XDG_CONFIG_HOME/homebrew/Brewfile
 	set --global --export HOMEBREW_NO_ANALYTICS 1
 	set --global --export MANPAGER "$EDITOR +Man!"
+	set --global --export NPM_CONFIG_USERCONFIG $XDG_CONFIG_HOME/npm/npmrc
 	set --global --export OP_CONFIG_DIR $XDG_CONFIG_HOME/op
 	set --global --export RUSTUP_HOME $XDG_DATA_HOME/rustup
 	set --global --export STACK_XDG 1
