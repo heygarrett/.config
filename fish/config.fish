@@ -63,3 +63,6 @@ source $XDG_CONFIG_HOME/op/plugins.sh 2>/dev/null
 starship init fish | source
 direnv hook fish | source
 fzf --fish | source
+
+# Nix
+source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
