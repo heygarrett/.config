@@ -22,4 +22,8 @@ function ,review_worktrees
 			git worktree remove $removal_list[$index]
 		end
 	end
+	read -fP "Run nix-collect-garbage? " nix_garbage; or return
+	if test "$nix_garbage" = y
+		nix-collect-garbage
+	end
 end
