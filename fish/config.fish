@@ -74,3 +74,6 @@ starship init fish | source
 direnv hook fish | source
 fzf --fish | source
 mise activate fish | source
+
+# Nix
+source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
