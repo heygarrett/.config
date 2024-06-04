@@ -20,6 +20,7 @@ if status is-login
 	set --global --export TEALDEER_CONFIG_DIR $XDG_CONFIG_HOME/tealdeer
 	set --global --export TERMINFO $XDG_DATA_HOME/terminfo
 	set --global --export TERMINFO_DIRS $TERMINFO /usr/share/terminfo
+	set --global --export VISUAL $EDITOR
 
 	# PATH
 	fish_add_path --global \
