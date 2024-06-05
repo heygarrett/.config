@@ -6,29 +6,22 @@ local formatters_by_ft = {
 	swift = { { "swift_format", "swiftformat" } },
 }
 
-local format_with_biome = {
+local format_with_prettierd = {
+	"css",
+	"html",
 	"javascript",
 	"javascriptreact",
 	"json",
 	"jsonc",
+	"markdown",
+	"scss",
 	"typescript",
 	"typescript.tsx",
 	"typescriptreact",
-}
-
-for _, ft in ipairs(format_with_biome) do
-	formatters_by_ft[ft] = { { "biome", "prettierd" } }
-end
-
-local format_with_prettier = {
-	"css",
-	"html",
-	"markdown",
-	"scss",
 	"yaml",
 }
 
-for _, ft in ipairs(format_with_prettier) do
+for _, ft in ipairs(format_with_prettierd) do
 	formatters_by_ft[ft] = { "prettierd" }
 end
 
@@ -44,13 +37,13 @@ return {
 		conform.setup({
 			formatters_by_ft = formatters_by_ft,
 			formatters = {
-				biome = {
-					cwd = util.root_file("biome.json"),
-					require_cwd = true,
-				},
 				prettierd = {
 					env = { PRETTIERD_LOCAL_PRETTIER_ONLY = 1 },
 					condition = function()
+						if next(vim.lsp.get_clients({ name = "biome" })) then
+							return false
+						end
+
 						local prettierd_info_cmd = vim.system({
 							"prettierd",
 							"--debug-info",
