@@ -152,7 +152,10 @@ return {
 			yamlls = function()
 				lspconfig.yamlls.setup({
 					settings = {
-						yaml = { keyOrdering = false },
+						yaml = {
+							format = { enable = true },
+							keyOrdering = false,
+						},
 					},
 				})
 			end,
