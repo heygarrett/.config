@@ -28,8 +28,7 @@ if status is-login
 		$HOME/.local/bin \
 		$GOPATH/bin \
 		$CARGO_HOME/bin \
-		/opt/homebrew/bin \
-		/opt/homebrew/sbin
+		/opt/homebrew/bin
 
 	# settings
 	set --global fish_cursor_insert line
