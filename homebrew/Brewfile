@@ -43,6 +43,7 @@ brew "swiftformat"
 brew "tealdeer"
 brew "tokei"
 brew "tree"
+brew "xdg-ninja", args: ["HEAD"]
 cask "1password"
 cask "1password-cli"
 cask "blockblock"
@@ -66,3 +67,4 @@ cask "transmission"
 cask "wezterm"
 cask "yubico-yubikey-manager"
 cask "zoom"
+
