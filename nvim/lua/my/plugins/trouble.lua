@@ -10,6 +10,7 @@ return {
 				trouble().toggle({
 					mode = "diagnostics",
 					focus = true,
+					filter = { buf = 0 },
 				})
 			end,
 			mode = { "n" },
