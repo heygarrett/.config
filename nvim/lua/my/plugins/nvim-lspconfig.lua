@@ -100,7 +100,7 @@ return {
 								-- 	minLines = 25,
 								-- },
 								-- closureCaptureHints = { enable = false },
-								-- closureReturnTypeHints = { enable = "never" },
+								closureReturnTypeHints = { enable = "always" },
 								-- closureStyle = "impl_fn",
 								-- discriminantHints = { enable = "never" },
 								-- expressionAdjustmentHints = {
