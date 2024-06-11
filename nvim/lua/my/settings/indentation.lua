@@ -12,12 +12,12 @@ local group = vim.api.nvim_create_augroup("indentation", { clear = true })
 vim.api.nvim_create_autocmd("BufWinEnter", {
 	desc = "indentation settings",
 	group = group,
-	callback = function(args)
+	callback = function(event_args)
 		-- Override expandtab set by ftplugins
 		vim.bo.expandtab = vim.go.expandtab
 
 		-- Load editorconfig
-		require("editorconfig").config(args.buf)
+		require("editorconfig").config(event_args.buf)
 
 		-- Run guess-indent
 		local guess_indent_loaded, guess_indent = pcall(require, "guess-indent")
