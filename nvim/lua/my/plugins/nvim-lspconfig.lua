@@ -2,14 +2,23 @@ return {
 	"https://github.com/neovim/nvim-lspconfig",
 	config = function()
 		local lspconfig = require("lspconfig")
+		local capabilities = vim.lsp.protocol.make_client_capabilities()
+		capabilities.textDocument.completion.completionItem.resolveSupport = {
+			properties = { "additionalTextEdits" },
+		}
 
 		require("mason-lspconfig").setup_handlers({
 			-- Mason language servers with default setups
-			function(server_name) lspconfig[server_name].setup({}) end,
+			function(server_name)
+				lspconfig[server_name].setup({
+					capabilities = capabilities,
+				})
+			end,
 
 			-- Mason language servers with custom setups
 			gopls = function()
 				lspconfig.gopls.setup({
+					capabilities = capabilities,
 					settings = {
 						gopls = {
 							hints = {
@@ -27,6 +36,7 @@ return {
 			end,
 			lua_ls = function()
 				lspconfig.lua_ls.setup({
+					capabilities = capabilities,
 					settings = {
 						Lua = {
 							hint = {
@@ -81,6 +91,7 @@ return {
 			end,
 			ruff = function()
 				lspconfig.ruff.setup({
+					capabilities = capabilities,
 					on_attach = function(client)
 						client.server_capabilities.hoverProvider = false
 					end,
@@ -88,6 +99,7 @@ return {
 			end,
 			rust_analyzer = function()
 				lspconfig.rust_analyzer.setup({
+					capabilities = capabilities,
 					settings = {
 						["rust-analyzer"] = {
 							rust = { analyzerTargetDir = true },
@@ -129,6 +141,7 @@ return {
 			end,
 			tsserver = function()
 				lspconfig.tsserver.setup({
+					capabilities = capabilities,
 					init_options = {
 						preferences = {
 							includeInlayEnumMemberValueHints = true,
@@ -151,6 +164,7 @@ return {
 			end,
 			yamlls = function()
 				lspconfig.yamlls.setup({
+					capabilities = capabilities,
 					settings = {
 						yaml = {
 							format = { enable = true },
@@ -165,6 +179,7 @@ return {
 		lspconfig.biome.setup({
 			-- TODO: file issue to update default config
 			cmd = { "node_modules/.bin/biome", "lsp-proxy" },
+			capabilities = capabilities,
 			single_file_support = false,
 			root_dir = function()
 				local root = vim.fs.root(0, { "package.json", "node_modules" })
@@ -185,11 +200,13 @@ return {
 			end,
 		})
 		lspconfig.hls.setup({
+			capabilities = capabilities,
 			settings = {
 				haskell = { formattingProvider = "fourmolu" },
 			},
 		})
 		lspconfig.sourcekit.setup({
+			capabilities = capabilities,
 			root_dir = function()
 				return vim.fs.root(0, {
 					"Package.swift",
