@@ -1,10 +1,10 @@
 local M = {}
 
 ---@param bufnr number
----@param client vim.lsp.Client?
+---@param client vim.lsp.Client
 M.setup = function(bufnr, client)
 	-- Exit early if this server doesn't provide completion
-	if not (client and client.supports_method("textDocument/completion")) then
+	if not client.supports_method("textDocument/completion") then
 		return
 	end
 
