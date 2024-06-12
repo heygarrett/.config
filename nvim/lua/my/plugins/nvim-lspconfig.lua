@@ -103,7 +103,13 @@ return {
 					settings = {
 						["rust-analyzer"] = {
 							rust = { analyzerTargetDir = true },
-							checkOnSave = { command = "clippy" },
+							check = {
+								command = "clippy",
+								extraArgs = {
+									"--",
+									"--warn=clippy::todo",
+								},
+							},
 							inlayHints = {
 								-- bindingModeHints = { enable = false },
 								-- chainingHints = { enable = true },
