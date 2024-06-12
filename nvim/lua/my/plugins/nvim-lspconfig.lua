@@ -102,7 +102,7 @@ return {
 					capabilities = capabilities,
 					settings = {
 						["rust-analyzer"] = {
-							rust = { analyzerTargetDir = true },
+							cargo = { targetDir = true },
 							check = {
 								command = "clippy",
 								extraArgs = {
