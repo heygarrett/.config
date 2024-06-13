@@ -2,12 +2,15 @@ local helpers = require("my.helpers")
 
 return {
 	"https://github.com/lewis6991/gitsigns.nvim",
-	config = function()
+	opts = {
+		attach_to_untracked = true,
+		signs_staged_enable = false,
+	},
+	config = function(_, opts)
 		local gitsigns = require("gitsigns")
 
 		vim.o.signcolumn = "yes:1"
-		gitsigns.setup({
-			attach_to_untracked = true,
+		gitsigns.setup(vim.tbl_deep_extend("force", opts, {
 			on_attach = function(bufnr)
 				vim.keymap.set("n", "]h", function()
 					if vim.wo.diff then
@@ -102,6 +105,6 @@ return {
 					desc = "gitsigns: unstage hunk",
 				})
 			end,
-		})
+		}))
 	end,
 }
