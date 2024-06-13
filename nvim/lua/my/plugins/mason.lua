@@ -27,6 +27,7 @@ return {
 				"prettierd",
 				"ruff",
 				"rust_analyzer",
+				"shfmt",
 				"stylua",
 				"taplo",
 				"tsserver",
