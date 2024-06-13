@@ -73,7 +73,7 @@ return {
 							{
 								runtime = { version = "LuaJIT" },
 								workspace = {
-									checkThirdParty = false,
+									checkThirdParty = "Disable",
 									library = {
 										"${3rd}/luv/library",
 										unpack(
