@@ -51,8 +51,8 @@ vim.api.nvim_create_user_command("Relist", function()
 		-- Set whitespace characters for indentation with spaces
 		vim.opt_local.listchars =
 			vim.tbl_extend("force", vim.opt_global.listchars:get(), {
-				tab = "> ",
 				leadmultispace = ":" .. (" "):rep(vim.bo.tabstop - 1),
+				tab = "> ",
 			})
 	else
 		-- Remove leadmultispace from listchars
