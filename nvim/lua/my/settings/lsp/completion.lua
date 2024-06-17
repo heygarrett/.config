@@ -13,10 +13,12 @@ M.setup = function(bufnr, client)
 		desc = "omnicompletion",
 	})
 
-	local group = vim.api.nvim_create_augroup("completion", { clear = true })
+	local group = vim.api.nvim_create_augroup("completion", { clear = false })
+	vim.api.nvim_clear_autocmds({ group = group, buffer = bufnr })
 	vim.api.nvim_create_autocmd("CompleteDonePre", {
 		desc = "auto-apply additional edits (eg, resolve imports)",
 		group = group,
+		buffer = bufnr,
 		callback = function(event_args)
 			local complete_info = vim.fn.complete_info({ "selected" })
 			if complete_info.selected == -1 then
