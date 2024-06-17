@@ -49,11 +49,12 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 vim.api.nvim_create_user_command("Relist", function()
 	if vim.bo.expandtab then
 		-- Set whitespace characters for indentation with spaces
-		vim.opt_local.listchars =
-			vim.tbl_extend("force", vim.opt_global.listchars:get(), {
-				leadmultispace = ":" .. (" "):rep(vim.bo.tabstop - 1),
-				tab = "> ",
-			})
+		local listchars = vim.opt_global.listchars:get()
+		listchars.tab = "> "
+		if vim.bo.filetype ~= "markdown" then
+			listchars.leadmultispace = ":" .. (" "):rep(vim.bo.tabstop - 1)
+		end
+		vim.opt_local.listchars = listchars
 	else
 		-- Remove leadmultispace from listchars
 		vim.wo.listchars = vim.go.listchars
