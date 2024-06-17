@@ -1,5 +1,11 @@
 return {
 	"https://github.com/neovim/nvim-lspconfig",
+	dependencies = {
+		{
+			"https://github.com/folke/neoconf.nvim",
+			opts = {},
+		},
+	},
 	config = function()
 		local lspconfig = require("lspconfig")
 		local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -17,7 +23,7 @@ return {
 
 			-- Mason language servers with custom setups
 			gopls = function()
-				lspconfig.gopls.setup({
+				lspconfig["gopls"].setup({
 					capabilities = capabilities,
 					settings = {
 						gopls = {
@@ -35,7 +41,7 @@ return {
 				})
 			end,
 			lua_ls = function()
-				lspconfig.lua_ls.setup({
+				lspconfig["lua_ls"].setup({
 					capabilities = capabilities,
 					settings = {
 						Lua = {
@@ -90,7 +96,7 @@ return {
 				})
 			end,
 			ruff = function()
-				lspconfig.ruff.setup({
+				lspconfig["ruff"].setup({
 					capabilities = capabilities,
 					on_attach = function(client)
 						client.server_capabilities.hoverProvider = false
@@ -98,7 +104,7 @@ return {
 				})
 			end,
 			rust_analyzer = function()
-				lspconfig.rust_analyzer.setup({
+				lspconfig["rust_analyzer"].setup({
 					capabilities = capabilities,
 					settings = {
 						["rust-analyzer"] = {
@@ -146,7 +152,7 @@ return {
 				})
 			end,
 			tsserver = function()
-				lspconfig.tsserver.setup({
+				lspconfig["tsserver"].setup({
 					capabilities = capabilities,
 					init_options = {
 						preferences = {
@@ -169,7 +175,7 @@ return {
 				})
 			end,
 			yamlls = function()
-				lspconfig.yamlls.setup({
+				lspconfig["yamlls"].setup({
 					capabilities = capabilities,
 					settings = {
 						yaml = {
@@ -182,7 +188,7 @@ return {
 		})
 
 		-- Non-Mason language servers
-		lspconfig.biome.setup({
+		lspconfig["biome"].setup({
 			-- TODO: file issue to update default config
 			cmd = { "node_modules/.bin/biome", "lsp-proxy" },
 			capabilities = capabilities,
@@ -205,13 +211,13 @@ return {
 				return root
 			end,
 		})
-		lspconfig.hls.setup({
+		lspconfig["hls"].setup({
 			capabilities = capabilities,
 			settings = {
 				haskell = { formattingProvider = "fourmolu" },
 			},
 		})
-		lspconfig.sourcekit.setup({
+		lspconfig["sourcekit"].setup({
 			capabilities = capabilities,
 			root_dir = function()
 				return vim.fs.root(0, {
