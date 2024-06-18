@@ -31,6 +31,7 @@ return {
 				"taplo",
 				"tsserver",
 				"vimls",
+				"yamlfmt",
 				"yamlls",
 			},
 		},

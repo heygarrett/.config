@@ -4,6 +4,7 @@ local formatters_by_ft = {
 	lua = { "stylua" },
 	python = { { "black", "yapf" } },
 	swift = { { "swift_format", "swiftformat" } },
+	yaml = { { "prettierd", "yamlfmt" } },
 }
 
 local format_with_prettierd = {
@@ -18,7 +19,6 @@ local format_with_prettierd = {
 	"typescript",
 	"typescript.tsx",
 	"typescriptreact",
-	"yaml",
 }
 
 for _, ft in ipairs(format_with_prettierd) do
