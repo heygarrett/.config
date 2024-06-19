@@ -24,7 +24,7 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 		if guess_indent_loaded then
 			-- defers to editorconfig
 			vim.cmd.GuessIndent({
-				args = { "auto_cmd" },
+				args = { "context", "silent" },
 				mods = { silent = true },
 			})
 			-- get indent size from buffer if editorconfig specifies spaces for
