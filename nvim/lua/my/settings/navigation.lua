@@ -18,3 +18,12 @@ end, {
 	desc = "workaround for pop-up menu issue in vim",
 	-- https://github.com/vim/vim/issues/1653
 })
+
+vim.keymap.set("v", "zz", function()
+	local first_line = vim.fn.getpos("v")[2]
+	local last_line = vim.fn.getpos(".")[2]
+	local middle_line = math.floor((first_line + last_line) / 2)
+	vim.api.nvim_input("<c-[>")
+	vim.api.nvim_win_set_cursor(0, { middle_line, 0 })
+	vim.api.nvim_input("zz")
+end, { desc = "vertically center visual selection" })
