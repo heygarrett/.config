@@ -1,5 +1,17 @@
 local helpers = require("my.helpers")
 
+local function hunk_range(action, selection)
+	if selection.range ~= 0 then
+		if selection.line1 == 1 and selection.line2 == vim.fn.line("$") then
+			action.buffer()
+		else
+			action.hunk({ selection.line1, selection.line2 })
+		end
+	else
+		action.hunk()
+	end
+end
+
 return {
 	"https://github.com/lewis6991/gitsigns.nvim",
 	opts = {
@@ -34,21 +46,6 @@ return {
 					expr = true,
 					desc = "gitsigns: go to previous hunk",
 				})
-
-				local function hunk_range(action, selection)
-					if selection.range ~= 0 then
-						if
-							selection.line1 == 1
-							and selection.line2 == vim.fn.line("$")
-						then
-							action.buffer()
-						else
-							action.hunk({ selection.line1, selection.line2 })
-						end
-					else
-						action.hunk()
-					end
-				end
 
 				vim.api.nvim_create_user_command(
 					"Diff",
