@@ -1,12 +1,10 @@
 local wezterm = require("wezterm")
 
-local typeface = "Monocraft"
-
 return {
 	color_scheme = "kanagawabones",
 
 	font = wezterm.font_with_fallback({
-		{ family = typeface },
+		{ family = "Monocraft" },
 		"Symbols Nerd Font",
 	}),
 	font_size = 10,
