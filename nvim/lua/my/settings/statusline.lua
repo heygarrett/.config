@@ -13,11 +13,21 @@ local function get_branch_name()
 	return branch_name
 end
 
+---@return string
+local function get_parent_dir()
+	local path_to_cwd = vim.fn.fnamemodify(vim.fn.getcwd(0), ":h")
+	if path_to_cwd == vim.env.HOME then
+		return "~"
+	else
+		return vim.fn.fnamemodify(path_to_cwd, ":t")
+	end
+end
+
 ---Get name of the current buffer
 ---@return string
 local function get_buffer_name()
 	-- get root of cwd
-	local root_dir = vim.uv.cwd():match("[^/]+$")
+	local root_dir = vim.fn.fnamemodify(vim.fn.getcwd(0), ":t")
 	-- strip potential prefix and get file path
 	local buf_name = vim.api.nvim_buf_get_name(0):gsub("/$", "")
 	local _, split, prefix = buf_name:find("^(.+://)")
@@ -32,8 +42,11 @@ local function get_buffer_name()
 	then
 		formatted_file_path = vim.fn.fnamemodify(file_path, ":~")
 	else
-		formatted_file_path =
-			table.concat({ root_dir, truncated_file_path }, "/")
+		formatted_file_path = vim.fs.joinpath(
+			get_parent_dir(),
+			("(%s)"):format(root_dir),
+			truncated_file_path
+		)
 	end
 	-- restore potential prefix
 	if prefix then
