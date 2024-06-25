@@ -17,7 +17,9 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 		vim.bo.expandtab = vim.go.expandtab
 
 		-- Load editorconfig
-		require("editorconfig").config(event_args.buf)
+		if vim.bo[event_args.buf].filetype ~= "gitcommit" then
+			require("editorconfig").config(event_args.buf)
+		end
 
 		-- Run guess-indent
 		local guess_indent_loaded, guess_indent = pcall(require, "guess-indent")
