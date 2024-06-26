@@ -55,12 +55,6 @@ if status is-login
 		tic -x $tempfile
 		rm $tempfile
 	end
-
-	# set up 1Password ssh agent
-	set --local op_ssh $HOME"/Library/Group Containers/2BUA8C4S2C.com.1password/t/agent.sock"
-	if test -e $op_ssh
-		set --global --export SSH_AUTH_SOCK $op_ssh
-	end
 end
 
 # extensions
