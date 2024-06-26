@@ -12,7 +12,7 @@ function fish_title
 	else
 		# Don't print "fish" because it's redundant
 		set --local command (status current-command)
-		if test $command = fish
+		if test "$command" = fish
 			set command
 		end
 		echo -- $ssh (string sub --length 20 -- $command) (prompt_pwd --full-length-dirs=2)
