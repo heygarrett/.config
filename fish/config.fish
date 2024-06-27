@@ -35,12 +35,12 @@ if status is-login
 	set --global fish_vi_force_cursor true
 
 	# create XDG_RUNTIME_DIR
-	if test ! -d $HOME/.runtime
-		mkdir $HOME/.runtime 2>/dev/null
+	if test ! -d "$XDG_RUNTIME_DIR"
+		mkdir $XDG_RUNTIME_DIR 2>/dev/null
 		or echo "Password required to create ~/.runtime"
-		and sudo mkdir $HOME/.runtime
-		and sudo chown $USER $HOME/.runtime
-		chmod 0700 $HOME/.runtime
+		and sudo mkdir $XDG_RUNTIME_DIR
+		and sudo chown $USER $XDG_RUNTIME_DIR
+		chmod 0700 $XDG_RUNTIME_DIR
 	end
 
 	# install wezterm terminfo
