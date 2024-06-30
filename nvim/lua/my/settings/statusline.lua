@@ -143,8 +143,8 @@ local function get_progress()
 	else
 		---@type string
 		local result
-		local pnum = tonumber(p)
-		if pnum then
+		local ok, pnum = pcall(tonumber, p)
+		if ok and pnum then
 			result = ("%02d"):format(pnum)
 		else
 			result = "--"
