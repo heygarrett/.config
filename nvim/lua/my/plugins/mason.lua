@@ -27,6 +27,7 @@ return {
 				"prettierd",
 				"ruff",
 				"rust_analyzer",
+				"shellcheck",
 				"shfmt",
 				"stylua",
 				"taplo",
