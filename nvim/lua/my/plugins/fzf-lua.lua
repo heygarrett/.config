@@ -200,6 +200,11 @@ return {
 			diagnostics = {
 				diag_source = true,
 			},
+			files = {
+				find_opts = [[-type df -not -path '*/\.git/*' -printf '%P\n']],
+				fd_opts = [[--color=never --type file --type dir --hidden --follow --exclude .git]],
+				actions = { ["ctrl-g"] = false },
+			},
 			git = {
 				files = {
 					cmd = "git ls-files --cached --others --exclude-standard",
