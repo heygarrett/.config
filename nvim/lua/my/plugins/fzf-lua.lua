@@ -81,16 +81,16 @@ return {
 				desc = "fzf-lua picker: commits",
 			}
 		)
-		vim.api.nvim_create_user_command("Find", function()
-			local inside_worktree_cmd =
-				vim.system({ "git", "rev-parse", "--is-inside-work-tree" })
-					:wait()
-			if inside_worktree_cmd.code == 0 then
-				fzf_lua().git_files({ cwd = vim.uv.cwd() })
-			else
-				fzf_lua().files()
-			end
-		end, { desc = "fzf-lua picker: find files" })
+		vim.api.nvim_create_user_command(
+			"Find",
+			function() fzf_lua().files() end,
+			{ desc = "fzf-lua picker: find files" }
+		)
+		vim.api.nvim_create_user_command(
+			"GFind",
+			function() fzf_lua().git_files({ cwd = vim.uv.cwd() }) end,
+			{ desc = "fzf-lua picker: find files tracked by git" }
+		)
 		vim.api.nvim_create_user_command(
 			"Grep",
 			function() fzf_lua().live_grep_native() end,
