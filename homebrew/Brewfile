@@ -13,7 +13,7 @@ brew "fzf"
 brew "gh"
 brew "ghcup"
 brew "git"
-brew "python
+brew "python"
 brew "git-filter-repo"
 brew "glab"
 brew "gnupg"
