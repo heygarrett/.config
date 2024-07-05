@@ -179,6 +179,7 @@ return {
 					capabilities = capabilities,
 					settings = {
 						yaml = {
+							customTags = { "!reference sequence" },
 							format = { enable = true },
 							keyOrdering = false,
 						},
