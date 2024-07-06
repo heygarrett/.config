@@ -35,6 +35,7 @@ brew "tokei"
 brew "tree"
 brew "vhs"
 brew "xdg-ninja", args: ["HEAD"]
+brew "yq"
 cask "1password"
 cask "1password-cli"
 cask "blockblock"
