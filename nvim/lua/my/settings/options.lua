@@ -78,10 +78,6 @@ vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI", "TextChangedP" }, {
 	desc = "dynamic color column",
 	group = group,
 	callback = function()
-		if vim.b.editorconfig and vim.b.editorconfig.max_line_length then
-			vim.bo.textwidth = tonumber(vim.b.editorconfig.max_line_length)
-		end
-
 		if vim.bo.buftype ~= "" then
 			return
 		end
