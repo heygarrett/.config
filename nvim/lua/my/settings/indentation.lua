@@ -42,7 +42,7 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 			end
 		end
 
-		-- Finalize listchars and reset softtabstop
+		-- finalize listchars; reset shiftwidth and softtabstop
 		vim.cmd.Relist()
 	end,
 })
