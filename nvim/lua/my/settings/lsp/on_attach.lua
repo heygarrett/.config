@@ -26,11 +26,13 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 		-- Enable inlay hints
 		vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
-		vim.api.nvim_create_user_command(
+		vim.api.nvim_buf_create_user_command(
+			bufnr,
 			"ToggleHints",
 			function()
 				vim.lsp.inlay_hint.enable(
-					not vim.lsp.inlay_hint.is_enabled({ bufnr = 0 })
+					not vim.lsp.inlay_hint.is_enabled({ bufnr = bufnr }),
+					{ bufnr = bufnr }
 				)
 			end,
 			{ desc = "toggle inlay hints" }
