@@ -14,6 +14,7 @@ return {
 			ensure_installed = {
 				"basedpyright",
 				"bashls",
+				"biome",
 				"clangd",
 				"cmake",
 				"eslint",
