@@ -21,6 +21,7 @@ return {
 				"goimports",
 				"golangci-lint",
 				"golangci_lint_ls",
+				"golines",
 				"gopls",
 				"jsonls",
 				"lua_ls",
