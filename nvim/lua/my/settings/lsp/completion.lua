@@ -26,18 +26,14 @@ M.setup = function(bufnr, client)
 				-- (for some reason imports can be duplicated otherwise)
 				return
 			end
-			local ok, completion_item = pcall(
-				function()
-					return vim.v.completed_item.user_data.nvim.lsp.completion_item
-				end
-			)
+			local ok, completion_item = pcall(function()
+				return vim.v.completed_item.user_data.nvim.lsp.completion_item
+			end)
 			if not ok then
 				return
 			end
 
-			if
-				client.server_capabilities.completionProvider.resolveProvider
-			then
+			if client.server_capabilities.completionProvider.resolveProvider then
 				client.request(
 					"completionItem/resolve",
 					completion_item,

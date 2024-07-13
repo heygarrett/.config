@@ -28,7 +28,9 @@ return {
 					if vim.wo.diff then
 						return "]h"
 					end
-					vim.schedule(function() gitsigns.next_hunk() end)
+					vim.schedule(function()
+						gitsigns.next_hunk()
+					end)
 					return "<Ignore>"
 				end, {
 					buffer = bufnr,
@@ -39,7 +41,9 @@ return {
 					if vim.wo.diff then
 						return "[h"
 					end
-					vim.schedule(function() gitsigns.prev_hunk() end)
+					vim.schedule(function()
+						gitsigns.prev_hunk()
+					end)
 					return "<Ignore>"
 				end, {
 					buffer = bufnr,
@@ -60,37 +64,27 @@ return {
 					complete = helpers.get_branches,
 					desc = "gitsigns: diff whole buffer",
 				})
-				vim.api.nvim_create_user_command(
-					"Blame",
-					function() gitsigns.blame_line({ full = true }) end,
-					{ desc = "gitsigns: blame current line" }
-				)
-				vim.api.nvim_create_user_command(
-					"Reset",
-					function(selection)
-						hunk_range({
-							hunk = gitsigns.reset_hunk,
-							buffer = gitsigns.reset_buffer,
-						}, selection)
-					end,
-					{
-						range = true,
-						desc = "gitsigns: reset",
-					}
-				)
-				vim.api.nvim_create_user_command(
-					"Stage",
-					function(selection)
-						hunk_range({
-							hunk = gitsigns.stage_hunk,
-							buffer = gitsigns.stage_buffer,
-						}, selection)
-					end,
-					{
-						range = true,
-						desc = "gitsigns: stage hunk",
-					}
-				)
+				vim.api.nvim_create_user_command("Blame", function()
+					gitsigns.blame_line({ full = true })
+				end, { desc = "gitsigns: blame current line" })
+				vim.api.nvim_create_user_command("Reset", function(selection)
+					hunk_range({
+						hunk = gitsigns.reset_hunk,
+						buffer = gitsigns.reset_buffer,
+					}, selection)
+				end, {
+					range = true,
+					desc = "gitsigns: reset",
+				})
+				vim.api.nvim_create_user_command("Stage", function(selection)
+					hunk_range({
+						hunk = gitsigns.stage_hunk,
+						buffer = gitsigns.stage_buffer,
+					}, selection)
+				end, {
+					range = true,
+					desc = "gitsigns: stage hunk",
+				})
 				vim.api.nvim_create_user_command("Unstage", function(selection)
 					if selection.range == 0 then
 						gitsigns.undo_stage_hunk()
