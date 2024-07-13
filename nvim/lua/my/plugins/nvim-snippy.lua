@@ -1,4 +1,6 @@
-local snippy = function() return require("snippy") end
+local snippy = function()
+	return require("snippy")
+end
 
 return {
 	"https://github.com/dcampos/nvim-snippy",
@@ -8,7 +10,9 @@ return {
 		vim.api.nvim_create_autocmd("CompleteDone", {
 			desc = "set up nvim-snippy",
 			group = group,
-			callback = function() snippy().complete_done() end,
+			callback = function()
+				snippy().complete_done()
+			end,
 		})
 	end,
 	opts = {

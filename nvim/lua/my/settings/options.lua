@@ -34,10 +34,7 @@ vim.api.nvim_create_autocmd("FileType", {
 			return
 		end
 		local position_line = vim.api.nvim_buf_get_mark(0, [["]])[1]
-		if
-			position_line >= 1
-			and position_line <= vim.api.nvim_buf_line_count(0)
-		then
+		if position_line >= 1 and position_line <= vim.api.nvim_buf_line_count(0) then
 			vim.cmd.normal({
 				bang = true,
 				args = { [[g`"]] },
@@ -71,7 +68,9 @@ vim.api.nvim_create_autocmd("FileType", {
 	desc = "disable text width, and wrap, for specific file types",
 	group = group,
 	pattern = { "markdown", "text" },
-	callback = function() vim.bo.textwidth = 0 end,
+	callback = function()
+		vim.bo.textwidth = 0
+	end,
 })
 
 vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI", "TextChangedP" }, {
@@ -83,8 +82,7 @@ vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI", "TextChangedP" }, {
 		end
 		local current_line = vim.api.nvim_get_current_line()
 		-- `current_line` might be a blob instead of a string (eg, expanding snippets)
-		local measured, line_length =
-			pcall(vim.fn.strdisplaywidth, current_line)
+		local measured, line_length = pcall(vim.fn.strdisplaywidth, current_line)
 		if not measured then
 			return
 		end

@@ -5,7 +5,9 @@ vim.api.nvim_create_user_command("Update", function()
 		desc = "run Lazy sync",
 		group = group,
 		once = true,
-		callback = function() vim.cmd.Lazy({ args = { "sync" } }) end,
+		callback = function()
+			vim.cmd.Lazy({ args = { "sync" } })
+		end,
 	})
 	local _, mason_tool_installer = pcall(require, "mason-tool-installer")
 	if mason_tool_installer then
@@ -34,8 +36,7 @@ end, {
 })
 
 vim.api.nvim_create_user_command("Gobble", function(tbl)
-	local line_list =
-		vim.api.nvim_buf_get_lines(0, tbl.line1 - 1, tbl.line2, true)
+	local line_list = vim.api.nvim_buf_get_lines(0, tbl.line1 - 1, tbl.line2, true)
 	local global_depth = 0
 	for _, line in ipairs(line_list) do
 		if #line == 0 then
@@ -62,8 +63,7 @@ end, {
 })
 
 vim.api.nvim_create_user_command("Stab", function()
-	local success, choice =
-		pcall(vim.fn.confirm, "Which direction?", "&Next\n&previous")
+	local success, choice = pcall(vim.fn.confirm, "Which direction?", "&Next\n&previous")
 	if not success then
 		return
 	elseif choice == 1 then
