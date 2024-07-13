@@ -1,6 +1,14 @@
 return {
 	"https://github.com/j-hui/fidget.nvim",
-	lazy = true,
-	event = "LspAttach",
-	opts = {},
+	opts = {
+		notification = {
+			override_vim_notify = true,
+			window = {
+				border = "single",
+				normal_hl = "",
+				winblend = 0,
+				zindex = 99,
+			},
+		},
+	},
 }
