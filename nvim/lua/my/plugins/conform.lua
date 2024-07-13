@@ -51,16 +51,8 @@ return {
 						}, {
 							env = { ["PRETTIERD_LOCAL_PRETTIER_ONLY"] = "1" },
 						}):wait()
-						return prettierd_info_cmd.stdout:find("Loaded") and true
-							or false
+						return prettierd_info_cmd.stdout:find("Loaded") and true or false
 					end,
-				},
-				stylua = {
-					cwd = util.root_file({
-						".stylua.toml",
-						"stylua.toml",
-					}),
-					require_cwd = true,
 				},
 				swift_format = {
 					cwd = util.root_file({ ".swift-format" }),
@@ -126,7 +118,9 @@ return {
 		vim.api.nvim_create_autocmd("BufWritePre", {
 			desc = "format on save",
 			group = group,
-			callback = function() vim.cmd.Format({ args = { "save" } }) end,
+			callback = function()
+				vim.cmd.Format({ args = { "save" } })
+			end,
 		})
 	end,
 }

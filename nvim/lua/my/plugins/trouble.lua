@@ -1,4 +1,6 @@
-local trouble = function() return require("trouble") end
+local trouble = function()
+	return require("trouble")
+end
 
 return {
 	"https://github.com/folke/trouble.nvim",

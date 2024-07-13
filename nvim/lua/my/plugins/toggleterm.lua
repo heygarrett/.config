@@ -3,7 +3,9 @@ return {
 	keys = {
 		{
 			"<leader>t",
-			function() vim.cmd.ToggleTerm() end,
+			function()
+				vim.cmd.ToggleTerm()
+			end,
 			mode = { "n" },
 		},
 	},

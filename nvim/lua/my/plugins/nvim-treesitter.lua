@@ -3,7 +3,9 @@ return {
 	dependencies = {
 		"https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
 	},
-	build = function() vim.cmd.TSUpdate() end,
+	build = function()
+		vim.cmd.TSUpdate()
+	end,
 	opts = {
 		auto_install = true,
 		ensure_installed = { "comment", "markdown_inline" },
@@ -26,5 +28,7 @@ return {
 			},
 		},
 	},
-	config = function(_, opts) require("nvim-treesitter.configs").setup(opts) end,
+	config = function(_, opts)
+		require("nvim-treesitter.configs").setup(opts)
+	end,
 }

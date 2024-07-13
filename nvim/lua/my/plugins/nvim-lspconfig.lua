@@ -73,25 +73,17 @@ return {
 							return
 						end
 
-						client.config.settings.Lua = vim.tbl_deep_extend(
-							"force",
-							client.config.settings.Lua,
-							{
+						client.config.settings.Lua =
+							vim.tbl_deep_extend("force", client.config.settings.Lua, {
 								runtime = { version = "LuaJIT" },
 								workspace = {
 									checkThirdParty = "Disable",
 									library = {
 										"${3rd}/luv/library",
-										unpack(
-											vim.api.nvim_get_runtime_file(
-												"",
-												true
-											)
-										),
+										unpack(vim.api.nvim_get_runtime_file("", true)),
 									},
 								},
-							}
-						)
+							})
 					end,
 				})
 			end,

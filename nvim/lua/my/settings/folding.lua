@@ -1,10 +1,6 @@
 function _G.fold_text()
-	local first_line = vim.api.nvim_buf_get_lines(
-		0,
-		vim.v.foldstart - 1,
-		vim.v.foldstart,
-		true
-	)[1]
+	local first_line =
+		vim.api.nvim_buf_get_lines(0, vim.v.foldstart - 1, vim.v.foldstart, true)[1]
 	local preview = first_line:gsub("\t", (" "):rep(vim.bo.tabstop))
 	local number_of_lines = vim.v.foldend - vim.v.foldstart
 	local foldtext = ("%s +- %d line(s) below the fold -+"):format(
