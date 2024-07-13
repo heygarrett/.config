@@ -22,6 +22,27 @@ return {
 			end,
 
 			-- Mason language servers with custom setups
+			biome = function()
+				lspconfig["biome"].setup({
+					capabilities = capabilities,
+					on_new_config = function(config)
+						if vim.fn.executable("node_modules/.bin/biome") == 1 then
+							config.cmd = { "node_modules/.bin/biome", "lsp-proxy" }
+						end
+					end,
+					root_dir = function(file)
+						local biome_root =
+							vim.fs.root(file, { "biome.json", "biome.jsonc" })
+						if biome_root then
+							local node_root =
+								vim.fs.root(file, { "package.json", "node_modules" })
+							return node_root or biome_root
+						else
+							return nil
+						end
+					end,
+				})
+			end,
 			gopls = function()
 				lspconfig["gopls"].setup({
 					capabilities = capabilities,
@@ -180,25 +201,6 @@ return {
 		})
 
 		-- Non-Mason language servers
-		lspconfig["biome"].setup({
-			capabilities = capabilities,
-			on_new_config = function(config)
-				if vim.fn.executable("node_modules/.bin/biome") == 1 then
-					config.cmd = { "node_modules/.bin/biome", "lsp-proxy" }
-				end
-			end,
-			root_dir = function(file)
-				local biome_root =
-					vim.fs.root(file, { "biome.json", "biome.jsonc" })
-				if biome_root then
-					local node_root =
-						vim.fs.root(file, { "package.json", "node_modules" })
-					return node_root or biome_root
-				else
-					return nil
-				end
-			end,
-		})
 		lspconfig["hls"].setup({
 			capabilities = capabilities,
 			settings = {
