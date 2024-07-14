@@ -26,10 +26,14 @@ M.setup = function(bufnr, client)
 				-- (for some reason imports can be duplicated otherwise)
 				return
 			end
-			local ok, completion_item = pcall(function()
-				return vim.v.completed_item.user_data.nvim.lsp.completion_item
-			end)
-			if not ok then
+			local completion_item = vim.tbl_get(
+				vim.v.completed_item,
+				"user_data",
+				"nvim",
+				"lsp",
+				"completion_item"
+			)
+			if not completion_item then
 				return
 			end
 
