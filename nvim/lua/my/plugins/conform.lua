@@ -1,4 +1,5 @@
 local formatters_by_ft = {
+	c = { "astyle" },
 	fish = { "fish_indent" },
 	go = { { "golines", "goimports" } },
 	lua = { "stylua" },
@@ -37,6 +38,20 @@ return {
 		conform.setup({
 			formatters_by_ft = formatters_by_ft,
 			formatters = {
+				astyle = {
+					prepend_args = {
+						"--indent=force-tab",
+						"--convert-tabs",
+						"--style=attach",
+						"--squeeze-ws",
+					},
+					condition = function()
+						-- defer to clangd if .clang-format file is present
+						return vim.tbl_isempty(
+							vim.fs.find(".clang-format", { upward = true })
+						)
+					end,
+				},
 				prettierd = {
 					env = { PRETTIERD_LOCAL_PRETTIER_ONLY = 1 },
 					condition = function()
