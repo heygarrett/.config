@@ -80,52 +80,13 @@ return {
 			},
 		})
 
-		local guess_indent_loaded, guess_indent = pcall(require, "guess-indent")
-		vim.api.nvim_create_user_command("Format", function(args)
-			-- Run formatter
-			local formatted = conform.format({ lsp_fallback = true })
-			if not formatted then
-				return
-			end
-
-			-- Determine indentation after formatting
-			if not guess_indent_loaded then
-				return
-			end
-			local indent = guess_indent.guess_from_buffer()
-
-			-- Match indentation to value of expandtab
-			if (indent == "tabs") == vim.bo.expandtab then
-				-- Prompt for retab if formatting manually
-				if args.args ~= "save" then
-					local success, choice = pcall(
-						vim.fn.confirm,
-						"Override formatter indentation?",
-						"&Yes\n&no"
-					)
-					if not success then
-						return
-					elseif choice == 2 then
-						return
-					end
-				end
-				-- then retab
-				local preferred_tabstop = (
-					vim.bo.expandtab and vim.bo.tabstop or vim.go.tabstop
-				)
-				if indent ~= "tabs" then
-					vim.bo.tabstop = tonumber(indent)
-				end
-				vim.cmd.retab({
-					bang = true,
-				})
-				vim.bo.tabstop = preferred_tabstop
-				if not vim.bo.expandtab then
-					vim.bo.shiftwidth = 0
-				end
+		vim.api.nvim_create_user_command("Format", function(command_opts)
+			local formatted = conform.format({ lsp_format = "fallback" })
+			if formatted then
+				vim.cmd.Retab({ bang = not command_opts.bang })
 			end
 		end, {
-			nargs = "?",
+			bang = true,
 			desc = "synchronous formatting",
 		})
 
@@ -134,7 +95,7 @@ return {
 			desc = "format on save",
 			group = group,
 			callback = function()
-				vim.cmd.Format({ args = { "save" } })
+				vim.cmd.Format({ bang = true })
 			end,
 		})
 	end,
