@@ -44,6 +44,49 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 
 		-- finalize listchars
 		vim.cmd.Relist()
+
+		-- define Retab user command
+		vim.api.nvim_buf_create_user_command(
+			event_args.buf,
+			"Retab",
+			function(command_opts)
+				-- Match indentation to value of expandtab
+				local indent = guess_indent.guess_from_buffer()
+				if (indent == "tabs") == vim.bo.expandtab then
+					-- Prompt for retab if formatting manually
+					if command_opts.bang then
+						local success, choice = pcall(
+							vim.fn.confirm,
+							"Override formatter indentation?",
+							"&Yes\n&no"
+						)
+						if not success then
+							return
+						elseif choice == 2 then
+							return
+						end
+					end
+					-- then retab
+					local preferred_tabstop = (
+						vim.bo.expandtab and vim.bo.tabstop or vim.go.tabstop
+					)
+					if indent ~= "tabs" then
+						vim.bo.tabstop = tonumber(indent)
+					end
+					vim.cmd.retab({ bang = true })
+					vim.bo.tabstop = preferred_tabstop
+					if vim.bo.expandtab then
+						vim.bo.shiftwidth = preferred_tabstop
+					else
+						vim.bo.shiftwidth = 0
+					end
+				end
+			end,
+			{
+				bang = true,
+				desc = "custom retab",
+			}
+		)
 	end,
 })
 
