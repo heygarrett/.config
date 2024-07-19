@@ -12,13 +12,13 @@ local group = vim.api.nvim_create_augroup("indentation", { clear = true })
 vim.api.nvim_create_autocmd("BufWinEnter", {
 	desc = "indentation settings",
 	group = group,
-	callback = function(event_args)
+	callback = function(event_opts)
 		-- Override expandtab set by ftplugins
 		vim.bo.expandtab = vim.go.expandtab
 
 		-- Load editorconfig
-		if vim.bo[event_args.buf].filetype ~= "gitcommit" then
-			require("editorconfig").config(event_args.buf)
+		if vim.bo[event_opts.buf].filetype ~= "gitcommit" then
+			require("editorconfig").config(event_opts.buf)
 		end
 
 		-- Run guess-indent
@@ -47,7 +47,7 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 
 		-- define Retab user command
 		vim.api.nvim_buf_create_user_command(
-			event_args.buf,
+			event_opts.buf,
 			"Retab",
 			function(command_opts)
 				-- Match indentation to value of expandtab
