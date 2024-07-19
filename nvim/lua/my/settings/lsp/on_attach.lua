@@ -2,9 +2,9 @@ local group = vim.api.nvim_create_augroup("lsp", { clear = true })
 vim.api.nvim_create_autocmd("LspAttach", {
 	desc = "LSP options, commands and keymaps",
 	group = group,
-	callback = function(event_args)
-		local bufnr = event_args.buf
-		local client = vim.lsp.get_client_by_id(event_args.data.client_id)
+	callback = function(event_opts)
+		local bufnr = event_opts.buf
+		local client = vim.lsp.get_client_by_id(event_opts.data.client_id)
 		if not client then
 			vim.notify_once("Client ID invalid", vim.log.levels.ERROR)
 			return
