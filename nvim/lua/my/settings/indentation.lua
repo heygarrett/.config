@@ -5,7 +5,7 @@ vim.o.softtabstop = -1
 vim.o.tabstop = 4
 vim.opt.listchars = { nbsp = "_", space = "·", tab = "| " }
 
--- Don't run editorconfig automatically
+-- don't run editorconfig automatically
 vim.g.editorconfig = false
 
 local group = vim.api.nvim_create_augroup("indentation", { clear = true })
@@ -13,21 +13,19 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 	desc = "indentation settings",
 	group = group,
 	callback = function(event_opts)
-		-- Override expandtab set by ftplugins
+		-- override expandtab set by ftplugins
 		vim.bo.expandtab = vim.go.expandtab
 
-		-- Load editorconfig
+		-- load editorconfig
 		if vim.bo[event_opts.buf].filetype ~= "gitcommit" then
 			require("editorconfig").config(event_opts.buf)
 		end
 
-		-- Run guess-indent
+		-- run guess-indent
 		local guess_indent_loaded, guess_indent = pcall(require, "guess-indent")
 		if guess_indent_loaded then
 			-- defers to editorconfig
-			vim.cmd.GuessIndent({
-				args = { "context", "silent" },
-			})
+			vim.cmd.GuessIndent({ args = { "context", "silent" } })
 			-- get indent size from buffer if editorconfig specifies spaces for
 			-- indentation but not the size of the indent
 			if
@@ -50,10 +48,10 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 			event_opts.buf,
 			"Retab",
 			function(command_opts)
-				-- Match indentation to value of expandtab
+				-- match indentation to value of expandtab
 				local indent = guess_indent.guess_from_buffer()
 				if (indent == "tabs") == vim.bo.expandtab then
-					-- Prompt for retab if formatting manually
+					-- prompt for retab if formatting manually
 					if command_opts.bang then
 						local success, choice = pcall(
 							vim.fn.confirm,
@@ -92,7 +90,7 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 
 vim.api.nvim_create_user_command("Relist", function()
 	if vim.bo.expandtab then
-		-- Set whitespace characters for indentation with spaces
+		-- set whitespace characters for indentation with spaces
 		local listchars = vim.opt_global.listchars:get()
 		listchars.tab = "> "
 		if vim.bo.filetype ~= "markdown" then
@@ -100,11 +98,11 @@ vim.api.nvim_create_user_command("Relist", function()
 		end
 		vim.opt_local.listchars = listchars
 	else
-		-- Remove leadmultispace from listchars
+		-- remove leadmultispace from listchars
 		vim.wo.listchars = vim.go.listchars
-		-- Override tabstop if we're using tabs
+		-- override tabstop if we're using tabs
 		vim.bo.tabstop = vim.go.tabstop
-		-- Reset shiftwidth and softtabstop
+		-- reset shiftwidth and softtabstop
 		vim.bo.shiftwidth = vim.go.shiftwidth
 		vim.bo.softtabstop = vim.go.softtabstop
 	end
