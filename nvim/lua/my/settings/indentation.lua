@@ -1,7 +1,7 @@
 -- Default to tabs
 vim.o.expandtab = false
 vim.o.shiftwidth = 0
-vim.o.softtabstop = -1
+vim.o.softtabstop = 0
 vim.o.tabstop = 4
 vim.opt.listchars = { nbsp = "_", space = "·", tab = "| " }
 
@@ -102,8 +102,9 @@ vim.api.nvim_create_user_command("Relist", function()
 		vim.wo.listchars = vim.go.listchars
 		-- override tabstop if we're using tabs
 		vim.bo.tabstop = vim.go.tabstop
-		-- reset shiftwidth and softtabstop
+		-- reset shiftwidth
 		vim.bo.shiftwidth = vim.go.shiftwidth
-		vim.bo.softtabstop = vim.go.softtabstop
 	end
+	-- always reset softtabstop
+	vim.bo.softtabstop = vim.go.softtabstop
 end, { desc = "re-set listchars" })
