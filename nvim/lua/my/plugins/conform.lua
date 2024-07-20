@@ -1,11 +1,27 @@
 local formatters_by_ft = {
 	c = { "astyle" },
 	fish = { "fish_indent" },
-	go = { { "golines", "goimports" } },
+	go = {
+		"golines",
+		"goimports",
+		stop_after_first = true,
+	},
 	lua = { "stylua" },
-	python = { { "black", "yapf" } },
-	swift = { { "swift_format", "swiftformat" } },
-	yaml = { { "prettierd", "yamlfmt" } },
+	python = {
+		"black",
+		"yapf",
+		stop_after_first = true,
+	},
+	swift = {
+		"swift_format",
+		"swiftformat",
+		stop_after_first = true,
+	},
+	yaml = {
+		"prettierd",
+		"yamlfmt",
+		stop_after_first = true,
+	},
 }
 
 local format_with_prettierd = {
@@ -36,6 +52,7 @@ return {
 		local util = require("conform.util")
 
 		conform.setup({
+			default_format_opts = { lsp_format = "fallback" },
 			formatters_by_ft = formatters_by_ft,
 			formatters = {
 				astyle = {
@@ -66,7 +83,7 @@ return {
 						}, {
 							env = { ["PRETTIERD_LOCAL_PRETTIER_ONLY"] = "1" },
 						}):wait()
-						return prettierd_info_cmd.stdout:find("Loaded") and true or false
+						return prettierd_info_cmd.stdout:find("Loaded") ~= nil
 					end,
 				},
 				swift_format = {
@@ -81,7 +98,7 @@ return {
 		})
 
 		vim.api.nvim_create_user_command("Format", function(command_opts)
-			local formatted = conform.format({ lsp_format = "fallback" })
+			local formatted = conform.format()
 			if formatted then
 				vim.cmd.Retab({ bang = not command_opts.bang })
 			end
