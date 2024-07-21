@@ -182,7 +182,6 @@ return {
 						completionDisableFilterText = true,
 					},
 					on_attach = function(client)
-						-- stylua: ignore
 						client.server_capabilities.documentFormattingProvider = false
 					end,
 				})
