@@ -6,6 +6,7 @@ local formatters_by_ft = {
 		"goimports",
 		stop_after_first = true,
 	},
+	haskell = { "fourmolu" },
 	lua = { "stylua" },
 	python = {
 		"black",
@@ -67,6 +68,20 @@ return {
 						return vim.tbl_isempty(
 							vim.fs.find(".clang-format", { upward = true })
 						)
+					end,
+				},
+				fourmolu = {
+					prepend_args = function(_, context)
+						local args = {}
+						if
+							vim.tbl_isempty(vim.fs.find("fourmolu.yaml", {
+								path = context.dirname,
+								upward = true,
+							}))
+						then
+							table.insert(args, "--indent-wheres=true")
+						end
+						return args
 					end,
 				},
 				prettierd = {

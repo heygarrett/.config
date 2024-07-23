@@ -20,6 +20,7 @@ return {
 				"clangd",
 				"cmake",
 				"eslint",
+				"fourmolu",
 				"goimports",
 				"golangci-lint",
 				"golangci_lint_ls",
