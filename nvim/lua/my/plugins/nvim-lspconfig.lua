@@ -202,9 +202,9 @@ return {
 		-- Non-Mason language servers
 		lspconfig["hls"].setup({
 			capabilities = capabilities,
-			settings = {
-				haskell = { formattingProvider = "fourmolu" },
-			},
+			on_attach = function(client)
+				client.server_capabilities.documentFormattingProvider = false
+			end,
 		})
 		lspconfig["sourcekit"].setup({
 			capabilities = capabilities,
