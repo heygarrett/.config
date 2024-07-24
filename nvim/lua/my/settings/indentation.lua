@@ -94,7 +94,7 @@ vim.api.nvim_create_user_command("Relist", function()
 		local listchars = vim.opt_global.listchars:get()
 		listchars.tab = "> "
 		if vim.bo.filetype ~= "markdown" then
-			listchars.leadmultispace = ":" .. (" "):rep(vim.bo.shiftwidth - 1)
+			listchars.leadmultispace = ":" .. (" "):rep(vim.fn.shiftwidth() - 1)
 		end
 		vim.opt_local.listchars = listchars
 	else
