@@ -105,6 +105,6 @@ vim.api.nvim_create_user_command("Relist", function()
 		-- reset shiftwidth
 		vim.bo.shiftwidth = vim.go.shiftwidth
 	end
-	-- always reset softtabstop
+	-- keep softtabstop turned off
 	vim.bo.softtabstop = vim.go.softtabstop
 end, { desc = "re-set listchars" })
