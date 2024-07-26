@@ -56,8 +56,8 @@ return {
 					gitsigns.preview_hunk_inline,
 					{ desc = "gitsigns: preview hunk diff" }
 				)
-				vim.api.nvim_create_user_command("Patch", function(t)
-					local base = t.args ~= "" and t.args or nil
+				vim.api.nvim_create_user_command("Patch", function(command_opts)
+					local base = command_opts.args ~= "" and command_opts.args or nil
 					gitsigns.diffthis(base)
 				end, {
 					nargs = "?",
