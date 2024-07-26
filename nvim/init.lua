@@ -21,6 +21,6 @@ require("lazy").setup("my.plugins", {
 		fallback = true,
 	},
 	install = {
-		colorscheme = { "kanagawa" },
+		colorscheme = { "catppuccin" },
 	},
 })
