@@ -44,9 +44,9 @@ return {
 		vim.api.nvim_create_user_command("Autocommands", function()
 			fzf_lua().autocmds()
 		end, { desc = "fzf-lua picker: autocommands" })
-		vim.api.nvim_create_user_command("BCommits", function(tbl)
+		vim.api.nvim_create_user_command("BCommits", function(command_opts)
 			fzf_lua().git_bcommits({
-				cmd = generate_git_command({ ref = tbl.args, file = true }),
+				cmd = generate_git_command({ ref = command_opts.args, file = true }),
 			})
 		end, {
 			nargs = "?",
@@ -59,9 +59,9 @@ return {
 		vim.api.nvim_create_user_command("Commands", function()
 			fzf_lua().commands()
 		end, { desc = "fzf-lua picker: user commands" })
-		vim.api.nvim_create_user_command("Commits", function(tbl)
+		vim.api.nvim_create_user_command("Commits", function(command_opts)
 			fzf_lua().git_commits({
-				cmd = generate_git_command({ ref = tbl.args }),
+				cmd = generate_git_command({ ref = command_opts.args }),
 			})
 		end, {
 			nargs = "?",

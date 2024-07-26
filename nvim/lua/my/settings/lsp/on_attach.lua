@@ -37,9 +37,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			buffer = bufnr,
 			desc = "signature help",
 		})
-		vim.api.nvim_buf_create_user_command(bufnr, "Rename", function(t)
-			if t.args ~= "" then
-				vim.lsp.buf.rename(t.args)
+		vim.api.nvim_buf_create_user_command(bufnr, "Rename", function(command_opts)
+			if command_opts.args ~= "" then
+				vim.lsp.buf.rename(command_opts.args)
 			else
 				vim.api.nvim_input(("q:aRename %s<esc>"):format(vim.fn.expand("<cword>")))
 			end
