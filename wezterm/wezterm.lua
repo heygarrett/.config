@@ -4,10 +4,10 @@ return {
 	color_scheme = "Catppuccin Mocha",
 
 	font = wezterm.font_with_fallback({
-		{ family = "Monocraft" },
+		{ family = "Martian Mono" },
 		"Symbols Nerd Font",
 	}),
-	font_size = 10,
+	font_size = 9,
 	line_height = 1,
 	harfbuzz_features = { "calt=0", "clig=0", "liga=0" },
 
