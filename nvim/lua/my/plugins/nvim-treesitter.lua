@@ -11,6 +11,14 @@ return {
 		ensure_installed = { "comment", "markdown_inline" },
 		ignore_install = { "diff", "gitcommit" },
 		highlight = { enable = true },
+		incremental_selection = {
+			enable = true,
+			keymaps = {
+				init_selection = "<leader>ss",
+				node_incremental = "<leader>sm",
+				node_decremental = "<leader>sr",
+			},
+		},
 		textobjects = {
 			select = {
 				enable = true,
