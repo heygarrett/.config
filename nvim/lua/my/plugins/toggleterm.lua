@@ -16,7 +16,9 @@ return {
 			local buf_line_count = vim.api.nvim_buf_line_count(bufnr)
 			local last_visible_line = vim.fn.line("w$", term.window)
 			if last_visible_line == buf_line_count then
-				vim.cmd.startinsert()
+				vim.schedule(function()
+					vim.cmd.startinsert()
+				end)
 			end
 		end,
 	},
