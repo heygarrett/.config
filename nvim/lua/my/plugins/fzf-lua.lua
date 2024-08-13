@@ -69,11 +69,15 @@ return {
 			desc = "fzf-lua picker: commits",
 		})
 		vim.api.nvim_create_user_command("Find", function()
-			fzf_lua().files()
+			local ok, choice = pcall(vim.fn.confirm, "", "&All\n&tracked")
+			if not ok then
+				return
+			elseif choice == 1 then
+				fzf_lua().files()
+			elseif choice == 2 then
+				fzf_lua().git_files({ cwd = vim.uv.cwd() })
+			end
 		end, { desc = "fzf-lua picker: find files" })
-		vim.api.nvim_create_user_command("GFind", function()
-			fzf_lua().git_files({ cwd = vim.uv.cwd() })
-		end, { desc = "fzf-lua picker: find files tracked by git" })
 		vim.api.nvim_create_user_command("Grep", function()
 			fzf_lua().live_grep_native()
 		end, { desc = "fzf-lua picker: grep" })
