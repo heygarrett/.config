@@ -140,23 +140,9 @@ return {
 					["ctrl-u"] = "preview-half-page-up",
 				},
 			},
-			actions = {
-				buffers = {
-					["default"] = actions.buf_edit_or_qf,
-					["ctrl-s"] = actions.buf_split,
-					["ctrl-t"] = actions.buf_tabedit,
-					["ctrl-v"] = actions.buf_vsplit,
-				},
-				files = {
-					["default"] = actions.file_edit_or_qf,
-					["ctrl-s"] = actions.file_split,
-					["ctrl-t"] = actions.file_tabedit,
-					["ctrl-v"] = actions.file_vsplit,
-				},
-			},
 			helptags = {
 				actions = {
-					["default"] = actions.help_vert,
+					["enter"] = actions.help_vert,
 				},
 			},
 			diagnostics = {
@@ -184,13 +170,13 @@ return {
 				},
 				commits = {
 					actions = {
-						["default"] = copy_hash,
+						["enter"] = copy_hash,
 						["ctrl-y"] = false,
 					},
 				},
 				bcommits = {
 					actions = {
-						["default"] = copy_hash,
+						["enter"] = copy_hash,
 						["ctrl-y"] = false,
 					},
 				},
