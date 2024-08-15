@@ -155,7 +155,31 @@ return {
 			files = {
 				find_opts = [[-type df -not -path '*/\.git/*' -printf '%P\n']],
 				fd_opts = [[--color=never --type file --type dir --hidden --follow --exclude .git]],
-				actions = { ["ctrl-g"] = false },
+				actions = {
+					["ctrl-g"] = false,
+					["ctrl-l"] = {
+						-- filter by selected subdirectory
+						function(selected, opts)
+							local entry = fzf_lua().path.entry_to_file(selected[1])
+							if not fzf_lua().path.is_absolute(entry.path) then
+								entry.path =
+									vim.fs.joinpath(opts.cwd or vim.uv.cwd(), entry.path)
+							end
+							fzf_lua().files({ cwd = entry.path })
+						end,
+					},
+					["ctrl-h"] = {
+						-- expand filter to parent directory
+						function(_, opts)
+							fzf_lua().files({
+								cwd = vim.fn.fnamemodify(
+									vim.fs.normalize(opts.cwd or vim.uv.cwd()),
+									":h"
+								),
+							})
+						end,
+					},
+				},
 			},
 			git = {
 				files = {
