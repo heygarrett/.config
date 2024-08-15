@@ -25,21 +25,31 @@ vim.opt.shortmess:append("Scs")
 
 local group = vim.api.nvim_create_augroup("options", { clear = true })
 
-vim.api.nvim_create_autocmd("FileType", {
+vim.api.nvim_create_autocmd("BufRead", {
 	desc = "restore cursor position",
 	group = group,
-	callback = function()
-		local exclude = { "diff", "gitcommit", "gitrebase" }
-		if vim.tbl_contains(exclude, vim.bo.filetype) then
-			return
-		end
-		local position_line = vim.api.nvim_buf_get_mark(0, [["]])[1]
-		if position_line >= 1 and position_line <= vim.api.nvim_buf_line_count(0) then
-			vim.cmd.normal({
-				bang = true,
-				args = { [[g`"]] },
-			})
-		end
+	callback = function(event_opts)
+		vim.api.nvim_create_autocmd("FileType", {
+			group = group,
+			buffer = event_opts.buf,
+			once = true,
+			callback = function()
+				local exclude = { "diff", "gitcommit", "gitrebase" }
+				if vim.tbl_contains(exclude, vim.bo.filetype) then
+					return
+				end
+				local position_line = vim.api.nvim_buf_get_mark(0, [["]])[1]
+				if
+					position_line >= 1
+					and position_line <= vim.api.nvim_buf_line_count(0)
+				then
+					vim.cmd.normal({
+						bang = true,
+						args = { [[g`"]] },
+					})
+				end
+			end,
+		})
 	end,
 })
 
