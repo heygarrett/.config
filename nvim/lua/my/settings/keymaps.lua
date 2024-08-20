@@ -14,6 +14,8 @@ end, {
 	-- https://github.com/vim/vim/issues/1653
 })
 
+vim.keymap.set("i", "<c-space>", "<c-x><c-o>", { desc = "omnicompletion" })
+
 vim.keymap.set("v", "zz", function()
 	local first_line = vim.fn.getpos("v")[2]
 	local last_line = vim.fn.getpos(".")[2]

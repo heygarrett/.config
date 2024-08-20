@@ -8,11 +8,6 @@ M.setup = function(bufnr, client)
 		return
 	end
 
-	vim.keymap.set("i", "<c-space>", "<c-x><c-o>", {
-		buffer = bufnr,
-		desc = "omnicompletion",
-	})
-
 	local group = vim.api.nvim_create_augroup("completion", { clear = false })
 	vim.api.nvim_clear_autocmds({ group = group, buffer = bufnr })
 	vim.api.nvim_create_autocmd("CompleteDonePre", {
