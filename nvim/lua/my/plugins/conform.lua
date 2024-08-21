@@ -1,3 +1,7 @@
+local conform = function()
+	return require("conform")
+end
+
 local formatters_by_ft = {
 	c = { "astyle" },
 	fish = { "fish_indent" },
@@ -46,74 +50,10 @@ end
 return {
 	"https://github.com/stevearc/conform.nvim",
 	lazy = true,
-	event = "LspAttach",
-	ft = vim.tbl_keys(formatters_by_ft),
-	config = function()
-		local conform = require("conform")
-		local util = require("conform.util")
-
-		conform.setup({
-			default_format_opts = { lsp_format = "fallback" },
-			formatters_by_ft = formatters_by_ft,
-			formatters = {
-				astyle = {
-					prepend_args = {
-						"--indent=force-tab",
-						"--convert-tabs",
-						"--style=attach",
-						"--squeeze-ws",
-					},
-					condition = function()
-						-- defer to clangd if .clang-format file is present
-						return vim.tbl_isempty(
-							vim.fs.find(".clang-format", { upward = true })
-						)
-					end,
-				},
-				fourmolu = {
-					prepend_args = function(_, context)
-						local args = {}
-						if
-							vim.tbl_isempty(vim.fs.find("fourmolu.yaml", {
-								path = context.dirname,
-								upward = true,
-							}))
-						then
-							table.insert(args, "--indent-wheres=true")
-						end
-						return args
-					end,
-				},
-				prettierd = {
-					env = { PRETTIERD_LOCAL_PRETTIER_ONLY = 1 },
-					condition = function()
-						if next(vim.lsp.get_clients({ name = "biome" })) then
-							return false
-						end
-
-						local prettierd_info_cmd = vim.system({
-							"prettierd",
-							"--debug-info",
-							".",
-						}, {
-							env = { ["PRETTIERD_LOCAL_PRETTIER_ONLY"] = "1" },
-						}):wait()
-						return prettierd_info_cmd.stdout:find("Loaded") ~= nil
-					end,
-				},
-				swift_format = {
-					cwd = util.root_file({ ".swift-format" }),
-					require_cwd = true,
-				},
-				swiftformat = {
-					cwd = util.root_file({ ".swiftformat" }),
-					require_cwd = true,
-				},
-			},
-		})
-
+	cmd = { "ConformInfo" },
+	init = function()
 		vim.api.nvim_create_user_command("Format", function(command_opts)
-			local formatted = conform.format()
+			local formatted = conform().format()
 			if formatted then
 				vim.cmd.Retab({ bang = not command_opts.bang })
 			end
@@ -131,4 +71,67 @@ return {
 			end,
 		})
 	end,
+	opts = {
+		default_format_opts = { lsp_format = "fallback" },
+		formatters_by_ft = formatters_by_ft,
+		formatters = {
+			astyle = {
+				prepend_args = {
+					"--indent=force-tab",
+					"--convert-tabs",
+					"--style=attach",
+					"--squeeze-ws",
+				},
+				condition = function()
+					-- defer to clangd if .clang-format file is present
+					return vim.tbl_isempty(
+						vim.fs.find(".clang-format", { upward = true })
+					)
+				end,
+			},
+			fourmolu = {
+				prepend_args = function(_, context)
+					local args = {}
+					if
+						vim.tbl_isempty(vim.fs.find("fourmolu.yaml", {
+							path = context.dirname,
+							upward = true,
+						}))
+					then
+						table.insert(args, "--indent-wheres=true")
+					end
+					return args
+				end,
+			},
+			prettierd = {
+				env = { PRETTIERD_LOCAL_PRETTIER_ONLY = 1 },
+				condition = function()
+					if next(vim.lsp.get_clients({ name = "biome" })) then
+						return false
+					end
+
+					local prettierd_info_cmd = vim.system({
+						"prettierd",
+						"--debug-info",
+						".",
+					}, {
+						env = { ["PRETTIERD_LOCAL_PRETTIER_ONLY"] = "1" },
+					}):wait()
+					return prettierd_info_cmd.stdout:find("Loaded") ~= nil
+				end,
+			},
+			swift_format = {
+				cwd = function()
+					return vim.fs.root(".swift-format", { upward = true })
+				end,
+				require_cwd = true,
+			},
+			swiftformat = {
+				cwd = function()
+					return vim.fs.root(".swiftformat", { upward = true })
+				end,
+				require_cwd = true,
+			},
+		},
+	},
 }
