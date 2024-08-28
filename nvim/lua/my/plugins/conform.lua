@@ -54,7 +54,7 @@ return {
 	init = function()
 		vim.api.nvim_create_user_command("Format", function(command_opts)
 			local formatted = conform().format()
-			if formatted then
+			if formatted and vim.bo.filetype ~= "markdown" then
 				vim.cmd.Retab({ bang = not command_opts.bang })
 			end
 		end, {
