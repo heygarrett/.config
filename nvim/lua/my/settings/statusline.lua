@@ -23,6 +23,12 @@ local function get_parent_dir()
 	end
 end
 
+---@param cwd string
+---@return string
+local function format_cwd(cwd)
+	return ("(%s)"):format(cwd)
+end
+
 ---Get name of the current buffer
 ---@return string
 local function get_buffer_name()
@@ -36,14 +42,18 @@ local function get_buffer_name()
 	---@type string
 	local formatted_file_path
 	local truncated_file_path = vim.fn.fnamemodify(file_path, ":.")
-	if vim.startswith(truncated_file_path, "/") or truncated_file_path == "" then
-		formatted_file_path = vim.fn.fnamemodify(file_path, ":~")
+	if vim.startswith(truncated_file_path, "/") then
+		if truncated_file_path == vim.uv.cwd() then
+			formatted_file_path = vim.fs.joinpath(
+				vim.fn.fnamemodify(file_path, ":~:h"),
+				format_cwd(root_dir)
+			)
+		else
+			formatted_file_path = vim.fn.fnamemodify(file_path, ":~")
+		end
 	else
-		formatted_file_path = vim.fs.joinpath(
-			get_parent_dir(),
-			("(%s)"):format(root_dir),
-			truncated_file_path
-		)
+		formatted_file_path =
+			vim.fs.joinpath(get_parent_dir(), format_cwd(root_dir), truncated_file_path)
 	end
 	-- restore potential prefix
 	if prefix then
