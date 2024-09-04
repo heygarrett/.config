@@ -51,9 +51,9 @@ vim.api.nvim_create_user_command("Gobble", function(command_opts)
 			goto continue
 		end
 		local leading_whitespace = line:match("^%s+")
-		-- Exit early if there's no whitespace to chomp
+		-- skip gobbling if there's no whitespace to gobble
 		if not leading_whitespace then
-			return
+			goto skip
 		end
 		local line_depth = leading_whitespace:len()
 		if global_depth == 0 or line_depth < global_depth then
@@ -64,6 +64,7 @@ vim.api.nvim_create_user_command("Gobble", function(command_opts)
 	for index, line in ipairs(line_list) do
 		line_list[index] = line:sub(global_depth + 1)
 	end
+	::skip::
 	vim.fn.setreg("+", table.concat(line_list, "\n"))
 end, {
 	range = true,
