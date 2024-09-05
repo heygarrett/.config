@@ -117,7 +117,7 @@ return {
 				})
 			end,
 			tsserver = function()
-				lspconfig["tsserver"].setup({
+				lspconfig["ts_ls"].setup({
 					capabilities = capabilities,
 					init_options = {
 						preferences = {
