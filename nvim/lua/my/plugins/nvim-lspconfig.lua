@@ -119,6 +119,14 @@ return {
 			tsserver = function()
 				lspconfig["ts_ls"].setup({
 					capabilities = capabilities,
+					root_dir = function()
+						local dirs = vim.fs.find("package.json", {
+							upward = true,
+							limit = math.huge,
+						})
+						-- use directory with top-most `package.json`
+						return vim.fs.dirname(dirs[#dirs])
+					end,
 					init_options = {
 						preferences = {
 							includeInlayEnumMemberValueHints = true,
