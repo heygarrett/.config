@@ -35,7 +35,7 @@ return {
 				"shfmt",
 				"stylua",
 				"taplo",
-				"tsserver",
+				"ts_ls",
 				"vimls",
 				"yamlfmt",
 				"yamlls",
