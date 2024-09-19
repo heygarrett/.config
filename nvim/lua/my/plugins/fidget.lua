@@ -1,14 +1,25 @@
+---@param submodule string?
+local fidget = function(submodule)
+	submodule = submodule and "." .. submodule or ""
+	return require("fidget" .. submodule)
+end
+
 return {
 	"https://github.com/j-hui/fidget.nvim",
+	init = function()
+		vim.api.nvim_create_user_command("Messages", function()
+			fidget("notification").show_history()
+		end, { desc = "fidget history" })
+	end,
 	config = function()
-		require("fidget").setup({
+		fidget().setup({
 			progress = { suppress_on_insert = true },
 			notification = {
 				override_vim_notify = true,
 				configs = {
 					default = vim.tbl_extend(
 						"force",
-						require("fidget.notification").default_config,
+						fidget("notification").default_config,
 						{ update_hook = false }
 					),
 				},
