@@ -66,5 +66,37 @@ return {
 			mods = "OPT",
 			action = wezterm.action.MoveTabRelative(1),
 		},
+
+		-- disable font size adjustments using CTRL
+		{
+			key = "-",
+			mods = "CTRL",
+			action = wezterm.action.DisableDefaultAssignment,
+		},
+		{
+			key = "_",
+			mods = "CTRL|SHIFT",
+			action = wezterm.action.DisableDefaultAssignment,
+		},
+		{
+			key = "=",
+			mods = "CTRL",
+			action = wezterm.action.DisableDefaultAssignment,
+		},
+		{
+			key = "+",
+			mods = "CTRL|SHIFT",
+			action = wezterm.action.DisableDefaultAssignment,
+		},
+		{
+			key = "0",
+			mods = "CTRL",
+			action = wezterm.action.DisableDefaultAssignment,
+		},
+		{
+			key = ")",
+			mods = "CTRL|SHIFT",
+			action = wezterm.action.DisableDefaultAssignment,
+		},
 	},
 }
