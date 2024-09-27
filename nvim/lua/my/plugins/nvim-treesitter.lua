@@ -11,6 +11,7 @@ return {
 		ensure_installed = { "comment", "markdown_inline" },
 		ignore_install = { "diff", "gitcommit" },
 		highlight = { enable = true },
+		indent = { enable = true },
 		incremental_selection = {
 			enable = true,
 			keymaps = {
