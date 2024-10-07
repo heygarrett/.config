@@ -9,8 +9,12 @@ vim.api.nvim_create_user_command("Update", function()
 			vim.cmd.Lazy({ args = { "sync" } })
 		end,
 	})
-	local _, mason_tool_installer = pcall(require, "mason-tool-installer")
-	if mason_tool_installer then
+	local ok, _ = pcall(require, "mason")
+	if ok then
+		vim.cmd.MasonUpdate()
+	end
+	ok, _ = pcall(require, "mason-tool-installer")
+	if ok then
 		vim.cmd.MasonToolsUpdate()
 	end
 end, { desc = "update plugins and packages" })
