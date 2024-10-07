@@ -1,9 +1,6 @@
 return {
 	{
 		"https://github.com/williamboman/mason.nvim",
-		build = function()
-			vim.cmd.MasonUpdate()
-		end,
 		opts = { PATH = "append" },
 	},
 	{
