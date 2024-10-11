@@ -10,6 +10,7 @@ function git
 					break
 			end
 		end
+		echo git $argv
 	end
 	command git $argv
 end
