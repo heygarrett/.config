@@ -2,7 +2,7 @@ function ,review_worktrees
 	set --local removal_list
 	for wt in $(git worktree list | string split --fields 1 " ")
 		echo $wt
-		while read --function --prompt-str "Remove? [y/n] " remove; or return 1
+		while read --local --prompt-str "Remove? [y/n] " remove; or return 1
 			switch $remove
 				case y Y
 					set --append removal_list $wt
@@ -20,7 +20,8 @@ function ,review_worktrees
 	for wt in $removal_list
 		echo -e "\t"$wt
 	end
-	while read --function --prompt-str "Remove worktrees in this list? [y/n] " remove; or return 1
+	set --local prompt "Remove worktrees in this list? [y/n] "
+	while read --local --prompt-str $prompt remove; or return 1
 		switch $remove
 			case y Y
 				for index in (seq $list_count)
