@@ -22,6 +22,16 @@ return {
 			end,
 
 			-- Mason language servers with custom setups
+			basedpyright = function()
+				lspconfig["basedpyright"].setup({
+					capabilities = capabilities,
+					settings = {
+						basedpyright = {
+							analysis = { typeCheckingMode = "standard" },
+						},
+					},
+				})
+			end,
 			biome = function()
 				lspconfig["biome"].setup({
 					capabilities = capabilities,
