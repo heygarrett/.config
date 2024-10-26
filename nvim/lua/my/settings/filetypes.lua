@@ -5,6 +5,7 @@ vim.filetype.add({
 	},
 	filename = {
 		env = "dotenv",
+		[".swift-format"] = "json",
 	},
 	pattern = {
 		["^env%.[%w_-]+"] = "dotenv",
