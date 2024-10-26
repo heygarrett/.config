@@ -130,6 +130,15 @@ return {
 					end,
 				})
 			end,
+			taplo = function()
+				lspconfig["taplo"].setup({
+					capabilities = capabilities,
+					-- https://github.com/tamasfe/taplo/issues/580#issuecomment-2361679688
+					root_dir = function()
+						return vim.uv.cwd()
+					end,
+				})
+			end,
 			ts_ls = function()
 				lspconfig["ts_ls"].setup({
 					capabilities = capabilities,
