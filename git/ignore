@@ -2,5 +2,6 @@
 .DS_Store
 .direnv
 .envrc
+.mise.local.toml
 Session.vim
 tags
