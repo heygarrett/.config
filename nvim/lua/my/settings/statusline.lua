@@ -1,4 +1,4 @@
----Get the name of the current branch
+-- get the name of the current branch
 ---@return string?
 local function get_branch_name()
 	if vim.g.launched_by_shell then
@@ -29,7 +29,7 @@ local function format_cwd(cwd)
 	return ("(%s)"):format(cwd)
 end
 
----Get name of the current buffer
+-- get name of the current buffer
 ---@return string
 local function get_buffer_name()
 	-- get root of cwd
@@ -80,7 +80,7 @@ vim.api.nvim_create_autocmd({ "CursorHold", "TextChanged" }, {
 	end,
 })
 
----Get instance and count of search matches
+-- get instance and count of search matches
 ---@return string?
 local function get_search_count()
 	if vim.v.hlsearch == 1 and vim.api.nvim_get_mode().mode:match("n") then
@@ -91,7 +91,7 @@ local function get_search_count()
 	end
 end
 
----Get formatted and highlighted string of diagnostic counts
+-- get formatted and highlighted string of diagnostic counts
 ---@return string?
 local function get_diagnostics()
 	local diagnostics = vim.diagnostic.get(0)
@@ -141,7 +141,7 @@ local function get_diagnostics()
 	return table.concat(output, " ")
 end
 
----Get location in current buffer as a percentage
+-- get location in current buffer as a percentage
 ---@return string
 local function get_progress()
 	local p = vim.api.nvim_eval_statusline("%p", {}).str
@@ -162,7 +162,7 @@ local function get_progress()
 	end
 end
 
----Format string for left side of statusline
+-- format string for left side of statusline
 ---@param branch string?
 ---@param buffer string?
 ---@return string
@@ -190,10 +190,30 @@ local function generate_left(branch, buffer)
 	return table.concat(left, " ")
 end
 
----Truncate branch and buffer names for narrow window
----@param overflow number
----@return string?
+-- format string for right side of status line
 ---@return string
+local function generate_right()
+	local right_table = {}
+	local search_count = get_search_count()
+	if search_count then
+		table.insert(right_table, search_count)
+	end
+	table.insert(right_table, get_diagnostics())
+	if vim.b.gitsigns_status ~= "" then
+		table.insert(right_table, vim.b.gitsigns_status)
+	end
+	local file_type = vim.api.nvim_eval_statusline("%Y", {}).str:lower()
+	if file_type ~= "" then
+		table.insert(right_table, file_type)
+	end
+	table.insert(right_table, get_progress())
+
+	return table.concat(right_table, " | ")
+end
+
+-- truncate branch and buffer names for narrow window
+---@param overflow number
+---@return string?, string
 local function truncate(overflow)
 	local min_width = 15
 	local new_branch = vim.b.branch_name
@@ -222,28 +242,14 @@ local function truncate(overflow)
 	return new_branch, new_buffer
 end
 
----Generate statusline
+-- generate statusline
 ---@return string
 function Status_Line()
 	local left_string = generate_left()
 	local left_string_length =
 		vim.api.nvim_eval_statusline(left_string, { maxwidth = 0 }).width
 
-	local right_table = {}
-	local search_count = get_search_count()
-	if search_count then
-		table.insert(right_table, search_count)
-	end
-	table.insert(right_table, get_diagnostics())
-	if vim.b.gitsigns_status ~= "" then
-		table.insert(right_table, vim.b.gitsigns_status)
-	end
-	local file_type = vim.api.nvim_eval_statusline("%Y", {}).str:lower()
-	if file_type ~= "" then
-		table.insert(right_table, file_type)
-	end
-	table.insert(right_table, get_progress())
-	local right_string = table.concat(right_table, " | ")
+	local right_string = generate_right()
 	local right_string_length = vim.api.nvim_eval_statusline(right_string, {}).width
 
 	local divider = " | "
