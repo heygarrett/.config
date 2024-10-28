@@ -31,6 +31,7 @@ if status is-login
 		$GOPATH/bin \
 		$CARGO_HOME/bin \
 		/opt/homebrew/bin \
+		/opt/homebrew/sbin \
 		/opt/homebrew/opt/rustup/bin
 
 	# settings
