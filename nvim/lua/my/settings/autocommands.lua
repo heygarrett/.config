@@ -1,4 +1,4 @@
-local group = vim.api.nvim_create_augroup("options", { clear = true })
+local group = vim.api.nvim_create_augroup("autocommands", { clear = true })
 
 vim.api.nvim_create_autocmd("BufRead", {
 	desc = "restore cursor position",
@@ -86,5 +86,15 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 		local cs = vim.bo[event_opts.buf].commentstring
 		vim.bo[event_opts.buf].commentstring = cs:gsub("(%S)%%s", "%1 %%s")
 			:gsub("%%s(%S)", "%%s %1")
+	end,
+})
+
+vim.api.nvim_create_autocmd("TermOpen", {
+	desc = "terminal options",
+	group = group,
+	callback = function()
+		vim.cmd.startinsert()
+		vim.o.cursorline = false
+		vim.o.number = false
 	end,
 })
