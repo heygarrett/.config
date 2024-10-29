@@ -237,11 +237,10 @@ return {
 		})
 		lspconfig["sourcekit"].setup({
 			capabilities = capabilities,
-			root_dir = function()
-				return vim.fs.root(0, {
+			root_dir = function(_, bufnr)
+				return vim.fs.root(bufnr, {
 					"Package.swift",
 					"*.xcodeproj",
-					".git",
 				})
 			end,
 		})
