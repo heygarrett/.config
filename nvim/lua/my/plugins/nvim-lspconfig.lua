@@ -174,7 +174,6 @@ return {
 					capabilities = capabilities,
 					settings = {
 						yaml = {
-							format = { enable = true },
 							keyOrdering = false,
 						},
 					},
