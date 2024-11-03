@@ -1,6 +1,9 @@
 vim.diagnostic.config({
 	virtual_text = false,
-	float = { source = true },
+	float = {
+		source = true,
+		border = "single",
+	},
 })
 
 for _, type in ipairs({ "Error", "Warn", "Hint", "Info" }) do
