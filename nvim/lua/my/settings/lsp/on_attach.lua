@@ -16,12 +16,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		require("my.settings.lsp.completion").setup(bufnr, client)
 
 		-- Set border of floating window preview
-		local orig_util_open_floating_preview = vim.lsp.util.open_floating_preview
-		---@diagnostic disable-next-line: duplicate-set-field
-		function vim.lsp.util.open_floating_preview(contents, syntax, opts, ...)
-			opts.border = "single"
-			return orig_util_open_floating_preview(contents, syntax, opts, ...)
-		end
+		vim.lsp.handlers["textDocument/hover"] =
+			vim.lsp.with(vim.lsp.handlers.hover, { border = "single" })
+		vim.lsp.handlers["textDocument/signatureHelp"] =
+			vim.lsp.with(vim.lsp.handlers.signature_help, { border = "single" })
 
 		-- Enable inlay hints
 		vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
