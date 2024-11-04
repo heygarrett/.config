@@ -5,7 +5,9 @@ return {
 		flavor = "mocha",
 		custom_highlights = function(colors)
 			return {
-				LineNr = { fg = colors.surface2 },
+				LineNr = {
+					fg = colors.surface2,
+				},
 			}
 		end,
 		styles = {
