@@ -5,3 +5,8 @@ vim.cmd.highlight({
 vim.cmd.highlight({
 	args = { "StatusLineNC", "guifg=NvimLightGrey4", "guibg=NvimDarkGrey2" },
 })
+
+-- make inlay hints more visible in merge conflicts
+vim.cmd.highlight({
+	args = { "DiffChange", "guifg=NvimLightGrey1", "guibg=NvimDarkGrey3" },
+})
