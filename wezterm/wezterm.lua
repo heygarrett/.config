@@ -1,7 +1,7 @@
 local wezterm = require("wezterm")
 
 return {
-	color_scheme = "Catppuccin Mocha",
+	color_scheme = "NvimDark",
 
 	font = wezterm.font_with_fallback({
 		{ family = "Martian Mono" },
