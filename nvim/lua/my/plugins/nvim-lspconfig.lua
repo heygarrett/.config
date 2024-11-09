@@ -120,6 +120,10 @@ return {
 								},
 							})
 					end,
+					on_attach = function()
+						-- https://github.com/LuaLS/lua-language-server/issues/1809
+						vim.api.nvim_set_hl(0, "@lsp.type.comment", {})
+					end,
 				})
 			end,
 			ruff = function()
