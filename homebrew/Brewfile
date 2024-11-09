@@ -33,6 +33,7 @@ brew "swiftformat"
 brew "tealdeer"
 brew "tokei"
 brew "tree"
+brew "uv"
 brew "vhs"
 brew "xdg-ninja", args: ["HEAD"]
 brew "yq"
