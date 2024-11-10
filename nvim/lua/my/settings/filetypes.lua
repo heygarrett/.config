@@ -4,7 +4,9 @@ vim.filetype.add({
 		purs = "purescript",
 	},
 	filename = {
+		Brewfile = "ruby",
 		env = "dotenv",
+		fish_variables = "fish",
 		[".swift-format"] = "json",
 	},
 	pattern = {
