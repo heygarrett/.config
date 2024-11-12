@@ -71,7 +71,10 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 					if indent ~= "tabs" then
 						vim.bo.tabstop = tonumber(indent)
 					end
-					vim.cmd.retab({ bang = true })
+					vim.cmd.retab({
+						bang = true,
+						range = { command_opts.line1, command_opts.line2 },
+					})
 					vim.bo.tabstop = preferred_tabstop
 					if vim.bo.expandtab then
 						vim.bo.shiftwidth = preferred_tabstop
@@ -82,6 +85,7 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 			end,
 			{
 				bang = true,
+				range = "%",
 				desc = "custom retab",
 			}
 		)
