@@ -53,12 +53,26 @@ return {
 	cmd = { "ConformInfo" },
 	init = function()
 		vim.api.nvim_create_user_command("Format", function(command_opts)
-			local formatted = conform().format()
+			local format_range
+			local retab_range
+			if command_opts.range == 2 then
+				format_range = {
+					start = { command_opts.line1, 0 },
+					["end"] = { command_opts.line2, 0 },
+				}
+				retab_range = { command_opts.line1, command_opts.line2 }
+			end
+
+			local formatted = conform().format({ range = format_range })
 			if formatted and vim.bo.filetype ~= "markdown" then
-				vim.cmd.Retab({ bang = not command_opts.bang })
+				vim.cmd.Retab({
+					bang = not command_opts.bang,
+					range = retab_range,
+				})
 			end
 		end, {
 			bang = true,
+			range = "%",
 			desc = "synchronous formatting",
 		})
 
