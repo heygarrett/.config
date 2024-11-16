@@ -2,7 +2,7 @@ local conform = function()
 	return require("conform")
 end
 
-local formatters_by_ft = {
+local formatters_by_filetype = {
 	c = { "astyle" },
 	fish = { "fish_indent" },
 	go = {
@@ -44,7 +44,7 @@ local format_with_prettierd = {
 }
 
 for _, ft in ipairs(format_with_prettierd) do
-	formatters_by_ft[ft] = { "prettierd" }
+	formatters_by_filetype[ft] = { "prettierd" }
 end
 
 return {
@@ -87,7 +87,7 @@ return {
 	end,
 	opts = {
 		default_format_opts = { lsp_format = "fallback" },
-		formatters_by_ft = formatters_by_ft,
+		formatters_by_ft = formatters_by_filetype,
 		formatters = {
 			astyle = {
 				prepend_args = {
