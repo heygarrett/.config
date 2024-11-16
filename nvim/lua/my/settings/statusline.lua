@@ -72,11 +72,11 @@ vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "FocusGained" }, {
 		vim.b.buffer_name = get_buffer_name()
 	end,
 })
-vim.api.nvim_create_autocmd({ "CursorHold", "TextChanged" }, {
+vim.api.nvim_create_autocmd({ "CursorHold", "DiagnosticChanged", "TextChanged" }, {
 	desc = "refresh statusline",
 	group = group,
 	callback = function()
-		vim.cmd.redraws()
+		vim.cmd.redrawstatus()
 	end,
 })
 
