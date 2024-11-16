@@ -25,7 +25,9 @@ vim.api.nvim_create_autocmd("FileType", {
 	pattern = "json",
 	callback = function()
 		if vim.fn.search([[\v%(^|\s)//]], "nw", 0, 500) ~= 0 then
-			vim.cmd.setlocal({ args = { "filetype=jsonc" } })
+			vim.cmd.setlocal({
+				args = { "filetype=jsonc" },
+			})
 		end
 	end,
 })

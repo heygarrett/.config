@@ -6,7 +6,9 @@ vim.api.nvim_create_user_command("Update", function()
 		group = group,
 		once = true,
 		callback = function()
-			vim.cmd.Lazy({ args = { "sync" } })
+			vim.cmd.Lazy({
+				args = { "sync" },
+			})
 		end,
 	})
 	local ok, _ = pcall(require, "mason")
