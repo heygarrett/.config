@@ -146,6 +146,13 @@ return {
 			ts_ls = function()
 				lspconfig["ts_ls"].setup({
 					capabilities = capabilities,
+					root_dir = function(file)
+						return vim.fs.root(
+							file,
+							{ "package.json", "tsconfig.json", "jsconfig.json" }
+						)
+					end,
+					single_file_support = false,
 					init_options = {
 						preferences = {
 							includeInlayEnumMemberValueHints = true,
@@ -178,6 +185,12 @@ return {
 		})
 
 		-- Non-Mason language servers
+		lspconfig["denols"].setup({
+			capabilities = capabilities,
+			root_dir = function(file)
+				return vim.fs.root(file, { "deno.json", "deno.jsonc" })
+			end,
+		})
 		lspconfig["hls"].setup({
 			capabilities = capabilities,
 			on_attach = function(client)
