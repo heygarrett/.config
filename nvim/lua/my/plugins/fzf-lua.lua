@@ -69,6 +69,16 @@ return {
 			desc = "fzf-lua picker: commits",
 		})
 		vim.api.nvim_create_user_command("Find", function()
+			local cmd_result = vim.system({
+				"git",
+				"rev-parse",
+				"--is-inside-work-tree",
+			}):wait()
+			if cmd_result.code ~= 0 then
+				fzf_lua().files()
+				return
+			end
+
 			local ok, choice = pcall(vim.fn.confirm, "", "&All\n&tracked")
 			if not ok then
 				return
