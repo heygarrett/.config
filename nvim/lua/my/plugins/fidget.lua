@@ -1,7 +1,7 @@
----@param submodule string?
+---@param submodule? string
 local fidget = function(submodule)
-	submodule = submodule and "." .. submodule or ""
-	return require("fidget" .. submodule)
+	local module_path = table.concat({ "fidget", submodule }, ".")
+	return require(module_path)
 end
 
 return {
