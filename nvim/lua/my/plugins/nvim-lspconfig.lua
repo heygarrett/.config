@@ -82,8 +82,8 @@ return {
 						Lua = {
 							hint = {
 								enable = true,
-								-- ---@type "Auto" | "Enable" | "Disable"
-								-- arrayIndex = "Auto",
+								---@type "Auto" | "Enable" | "Disable"
+								arrayIndex = "Disable",
 								-- await = true,
 								-- ---@type "All" | "Literal" | "Disable"
 								-- paramName = "All",
