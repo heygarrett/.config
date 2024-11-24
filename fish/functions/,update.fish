@@ -5,7 +5,7 @@ function ,update
 	hr
 	npm --global update
 	hr
-	pushd $HOME/.config
-	nvim "+Update"
+	pushd "$HOME"/.config
+	nvim +Update
 	popd
 end
