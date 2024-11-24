@@ -1,3 +1,7 @@
+[ui]
+# https://github.com/martinvonz/jj/issues/3753
+editor = ["nvim", "--cmd", "let g:launched_by_shell=1"]
+
 [user]
 name = "Garrett"
 email = "hey@heygarrett.com"
