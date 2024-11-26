@@ -64,7 +64,11 @@ return {
 			end
 
 			local formatted = conform().format({ range = format_range })
-			if formatted and vim.bo.filetype ~= "markdown" then
+			if
+				formatted
+				-- Markdown may use a mix of tabs and spaces (code snippets)
+				and vim.bo.filetype ~= "markdown"
+			then
 				vim.cmd.Retab({
 					bang = not command_opts.bang,
 					range = retab_range,
