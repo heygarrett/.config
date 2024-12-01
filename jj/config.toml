@@ -5,3 +5,9 @@ email = "hey@heygarrett.com"
 [ui]
 # https://github.com/martinvonz/jj/issues/3753
 editor = ["nvim", "--cmd", "let g:launched_by_shell=1"]
+merge-editor = "nvim"
+
+[merge-tools.nvim]
+program = "nvim"
+merge-args = ["-c", "JJDiffConflicts!", "$output", "$base", "$left", "$right"]
+merge-tool-edits-conflict-markers = true
