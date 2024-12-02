@@ -2,11 +2,11 @@ return {
 	"https://github.com/akinsho/toggleterm.nvim",
 	keys = {
 		{
-			"<leader>t",
+			"<c-w>t",
 			function()
 				vim.cmd.ToggleTerm()
 			end,
-			mode = { "n" },
+			mode = { "n", "t" },
 		},
 	},
 	opts = {
