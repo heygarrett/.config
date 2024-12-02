@@ -2,6 +2,12 @@
 name = "Garrett"
 email = "hey@heygarrett.com"
 
+[signing]
+sign-all = true
+backend = "ssh"
+backends.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBygFvCSAToUZZeOru46pxOc2XW44w351Ds+SzbtaEg2"
+
 [ui]
 # https://github.com/martinvonz/jj/issues/3753
 editor = ["nvim", "--cmd", "let g:launched_by_shell=1"]
