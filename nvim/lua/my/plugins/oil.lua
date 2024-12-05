@@ -1,8 +1,18 @@
+local oil = function()
+	return require("oil")
+end
+
 return {
 	"https://github.com/stevearc/oil.nvim",
+	init = function()
+		vim.api.nvim_create_user_command("Ex", function()
+			oil().open()
+		end, { desc = "Open file browser" })
+	end,
 	opts = {
 		view_options = {
 			show_hidden = true,
+			---@param name string
 			is_always_hidden = function(name)
 				return name == ".."
 			end,
@@ -15,11 +25,4 @@ return {
 			["<C-v>"] = "actions.select_vsplit",
 		},
 	},
-	config = function(_, opts)
-		local oil = require("oil")
-		oil.setup(opts)
-		vim.api.nvim_create_user_command("Ex", function()
-			oil.open()
-		end, { desc = "Open file browser" })
-	end,
 }
