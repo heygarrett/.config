@@ -35,6 +35,7 @@ local format_with_prettierd = {
 	"javascript",
 	"javascriptreact",
 	"json",
+	"json5",
 	"jsonc",
 	"markdown",
 	"scss",
