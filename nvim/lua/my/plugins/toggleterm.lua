@@ -2,7 +2,7 @@ return {
 	"https://github.com/akinsho/toggleterm.nvim",
 	keys = {
 		{
-			"<c-w>t",
+			"<c-w><space>",
 			function()
 				vim.cmd.ToggleTerm()
 			end,
