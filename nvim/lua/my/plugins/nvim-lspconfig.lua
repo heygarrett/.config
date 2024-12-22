@@ -90,7 +90,7 @@ return {
 								-- paramType = true,
 								-- ---@type "All" | "SameLine" | "Disable"
 								-- semicolon = "SameLine",
-								-- setType = false,
+								setType = true,
 							},
 						},
 					},
