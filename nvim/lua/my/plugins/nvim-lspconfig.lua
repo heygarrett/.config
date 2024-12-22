@@ -85,6 +85,7 @@ return {
 								---@type "Auto" | "Enable" | "Disable"
 								arrayIndex = "Disable",
 								-- await = true,
+								-- awaitPropagate = false,
 								-- ---@type "All" | "Literal" | "Disable"
 								-- paramName = "All",
 								-- paramType = true,
