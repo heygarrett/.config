@@ -31,7 +31,6 @@ end
 local function copy_hash(selected)
 	local commit = selected[1]:match("[^ ]+")
 	vim.fn.setreg("+", commit)
-	---@diagnostic disable: param-type-mismatch
 	vim.defer_fn(function()
 		vim.notify(commit .. " copied to clipboard!")
 	end, 500)
