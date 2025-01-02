@@ -142,6 +142,9 @@ return {
 					root_dir = function()
 						return vim.uv.cwd()
 					end,
+					on_attach = function(client)
+						client.server_capabilities.documentFormattingProvider = false
+					end,
 				})
 			end,
 			ts_ls = function()
