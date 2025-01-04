@@ -10,8 +10,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			return
 		end
 
-		-- Diagnostics options
-		require("my.settings.lsp.diagnostics")
 		-- Use omnicomplete with LSP
 		require("my.settings.lsp.completion").setup(bufnr, client)
 
