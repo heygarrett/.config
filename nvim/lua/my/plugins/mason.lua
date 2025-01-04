@@ -16,6 +16,7 @@ return {
 				"biome",
 				"clangd",
 				"cmake",
+				"commitlint",
 				"eslint",
 				"fourmolu",
 				"goimports",

@@ -1,5 +1,16 @@
+---@return string|nil
+local commitlint = function()
+	local config_dir = vim.fs.root(0, function(name)
+		return name:match("commitlint") ~= nil
+	end)
+
+	return config_dir and "commitlint"
+end
+
 local linters_by_filetype = {
 	fish = { "fish" },
+	gitcommit = { commitlint },
+	jj = { commitlint },
 }
 
 return {
@@ -13,10 +24,19 @@ return {
 			---@type string[]
 			local available_linters = {}
 			for _, linter in ipairs(linters) do
+				if type(linter) == "function" then
+					local potential_linter = linter()
+					if not potential_linter then
+						goto continue
+					end
+					linter = potential_linter
+				end
 				if vim.fn.executable(nvim_lint.linters[linter].cmd) == 1 then
 					table.insert(available_linters, linter)
 				end
+				::continue::
 			end
+
 			nvim_lint.linters_by_ft[filetype] = available_linters
 		end
 
