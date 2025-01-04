@@ -7,16 +7,25 @@ return {
 	lazy = true,
 	ft = vim.tbl_keys(linters_by_filetype),
 	config = function()
-		local lint = require("lint")
+		local nvim_lint = require("lint")
 
-		lint.linters_by_ft = linters_by_filetype
+		for filetype, linters in pairs(linters_by_filetype) do
+			---@type string[]
+			local available_linters = {}
+			for _, linter in ipairs(linters) do
+				if vim.fn.executable(nvim_lint.linters[linter].cmd) == 1 then
+					table.insert(available_linters, linter)
+				end
+			end
+			nvim_lint.linters_by_ft[filetype] = available_linters
+		end
 
 		local group = vim.api.nvim_create_augroup("nvim-lint", { clear = true })
 		vim.api.nvim_create_autocmd({ "BufWritePost", "InsertLeave", "TextChanged" }, {
 			desc = "nvim-lint",
 			group = group,
 			callback = function()
-				lint.try_lint()
+				nvim_lint.try_lint()
 			end,
 		})
 	end,
