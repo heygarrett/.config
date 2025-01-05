@@ -1,10 +1,10 @@
 ---@return string?
 local commitlint = function()
-	local config_dir = vim.fs.root(0, function(name)
+	local config_exists = next(vim.fs.find(function(name)
 		return name:match("commitlint") ~= nil
-	end)
+	end, { upward = true, limit = 1 }))
 
-	return config_dir and "commitlint"
+	return config_exists and "commitlint"
 end
 
 local linters_by_filetype = {
