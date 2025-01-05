@@ -1,4 +1,4 @@
----@return string|nil
+---@return string?
 local commitlint = function()
 	local config_dir = vim.fs.root(0, function(name)
 		return name:match("commitlint") ~= nil
@@ -22,7 +22,7 @@ return {
 
 		for filetype, linters in pairs(linters_by_filetype) do
 			---@type string[]
-			local available_linters = {}
+			local resolved_linters = {}
 			for _, linter in ipairs(linters) do
 				if type(linter) == "function" then
 					local potential_linter = linter()
@@ -31,13 +31,11 @@ return {
 					end
 					linter = potential_linter
 				end
-				if vim.fn.executable(nvim_lint.linters[linter].cmd) == 1 then
-					table.insert(available_linters, linter)
-				end
+				table.insert(resolved_linters, linter)
 				::continue::
 			end
 
-			nvim_lint.linters_by_ft[filetype] = available_linters
+			nvim_lint.linters_by_ft[filetype] = resolved_linters
 		end
 
 		local group = vim.api.nvim_create_augroup("nvim-lint", { clear = true })
@@ -45,7 +43,7 @@ return {
 			desc = "nvim-lint",
 			group = group,
 			callback = function()
-				nvim_lint.try_lint()
+				nvim_lint.try_lint(nil, { ignore_errors = true })
 			end,
 		})
 	end,
