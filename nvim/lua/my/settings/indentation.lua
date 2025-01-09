@@ -1,3 +1,5 @@
+local helpers = require("my.helpers")
+
 -- Default to tabs
 vim.o.expandtab = false
 vim.o.shiftwidth = 0
@@ -16,30 +18,16 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 		-- override expandtab set by ftplugins
 		vim.bo.expandtab = vim.go.expandtab
 
+		-- detect indentation
+		local detected_indent = helpers.get_indentation_size(event_opts.buf)
+		if detected_indent ~= 0 then
+			vim.bo.expandtab = true
+			vim.bo.tabstop = detected_indent
+		end
+
 		-- load editorconfig
 		if vim.bo[event_opts.buf].filetype ~= "gitcommit" then
 			require("editorconfig").config(event_opts.buf)
-		end
-
-		-- run guess-indent
-		local guess_indent_loaded, guess_indent = pcall(require, "guess-indent")
-		if guess_indent_loaded then
-			-- defers to editorconfig
-			vim.cmd.GuessIndent({
-				args = { "context", "silent" },
-			})
-			-- get indent size from buffer if editorconfig specifies spaces for
-			-- indentation but not the size of the indent
-			if
-				vim.b.editorconfig
-				and vim.b.editorconfig.indent_style == "space"
-				and not vim.b.editorconfig.indent_size
-			then
-				local indent = guess_indent.guess_from_buffer()
-				if indent ~= "tabs" then
-					vim.bo.tabstop = tonumber(indent)
-				end
-			end
 		end
 
 		-- finalize listchars
@@ -51,8 +39,7 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 			"Retab",
 			function(command_opts)
 				-- match indentation to value of expandtab
-				local indent = guess_indent.guess_from_buffer()
-				if (indent == "tabs") == vim.bo.expandtab then
+				if (detected_indent == 0) == vim.bo.expandtab then
 					-- prompt for retab if formatting manually
 					if command_opts.bang then
 						local success, choice = pcall(
@@ -70,8 +57,8 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 					local preferred_tabstop = (
 						vim.bo.expandtab and vim.bo.tabstop or vim.go.tabstop
 					)
-					if indent ~= "tabs" then
-						vim.bo.tabstop = tonumber(indent)
+					if detected_indent ~= 0 then
+						vim.bo.tabstop = detected_indent
 					end
 					vim.cmd.retab({
 						bang = true,
