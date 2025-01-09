@@ -35,9 +35,8 @@ vim.api.nvim_create_autocmd("FileType", {
 						-- Comments are not permitted in JSON. [521]
 						and diagnostic.code == 521
 					then
-						vim.cmd.setlocal({
-							args = { "filetype=jsonc" },
-						})
+						vim.bo.filetype = "jsonc"
+
 						local jsonls_client_id = next(vim.lsp.get_clients({
 							bufnr = diagnostic_event_opts.buf,
 							name = "jsonls",
