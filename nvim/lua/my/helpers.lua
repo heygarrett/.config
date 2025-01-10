@@ -31,6 +31,7 @@ M.get_indentation_size = function(bufnr)
 		last_line = 100 + math.floor(math.sqrt(last_line))
 	end
 
+	---@type string[]
 	local leading_whitespace = {}
 	for _, line in ipairs(vim.api.nvim_buf_get_lines(bufnr, 0, last_line, false)) do
 		table.insert(leading_whitespace, line:match("^%s+"))
