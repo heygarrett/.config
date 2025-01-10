@@ -10,7 +10,9 @@ vim.filetype.add({
 		[".swift-format"] = "json",
 	},
 	pattern = {
-		["^env%.[%w_-]+"] = "dotenv",
+		-- TODO: figure out why these don't work
+		["^env%."] = "dotenv",
+		["%.env%."] = "dotenv",
 	},
 })
 
