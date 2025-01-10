@@ -20,7 +20,7 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 
 		-- detect indentation
 		local detected_indent = helpers.get_indentation_size(event_opts.buf)
-		if detected_indent ~= 0 then
+		if detected_indent ~= 0 and vim.bo.filetype ~= "gitcommit" then
 			vim.bo.expandtab = true
 			vim.bo.tabstop = detected_indent
 		end
