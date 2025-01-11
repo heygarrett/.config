@@ -95,3 +95,10 @@ vim.api.nvim_create_user_command("Stab", function()
 end, {
 	desc = "create a split from two tabs",
 })
+
+vim.api.nvim_create_user_command("CopyFileName", function()
+	local name = vim.api.nvim_buf_get_name(0)
+	name = vim.fn.fnamemodify(name, ":.")
+	vim.fn.setreg("+", name)
+	vim.notify_once("File name copied to clipboard!")
+end, { desc = "copy file name to clipboard" })
