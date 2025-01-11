@@ -39,7 +39,8 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 			"Retab",
 			function(command_opts)
 				-- match indentation to value of expandtab
-				if (detected_indent == 0) == vim.bo.expandtab then
+				local current_indent = helpers.get_indentation_size(event_opts.buf)
+				if (current_indent == 0) == vim.bo.expandtab then
 					-- prompt for retab if formatting manually
 					if command_opts.bang then
 						local success, choice = pcall(
@@ -57,8 +58,8 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 					local preferred_tabstop = (
 						vim.bo.expandtab and vim.bo.tabstop or vim.go.tabstop
 					)
-					if detected_indent ~= 0 then
-						vim.bo.tabstop = detected_indent
+					if current_indent ~= 0 then
+						vim.bo.tabstop = current_indent
 					end
 					vim.cmd.retab({
 						bang = true,
