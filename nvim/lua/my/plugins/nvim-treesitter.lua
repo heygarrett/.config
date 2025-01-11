@@ -9,7 +9,7 @@ return {
 	opts = {
 		auto_install = true,
 		ensure_installed = { "comment", "markdown_inline" },
-		ignore_install = { "diff", "gitcommit" },
+		ignore_install = { "diff", "gitcommit", "git_rebase" },
 		highlight = { enable = true },
 		indent = { enable = true },
 		incremental_selection = {
