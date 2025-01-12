@@ -11,12 +11,8 @@ key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBygFvCSAToUZZeOru46pxOc2XW44w351Ds+S
 [ui]
 # https://github.com/martinvonz/jj/issues/3753
 editor = ["nvim", "--cmd", "let g:launched_by_shell=1"]
-merge-editor = "nvim"
+merge-editor = "nvimdiff"
 
-[merge-tools.nvim]
+[merge-tools.nvimdiff]
 program = "nvim"
-merge-args = [
-	"-c", "let g:jj_diffconflicts_marker_length=$marker_length",
-	"-c", "JJDiffConflicts!", "$output", "$base", "$left", "$right",
-]
-merge-tool-edits-conflict-markers = true
+merge-args = ["-c", "JJdiff", "-d", "$left", "$output", "$right"]
