@@ -92,9 +92,7 @@ vim.api.nvim_create_user_command("Stab", function()
 		mods = { vertical = true },
 	})
 	vim.api.nvim_win_close(window, false)
-end, {
-	desc = "create a split from two tabs",
-})
+end, { desc = "create a split from two tabs" })
 
 vim.api.nvim_create_user_command("CopyFileName", function()
 	local name = vim.api.nvim_buf_get_name(0)
