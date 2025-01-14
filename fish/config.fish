@@ -19,6 +19,8 @@ if status is-login
 	set --global --export NPM_CONFIG_USERCONFIG "$XDG_CONFIG_HOME"/npm/npmrc
 	set --global --export OP_CONFIG_DIR "$XDG_CONFIG_HOME"/op
 	set --global --export RUSTUP_HOME "$XDG_DATA_HOME"/rustup
+	set --global --export SSH_AUTH_SOCK \
+		"$HOME"/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
 	set --global --export STACK_XDG 1
 	set --global --export STARSHIP_CONFIG "$XDG_CONFIG_HOME"/starship/starship.toml
 	set --global --export TEALDEER_CONFIG_DIR "$XDG_CONFIG_HOME"/tealdeer
@@ -50,21 +52,15 @@ if status is-login
 
 	# install wezterm terminfo
 	if not infocmp wezterm &>/dev/null
-		set --local tempfile $(mktemp)
-		set --local url $(
+		set --local tempfile (mktemp)
+		set --local url (
 			string join "" \
-			"https://raw.githubusercontent.com/" \
-			"wez/wezterm/master/termwiz/data/wezterm.terminfo"
+				"https://raw.githubusercontent.com/" \
+				"wez/wezterm/master/termwiz/data/wezterm.terminfo"
 		)
 		curl $url --output $tempfile &>/dev/null
 		tic -x $tempfile
 		rm $tempfile
-	end
-
-	# set up 1Password ssh agent
-	set --local op_ssh "$HOME"/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
-	if test -e $op_ssh
-		set --global --export SSH_AUTH_SOCK $op_ssh
 	end
 end
 
