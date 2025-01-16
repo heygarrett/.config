@@ -45,7 +45,7 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 					if command_opts.bang then
 						local success, choice = pcall(
 							vim.fn.confirm,
-							"Override formatter indentation?",
+							"Overwrite formatter indentation?",
 							"&Yes\n&no"
 						)
 						if not success then
