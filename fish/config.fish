@@ -17,7 +17,6 @@ if status is-login
 	set --global --export MANPAGER $EDITOR +Man!
 	set --global --export MISE_FISH_AUTO_ACTIVATE 0
 	set --global --export NPM_CONFIG_USERCONFIG "$XDG_CONFIG_HOME"/npm/npmrc
-	set --global --export OP_CONFIG_DIR "$XDG_CONFIG_HOME"/op
 	set --global --export RUSTUP_HOME "$XDG_DATA_HOME"/rustup
 	set --global --export SSH_AUTH_SOCK \
 		"$HOME"/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
