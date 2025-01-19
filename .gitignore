@@ -1,0 +1,21 @@
+# ignore all
+/*
+
+# unignore directories and files
+!fish/
+!git/
+!homebrew/
+!jj/
+!npm/
+!nvim/
+!ruff/
+!starship/
+!tealdear/
+!wezterm/
+!.editorconfig
+!.gitignore
+!LICENSE
+
+# reignore specifics in unignored directories
+fish/fish_variables
+nvim/lazy-lock.json
