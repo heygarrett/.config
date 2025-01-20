@@ -6,6 +6,7 @@
 !git/
 !homebrew/
 !jj/
+!mise/
 !npm/
 !nvim/
 !ruff/
