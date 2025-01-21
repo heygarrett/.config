@@ -49,20 +49,14 @@ vim.api.nvim_create_autocmd("VimResized", {
 	end,
 })
 
-vim.api.nvim_create_autocmd("FileType", {
-	desc = "disable text width, and wrap, for specific file types",
-	group = group,
-	pattern = { "markdown", "text" },
-	callback = function()
-		vim.bo.textwidth = 0
-	end,
-})
-
 vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI", "TextChangedP" }, {
 	desc = "dynamic color column",
 	group = group,
 	callback = function()
 		if vim.bo.buftype ~= "" then
+			return
+		end
+		if vim.bo.textwidth == 0 then
 			return
 		end
 		local current_line = vim.api.nvim_get_current_line()
