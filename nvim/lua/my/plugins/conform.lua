@@ -134,7 +134,7 @@ return {
 						"--debug-info",
 						".",
 					}, {
-						env = { PRETTIERD_LOCAL_PRETTIER_ONLY = "1" },
+						env = { PRETTIERD_LOCAL_PRETTIER_ONLY = 1 },
 					}):wait()
 
 					return prettierd_info_cmd.stdout:find("Loaded") ~= nil
