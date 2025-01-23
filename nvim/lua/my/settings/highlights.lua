@@ -1,3 +1,6 @@
+-- HACK: https://github.com/neovim/neovim/issues/31675
+vim.hl = vim.highlight
+
 vim.cmd.highlight({
 	args = { "StatusLine", "guifg=NvimLightGrey2", "guibg=NvimDarkGrey3" },
 })
