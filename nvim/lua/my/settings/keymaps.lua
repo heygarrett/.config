@@ -8,7 +8,7 @@ vim.keymap.set("i", "<cr>", function()
 end, {
 	expr = true,
 	desc = "workaround for pop-up menu issue in vim",
-	-- https://github.com/vim/vim/issues/1653
+	-- HACK: https://github.com/vim/vim/issues/1653
 })
 
 vim.keymap.set("i", "<c-space>", "<c-x><c-o>", { desc = "omnicompletion" })

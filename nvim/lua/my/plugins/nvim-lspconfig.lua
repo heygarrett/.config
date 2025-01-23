@@ -116,7 +116,7 @@ return {
 							})
 					end,
 					on_attach = function()
-						-- https://github.com/LuaLS/lua-language-server/issues/1809
+						-- HACK: https://github.com/LuaLS/lua-language-server/issues/1809
 						vim.api.nvim_set_hl(0, "@lsp.type.comment", {})
 					end,
 				})
@@ -132,7 +132,7 @@ return {
 			taplo = function()
 				lspconfig["taplo"].setup({
 					capabilities = capabilities,
-					-- https://github.com/tamasfe/taplo/issues/580#issuecomment-2361679688
+					-- HACK: https://github.com/tamasfe/taplo/issues/580#issuecomment-2361679688
 					root_dir = function()
 						return vim.uv.cwd()
 					end,
