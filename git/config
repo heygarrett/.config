@@ -39,3 +39,5 @@
 	enabled = true
 [branch]
 	sort = -committerdate
+[url "ssh://git@gitlab.1password.io:2227"]
+	insteadOf = https://gitlab.1password.io
