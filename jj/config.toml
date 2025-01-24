@@ -2,13 +2,13 @@
 
 [user]
 name = "Garrett"
-email = "hey@heygarrett.com"
+email = "garrett.o@agilebits.com"
 
 [signing]
 sign-all = true
 backend = "ssh"
 backends.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
-key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBygFvCSAToUZZeOru46pxOc2XW44w351Ds+SzbtaEg2"
+key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDF+VTxDbi6XBbGNueF5ntXO6iT3v2idQed64vYkWSvh"
 
 [git]
 private-commits = "description(glob:'private:*')"
