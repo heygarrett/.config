@@ -33,4 +33,13 @@ function ,review_worktrees
 				break
 		end
 	end
+	while read --local --prompt-str "Run nix-collect-garbage? [y/n] " nix_garbage; or return 1
+		switch $nix_garbage
+			case y Y
+				nix-collect-garbage
+				break
+			case n N
+				break
+		end
+	end
 end
