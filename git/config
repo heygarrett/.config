@@ -1,7 +1,7 @@
 [user]
 	name = Garrett
-	email = hey@heygarrett.com
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBygFvCSAToUZZeOru46pxOc2XW44w351Ds+SzbtaEg2
+	email = garrett.o@agilebits.com
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDF+VTxDbi6XBbGNueF5ntXO6iT3v2idQed64vYkWSvh
 [commit]
 	gpgsign = true
 [core]
