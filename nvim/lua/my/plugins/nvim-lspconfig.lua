@@ -186,6 +186,7 @@ return {
 				lspconfig["yamlls"].setup({
 					settings = {
 						yaml = {
+							customTags = { "!reference sequence" },
 							keyOrdering = false,
 						},
 					},
