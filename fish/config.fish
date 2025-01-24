@@ -72,4 +72,7 @@ if status is-interactive
 
 	# Nix
 	source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
+
+	# GitLab repo access
+	set --global --export GITLAB_TOKEN "op://Employee/GitLab repo token/credential"
 end
