@@ -8,6 +8,9 @@ backend = "ssh"
 backends.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDF+VTxDbi6XBbGNueF5ntXO6iT3v2idQed64vYkWSvh"
 
+[git]
+push-bookmark-prefix = "garrett/push-"
+
 [ui]
 # HACK: https://github.com/martinvonz/jj/issues/3753
 editor = ["nvim", "--cmd", "let g:launched_by_shell=1"]
