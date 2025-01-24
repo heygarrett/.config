@@ -182,7 +182,10 @@ return {
 				lspconfig["yamlls"].setup({
 					capabilities = capabilities,
 					settings = {
-						yaml = { keyOrdering = false },
+						yaml = {
+							customTags = { "!reference sequence" },
+							keyOrdering = false,
+						},
 					},
 				})
 			end,
