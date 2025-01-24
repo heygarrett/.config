@@ -41,6 +41,9 @@ merge-args = [
 	"$right"
 ]
 
+[templates]
+git_push_bookmark = "garrett/push- ++ change_id.short()"
+
 [template-aliases]
 "format_short_cryptographic_signature(sig)" = "if(sig, '', '(no sig)')"
 "format_detailed_cryptographic_signature(sig)" = "if(sig, 'yes 🔒', 'no 🔓')"
