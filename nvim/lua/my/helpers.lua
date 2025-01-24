@@ -45,7 +45,7 @@ M.get_indentation_size = function(bufnr)
 	for _, w in ipairs(leading_whitespace) do
 		if w:find("\t") then
 			tab_count = tab_count + 1
-		else
+		elseif #w > 1 then -- ignore single-space indents
 			table.insert(leading_spaces, w)
 		end
 	end
