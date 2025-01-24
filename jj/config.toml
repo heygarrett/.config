@@ -13,6 +13,7 @@ key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDF+VTxDbi6XBbGNueF5ntXO6iT3v2idQed64
 [git]
 private-commits = "description(glob:'private:*')"
 push-new-bookmarks = true
+push-bookmark-prefix = "garrett/push-"
 
 [ui]
 # HACK: https://github.com/jj-vcs/jj/issues/3753
