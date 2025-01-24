@@ -9,10 +9,10 @@ sign-all = true
 backend = "ssh"
 backends.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDF+VTxDbi6XBbGNueF5ntXO6iT3v2idQed64vYkWSvh"
-
 [git]
 private-commits = "description(glob:'private:*')"
 push-new-bookmarks = true
+push-bookmark-prefix = "garrett/push-"
 
 [ui]
 # HACK: https://github.com/martinvonz/jj/issues/3753
