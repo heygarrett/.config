@@ -173,7 +173,10 @@ return {
 			yamlls = function()
 				lspconfig["yamlls"].setup({
 					settings = {
-						yaml = { keyOrdering = false },
+						yaml = {
+							customTags = { "!reference sequence" },
+							keyOrdering = false,
+						},
 					},
 				})
 			end,
