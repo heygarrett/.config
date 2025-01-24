@@ -8,6 +8,11 @@ backend = "ssh"
 backends.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDF+VTxDbi6XBbGNueF5ntXO6iT3v2idQed64vYkWSvh"
 
+# HACK: prevent rebasing others' commits until _all_ commits are signed on rebase
+# https://github.com/jj-vcs/jj/issues/4561
+[revset-aliases]
+"immutable_heads()" = "builtin_immutable_heads() | (trunk().. & ~mine())"
+
 [git]
 push-bookmark-prefix = "garrett/push-"
 
