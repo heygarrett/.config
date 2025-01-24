@@ -64,3 +64,6 @@ COMPLETE=fish jj | source
 
 # Nix
 source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
+
+# glab
+set --global --export GITLAB_TOKEN "op://Employee/GitLab access token for glab/token"
