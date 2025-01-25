@@ -1,7 +1,7 @@
 set --global --export XDG_CACHE_HOME "$HOME"/.cache
 set --global --export XDG_CONFIG_HOME "$HOME"/.config
 set --global --export XDG_DATA_HOME "$HOME"/.local/share
-set --global --export XDG_RUNTIME_DIR "$HOME"/.runtime
+set --global --export XDG_RUNTIME_DIR $TMPDIR
 set --global --export XDG_STATE_HOME "$HOME"/.local/state
 
 if status is-login
@@ -39,15 +39,6 @@ if status is-login
 	# settings
 	set --global fish_cursor_insert line
 	set --global fish_vi_force_cursor true
-
-	# create XDG_RUNTIME_DIR
-	if test ! -d "$XDG_RUNTIME_DIR"
-		mkdir $XDG_RUNTIME_DIR 2>/dev/null
-		or echo "Password required to create ~/.runtime"
-		and sudo mkdir $XDG_RUNTIME_DIR
-		and sudo chown $USER $XDG_RUNTIME_DIR
-		chmod 0700 $XDG_RUNTIME_DIR
-	end
 
 	# install wezterm terminfo
 	if not infocmp wezterm &>/dev/null
