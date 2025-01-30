@@ -129,6 +129,9 @@ return {
 				fzf_lua().lsp_document_symbols()
 			end
 		end, { desc = "fzf-lua picker: LSP symbols" })
+		vim.api.nvim_create_user_command("TypeDefinitions", function()
+			fzf_lua().lsp_typedefs()
+		end, { desc = "fzf-lua picker: LSP definitions" })
 	end,
 	config = function()
 		local actions = require("fzf-lua.actions")
