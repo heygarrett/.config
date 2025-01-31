@@ -172,10 +172,13 @@ return {
 					["ctrl-l"] = {
 						-- filter by selected subdirectory
 						function(selected, opts)
+							local cwd = opts.cwd or vim.uv.cwd()
+							if not cwd then
+								return
+							end
 							local entry = fzf_lua().path.entry_to_file(selected[1])
 							if not fzf_lua().path.is_absolute(entry.path) then
-								entry.path =
-									vim.fs.joinpath(opts.cwd or vim.uv.cwd(), entry.path)
+								entry.path = vim.fs.joinpath(cwd, entry.path)
 							end
 							fzf_lua().files({ cwd = entry.path })
 						end,
@@ -183,11 +186,12 @@ return {
 					["ctrl-h"] = {
 						-- expand filter to parent directory
 						function(_, opts)
+							local cwd = opts.cwd or vim.uv.cwd()
+							if not cwd then
+								return
+							end
 							fzf_lua().files({
-								cwd = vim.fn.fnamemodify(
-									vim.fs.normalize(opts.cwd or vim.uv.cwd()),
-									":h"
-								),
+								cwd = vim.fn.fnamemodify(vim.fs.normalize(cwd), ":h"),
 							})
 						end,
 					},
