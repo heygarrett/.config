@@ -31,10 +31,21 @@ end, { desc = "vertically center visual selection" })
 
 vim.keymap.set({ "n", "t" }, "<c-w><space>", function()
 	if not vim.g.floating_terminal then
-		vim.g.floating_terminal = { buf = -1, win = -1 }
+		vim.g.floating_terminal = {
+			buf = -1,
+			win = -1,
+			winview = nil,
+			insert = false,
+		}
 	end
 
 	if vim.api.nvim_win_is_valid(vim.g.floating_terminal.win) then
+		vim.g.floating_terminal = {
+			buf = vim.g.floating_terminal.buf,
+			win = vim.g.floating_terminal.win,
+			winview = vim.fn.winsaveview(),
+			insert = (vim.api.nvim_get_mode().mode == "t"),
+		}
 		vim.api.nvim_win_hide(vim.g.floating_terminal.win)
 	else
 		---@type integer
@@ -57,18 +68,19 @@ vim.keymap.set({ "n", "t" }, "<c-w><space>", function()
 		})
 		vim.wo[win].winhl = "Normal:MyHighlight"
 
-		vim.g.floating_terminal = { buf = buf, win = win }
+		vim.g.floating_terminal = {
+			buf = buf,
+			win = win,
+			winview = vim.g.floating_terminal.winview,
+			insert = vim.g.floating_terminal.insert,
+		}
 
 		if vim.bo[buf].buftype ~= "terminal" then
 			vim.cmd.terminal()
+		elseif vim.g.floating_terminal.insert then
+			vim.cmd.startinsert()
 		else
-			local line_count = vim.api.nvim_buf_line_count(buf)
-			local last_visible_line = vim.fn.line("w$", win)
-			if last_visible_line == line_count then
-				vim.schedule(function()
-					vim.cmd.startinsert()
-				end)
-			end
+			vim.fn.winrestview(vim.g.floating_terminal.winview)
 		end
 	end
 end, { desc = "toggle floating terminal" })
