@@ -82,13 +82,3 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 			:gsub("%%s(%S)", "%%s %1")
 	end,
 })
-
-vim.api.nvim_create_autocmd("TermOpen", {
-	desc = "terminal options",
-	group = group,
-	callback = function()
-		vim.cmd.startinsert()
-		vim.o.cursorline = false
-		vim.o.number = false
-	end,
-})
