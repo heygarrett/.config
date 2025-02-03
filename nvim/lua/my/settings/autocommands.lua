@@ -42,10 +42,9 @@ vim.api.nvim_create_autocmd("VimResized", {
 	desc = "resize splits when vim is resized",
 	group = group,
 	callback = function()
-		if vim.api.nvim_get_mode().mode ~= "n" then
-			vim.api.nvim_input([[<c-\><c-n>]])
-		end
-		vim.api.nvim_input("<c-w>=")
+		vim.cmd.normal({
+			args = { vim.keycode("<c-w>") .. "=" },
+		})
 	end,
 })
 
