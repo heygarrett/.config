@@ -1,5 +1,4 @@
 vim.g.mapleader = " "
-vim.g.netrw_banner = 0
 vim.o.breakindent = true
 vim.o.confirm = true
 vim.o.cursorline = true
