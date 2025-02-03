@@ -3,7 +3,6 @@ vim.g.netrw_banner = 0
 vim.o.breakindent = true
 vim.o.confirm = true
 vim.o.cursorline = true
-vim.o.ignorecase = true
 vim.o.linebreak = true
 vim.o.list = true
 vim.o.mouse = "a"
