@@ -5,7 +5,6 @@ vim.o.confirm = true
 vim.o.cursorline = true
 vim.o.linebreak = true
 vim.o.list = true
-vim.o.mouse = "a"
 vim.o.number = true
 vim.o.scrolloff = 3
 vim.o.showmatch = true
