@@ -109,14 +109,3 @@ vim.api.nvim_create_user_command("JJdiff", function()
 	-- put contents of $left into $output
 	vim.api.nvim_buf_set_lines(0, 0, -1, true, left_contents)
 end, { desc = "jj diff setup" })
-
-vim.api.nvim_create_user_command("Diagnostics", function()
-	local ok, choice = pcall(vim.fn.confirm, "", "&Document\n&workspace")
-	if not ok then
-		return
-	elseif choice == 1 then
-		vim.diagnostic.setloclist()
-	elseif choice == 2 then
-		vim.diagnostic.setqflist()
-	end
-end, { desc = "add buffer diagonstics to location list" })

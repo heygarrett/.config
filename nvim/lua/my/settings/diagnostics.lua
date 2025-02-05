@@ -22,3 +22,14 @@ for _, type in ipairs({ "Error", "Warn", "Hint", "Info" }) do
 		args = { hl_underline, "gui=underline" },
 	})
 end
+
+vim.api.nvim_create_user_command("Diagnostics", function()
+	local ok, choice = pcall(vim.fn.confirm, "", "&Document\n&workspace")
+	if not ok then
+		return
+	elseif choice == 1 then
+		vim.diagnostic.setloclist()
+	elseif choice == 2 then
+		vim.diagnostic.setqflist()
+	end
+end, { desc = "add buffer diagonstics to location list" })
