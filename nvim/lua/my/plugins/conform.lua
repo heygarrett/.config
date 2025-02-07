@@ -50,7 +50,6 @@ end
 
 return {
 	"https://github.com/stevearc/conform.nvim",
-	lazy = true,
 	cmd = { "ConformInfo" },
 	init = function()
 		vim.api.nvim_create_user_command("Format", function(command_opts)

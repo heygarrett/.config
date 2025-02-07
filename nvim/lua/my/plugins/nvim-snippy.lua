@@ -4,7 +4,6 @@ end
 
 return {
 	"https://github.com/dcampos/nvim-snippy",
-	lazy = true,
 	init = function()
 		local group = vim.api.nvim_create_augroup("snippy", { clear = true })
 		vim.api.nvim_create_autocmd("CompleteDone", {

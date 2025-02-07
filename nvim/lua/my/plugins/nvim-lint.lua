@@ -15,7 +15,6 @@ local linters_by_filetype = {
 
 return {
 	"https://github.com/mfussenegger/nvim-lint",
-	lazy = true,
 	ft = vim.tbl_keys(linters_by_filetype),
 	config = function()
 		local nvim_lint = require("lint")

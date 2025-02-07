@@ -1,5 +1,6 @@
 return {
 	"https://github.com/nvim-treesitter/nvim-treesitter",
+	lazy = false,
 	dependencies = {
 		"https://github.com/nvim-treesitter/nvim-treesitter-textobjects",
 	},

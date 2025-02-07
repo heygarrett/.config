@@ -4,6 +4,7 @@ end
 
 return {
 	"https://github.com/stevearc/oil.nvim",
+	lazy = false,
 	init = function()
 		vim.api.nvim_create_user_command("Ex", function()
 			oil().open()

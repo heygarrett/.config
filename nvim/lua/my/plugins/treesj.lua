@@ -4,7 +4,6 @@ end
 
 return {
 	"https://github.com/Wansmer/treesj",
-	lazy = true,
 	init = function()
 		vim.api.nvim_create_user_command("Join", function()
 			treesj().join()

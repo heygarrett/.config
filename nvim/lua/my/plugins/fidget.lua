@@ -6,6 +6,7 @@ end
 
 return {
 	"https://github.com/j-hui/fidget.nvim",
+	lazy = false,
 	init = function()
 		vim.api.nvim_create_user_command("Messages", function()
 			fidget("notification").show_history()

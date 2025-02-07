@@ -15,7 +15,6 @@ end
 
 return {
 	"https://codeberg.org/ibhagwan/fzf-lua",
-	lazy = true,
 	cmd = "FzfLua",
 	keys = {
 		{

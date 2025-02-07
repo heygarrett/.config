@@ -1,6 +1,7 @@
 return {
 	{
 		"https://github.com/williamboman/mason.nvim",
+		cmd = { "Mason", "MasonUpdate" },
 		opts = { PATH = "append" },
 	},
 	{
@@ -9,6 +10,7 @@ return {
 	},
 	{
 		"https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim",
+		cmd = { "MasonToolsUpdate" },
 		opts = {
 			ensure_installed = {
 				"basedpyright",

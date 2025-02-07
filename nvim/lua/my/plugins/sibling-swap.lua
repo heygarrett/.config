@@ -4,7 +4,6 @@ end
 
 return {
 	"https://github.com/Wansmer/sibling-swap.nvim",
-	lazy = true,
 	keys = {
 		-- Swap forward and back
 		{
