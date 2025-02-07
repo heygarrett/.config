@@ -17,7 +17,11 @@ private-commits = "description(glob:'private:*')"
 # HACK: https://github.com/martinvonz/jj/issues/3753
 editor = ["nvim", "--cmd", "let g:launched_by_shell=1"]
 merge-editor = "nvimdiff"
+show-cryptographic-signatures = true
 
 [merge-tools.nvimdiff]
 program = "nvim"
 merge-args = ["-c", "JJdiff", "-d", "$left", "$output", "$right"]
+
+[template-aliases]
+"format_short_cryptographic_signature(sig)" = "if(sig, '', '(no sig)')"
