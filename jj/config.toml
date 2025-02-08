@@ -12,6 +12,7 @@ key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBygFvCSAToUZZeOru46pxOc2XW44w351Ds+S
 
 [git]
 private-commits = "description(glob:'private:*')"
+push-new-bookmarks = true
 
 [ui]
 # HACK: https://github.com/martinvonz/jj/issues/3753
