@@ -1,0 +1,34 @@
+[config]
+plugins_dir = "my/plugins/"
+auto_setup = true
+
+[treesitter]
+auto_install = true
+auto_highlight = "all"
+disable = [
+	"diff",
+	"gitcommit",
+	"git_rebase",
+]
+
+[plugins]
+"conform.nvim" = "8.4.0"
+"fidget.nvim" = "1.6.0"
+"mason-lspconfig.nvim" = "1.31.0"
+"mason-tool-installer.nvim" = "scm"
+"mason.nvim" = "1.10.0"
+"oil.nvim" = "2.14.0"
+"rocks-config.nvim" = "3.1.0"
+"rocks-git.nvim" = "2.5.2"
+"rocks-treesitter.nvim" = "1.3.0"
+"rocks.nvim" = "2.43.1"
+"screenkey.nvim" = "2.4.2"
+"sibling-swap.nvim" = { git = "https://github.com/wansmer/sibling-swap.nvim" }
+fzf-lua = "0.0.1735"
+nvim-lint = "scm"
+nvim-lspconfig = "1.6.0"
+nvim-snippy = "1.0.0"
+nvim-treesitter-textobjects = "scm"
+tree-sitter-lua = "0.0.33"
+tree-sitter-toml = "0.0.31"
+treesj = "scm"
