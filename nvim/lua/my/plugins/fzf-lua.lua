@@ -26,8 +26,6 @@ return {
 		},
 	},
 	config = function()
-		local actions = require("fzf-lua.actions")
-
 		fzf_lua().setup({
 			fzf_opts = {
 				["--cycle"] = "",
@@ -50,7 +48,7 @@ return {
 			},
 			helptags = {
 				actions = {
-					["enter"] = actions.help_vert,
+					["enter"] = fzf_lua("actions").help_vert,
 				},
 			},
 			diagnostics = {
@@ -99,7 +97,7 @@ return {
 						["right"] = false,
 						["left"] = false,
 						["tab"] = {
-							fn = actions.git_stage_unstage,
+							fn = fzf_lua("actions").git_stage_unstage,
 							reload = true,
 						},
 					},
