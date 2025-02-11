@@ -39,18 +39,18 @@ vim.api.nvim_create_autocmd("FileType", {
 					then
 						vim.bo.filetype = "jsonc"
 
-						local jsonls_client_id = next(vim.lsp.get_clients({
+						local _, jsonls_client = next(vim.lsp.get_clients({
 							bufnr = diagnostic_event_opts.buf,
 							name = "jsonls",
 						}))
-						if jsonls_client_id then
+						if jsonls_client then
 							vim.lsp.buf_detach_client(
 								diagnostic_event_opts.buf,
-								jsonls_client_id
+								jsonls_client.id
 							)
 							vim.lsp.buf_attach_client(
 								diagnostic_event_opts.buf,
-								jsonls_client_id
+								jsonls_client.id
 							)
 						end
 						break
