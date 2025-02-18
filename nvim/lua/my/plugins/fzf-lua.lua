@@ -46,6 +46,7 @@ return {
 					["ctrl-u"] = "preview-half-page-up",
 				},
 			},
+			defaults = { jump1 = false },
 			helptags = {
 				actions = {
 					["enter"] = fzf_lua("actions").help_vert,
