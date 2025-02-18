@@ -4,15 +4,6 @@ local fzf_lua = function(submodule)
 	return require(module_path)
 end
 
----@param selected string[]
-local function copy_hash(selected)
-	local commit = selected[1]:match("[^ ]+")
-	vim.fn.setreg("+", commit)
-	vim.defer_fn(function()
-		vim.notify(commit .. " copied to clipboard!")
-	end, 500)
-end
-
 return {
 	"https://codeberg.org/ibhagwan/fzf-lua",
 	cmd = "FzfLua",
@@ -48,13 +39,9 @@ return {
 			},
 			defaults = { jump1 = false },
 			helptags = {
-				actions = {
-					["enter"] = fzf_lua("actions").help_vert,
-				},
+				actions = { ["enter"] = fzf_lua("actions").help_vert },
 			},
-			diagnostics = {
-				diag_source = true,
-			},
+			diagnostics = { diag_source = true },
 			files = {
 				find_opts = [[-type df -not -path '*/\.git/*' -printf '%P\n']],
 				fd_opts = [[--color=never --type file --type dir --hidden --follow --exclude .git]],
@@ -85,34 +72,6 @@ return {
 								cwd = vim.fn.fnamemodify(vim.fs.normalize(cwd), ":h"),
 							})
 						end,
-					},
-				},
-			},
-			git = {
-				files = {
-					cmd = "git ls-files --cached --others --exclude-standard",
-				},
-				status = {
-					cmd = "git status --short",
-					actions = {
-						["right"] = false,
-						["left"] = false,
-						["tab"] = {
-							fn = fzf_lua("actions").git_stage_unstage,
-							reload = true,
-						},
-					},
-				},
-				commits = {
-					actions = {
-						["enter"] = copy_hash,
-						["ctrl-y"] = false,
-					},
-				},
-				bcommits = {
-					actions = {
-						["enter"] = copy_hash,
-						["ctrl-y"] = false,
 					},
 				},
 			},
