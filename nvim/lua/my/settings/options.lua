@@ -2,6 +2,7 @@ vim.g.mapleader = " "
 vim.o.breakindent = true
 vim.o.confirm = true
 vim.o.cursorline = true
+vim.o.ignorecase = true
 vim.o.linebreak = true
 vim.o.list = true
 vim.o.number = true
