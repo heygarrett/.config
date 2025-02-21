@@ -137,8 +137,10 @@ return {
 					root_dir = function()
 						return vim.uv.cwd()
 					end,
-					on_attach = function(client)
-						client.server_capabilities.documentFormattingProvider = false
+					on_attach = function(client, bufnr)
+						if not vim.fs.root(bufnr, { "taplo.toml", ".taplo.toml" }) then
+							client.server_capabilities.documentFormattingProvider = false
+						end
 					end,
 				})
 			end,
