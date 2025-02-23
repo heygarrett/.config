@@ -52,6 +52,13 @@ return {
 					end,
 				})
 			end,
+			eslint = function()
+				lspconfig["eslint"].setup({
+					capabilities = vim.tbl_deep_extend("force", capabilities, {
+						textDocument = { formatting = false },
+					}),
+				})
+			end,
 			gopls = function()
 				lspconfig["gopls"].setup({
 					capabilities = capabilities,
