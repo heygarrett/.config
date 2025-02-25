@@ -15,7 +15,7 @@ private-commits = "description(glob:'private:*')"
 push-new-bookmarks = true
 
 [ui]
-# HACK: https://github.com/martinvonz/jj/issues/3753
+# HACK: https://github.com/jj-vcs/jj/issues/3753
 editor = ["nvim", "--cmd", "let g:launched_by_shell=1"]
 merge-editor = "nvimdiff"
 show-cryptographic-signatures = true
