@@ -26,7 +26,10 @@ end
 vim.opt.runtimepath:prepend(lazypath)
 
 require("lazy").setup("my.plugins", {
-	defaults = { lazy = true },
+	defaults = {
+		lazy = true,
+		version = "*",
+	},
 	dev = {
 		path = "~/dev/repos",
 		fallback = true,
