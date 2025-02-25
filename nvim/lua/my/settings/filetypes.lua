@@ -1,7 +1,6 @@
 vim.filetype.add({
 	extension = {
 		env = "dotenv",
-		purs = "purescript",
 	},
 	filename = {
 		Brewfile = "ruby",
