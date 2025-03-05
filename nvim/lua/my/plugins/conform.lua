@@ -1,7 +1,3 @@
-local conform = function()
-	return require("conform")
-end
-
 local formatters_by_filetype = {
 	c = { "astyle" },
 	fish = { "fish_indent" },
@@ -63,7 +59,7 @@ return {
 				retab_range = { command_opts.line1, command_opts.line2 }
 			end
 
-			local formatted = conform().format({ range = format_range })
+			local formatted = require("conform").format({ range = format_range })
 			if
 				formatted
 				-- Markdown may use a mix of tabs and spaces (code snippets)

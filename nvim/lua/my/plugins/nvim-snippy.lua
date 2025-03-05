@@ -1,7 +1,3 @@
-local snippy = function()
-	return require("snippy")
-end
-
 return {
 	"https://github.com/dcampos/nvim-snippy",
 	init = function()
@@ -10,7 +6,7 @@ return {
 			desc = "set up nvim-snippy",
 			group = group,
 			callback = function()
-				snippy().complete_done()
+				require("snippy").complete_done()
 			end,
 		})
 	end,

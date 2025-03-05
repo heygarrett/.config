@@ -1,13 +1,9 @@
-local oil = function()
-	return require("oil")
-end
-
 return {
 	"https://github.com/stevearc/oil.nvim",
 	lazy = false,
 	init = function()
 		vim.api.nvim_create_user_command("Ex", function()
-			oil().open()
+			require("oil").open()
 		end, { desc = "Open file browser" })
 	end,
 	opts = {
