@@ -11,9 +11,7 @@ return {
 		require("mason-lspconfig").setup_handlers({
 			-- Mason language servers with default setups
 			function(server_name)
-				lspconfig[server_name].setup({
-					capabilities = capabilities,
-				})
+				lspconfig[server_name].setup({ capabilities = capabilities })
 			end,
 
 			-- Mason language servers with custom setups
@@ -184,9 +182,7 @@ return {
 				lspconfig["yamlls"].setup({
 					capabilities = capabilities,
 					settings = {
-						yaml = {
-							keyOrdering = false,
-						},
+						yaml = { keyOrdering = false },
 					},
 				})
 			end,
