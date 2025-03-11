@@ -75,6 +75,9 @@ return {
 					},
 				},
 			},
+			grep = {
+				actions = { ["ctrl-t"] = fzf_lua("actions").toggle_hidden },
+			},
 		})
 	end,
 }
