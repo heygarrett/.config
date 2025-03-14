@@ -18,6 +18,7 @@ push-new-bookmarks = true
 # HACK: https://github.com/jj-vcs/jj/issues/3753
 editor = ["nvim", "--cmd", "let g:launched_by_shell=1"]
 merge-editor = "nvimdiff"
+diff-editor = ":builtin"
 show-cryptographic-signatures = true
 
 [merge-tools.nvimdiff]
