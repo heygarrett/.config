@@ -4,4 +4,5 @@
 .envrc
 .mise.local.toml
 Session.vim
+node_modules/
 tags
