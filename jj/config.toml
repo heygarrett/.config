@@ -11,7 +11,7 @@ backends.ssh.program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
 key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBygFvCSAToUZZeOru46pxOc2XW44w351Ds+SzbtaEg2"
 
 [git]
-private-commits = "description(glob:'private:*')"
+private-commits = "description(regex:'^private(\\(.+\\))?:.+')"
 push-new-bookmarks = true
 
 [ui]
