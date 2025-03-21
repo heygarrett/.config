@@ -11,7 +11,7 @@ return {
 		{
 			"<leader>p",
 			function()
-				fzf_lua("cmd").run_command()
+				fzf_lua().builtin()
 			end,
 			mode = { "n" },
 		},
