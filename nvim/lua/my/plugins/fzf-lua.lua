@@ -42,6 +42,7 @@ return {
 				actions = { ["enter"] = fzf_lua("actions").help_vert },
 			},
 			diagnostics = { diag_source = true },
+			grep = { hidden = true },
 			files = {
 				find_opts = [[-type df -not -path '*/\.git/*' -printf '%P\n']],
 				fd_opts = [[--color=never --type file --type dir --hidden --follow --exclude .git]],
@@ -74,9 +75,6 @@ return {
 						end,
 					},
 				},
-			},
-			grep = {
-				actions = { ["ctrl-t"] = fzf_lua("actions").toggle_hidden },
 			},
 		})
 	end,
