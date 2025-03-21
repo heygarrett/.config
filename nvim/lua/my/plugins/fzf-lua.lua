@@ -15,9 +15,17 @@ return {
 			end,
 			mode = { "n" },
 		},
+		{
+			"<leader>r",
+			function()
+				fzf_lua().resume()
+			end,
+			mode = { "n" },
+		},
 	},
 	config = function()
 		fzf_lua().setup({
+			"hide",
 			fzf_opts = {
 				["--cycle"] = "",
 			},
