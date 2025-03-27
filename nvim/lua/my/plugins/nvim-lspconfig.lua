@@ -88,6 +88,7 @@ return {
 							},
 						},
 					},
+					---@param client vim.lsp.Client
 					on_init = function(client)
 						local ok, workspace_folder =
 							pcall(unpack, client.workspace_folders)
@@ -103,6 +104,7 @@ return {
 						end
 
 						client.config.settings.Lua =
+							---@diagnostic disable-next-line: param-type-mismatch
 							vim.tbl_deep_extend("force", client.config.settings.Lua, {
 								runtime = { version = "LuaJIT" },
 								workspace = {
@@ -122,6 +124,7 @@ return {
 			end,
 			ruff = function()
 				lspconfig["ruff"].setup({
+					---@param client vim.lsp.Client
 					on_attach = function(client)
 						client.server_capabilities.hoverProvider = false
 					end,
@@ -133,6 +136,7 @@ return {
 					root_dir = function()
 						return vim.uv.cwd()
 					end,
+					---@param client vim.lsp.Client
 					on_attach = function(client, bufnr)
 						if not vim.fs.root(bufnr, { "taplo.toml", ".taplo.toml" }) then
 							client.server_capabilities.documentFormattingProvider = false
@@ -163,6 +167,7 @@ return {
 						-- prevent omni completion from inserting extra period
 						completionDisableFilterText = true,
 					},
+					---@param client vim.lsp.Client
 					on_attach = function(client)
 						client.server_capabilities.documentFormattingProvider = false
 					end,
@@ -184,6 +189,7 @@ return {
 			end,
 		})
 		lspconfig["hls"].setup({
+			---@param client vim.lsp.Client
 			on_attach = function(client)
 				client.server_capabilities.documentFormattingProvider = false
 			end,
