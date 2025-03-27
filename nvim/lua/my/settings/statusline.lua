@@ -120,7 +120,7 @@ local function get_diagnostics()
 			table.insert(
 				output,
 				table.concat({
-					"%#DiagnosticVirtualText",
+					"%#DiagnosticSign",
 					v.match,
 					"#",
 					v.count,
