@@ -79,8 +79,8 @@ return {
 								arrayIndex = "Disable",
 								-- await = true,
 								-- awaitPropagate = false,
-								-- ---@type "All" | "Literal" | "Disable"
-								-- paramName = "All",
+								---@type "All" | "Literal" | "Disable"
+								paramName = "Literal",
 								-- paramType = true,
 								-- ---@type "All" | "SameLine" | "Disable"
 								-- semicolon = "SameLine",
