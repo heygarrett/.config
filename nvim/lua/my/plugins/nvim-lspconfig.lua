@@ -46,10 +46,7 @@ return {
 			end,
 			eslint = function()
 				lspconfig["eslint"].setup({
-					---@param client vim.lsp.Client
-					on_attach = function(client)
-						client.server_capabilities.documentFormattingProvider = false
-					end,
+					settings = { format = false },
 				})
 			end,
 			gopls = function()
