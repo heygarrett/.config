@@ -1,27 +1,31 @@
 vim.diagnostic.config({
-	virtual_text = false,
-	float = {
-		source = true,
-		border = "single",
+	float = { source = true },
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = "",
+			[vim.diagnostic.severity.WARN] = "",
+			[vim.diagnostic.severity.HINT] = "",
+			[vim.diagnostic.severity.INFO] = "",
+		},
+		numhl = {
+			[vim.diagnostic.severity.ERROR] = "DiagnosticSignError",
+			[vim.diagnostic.severity.WARN] = "DiagnosticSignWarn",
+			[vim.diagnostic.severity.HINT] = "DiagnosticSignHint",
+			[vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
+		},
+	},
+	virtual_lines = {
+		current_line = true,
+		format = function(diagnostic)
+			local message = { ("%s: %s"):format(diagnostic.source, diagnostic.message) }
+			if diagnostic.code then
+				table.insert(message, ("[%s]"):format(diagnostic.code))
+			end
+
+			return table.concat(message, " ")
+		end,
 	},
 })
-
-for _, type in ipairs({ "Error", "Warn", "Hint", "Info" }) do
-	local hl_sign = "DiagnosticSign" .. type
-	local hl_underline = "DiagnosticUnderline" .. type
-	-- Sign column highlighting
-	vim.cmd.sign({
-		args = { "undefine", hl_sign },
-		mods = { emsg_silent = true },
-	})
-	vim.cmd.sign({
-		args = { "define", hl_sign, "numhl=" .. hl_sign },
-	})
-	-- Text highlighting
-	vim.cmd.highlight({
-		args = { hl_underline, "gui=underline" },
-	})
-end
 
 vim.api.nvim_create_user_command("Diagnostics", function()
 	local ok, choice = pcall(vim.fn.confirm, "", "&Document\n&workspace")

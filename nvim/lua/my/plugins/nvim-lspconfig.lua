@@ -3,21 +3,16 @@ return {
 	lazy = false,
 	config = function()
 		local lspconfig = require("lspconfig")
-		local capabilities = vim.lsp.protocol.make_client_capabilities()
-		capabilities.textDocument.completion.completionItem.resolveSupport = {
-			properties = { "additionalTextEdits" },
-		}
 
 		require("mason-lspconfig").setup_handlers({
 			-- Mason language servers with default setups
 			function(server_name)
-				lspconfig[server_name].setup({ capabilities = capabilities })
+				lspconfig[server_name].setup({})
 			end,
 
 			-- Mason language servers with custom setups
 			basedpyright = function()
 				lspconfig["basedpyright"].setup({
-					capabilities = capabilities,
 					settings = {
 						basedpyright = {
 							analysis = {
@@ -31,7 +26,6 @@ return {
 			end,
 			biome = function()
 				lspconfig["biome"].setup({
-					capabilities = capabilities,
 					on_new_config = function(config)
 						if vim.fn.executable("node_modules/.bin/biome") == 1 then
 							config.cmd = { "node_modules/.bin/biome", "lsp-proxy" }
@@ -52,14 +46,14 @@ return {
 			end,
 			eslint = function()
 				lspconfig["eslint"].setup({
-					capabilities = vim.tbl_deep_extend("force", capabilities, {
-						textDocument = { formatting = false },
-					}),
+					---@param client vim.lsp.Client
+					on_attach = function(client)
+						client.server_capabilities.documentFormattingProvider = false
+					end,
 				})
 			end,
 			gopls = function()
 				lspconfig["gopls"].setup({
-					capabilities = capabilities,
 					settings = {
 						gopls = {
 							hints = {
@@ -77,7 +71,6 @@ return {
 			end,
 			lua_ls = function()
 				lspconfig["lua_ls"].setup({
-					capabilities = capabilities,
 					settings = {
 						Lua = {
 							hint = {
@@ -129,7 +122,6 @@ return {
 			end,
 			ruff = function()
 				lspconfig["ruff"].setup({
-					capabilities = capabilities,
 					on_attach = function(client)
 						client.server_capabilities.hoverProvider = false
 					end,
@@ -137,7 +129,6 @@ return {
 			end,
 			taplo = function()
 				lspconfig["taplo"].setup({
-					capabilities = capabilities,
 					-- HACK: https://github.com/tamasfe/taplo/issues/580#issuecomment-2361679688
 					root_dir = function()
 						return vim.uv.cwd()
@@ -151,7 +142,6 @@ return {
 			end,
 			ts_ls = function()
 				lspconfig["ts_ls"].setup({
-					capabilities = capabilities,
 					root_dir = function(file)
 						return vim.fs.root(
 							file,
@@ -180,7 +170,6 @@ return {
 			end,
 			yamlls = function()
 				lspconfig["yamlls"].setup({
-					capabilities = capabilities,
 					settings = {
 						yaml = { keyOrdering = false },
 					},
@@ -190,19 +179,16 @@ return {
 
 		-- Non-Mason language servers
 		lspconfig["denols"].setup({
-			capabilities = capabilities,
 			root_dir = function(file)
 				return vim.fs.root(file, { "deno.json", "deno.jsonc" })
 			end,
 		})
 		lspconfig["hls"].setup({
-			capabilities = capabilities,
 			on_attach = function(client)
 				client.server_capabilities.documentFormattingProvider = false
 			end,
 		})
 		lspconfig["rust_analyzer"].setup({
-			capabilities = capabilities,
 			settings = {
 				["rust-analyzer"] = {
 					cargo = { targetDir = true },
@@ -248,7 +234,6 @@ return {
 			},
 		})
 		lspconfig["sourcekit"].setup({
-			capabilities = capabilities,
 			root_dir = function(file)
 				return vim.fs.root(file, {
 					"Package.swift",

@@ -1,17 +1,6 @@
-vim.keymap.set("i", "<cr>", function()
-	local pum_info = vim.fn.complete_info({ "mode", "selected" })
-	if pum_info.mode ~= "" and pum_info.selected == -1 then
-		return "<c-e><cr>"
-	else
-		return "<cr>"
-	end
-end, {
-	expr = true,
-	desc = "workaround for pop-up menu issue in vim",
-	-- HACK: https://github.com/vim/vim/issues/1653
-})
-
-vim.keymap.set("i", "<c-space>", "<c-x><c-o>", { desc = "omnicompletion" })
+vim.keymap.set("i", "<c-space>", function()
+	vim.lsp.completion.get()
+end, { desc = "LSP completion" })
 
 vim.keymap.set("v", "zz", function()
 	local first_line = vim.fn.getpos("v")[2]

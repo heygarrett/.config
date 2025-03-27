@@ -10,7 +10,7 @@ end
 local linters_by_filetype = {
 	fish = { "fish" },
 	gitcommit = { commitlint },
-	jj = { commitlint },
+	jjdescription = { commitlint },
 }
 
 return {

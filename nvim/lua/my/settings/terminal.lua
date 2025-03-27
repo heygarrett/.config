@@ -3,8 +3,6 @@ vim.api.nvim_create_autocmd("TermOpen", {
 	desc = "terminal options",
 	group = group,
 	callback = function()
-		vim.o.cursorline = false
-		vim.o.number = false
 		vim.cmd.startinsert()
 	end,
 })
