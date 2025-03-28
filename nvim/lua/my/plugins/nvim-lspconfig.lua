@@ -238,10 +238,14 @@ return {
 		})
 		lspconfig["sourcekit"].setup({
 			root_dir = function(file)
-				return vim.fs.root(file, {
-					"Package.swift",
-					"*.xcodeproj",
-				})
+				return vim.fs.root(file, function(name)
+					return vim.tbl_contains({
+						"Package.swift",
+						"%.xcodeproj$",
+					}, function(marker)
+						return name:match(marker) ~= nil
+					end, { predicate = true })
+				end)
 			end,
 		})
 	end,
