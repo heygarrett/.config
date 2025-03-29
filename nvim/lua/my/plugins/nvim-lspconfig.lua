@@ -27,6 +27,7 @@ return {
 			end,
 			biome = function()
 				lspconfig["biome"].setup({
+					---@param config vim.lsp.Config
 					on_new_config = function(config)
 						if vim.fn.executable("node_modules/.bin/biome") == 1 then
 							config.cmd = { "node_modules/.bin/biome", "lsp-proxy" }
