@@ -32,11 +32,15 @@ return {
 						end
 					end,
 					root_dir = function(file)
-						local biome_root =
-							vim.fs.root(file, { "biome.json", "biome.jsonc" })
+						local biome_root = vim.fs.root(file, {
+							"biome.json",
+							"biome.jsonc",
+						})
 						if biome_root then
-							local node_root =
-								vim.fs.root(file, { "package.json", "node_modules" })
+							local node_root = vim.fs.root(file, {
+								"package.json",
+								"node_modules",
+							})
 							return node_root or biome_root
 						else
 							return nil
@@ -135,7 +139,12 @@ return {
 					end,
 					---@param client vim.lsp.Client
 					on_attach = function(client, bufnr)
-						if not vim.fs.root(bufnr, { "taplo.toml", ".taplo.toml" }) then
+						if
+							not vim.fs.root(bufnr, {
+								"taplo.toml",
+								".taplo.toml",
+							})
+						then
 							client.server_capabilities.documentFormattingProvider = false
 						end
 					end,
@@ -144,10 +153,11 @@ return {
 			ts_ls = function()
 				lspconfig["ts_ls"].setup({
 					root_dir = function(file)
-						return vim.fs.root(
-							file,
-							{ "package.json", "tsconfig.json", "jsconfig.json" }
-						)
+						return vim.fs.root(file, {
+							"package.json",
+							"tsconfig.json",
+							"jsconfig.json",
+						})
 					end,
 					single_file_support = false,
 					init_options = {
@@ -173,7 +183,9 @@ return {
 			yamlls = function()
 				lspconfig["yamlls"].setup({
 					settings = {
-						yaml = { keyOrdering = false },
+						yaml = {
+							keyOrdering = false,
+						},
 					},
 				})
 			end,
@@ -182,7 +194,10 @@ return {
 		-- Non-Mason language servers
 		lspconfig["denols"].setup({
 			root_dir = function(file)
-				return vim.fs.root(file, { "deno.json", "deno.jsonc" })
+				return vim.fs.root(file, {
+					"deno.json",
+					"deno.jsonc",
+				})
 			end,
 		})
 		lspconfig["hls"].setup({
@@ -194,7 +209,9 @@ return {
 		lspconfig["rust_analyzer"].setup({
 			settings = {
 				["rust-analyzer"] = {
-					cargo = { targetDir = true },
+					cargo = {
+						targetDir = true,
+					},
 					check = {
 						command = "clippy",
 						extraArgs = {
