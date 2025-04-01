@@ -5,6 +5,7 @@ vim.o.cursorline = true
 vim.o.ignorecase = true
 vim.o.linebreak = true
 vim.o.list = true
+vim.o.modeline = false
 vim.o.number = true
 vim.o.scrolloff = 3
 vim.o.showmatch = true
