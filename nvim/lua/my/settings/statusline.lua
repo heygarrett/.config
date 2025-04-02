@@ -94,51 +94,28 @@ end
 -- get formatted and highlighted string of diagnostic counts
 ---@return string?
 local function get_diagnostics()
-	local diagnostics = vim.diagnostic.get(0)
+	---@type table<integer, integer>
+	local diagnostics = vim.diagnostic.count(0)
 	if #diagnostics == 0 or vim.api.nvim_get_mode().mode:match("^i") then
 		return nil
 	end
 
-	local severities = {
-		ERROR = { match = "Error", count = 0 },
-		WARN = { match = "Warn", count = 0 },
-		HINT = { match = "Hint", count = 0 },
-		INFO = { match = "Info", count = 0 },
-	}
-
-	for _, v in ipairs(diagnostics) do
-		for k, _ in pairs(severities) do
-			if v.severity == vim.diagnostic.severity[k] then
-				severities[k].count = severities[k].count + 1
-			end
-		end
+	---@type string[]
+	local formattedSevCounts = {}
+	for severity, count in pairs(diagnostics) do
+		table.insert(
+			formattedSevCounts,
+			table.concat({
+				"%#DiagnosticSign",
+				({ "Error", "Warn", "Info", "Hint" })[severity],
+				"#",
+				count,
+				"%*",
+			})
+		)
 	end
 
-	local output = {}
-	for _, v in pairs(severities) do
-		if v.count > 0 then
-			table.insert(
-				output,
-				table.concat({
-					"%#DiagnosticSign",
-					v.match,
-					"#",
-					v.count,
-					"%*",
-				})
-			)
-		end
-	end
-
-	table.sort(output, function(a, b)
-		local sort_order = { Error = 1, Warn = 2, Hint = 3, Info = 4 }
-		local a_sev = a:match("(%u%l+)#")
-		local b_sev = b:match("(%u%l+)#")
-
-		return sort_order[a_sev] < sort_order[b_sev]
-	end)
-
-	return table.concat(output, " ")
+	return table.concat(formattedSevCounts, " ")
 end
 
 -- get location in current buffer as a percentage
