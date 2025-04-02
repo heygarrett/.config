@@ -17,12 +17,18 @@ vim.diagnostic.config({
 	virtual_lines = {
 		current_line = true,
 		format = function(diagnostic)
-			local message = { ("%s: %s"):format(diagnostic.source, diagnostic.message) }
+			local components = { diagnostic.message }
+			if
+				diagnostic.source
+				and not vim.startswith(diagnostic.message, diagnostic.source)
+			then
+				table.insert(components, 1, ("%s:"):format(diagnostic.source))
+			end
 			if diagnostic.code then
-				table.insert(message, ("[%s]"):format(diagnostic.code))
+				table.insert(components, ("[%s]"):format(diagnostic.code))
 			end
 
-			return table.concat(message, " ")
+			return table.concat(components, " ")
 		end,
 	},
 })
