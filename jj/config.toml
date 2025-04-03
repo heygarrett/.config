@@ -27,3 +27,6 @@ merge-args = ["-c", "JJdiff", "-d", "$left", "$output", "$right"]
 
 [template-aliases]
 "format_short_cryptographic_signature(sig)" = "if(sig, '', '(no sig)')"
+
+[hints]
+resolving-conflicts = false
