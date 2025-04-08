@@ -10,5 +10,10 @@ return {
 			table.insert(configured_servers, server_name)
 		end
 		vim.lsp.enable(configured_servers)
+
+		-- language servers with default setups
+		vim.lsp.enable({
+			"ast_grep",
+		})
 	end,
 }
