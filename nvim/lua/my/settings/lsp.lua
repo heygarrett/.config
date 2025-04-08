@@ -12,6 +12,11 @@ local configured_servers = vim.iter(
 	:totable()
 vim.lsp.enable(configured_servers)
 
+-- enable non-Mason language servers without custom configs
+vim.lsp.enable({
+	"ast_grep",
+})
+
 local group = vim.api.nvim_create_augroup("lsp", { clear = true })
 vim.api.nvim_create_autocmd("LspAttach", {
 	desc = "LSP options, commands and keymaps",
