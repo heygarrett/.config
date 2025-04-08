@@ -195,6 +195,7 @@ return {
 		})
 
 		-- Non-Mason language servers
+		lspconfig["ast_grep"].setup({})
 		lspconfig["denols"].setup({
 			root_dir = function(file)
 				return vim.fs.root(file, {
