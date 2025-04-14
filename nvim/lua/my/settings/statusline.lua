@@ -1,18 +1,3 @@
--- get the name of the current branch
----@return string?
-local function get_branch_name()
-	if vim.g.launched_by_shell then
-		return nil
-	end
-	local branch_cmd = vim.system({ "git", "branch", "--show-current" }):wait()
-	if branch_cmd.stdout == "" or branch_cmd.code ~= 0 then
-		return nil
-	end
-
-	local branch_name, _ = branch_cmd.stdout:gsub("\n", "")
-	return branch_name
-end
-
 ---@return string
 local function get_parent_dir()
 	local path_to_cwd = vim.fn.fnamemodify(vim.fn.getcwd(0), ":h")
@@ -65,10 +50,9 @@ end
 
 local group = vim.api.nvim_create_augroup("statusline", { clear = true })
 vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "FocusGained" }, {
-	desc = "keep branch and buffer name variables updated",
+	desc = "buffer name variable updated",
 	group = group,
 	callback = function()
-		vim.b.branch_name = get_branch_name()
 		vim.b.buffer_name = get_buffer_name()
 	end,
 })
@@ -140,21 +124,15 @@ local function get_progress()
 end
 
 -- format string for left side of statusline
----@param branch string?
 ---@param buffer string?
 ---@return string
-local function generate_left(branch, buffer)
-	branch = branch or vim.b.branch_name
+local function generate_left(buffer)
 	buffer = buffer or vim.b.buffer_name
 
 	local left = {}
-	if branch then
-		table.insert(left, branch)
-	end
 	if buffer ~= "" then
 		table.insert(left, buffer)
 	end
-	left = { table.concat(left, " | ") }
 
 	if not vim.o.endofline then
 		table.insert(left, "[noeol]")
@@ -188,37 +166,6 @@ local function generate_right()
 	return table.concat(right_table, " | ")
 end
 
--- truncate branch and buffer names for narrow window
----@param overflow number
----@return string?, string
-local function truncate(overflow)
-	local min_width = 15
-	local new_branch = vim.b.branch_name
-	local new_buffer = vim.b.buffer_name
-
-	if vim.b.branch_name and vim.b.branch_name:len() > min_width then
-		if vim.b.branch_name:len() - overflow >= min_width then
-			new_branch = vim.b.branch_name:sub(1, (overflow + 1) * -1)
-			overflow = 0
-		else
-			new_branch = vim.b.branch_name:sub(1, min_width)
-			overflow = overflow - vim.b.branch_name:sub(min_width + 1):len()
-		end
-		new_branch = new_branch:gsub(".$", ">")
-	end
-
-	if overflow > 0 and vim.b.buffer_name:len() > min_width then
-		if vim.b.buffer_name:len() - overflow >= min_width then
-			new_buffer = vim.b.buffer_name:sub(overflow + 1)
-		else
-			new_buffer = vim.b.buffer_name:sub(vim.b.buffer_name:len() - min_width + 1)
-		end
-		new_buffer = new_buffer:gsub("^.", "<")
-	end
-
-	return new_branch, new_buffer
-end
-
 -- generate statusline
 ---@return string
 function Status_Line()
@@ -230,14 +177,10 @@ function Status_Line()
 	local right_string_length = vim.api.nvim_eval_statusline(right_string, {}).width
 
 	local divider = " | "
-	local length = left_string_length + divider:len() + right_string_length
+	local length = left_string_length + #divider + right_string_length
 	local overflow = length - vim.api.nvim_win_get_width(0)
 	if overflow < 0 then
 		divider = "%="
-	end
-	if overflow > 0 then
-		local trunc_branch, trunc_buffer = truncate(overflow)
-		left_string = generate_left(trunc_branch, trunc_buffer)
 	end
 
 	return table.concat({ "%<", left_string, divider, right_string })
