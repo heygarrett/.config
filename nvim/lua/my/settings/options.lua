@@ -18,7 +18,7 @@ vim.o.termguicolors = true
 vim.o.updatetime = 2000
 vim.o.wildmode = "longest:full,full"
 vim.o.winborder = "single"
-vim.opt.completeopt = { "fuzzy", "menuone", "noselect", "nosort", "popup" }
+vim.opt.completeopt = { "fuzzy", "menuone", "noselect", "popup" }
 vim.opt.guicursor = { "n-v-c-sm:block", "i-ci-ve-t:ver25", "r-cr-o:hor20" }
 vim.opt.path:append("**")
 vim.opt.shortmess:append("Scs")
