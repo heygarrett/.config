@@ -1,5 +1,8 @@
 ---@type vim.lsp.Config
 return {
+	cmd = {
+		vim.fs.joinpath(vim.env.XDG_DATA_HOME, "nvim/mason/bin/rust-analyzer"),
+	},
 	settings = {
 		["rust-analyzer"] = {
 			cargo = {
