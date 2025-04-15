@@ -33,6 +33,7 @@ return {
 				"oxlint",
 				"prettierd",
 				"ruff",
+				"rust-analyzer",
 				"shellcheck",
 				"shfmt",
 				"stylua",
