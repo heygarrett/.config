@@ -1,5 +1,11 @@
 ---@type vim.lsp.Config
 return {
+	cmd = {
+		table.concat({
+			vim.env.HOME,
+			".local/share/nvim/mason/bin/rust-analyzer",
+		}, "/"),
+	},
 	settings = {
 		["rust-analyzer"] = {
 			cargo = {
