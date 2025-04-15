@@ -34,6 +34,7 @@ return {
 				"pkl-lsp",
 				"prettierd",
 				"ruff",
+				"rust-analyzer",
 				"shellcheck",
 				"shfmt",
 				"stylua",
