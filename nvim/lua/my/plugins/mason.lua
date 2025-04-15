@@ -30,6 +30,7 @@ return {
 				"marksman",
 				"prettierd",
 				"ruff",
+				"rust-analyzer",
 				"shellcheck",
 				"shfmt",
 				"stylua",

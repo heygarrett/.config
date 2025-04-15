@@ -133,6 +133,61 @@ return {
 					end,
 				})
 			end,
+			rust_analyzer = function()
+				lspconfig["rust_analyzer"].setup({
+					cmd = {
+						table.concat({
+							vim.env.HOME,
+							".local/share/nvim/mason/bin/rust-analyzer",
+						}, "/"),
+					},
+					settings = {
+						["rust-analyzer"] = {
+							cargo = {
+								targetDir = true,
+							},
+							check = {
+								command = "clippy",
+								extraArgs = {
+									"--",
+									"--warn=clippy::todo",
+								},
+							},
+							inlayHints = {
+								-- bindingModeHints = { enable = false },
+								-- chainingHints = { enable = true },
+								-- closingBraceHints = {
+								-- 	enable = true,
+								-- 	minLines = 25,
+								-- },
+								-- closureCaptureHints = { enable = false },
+								closureReturnTypeHints = { enable = "always" },
+								-- closureStyle = "impl_fn",
+								-- discriminantHints = { enable = "never" },
+								-- expressionAdjustmentHints = {
+								-- 	enable = "never",
+								-- 	hideOutsideUnsafe = false,
+								-- 	mode = "prefix",
+								-- },
+								-- implicitDrops = { enable = false },
+								lifetimeElisionHints = {
+									enable = "always",
+									useParameterNames = false,
+								},
+								-- maxLength = 25,
+								-- parameterHints = { enable = true },
+								-- rangeExclusiveHints = { enable = false },
+								-- renderColons = true,
+								-- typeHints = {
+								-- 	enable = true,
+								-- 	hideClosureInitialization = false,
+								-- 	hideNamedConstructor = false,
+								-- },
+							},
+						},
+					},
+				})
+			end,
 			taplo = function()
 				lspconfig["taplo"].setup({
 					-- HACK: https://github.com/tamasfe/taplo/issues/580#issuecomment-2361679688
@@ -209,53 +264,6 @@ return {
 			on_attach = function(client)
 				client.server_capabilities.documentFormattingProvider = false
 			end,
-		})
-		lspconfig["rust_analyzer"].setup({
-			settings = {
-				["rust-analyzer"] = {
-					cargo = {
-						targetDir = true,
-					},
-					check = {
-						command = "clippy",
-						extraArgs = {
-							"--",
-							"--warn=clippy::todo",
-						},
-					},
-					inlayHints = {
-						-- bindingModeHints = { enable = false },
-						-- chainingHints = { enable = true },
-						-- closingBraceHints = {
-						-- 	enable = true,
-						-- 	minLines = 25,
-						-- },
-						-- closureCaptureHints = { enable = false },
-						closureReturnTypeHints = { enable = "always" },
-						-- closureStyle = "impl_fn",
-						-- discriminantHints = { enable = "never" },
-						-- expressionAdjustmentHints = {
-						-- 	enable = "never",
-						-- 	hideOutsideUnsafe = false,
-						-- 	mode = "prefix",
-						-- },
-						-- implicitDrops = { enable = false },
-						lifetimeElisionHints = {
-							enable = "always",
-							useParameterNames = false,
-						},
-						-- maxLength = 25,
-						-- parameterHints = { enable = true },
-						-- rangeExclusiveHints = { enable = false },
-						-- renderColons = true,
-						-- typeHints = {
-						-- 	enable = true,
-						-- 	hideClosureInitialization = false,
-						-- 	hideNamedConstructor = false,
-						-- },
-					},
-				},
-			},
 		})
 		lspconfig["sourcekit"].setup({
 			root_dir = function(file)
