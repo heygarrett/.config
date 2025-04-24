@@ -4,24 +4,20 @@ local formatters_by_filetype = {
 	go = {
 		"golines",
 		"goimports",
-		stop_after_first = true,
 	},
 	haskell = { "fourmolu" },
 	lua = { "stylua" },
 	python = {
 		"black",
 		"yapf",
-		stop_after_first = true,
 	},
 	swift = {
 		"swift_format",
 		"swiftformat",
-		stop_after_first = true,
 	},
 	yaml = {
 		"prettierd",
 		"yamlfmt",
-		stop_after_first = true,
 	},
 }
 
@@ -86,7 +82,10 @@ return {
 		})
 	end,
 	opts = {
-		default_format_opts = { lsp_format = "fallback" },
+		default_format_opts = {
+			lsp_format = "fallback",
+			stop_after_first = true,
+		},
 		formatters_by_ft = formatters_by_filetype,
 		formatters = {
 			astyle = {
