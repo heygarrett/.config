@@ -26,6 +26,7 @@ return {
 				"golangci_lint_ls",
 				"gopls",
 				"jsonls",
+				"just-lsp",
 				"lua_ls",
 				"marksman",
 				"prettierd",
