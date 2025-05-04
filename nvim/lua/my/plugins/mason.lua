@@ -29,6 +29,7 @@ return {
 				"just-lsp",
 				"lua_ls",
 				"marksman",
+				"oxlint",
 				"prettierd",
 				"ruff",
 				"shellcheck",
