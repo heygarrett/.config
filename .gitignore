@@ -2,6 +2,7 @@
 /*
 
 # unignore directories and files
+!deno/
 !fish/
 !git/
 !homebrew/

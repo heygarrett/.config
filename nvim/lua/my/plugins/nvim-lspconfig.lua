@@ -156,9 +156,8 @@ return {
 				lspconfig["ts_ls"].setup({
 					root_dir = function(file)
 						return vim.fs.root(file, {
-							"package.json",
-							"tsconfig.json",
 							"jsconfig.json",
+							"tsconfig.json",
 						})
 					end,
 					single_file_support = false,
@@ -196,10 +195,29 @@ return {
 		-- Non-Mason language servers
 		lspconfig["denols"].setup({
 			root_dir = function(file)
+				if vim.fs.root(file, { "jsconfig.json", "tsconfig.json" }) then
+					return nil
+				end
+
 				return vim.fs.root(file, {
 					"deno.json",
 					"deno.jsonc",
-				})
+				}) or vim.uv.cwd()
+			end,
+			---@param client vim.lsp.Client
+			---@param bufnr integer
+			on_attach = function(client, bufnr)
+				if not vim.fs.root(bufnr, { "deno.json", "deno.jsonc" }) then
+					client.config.settings.deno =
+						---@diagnostic disable-next-line: param-type-mismatch
+						vim.tbl_deep_extend("force", client.config.settings.deno, {
+
+							config = vim.fs.joinpath(
+								vim.env.XDG_CONFIG_HOME,
+								"deno/deno.json"
+							),
+						})
+				end
 			end,
 		})
 		lspconfig["hls"].setup({

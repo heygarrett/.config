@@ -1,0 +1,6 @@
+{
+	"nodeModulesDir": "manual",
+	"compilerOptions": {
+		"checkJs": true
+	}
+}
