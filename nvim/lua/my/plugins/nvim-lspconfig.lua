@@ -8,12 +8,12 @@ return {
 		require("mason-lspconfig").setup_handlers({
 			-- Mason language servers with default setups
 			function(server_name)
-				lspconfig[server_name].setup({})
+				vim.lsp.enable(server_name)
 			end,
 
 			-- Mason language servers with custom setups
 			basedpyright = function()
-				lspconfig["basedpyright"].setup({
+				vim.lsp.config("basedpyright", {
 					settings = {
 						basedpyright = {
 							analysis = {
@@ -24,6 +24,7 @@ return {
 						},
 					},
 				})
+				vim.lsp.enable("basedpyright")
 			end,
 			biome = function()
 				lspconfig["biome"].setup({
@@ -51,12 +52,13 @@ return {
 				})
 			end,
 			eslint = function()
-				lspconfig["eslint"].setup({
+				vim.lsp.config("eslint", {
 					settings = { format = false },
 				})
+				vim.lsp.enable("eslint")
 			end,
 			gopls = function()
-				lspconfig["gopls"].setup({
+				vim.lsp.config("gopls", {
 					settings = {
 						gopls = {
 							hints = {
@@ -71,9 +73,10 @@ return {
 						},
 					},
 				})
+				vim.lsp.enable("gopls")
 			end,
 			lua_ls = function()
-				lspconfig["lua_ls"].setup({
+				vim.lsp.config("lua_ls", {
 					settings = {
 						Lua = {
 							hint = {
@@ -124,20 +127,24 @@ return {
 						vim.api.nvim_set_hl(0, "@lsp.type.comment", {})
 					end,
 				})
+				vim.lsp.enable("lua_ls")
 			end,
 			ruff = function()
-				lspconfig["ruff"].setup({
+				vim.lsp.config("ruff", {
 					---@param client vim.lsp.Client
 					on_attach = function(client)
 						client.server_capabilities.hoverProvider = false
 					end,
 				})
+				vim.lsp.enable("ruff")
 			end,
 			taplo = function()
-				lspconfig["taplo"].setup({
+				vim.lsp.config("taplo", {
 					-- HACK: https://github.com/tamasfe/taplo/issues/580#issuecomment-2361679688
-					root_dir = function()
-						return vim.uv.cwd()
+					---@param _ integer
+					---@param callback fun(root_dir?: string)
+					root_dir = function(_, callback)
+						callback(vim.uv.cwd())
 					end,
 					---@param client vim.lsp.Client
 					on_attach = function(client, bufnr)
@@ -151,16 +158,22 @@ return {
 						end
 					end,
 				})
+				vim.lsp.enable("taplo")
 			end,
 			ts_ls = function()
-				lspconfig["ts_ls"].setup({
-					root_dir = function(file)
-						return vim.fs.root(file, {
+				vim.lsp.config("ts_ls", {
+					---@param bufnr integer
+					---@param callback fun(root_dir?: string)
+					root_dir = function(bufnr, callback)
+						local config_root = vim.fs.root(bufnr, {
 							"jsconfig.json",
 							"tsconfig.json",
 						})
+						if config_root then
+							callback(config_root)
+						end
 					end,
-					single_file_support = false,
+					workspace_required = true,
 					init_options = {
 						preferences = {
 							includeInlayEnumMemberValueHints = true,
@@ -180,29 +193,31 @@ return {
 						client.server_capabilities.documentFormattingProvider = false
 					end,
 				})
+				vim.lsp.enable("ts_ls")
 			end,
 			yamlls = function()
-				lspconfig["yamlls"].setup({
+				vim.lsp.config("yamlls", {
 					settings = {
 						yaml = {
 							keyOrdering = false,
 						},
 					},
 				})
+				vim.lsp.enable("yamlls")
 			end,
 		})
 
 		-- Non-Mason language servers
-		lspconfig["denols"].setup({
-			root_dir = function(file)
-				if vim.fs.root(file, { "jsconfig.json", "tsconfig.json" }) then
-					return nil
+		vim.lsp.config("denols", {
+			---@param bufnr integer
+			---@param callback fun(root_dir?: string)
+			root_dir = function(bufnr, callback)
+				if not vim.fs.root(bufnr, { "jsconfig.json", "tsconfig.json" }) then
+					callback(vim.fs.root(bufnr, {
+						"deno.json",
+						"deno.jsonc",
+					}) or vim.uv.cwd())
 				end
-
-				return vim.fs.root(file, {
-					"deno.json",
-					"deno.jsonc",
-				}) or vim.uv.cwd()
 			end,
 			---@param client vim.lsp.Client
 			---@param bufnr integer
@@ -220,13 +235,17 @@ return {
 				end
 			end,
 		})
-		lspconfig["hls"].setup({
+		vim.lsp.enable("denols")
+
+		vim.lsp.config("hls", {
 			---@param client vim.lsp.Client
 			on_attach = function(client)
 				client.server_capabilities.documentFormattingProvider = false
 			end,
 		})
-		lspconfig["rust_analyzer"].setup({
+		vim.lsp.enable("hls")
+
+		vim.lsp.config("rust_analyzer", {
 			settings = {
 				["rust-analyzer"] = {
 					cargo = {
@@ -273,17 +292,22 @@ return {
 				},
 			},
 		})
-		lspconfig["sourcekit"].setup({
-			root_dir = function(file)
-				return vim.fs.root(file, function(name)
+		vim.lsp.enable("rust_analyzer")
+
+		vim.lsp.config("sourcekit", {
+			---@param bufnr integer
+			---@param callback fun(root_dir?: string)
+			root_dir = function(bufnr, callback)
+				callback(vim.fs.root(bufnr, function(name)
 					return vim.tbl_contains({
 						"Package.swift",
 						"%.xcodeproj$",
 					}, function(marker)
 						return name:match(marker) ~= nil
 					end, { predicate = true })
-				end)
+				end))
 			end,
 		})
+		vim.lsp.enable("sourcekit")
 	end,
 }
