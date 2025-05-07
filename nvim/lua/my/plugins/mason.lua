@@ -1,11 +1,12 @@
 return {
 	{
-		"https://github.com/williamboman/mason.nvim",
+		"https://github.com/mason-org/mason.nvim",
 		cmd = { "Mason", "MasonUpdate" },
 		opts = { PATH = "append" },
 	},
 	{
-		"https://github.com/williamboman/mason-lspconfig.nvim",
+		"https://github.com/mason-org/mason-lspconfig.nvim",
+		lazy = false,
 		opts = {},
 	},
 	{
