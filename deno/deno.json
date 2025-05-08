@@ -2,5 +2,8 @@
 	"nodeModulesDir": "manual",
 	"compilerOptions": {
 		"checkJs": true
+	},
+	"fmt": {
+		"useTabs": true
 	}
 }
