@@ -7,11 +7,13 @@ return {
 	end,
 	---@param client vim.lsp.Client
 	on_attach = function(client, bufnr)
-		if not vim.fs.root(bufnr, {
+		if vim.fs.root(bufnr, {
 			"taplo.toml",
 			".taplo.toml",
 		}) then
-			client.server_capabilities.documentFormattingProvider = false
+			return
 		end
+
+		client.server_capabilities.documentFormattingProvider = false
 	end,
 }
