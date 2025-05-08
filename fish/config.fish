@@ -13,7 +13,6 @@ if status is-login
 	set --global --export GOPATH "$XDG_DATA_HOME"/go
 	set --global --export HOMEBREW_BUNDLE_FILE "$XDG_CONFIG_HOME"/homebrew/Brewfile
 	set --global --export HOMEBREW_NO_ANALYTICS 1
-	set --global --export JJ_CONFIG "$XDG_CONFIG_HOME"/jj/config.toml
 	set --global --export MANPAGER $EDITOR +Man!
 	set --global --export MISE_FISH_AUTO_ACTIVATE 0
 	set --global --export NPM_CONFIG_USERCONFIG "$XDG_CONFIG_HOME"/npm/npmrc
