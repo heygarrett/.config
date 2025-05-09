@@ -55,17 +55,31 @@ return {
 				retab_range = { command_opts.line1, command_opts.line2 }
 			end
 
-			local formatted = require("conform").format({ range = format_range })
-			if
-				formatted
-				-- Markdown may use a mix of tabs and spaces (code snippets)
-				and vim.bo.filetype ~= "markdown"
-			then
-				vim.cmd.Retab({
-					bang = not command_opts.bang,
-					range = retab_range,
-				})
-			end
+			require("conform").format(
+				{ range = format_range },
+				---@param err string?
+				function(err)
+					if vim.bo.filetype == "markdown" then
+						-- don't auto-retab Markdown because it may
+						-- use a mix of tabs and spaces (code snippets)
+						return
+					end
+					if err then
+						vim.notify_once(err)
+						return
+					end
+
+					if not command_opts.bang then
+						-- HACK: if the :Retab! command is not delayed by at least ~250 ms
+						-- its prompt gets covered by the status line (not sure why)
+						vim.wait(250)
+					end
+					vim.cmd.Retab({
+						bang = not command_opts.bang,
+						range = retab_range,
+					})
+				end
+			)
 		end, {
 			bang = true,
 			range = "%",
