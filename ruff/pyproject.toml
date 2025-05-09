@@ -1,2 +1,5 @@
 [tool.ruff.format]
 indent-style = "tab"
+
+[tool.ruff.lint]
+select = ["ANN201", "ANN202"] # missing return types
