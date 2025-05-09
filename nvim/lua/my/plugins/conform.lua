@@ -61,6 +61,11 @@ return {
 				-- Markdown may use a mix of tabs and spaces (code snippets)
 				and vim.bo.filetype ~= "markdown"
 			then
+				if not command_opts.bang then
+					-- HACK: if the command is not delayed by at least ~250 ms
+					-- the Retab prompt gets covered by the status line (not sure why)
+					vim.wait(250)
+				end
 				vim.cmd.Retab({
 					bang = not command_opts.bang,
 					range = retab_range,
