@@ -31,6 +31,7 @@ return {
 				"lua_ls",
 				"marksman",
 				"oxlint",
+				"pkl-lsp",
 				"prettierd",
 				"ruff",
 				"shellcheck",
