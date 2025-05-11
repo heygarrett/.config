@@ -1,5 +1,6 @@
 vim.g.mapleader = " "
 vim.o.breakindent = true
+vim.o.colorcolumn = "+1"
 vim.o.confirm = true
 vim.o.cursorline = true
 vim.o.ignorecase = true
