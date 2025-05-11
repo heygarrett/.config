@@ -5,5 +5,15 @@
 	},
 	"fmt": {
 		"useTabs": true
+	},
+	"lint": {
+		"rules": {
+			"tags": [
+				"recommended"
+			],
+			"include": [
+				"explicit-function-return-type"
+			]
+		}
 	}
 }
