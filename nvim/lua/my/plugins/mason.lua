@@ -17,6 +17,7 @@ return {
 				"basedpyright",
 				"bashls",
 				"biome",
+				"checkmake",
 				"clangd",
 				"cmake",
 				"commitlint",
