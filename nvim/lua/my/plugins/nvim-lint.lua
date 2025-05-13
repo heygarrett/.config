@@ -13,10 +13,12 @@ local linters_by_filetype = {
 	jjdescription = { commitlint },
 	make = { "checkmake" },
 }
+---@type string[]
+local lintable_filetypes = vim.tbl_keys(linters_by_filetype)
 
 return {
 	"https://github.com/mfussenegger/nvim-lint",
-	ft = vim.tbl_keys(linters_by_filetype),
+	ft = lintable_filetypes,
 	config = function()
 		local nvim_lint = require("lint")
 
@@ -39,11 +41,40 @@ return {
 		end
 
 		local group = vim.api.nvim_create_augroup("nvim-lint", { clear = true })
-		vim.api.nvim_create_autocmd({ "BufWritePost", "InsertLeave", "TextChanged" }, {
+		---@param bufnr integer
+		local create_autocmd = function(bufnr)
+			vim.api.nvim_create_autocmd(
+				{ "BufWinEnter", "BufWritePost", "InsertLeave", "TextChanged" },
+				{
+					desc = "nvim-lint",
+					group = group,
+					buffer = bufnr,
+					callback = function()
+						nvim_lint.try_lint(nil, { ignore_errors = true })
+					end,
+				}
+			)
+		end
+
+		for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
+			if not vim.api.nvim_buf_is_loaded(bufnr) then
+				goto continue
+			end
+			if not vim.tbl_contains(lintable_filetypes, vim.bo[bufnr].filetype) then
+				goto continue
+			end
+
+			create_autocmd(bufnr)
+
+			::continue::
+		end
+
+		vim.api.nvim_create_autocmd("FileType", {
 			desc = "nvim-lint",
 			group = group,
-			callback = function()
-				nvim_lint.try_lint(nil, { ignore_errors = true })
+			pattern = lintable_filetypes,
+			callback = function(event_opts)
+				create_autocmd(event_opts.buf)
 			end,
 		})
 	end,
