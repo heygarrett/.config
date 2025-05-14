@@ -38,39 +38,40 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 			event_opts.buf,
 			"Retab",
 			function(command_opts)
-				-- match indentation to value of expandtab
 				local current_indent = helpers.get_indentation_size(event_opts.buf)
-				if (current_indent == 0) == vim.bo.expandtab then
-					-- prompt for retab if formatting manually
-					if command_opts.bang then
-						local success, choice = pcall(
-							vim.fn.confirm,
-							"Overwrite formatter indentation?",
-							"&Yes\n&no"
-						)
-						if not success then
-							return
-						elseif choice == 2 then
-							return
-						end
-					end
-					-- then retab
-					local preferred_tabstop = (
-						vim.bo.expandtab and vim.bo.tabstop or vim.go.tabstop
+				if (current_indent ~= 0) == vim.bo.expandtab then
+					return
+				end
+
+				-- prompt for retab if formatting manually
+				if command_opts.bang then
+					local success, choice = pcall(
+						vim.fn.confirm,
+						"Overwrite formatter indentation?",
+						"&Yes\n&no"
 					)
-					if current_indent ~= 0 then
-						vim.bo.tabstop = current_indent
+					if not success then
+						return
+					elseif choice == 2 then
+						return
 					end
-					vim.cmd.retab({
-						bang = true,
-						range = { command_opts.line1, command_opts.line2 },
-					})
-					vim.bo.tabstop = preferred_tabstop
-					if vim.bo.expandtab then
-						vim.bo.shiftwidth = preferred_tabstop
-					else
-						vim.bo.shiftwidth = 0
-					end
+				end
+				-- then retab
+				local preferred_tabstop = (
+					vim.bo.expandtab and vim.bo.tabstop or vim.go.tabstop
+				)
+				if current_indent ~= 0 then
+					vim.bo.tabstop = current_indent
+				end
+				vim.cmd.retab({
+					bang = true,
+					range = { command_opts.line1, command_opts.line2 },
+				})
+				vim.bo.tabstop = preferred_tabstop
+				if vim.bo.expandtab then
+					vim.bo.shiftwidth = preferred_tabstop
+				else
+					vim.bo.shiftwidth = 0
 				end
 			end,
 			{
