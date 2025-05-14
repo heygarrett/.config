@@ -108,6 +108,8 @@ vim.api.nvim_create_user_command("JJdiff", function()
 	vim.cmd.close()
 	-- put contents of $left into $output
 	vim.api.nvim_buf_set_lines(0, 0, -1, true, left_contents)
+	-- fix indentation
+	vim.api.nvim_exec_autocmds("BufWinEnter", { group = "indentation" })
 	-- treat $right as a scratch buffer
 	vim.bo[3].readonly = false
 	vim.bo[3].buftype = "nowrite"
