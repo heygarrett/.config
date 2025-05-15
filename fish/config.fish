@@ -8,7 +8,7 @@ if status is-login
 	# environment variables
 	set --global --export CARGO_HOME "$XDG_DATA_HOME"/cargo
 	set --global --export DIRENV_WARN_TIMEOUT 0
-	set --global --export EDITOR "nvim --cmd 'let g:launched_by_shell=1'"
+	set --global --export EDITOR env ENV_EDITOR=1 nvim
 	set --global --export GHCUP_USE_XDG_DIRS 1
 	set --global --export GOPATH "$XDG_DATA_HOME"/go
 	set --global --export HOMEBREW_BUNDLE_FILE "$XDG_CONFIG_HOME"/homebrew/Brewfile

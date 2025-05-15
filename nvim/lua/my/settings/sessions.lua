@@ -7,7 +7,7 @@ vim.api.nvim_create_autocmd("VimEnter", {
 	group = group,
 	nested = true,
 	callback = function()
-		if vim.g.launched_by_shell then
+		if vim.env.ENV_EDITOR then
 			return
 		end
 		if vim.v.argv[#vim.v.argv] == "-" then
@@ -47,7 +47,7 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
 	desc = "overwrite existing session when exiting",
 	group = group,
 	callback = function()
-		if vim.g.launched_by_shell then
+		if vim.env.ENV_EDITOR then
 			return
 		end
 		if vim.v.argv[#vim.v.argv] == "-" then
