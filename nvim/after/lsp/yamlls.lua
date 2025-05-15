@@ -6,6 +6,7 @@ return {
 			schemas = {
 				[".direnv/chlg-schema.json"] = "changelogs/*",
 			},
+			schemaStore = { enable = false },
 		},
 	},
 }
