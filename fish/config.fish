@@ -35,7 +35,9 @@ if status is-login
 		/opt/homebrew/bin \
 		/opt/homebrew/sbin \
 		/opt/homebrew/opt/rustup/bin
+end
 
+if status is-interactive
 	# settings
 	set --global fish_cursor_insert line
 	set --global fish_vi_force_cursor true
@@ -52,12 +54,12 @@ if status is-login
 		tic -x $tempfile
 		rm $tempfile
 	end
-end
 
-# extensions
-source "$XDG_CONFIG_HOME"/op/plugins.sh 2>/dev/null
-starship init fish | source
-direnv hook fish | source
-fzf --fish | source
-mise activate fish | source
-COMPLETE=fish jj | source
+	# extensions
+	source "$XDG_CONFIG_HOME"/op/plugins.sh 2>/dev/null
+	starship init fish | source
+	direnv hook fish | source
+	fzf --fish | source
+	mise activate fish | source
+	COMPLETE=fish jj | source
+end
