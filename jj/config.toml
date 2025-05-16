@@ -1,4 +1,4 @@
-"$schema" = "https://jj-vcs.github.io/jj/latest/config-schema.json"
+#:schema https://jj-vcs.github.io/jj/latest/config-schema.json
 
 [user]
 name = "Garrett"
