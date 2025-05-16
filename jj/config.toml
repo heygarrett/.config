@@ -18,6 +18,7 @@ push-new-bookmarks = true
 merge-editor = "nvimdiff"
 diff-editor = ":builtin"
 show-cryptographic-signatures = true
+bookmark-list-sort-keys = ["committer-date-"]
 
 [merge-tools.nvimdiff]
 program = "sh"
