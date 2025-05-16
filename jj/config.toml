@@ -20,8 +20,18 @@ diff-editor = ":builtin"
 show-cryptographic-signatures = true
 
 [merge-tools.nvimdiff]
-program = "nvim"
-merge-args = ["-c", "JJdiff", "-d", "$left", "$output", "$right"]
+program = "sh"
+merge-args = [
+	"-c",
+	'exec $EDITOR "$@"',
+	"--",
+	"-c",
+	"JJdiff",
+	"-d",
+	"$left",
+	"$output",
+	"$right"
+]
 
 [template-aliases]
 "format_short_cryptographic_signature(sig)" = "if(sig, '', '(no sig)')"
