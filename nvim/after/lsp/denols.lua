@@ -21,7 +21,6 @@ return {
 		client.config.settings.deno =
 			---@diagnostic disable-next-line: param-type-mismatch
 			vim.tbl_deep_extend("force", client.config.settings.deno, {
-
 				config = vim.fs.joinpath(vim.env.XDG_CONFIG_HOME, "deno/deno.json"),
 			})
 	end,
