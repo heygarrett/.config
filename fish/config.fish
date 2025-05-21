@@ -61,5 +61,4 @@ if status is-interactive
 	direnv hook fish | source
 	fzf --fish | source
 	mise activate fish | source
-	COMPLETE=fish jj | source
 end
