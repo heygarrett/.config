@@ -15,6 +15,7 @@ return {
 		client.server_capabilities.documentFormattingProvider = false
 	end,
 	settings = {
+		autoUseWorkspaceTsdk = true,
 		javascript = {
 			inlayHints = {
 				-- functionLikeReturnTypes = { enabled = false },
