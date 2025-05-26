@@ -1,3 +1,7 @@
+local nvim_lint = function()
+	return require("lint")
+end
+
 ---@return string?
 local commitlint = function()
 	local config_exists = next(vim.fs.find(function(name)
@@ -13,15 +17,33 @@ local linters_by_filetype = {
 	jjdescription = { commitlint },
 	make = { "checkmake" },
 }
----@type string[]
-local lintable_filetypes = vim.tbl_keys(linters_by_filetype)
 
 return {
 	"https://github.com/mfussenegger/nvim-lint",
-	ft = lintable_filetypes,
+	init = function()
+		local group = vim.api.nvim_create_augroup("nvim-lint", { clear = true })
+		vim.api.nvim_create_autocmd("FileType", {
+			desc = "nvim-lint",
+			group = group,
+			pattern = vim.tbl_keys(linters_by_filetype),
+			callback = function(event_opts)
+				vim.api.nvim_create_autocmd({
+					"BufWinEnter",
+					"BufWritePost",
+					"InsertLeave",
+					"TextChanged",
+				}, {
+					desc = "nvim-lint",
+					group = group,
+					buffer = event_opts.buf,
+					callback = function()
+						nvim_lint().try_lint(nil, { ignore_errors = true })
+					end,
+				})
+			end,
+		})
+	end,
 	config = function()
-		local nvim_lint = require("lint")
-
 		for filetype, linters in pairs(linters_by_filetype) do
 			---@type string[]
 			local resolved_linters = {}
@@ -37,45 +59,7 @@ return {
 				::continue::
 			end
 
-			nvim_lint.linters_by_ft[filetype] = resolved_linters
+			nvim_lint().linters_by_ft[filetype] = resolved_linters
 		end
-
-		local group = vim.api.nvim_create_augroup("nvim-lint", { clear = true })
-		---@param bufnr integer
-		local create_autocmd = function(bufnr)
-			vim.api.nvim_create_autocmd(
-				{ "BufWinEnter", "BufWritePost", "InsertLeave", "TextChanged" },
-				{
-					desc = "nvim-lint",
-					group = group,
-					buffer = bufnr,
-					callback = function()
-						nvim_lint.try_lint(nil, { ignore_errors = true })
-					end,
-				}
-			)
-		end
-
-		for _, bufnr in ipairs(vim.api.nvim_list_bufs()) do
-			if not vim.api.nvim_buf_is_loaded(bufnr) then
-				goto continue
-			end
-			if not vim.tbl_contains(lintable_filetypes, vim.bo[bufnr].filetype) then
-				goto continue
-			end
-
-			create_autocmd(bufnr)
-
-			::continue::
-		end
-
-		vim.api.nvim_create_autocmd("FileType", {
-			desc = "nvim-lint",
-			group = group,
-			pattern = lintable_filetypes,
-			callback = function(event_opts)
-				create_autocmd(event_opts.buf)
-			end,
-		})
 	end,
 }
