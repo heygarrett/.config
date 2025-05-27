@@ -1,10 +1,6 @@
 local formatters_by_filetype = {
 	c = { "astyle" },
 	fish = { "fish_indent" },
-	go = {
-		"golines",
-		"goimports",
-	},
 	haskell = { "fourmolu" },
 	lua = { "stylua" },
 	python = {

@@ -23,7 +23,6 @@ return {
 				"commitlint",
 				"eslint",
 				"fourmolu",
-				"goimports",
 				"golangci-lint",
 				"golangci_lint_ls",
 				"gopls",
