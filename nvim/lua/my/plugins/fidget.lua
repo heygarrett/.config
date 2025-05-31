@@ -14,7 +14,10 @@ return {
 	end,
 	config = function()
 		fidget().setup({
-			progress = { suppress_on_insert = true },
+			progress = {
+				suppress_on_insert = true,
+				ignore_done_already = true,
+			},
 			notification = {
 				override_vim_notify = true,
 				configs = {
