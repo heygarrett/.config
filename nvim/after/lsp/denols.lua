@@ -21,4 +21,22 @@ return {
 				config = vim.fs.joinpath(vim.env.XDG_CONFIG_HOME, "deno/deno.json"),
 			})
 	end,
+	settings = {
+		deno = {
+			inlayHints = {
+				enumMemberValues = { enabled = true },
+				functionLikeReturnTypes = { enabled = true },
+				parameterNames = {
+					---@type "all" | "literals" | "none"
+					enabled = "all",
+				},
+				parameterTypes = { enabled = true },
+				propertyDeclarationTypes = { enabled = true },
+				variableTypes = {
+					enabled = false,
+					suppressWhenTypeMatchesName = true,
+				},
+			},
+		},
+	},
 }
