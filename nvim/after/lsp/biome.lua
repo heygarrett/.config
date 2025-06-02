@@ -1,9 +1,8 @@
+---@type vim.lsp.Config
 return {
 	cmd = vim.fn.executable("node_modules/.bin/biome") == 1
 			and { "node_modules/.bin/biome", "lsp-proxy" }
 		or nil,
-	---@param bufnr integer
-	---@param callback fun(root_dir?: string)
 	root_dir = function(bufnr, callback)
 		local biome_root = vim.fs.root(bufnr, {
 			"biome.json",

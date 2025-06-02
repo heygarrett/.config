@@ -1,6 +1,5 @@
+---@type vim.lsp.Config
 return {
-	---@param bufnr integer
-	---@param callback fun(root_dir?: string)
 	root_dir = function(bufnr, callback)
 		local root_dir = vim.fs.root(bufnr, function(name)
 			return vim.tbl_contains({

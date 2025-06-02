@@ -1,6 +1,5 @@
+---@type vim.lsp.Config
 return {
-	---@param bufnr integer
-	---@param callback fun(root_dir?: string)
 	root_dir = function(bufnr, callback)
 		local root_dir = vim.fs.root(bufnr, {
 			"jsconfig.json",
@@ -10,7 +9,6 @@ return {
 			callback(root_dir)
 		end
 	end,
-	---@param client vim.lsp.Client
 	on_attach = function(client)
 		client.server_capabilities.documentFormattingProvider = false
 	end,

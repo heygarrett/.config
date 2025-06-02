@@ -1,6 +1,5 @@
+---@type vim.lsp.Config
 return {
-	---@param bufnr integer
-	---@param callback fun(root_dir?: string)
 	root_dir = function(bufnr, callback)
 		if vim.fs.root(bufnr, { "jsconfig.json", "tsconfig.json" }) then
 			return
@@ -11,8 +10,6 @@ return {
 			"deno.jsonc",
 		}) or vim.uv.cwd())
 	end,
-	---@param client vim.lsp.Client
-	---@param bufnr integer
 	on_attach = function(client, bufnr)
 		if vim.fs.root(bufnr, { "deno.json", "deno.jsonc" }) then
 			return

@@ -1,3 +1,4 @@
+---@type vim.lsp.Config
 return {
 	settings = {
 		Lua = {
@@ -16,7 +17,6 @@ return {
 			},
 		},
 	},
-	---@param client vim.lsp.Client
 	on_init = function(client)
 		local ok, workspace_folder = pcall(unpack, client.workspace_folders)
 		if not ok then
