@@ -16,35 +16,35 @@ return {
 		autoUseWorkspaceTsdk = true,
 		javascript = {
 			inlayHints = {
-				-- functionLikeReturnTypes = { enabled = false },
+				functionLikeReturnTypes = { enabled = true },
 				parameterNames = {
 					---@type "all" | "literals" | "none"
 					enabled = "all",
 					suppressWhenArgumentMatchesName = true,
 				},
-				-- parameterTypes = { enabled = false },
-				-- propertyDeclarationTypes = { enabled = false },
-				-- variableTypes = {
-				-- 	enabled = false,
-				-- 	suppressWhenTypeMatchesName = true,
-				-- },
+				parameterTypes = { enabled = true },
+				propertyDeclarationTypes = { enabled = true },
+				variableTypes = {
+					enabled = false,
+					suppressWhenTypeMatchesName = true,
+				},
 			},
 		},
 		typescript = {
 			inlayHints = {
 				enumMemberValues = { enabled = true },
-				-- functionLikeReturnTypes = { enabled = false },
+				functionLikeReturnTypes = { enabled = true },
 				parameterNames = {
 					---@type "all" | "literals" | "none"
 					enabled = "all",
 					suppressWhenArgumentMatchesName = true,
 				},
-				-- parameterTypes = { enabled = false },
-				-- propertyDeclarationTypes = { enabled = false },
-				-- variableTypes = {
-				-- 	enabled = false,
-				-- 	suppressWhenTypeMatchesName = true,
-				-- },
+				parameterTypes = { enabled = true },
+				propertyDeclarationTypes = { enabled = true },
+				variableTypes = {
+					enabled = false,
+					suppressWhenTypeMatchesName = true,
+				},
 			},
 		},
 	},
