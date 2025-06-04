@@ -24,8 +24,8 @@ return {
 		end
 		local path = workspace_folder.name
 		if
-			vim.uv.fs_stat(path .. "/.luarc.json")
-			or vim.uv.fs_stat(path .. "/.luarc.jsonc")
+			vim.uv.fs_stat(vim.fs.joinpath(path, ".luarc.json"))
+			or vim.uv.fs_stat(vim.fs.joinpath(path, ".luarc.jsonc"))
 		then
 			return
 		end
