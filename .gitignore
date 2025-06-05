@@ -12,6 +12,7 @@
 !nvim/
 !ruff/
 !starship/
+!swift-format/
 !tealdear/
 !wezterm/
 !.editorconfig

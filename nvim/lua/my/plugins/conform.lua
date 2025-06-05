@@ -8,8 +8,8 @@ local formatters_by_filetype = {
 		"yapf",
 	},
 	swift = {
-		"swift_format",
 		"swiftformat",
+		"swift_format",
 	},
 	yaml = {
 		"prettierd",
@@ -145,10 +145,18 @@ return {
 				end,
 			},
 			swift_format = {
-				cwd = function(_, ctx)
-					return vim.fs.root(ctx.buf, ".swift-format")
+				prepend_args = function(_, ctx)
+					if not vim.fs.root(ctx.buf, ".swift-format") then
+						return {
+							"--configuration",
+							vim.fs.joinpath(
+								vim.env.XDG_CONFIG_HOME,
+								"swift-format",
+								"config.json"
+							),
+						}
+					end
 				end,
-				require_cwd = true,
 			},
 			swiftformat = {
 				cwd = function(_, ctx)
