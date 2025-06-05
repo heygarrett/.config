@@ -145,14 +145,14 @@ return {
 				end,
 			},
 			swift_format = {
-				cwd = function()
-					return vim.fs.root(".swift-format", { upward = true })
+				cwd = function(_, ctx)
+					return vim.fs.root(ctx.buf, ".swift-format")
 				end,
 				require_cwd = true,
 			},
 			swiftformat = {
-				cwd = function()
-					return vim.fs.root(".swiftformat", { upward = true })
+				cwd = function(_, ctx)
+					return vim.fs.root(ctx.buf, ".swiftformat")
 				end,
 				require_cwd = true,
 			},
