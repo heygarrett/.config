@@ -21,6 +21,8 @@ set --global --export SSH_AUTH_SOCK \
 	"$HOME"/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
 set --global --export STACK_XDG 1
 set --global --export STARSHIP_CONFIG "$XDG_CONFIG_HOME"/starship/starship.toml
+set --global --export SWIFTLY_HOME_DIR "$XDG_DATA_HOME"/swiftly
+set --global --export SWIFTLY_BIN_DIR "$SWIFTLY_HOME_DIR"/bin
 set --global --export TEALDEER_CONFIG_DIR "$XDG_CONFIG_HOME"/tealdeer
 set --global --export TERMINFO "$XDG_DATA_HOME"/terminfo
 set --global --export TERMINFO_DIRS $TERMINFO /usr/share/terminfo
@@ -32,6 +34,7 @@ if status is-login
 		"$HOME"/.local/bin \
 		"$GOPATH"/bin \
 		"$CARGO_HOME"/bin \
+		$SWIFTLY_BIN_DIR \
 		/opt/homebrew/bin \
 		/opt/homebrew/sbin \
 		/opt/homebrew/opt/rustup/bin
