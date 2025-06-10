@@ -30,7 +30,7 @@ return {
 					---@type "all" | "literals" | "none"
 					enabled = "all",
 				},
-				parameterTypes = { enabled = true },
+				parameterTypes = { enabled = false },
 				propertyDeclarationTypes = { enabled = true },
 				variableTypes = {
 					enabled = false,

@@ -22,7 +22,7 @@ return {
 					enabled = "all",
 					suppressWhenArgumentMatchesName = true,
 				},
-				parameterTypes = { enabled = true },
+				parameterTypes = { enabled = false },
 				propertyDeclarationTypes = { enabled = true },
 				variableTypes = {
 					enabled = false,
@@ -39,7 +39,7 @@ return {
 					enabled = "all",
 					suppressWhenArgumentMatchesName = true,
 				},
-				parameterTypes = { enabled = true },
+				parameterTypes = { enabled = false },
 				propertyDeclarationTypes = { enabled = true },
 				variableTypes = {
 					enabled = false,
