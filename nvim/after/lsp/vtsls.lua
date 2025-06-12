@@ -9,12 +9,10 @@ return {
 			callback(root_dir)
 		end
 	end,
-	on_attach = function(client)
-		client.server_capabilities.documentFormattingProvider = false
-	end,
 	settings = {
 		autoUseWorkspaceTsdk = true,
 		javascript = {
+			format = { enable = false },
 			inlayHints = {
 				functionLikeReturnTypes = { enabled = true },
 				parameterNames = {
@@ -31,6 +29,7 @@ return {
 			},
 		},
 		typescript = {
+			format = { enable = false },
 			inlayHints = {
 				enumMemberValues = { enabled = true },
 				functionLikeReturnTypes = { enabled = true },
