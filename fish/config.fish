@@ -59,7 +59,10 @@ if status is-interactive
 	end
 
 	# extensions
-	source "$XDG_CONFIG_HOME"/op/plugins.sh 2>/dev/null
+	set --local op_plugins "$XDG_CONFIG_HOME"/op/plugins.sh
+	if test -r "$op_plugins"
+		source $op_plugins
+	end
 	starship init fish | source
 	direnv hook fish | source
 	fzf --fish | source

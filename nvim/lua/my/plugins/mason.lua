@@ -22,6 +22,7 @@ return {
 				"cmake",
 				"commitlint",
 				"eslint",
+				"fish_lsp",
 				"fourmolu",
 				"golangci-lint",
 				"golangci_lint_ls",
