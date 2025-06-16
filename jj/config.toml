@@ -23,7 +23,6 @@ pager = ["sh", "-c", "sed 's/\t/    /g' | bat --plain"]
 show-cryptographic-signatures = true
 bookmark-list-sort-keys = ["committer-date-"]
 
-
 [merge-tools.nvimdiff]
 program = "sh"
 merge-args = [
