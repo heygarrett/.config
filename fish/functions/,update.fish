@@ -5,6 +5,8 @@ function ,update
 	hr
 	npm --global update
 	hr
+	swiftly update --assume-yes
+	hr
 	pushd $XDG_CONFIG_HOME
 	nvim +Update
 	popd
