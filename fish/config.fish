@@ -44,6 +44,7 @@ if status is-interactive
 	# settings
 	set --global fish_cursor_insert line
 	set --global fish_vi_force_cursor true
+	tabs -4
 
 	# install wezterm terminfo
 	if not infocmp wezterm &>/dev/null
