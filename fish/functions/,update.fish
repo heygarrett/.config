@@ -1,12 +1,16 @@
 function ,update
+	echo \n--Homebrew--
 	brew update && brew upgrade --fetch-HEAD
-	hr
+
+	echo \n--Rust--
 	rustup update
-	hr
+
+	echo \n--npm--
 	npm --global update
-	hr
+
+	echo \n--Swift--
 	swiftly update --assume-yes
-	hr
+
 	pushd $XDG_CONFIG_HOME
 	nvim +Update
 	popd
