@@ -113,4 +113,6 @@ vim.api.nvim_create_user_command("JJdiff", function()
 	-- treat $right as a scratch buffer
 	vim.bo[3].readonly = false
 	vim.bo[3].buftype = "nowrite"
+	-- prevent virtual lines from misaligning text in the diff
+	vim.diagnostic.config({ virtual_lines = false })
 end, { desc = "jj diff setup" })
