@@ -23,6 +23,7 @@ set --global --export STACK_XDG 1
 set --global --export STARSHIP_CONFIG "$XDG_CONFIG_HOME"/starship/starship.toml
 set --global --export SWIFTLY_HOME_DIR "$XDG_DATA_HOME"/swiftly
 set --global --export SWIFTLY_BIN_DIR "$SWIFTLY_HOME_DIR"/bin
+set --global --export TAB_WIDTH 4
 set --global --export TEALDEER_CONFIG_DIR "$XDG_CONFIG_HOME"/tealdeer
 set --global --export TERMINFO "$XDG_DATA_HOME"/terminfo
 set --global --export TERMINFO_DIRS $TERMINFO /usr/share/terminfo
@@ -44,7 +45,7 @@ if status is-interactive
 	# settings
 	set --global fish_cursor_insert line
 	set --global fish_vi_force_cursor true
-	tabs -4
+	tabs -"$TAB_WIDTH"
 
 	# install wezterm terminfo
 	if not infocmp wezterm &>/dev/null

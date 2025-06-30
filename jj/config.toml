@@ -17,9 +17,13 @@ push-new-bookmarks = true
 [ui]
 merge-editor = "nvimdiff"
 diff-editor = ":builtin"
-# diffs are prefixed with arbitrary length line numbers
-# making indentation with tabs difficult to format
-pager = ["sh", "-c", "sed 's/\t/    /g' | bat --plain"]
+pager = [
+	"fish",
+	"-c",
+	# diffs are prefixed with arbitrary length line numbers
+	# making indentation with tabs difficult to format
+	'sed "s/\t/$(string repeat --count $TAB_WIDTH \x20)/g" | bat --plain'
+]
 show-cryptographic-signatures = true
 bookmark-list-sort-keys = ["committer-date-"]
 
