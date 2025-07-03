@@ -13,7 +13,6 @@ key = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIDF+VTxDbi6XBbGNueF5ntXO6iT3v2idQed64
 [git]
 private-commits = "description(regex:'^private(\\(.+\\))?:.+')"
 push-new-bookmarks = true
-push-bookmark-prefix = "garrett/push-"
 
 [ui]
 merge-editor = "nvimdiff"
@@ -41,6 +40,9 @@ merge-args = [
 	"$output",
 	"$right"
 ]
+
+[templates]
+git_push_bookmark = "garrett/push- ++ change_id.short()"
 
 [template-aliases]
 "format_short_cryptographic_signature(sig)" = "if(sig, '', '(no sig)')"
