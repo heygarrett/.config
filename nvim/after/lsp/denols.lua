@@ -11,6 +11,10 @@ return {
 		}) or vim.uv.cwd())
 	end,
 	on_attach = function(client, bufnr)
+		if vim.fs.root(bufnr, { "biome.json", "biome.jsonc" }) then
+			client.server_capabilities.documentFormattingProvider = false
+		end
+
 		if vim.fs.root(bufnr, { "deno.json", "deno.jsonc" }) then
 			return
 		end
