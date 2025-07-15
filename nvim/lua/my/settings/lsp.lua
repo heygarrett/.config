@@ -1,3 +1,12 @@
+-- enable language servers with custom configs
+---@type string[]
+local configured_servers = {}
+for _, file in ipairs(vim.api.nvim_get_runtime_file("after/lsp/*.lua", true)) do
+	local server_name = vim.fn.fnamemodify(file, ":t:r")
+	table.insert(configured_servers, server_name)
+end
+vim.lsp.enable(configured_servers)
+
 local group = vim.api.nvim_create_augroup("lsp", { clear = true })
 vim.api.nvim_create_autocmd("LspAttach", {
 	desc = "LSP options, commands and keymaps",
