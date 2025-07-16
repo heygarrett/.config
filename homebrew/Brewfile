@@ -1,6 +1,3 @@
-tap "1password/tap"
-tap "homebrew/bundle"
-tap "macos-fuse-t/cask"
 tap "vitorgalvao/tiny-scripts"
 brew "as-tree"
 brew "astyle"
