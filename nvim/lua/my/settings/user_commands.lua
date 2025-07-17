@@ -106,8 +106,11 @@ vim.api.nvim_create_user_command("JJdiff", function()
 	-- close $left
 	vim.cmd.diffoff()
 	vim.cmd.close()
-	-- put contents of $left into $output
+	-- put contents of $left into $output (without creating an undo block)
+	local undolevels = vim.o.undolevels
+	vim.o.undolevels = -1
 	vim.api.nvim_buf_set_lines(0, 0, -1, true, left_contents)
+	vim.o.undolevels = undolevels
 	-- fix indentation
 	vim.api.nvim_exec_autocmds("BufWinEnter", { group = "indentation" })
 	-- treat $right as a scratch buffer
