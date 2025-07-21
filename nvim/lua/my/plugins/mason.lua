@@ -41,7 +41,6 @@ return {
 				"taplo",
 				"vimls",
 				"vtsls",
-				"yamlfmt",
 				"yamlls",
 			},
 		},
