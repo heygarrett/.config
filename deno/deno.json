@@ -5,7 +5,8 @@
 		"checkJs": true
 	},
 	"fmt": {
-		"useTabs": true
+		"useTabs": true,
+		"proseWrap": "preserve"
 	},
 	"lint": {
 		"rules": {
