@@ -1,5 +1,23 @@
 ---@type vim.lsp.Config
 return {
+	filetypes = {
+		"css",
+		"html",
+		"javascript",
+		"javascript.jsx",
+		"javascriptreact",
+		"json",
+		"jsonc",
+		"less",
+		"markdown",
+		"typescript",
+		"typescript.tsx",
+		"typescriptreact",
+		"sass",
+		"scss",
+		"vento",
+		"yaml",
+	},
 	root_dir = function(bufnr, callback)
 		if vim.fs.root(bufnr, { "jsconfig.json", "tsconfig.json" }) then
 			return
