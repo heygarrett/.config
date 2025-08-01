@@ -15,10 +15,16 @@ local get_indentation_size = function(bufnr)
 	local last_line = math.min(vim.api.nvim_buf_line_count(bufnr), 1000)
 
 	---@type string[]
-	local leading_whitespace = {}
-	for _, line in ipairs(vim.api.nvim_buf_get_lines(bufnr, 0, last_line, true)) do
-		table.insert(leading_whitespace, line:match("^%s+"))
-	end
+	local leading_whitespace = vim.iter(
+		vim.api.nvim_buf_get_lines(bufnr, 0, last_line, true)
+	)
+		:map(
+			---@param line string
+			function(line)
+				return line:match("^%s+")
+			end
+		)
+		:totable()
 
 	if vim.tbl_isempty(leading_whitespace) then
 		return 0
@@ -26,21 +32,21 @@ local get_indentation_size = function(bufnr)
 
 	local tab_count = 0
 	---@type string[]
-	local leading_spaces = {}
+	local space_counts = {}
 	for _, w in ipairs(leading_whitespace) do
 		if w:find("\t") then
 			tab_count = tab_count + 1
 		elseif #w > 1 then -- ignore single-space indents
-			table.insert(leading_spaces, w)
+			table.insert(space_counts, w)
 		end
 	end
-	if tab_count >= #leading_spaces then
+	if tab_count >= #space_counts then
 		return 0
 	end
 
-	table.sort(leading_spaces)
+	table.sort(space_counts)
 
-	return #leading_spaces[1]
+	return #space_counts[1]
 end
 
 local group = vim.api.nvim_create_augroup("indentation", { clear = true })

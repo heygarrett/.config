@@ -46,18 +46,18 @@ return {
 	config = function()
 		for filetype, linters in pairs(linters_by_filetype) do
 			---@type string[]
-			local resolved_linters = {}
-			for _, linter in ipairs(linters) do
-				if type(linter) == "function" then
-					local potential_linter = linter()
-					if not potential_linter then
-						goto continue
+			local resolved_linters = vim.iter(linters)
+				:map(
+					---@param linter string | function
+					function(linter)
+						if type(linter) == "function" then
+							return linter()
+						else
+							return linter
+						end
 					end
-					linter = potential_linter
-				end
-				table.insert(resolved_linters, linter)
-				::continue::
-			end
+				)
+				:totable()
 
 			nvim_lint().linters_by_ft[filetype] = resolved_linters
 		end

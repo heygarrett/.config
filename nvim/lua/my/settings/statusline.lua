@@ -85,19 +85,21 @@ local function get_diagnostics()
 	end
 
 	---@type string[]
-	local formattedSevCounts = {}
-	for severity, count in pairs(diagnostics) do
-		table.insert(
-			formattedSevCounts,
-			table.concat({
-				"%#DiagnosticSign",
-				({ "Error", "Warn", "Info", "Hint" })[severity],
-				"#",
-				count,
-				"%*",
-			})
+	local formattedSevCounts = vim.iter(pairs(diagnostics))
+		:map(
+			---@param severity integer
+			---@param count integer
+			function(severity, count)
+				return table.concat({
+					"%#DiagnosticSign",
+					({ "Error", "Warn", "Info", "Hint" })[severity],
+					"#",
+					count,
+					"%*",
+				})
+			end
 		)
-	end
+		:totable()
 
 	return table.concat(formattedSevCounts, " ")
 end

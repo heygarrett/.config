@@ -13,9 +13,12 @@ return {
 		init = function()
 			local ensure_installed = { "comment", "markdown_inline" }
 			local needed_parsers = vim.iter(ensure_installed)
-				:filter(function(parser)
-					return not vim.tbl_contains(treesitter().get_installed(), parser)
-				end)
+				:filter(
+					---@param parser string
+					function(parser)
+						return not vim.tbl_contains(treesitter().get_installed(), parser)
+					end
+				)
 				:totable()
 			if not vim.tbl_isempty(needed_parsers) then
 				treesitter().install(needed_parsers)
@@ -31,7 +34,7 @@ return {
 						return
 					end
 
-					local ignore_install = { "diff", "gitcommit", "git_rebase" }
+					local ignore_install = { "diff" }
 					if vim.tbl_contains(ignore_install, buf_parser) then
 						return
 					end
