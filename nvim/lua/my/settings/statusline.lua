@@ -156,9 +156,6 @@ local function generate_right()
 		table.insert(right_table, search_count)
 	end
 	table.insert(right_table, get_diagnostics())
-	if vim.b.gitsigns_status ~= "" then
-		table.insert(right_table, vim.b.gitsigns_status)
-	end
 	local file_type = vim.api.nvim_eval_statusline("%Y", {}).str:lower()
 	if file_type ~= "" then
 		table.insert(right_table, file_type)

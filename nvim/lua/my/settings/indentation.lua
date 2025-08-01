@@ -57,17 +57,15 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 		-- override expandtab set by ftplugins
 		vim.bo.expandtab = vim.go.expandtab
 
-		if vim.bo.filetype ~= "gitcommit" then
-			-- detect indentation
-			local detected_indent = get_indentation_size(event_opts.buf)
-			if detected_indent ~= 0 then
-				vim.bo.expandtab = true
-				vim.bo.tabstop = detected_indent
-			end
-
-			-- load editorconfig
-			require("editorconfig").config(event_opts.buf)
+		-- detect indentation
+		local detected_indent = get_indentation_size(event_opts.buf)
+		if detected_indent ~= 0 then
+			vim.bo.expandtab = true
+			vim.bo.tabstop = detected_indent
 		end
+
+		-- load editorconfig
+		require("editorconfig").config(event_opts.buf)
 
 		-- finalize listchars
 		vim.cmd.Relist()

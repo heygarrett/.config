@@ -9,7 +9,7 @@ vim.api.nvim_create_autocmd("BufRead", {
 			buffer = event_opts.buf,
 			once = true,
 			callback = function()
-				local exclude = { "diff", "gitcommit", "gitrebase" }
+				local exclude = { "diff" }
 				if vim.tbl_contains(exclude, vim.bo.filetype) then
 					return
 				end
