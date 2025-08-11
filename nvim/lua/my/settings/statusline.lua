@@ -20,7 +20,7 @@ local function get_buffer_name()
 	-- get root of cwd
 	local root_dir = vim.fn.fnamemodify(vim.fn.getcwd(0), ":t")
 	-- strip potential prefix and get file path
-	local buf_name = vim.api.nvim_buf_get_name(0):gsub("/$", "")
+	local buf_name = vim.api.nvim_buf_get_name(0):gsub(".+(/$)", "")
 	local _, split, prefix = buf_name:find("^(.+://)")
 	local file_path = split and buf_name:sub(split + 1) or buf_name
 	-- format file path
