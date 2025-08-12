@@ -12,6 +12,7 @@ vim.filetype.add({
 		["env%..*"] = "dotenv",
 		[".*%.env%..*"] = "dotenv",
 		["%.envrc.*"] = "sh",
+		[".*/templates/.*helm.*%.ya?ml"] = "helm",
 	},
 })
 
