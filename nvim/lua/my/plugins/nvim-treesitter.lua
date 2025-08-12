@@ -25,7 +25,7 @@ return {
 						return
 					end
 
-					local ignore_install = { "diff" }
+					local ignore_install = { "diff", "make" }
 					if vim.tbl_contains(ignore_install, buf_parser) then
 						return
 					end
