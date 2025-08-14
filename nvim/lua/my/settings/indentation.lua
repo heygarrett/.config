@@ -54,8 +54,9 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 	desc = "indentation settings",
 	group = group,
 	callback = function(event_opts)
-		-- override expandtab set by ftplugins
+		-- override options set by ftplugins
 		vim.bo.expandtab = vim.go.expandtab
+		vim.bo.shiftwidth = vim.go.shiftwidth
 
 		-- detect indentation
 		local detected_indent = get_indentation_size(event_opts.buf)
@@ -108,7 +109,7 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 				if vim.bo.expandtab then
 					vim.bo.shiftwidth = preferred_tabstop
 				else
-					vim.bo.shiftwidth = 0
+					vim.bo.shiftwidth = vim.go.shiftwidth
 				end
 			end,
 			{
