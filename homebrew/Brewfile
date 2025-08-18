@@ -35,6 +35,8 @@ brew "swiftly"
 brew "tealdeer"
 brew "tokei"
 brew "tree"
+brew "tree-sitter"
+brew "tree-sitter-cli"
 brew "uv"
 brew "vhs"
 brew "xdg-ninja", args: ["HEAD"]
