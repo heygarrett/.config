@@ -54,9 +54,8 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 	desc = "indentation settings",
 	group = group,
 	callback = function(event_opts)
-		-- override options set by ftplugins
+		-- override expandtab set by ftplugins
 		vim.bo.expandtab = vim.go.expandtab
-		vim.bo.shiftwidth = vim.go.shiftwidth
 
 		-- detect indentation
 		local detected_indent = get_indentation_size(event_opts.buf)
@@ -67,6 +66,9 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 
 		-- load editorconfig
 		require("editorconfig").config(event_opts.buf)
+
+		-- override shifwidth set by ftplugins or editorconfig
+		vim.bo.shiftwidth = vim.go.shiftwidth
 
 		-- finalize listchars
 		vim.cmd.Relist()
@@ -106,11 +108,6 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 					range = { command_opts.line1, command_opts.line2 },
 				})
 				vim.bo.tabstop = preferred_tabstop
-				if vim.bo.expandtab then
-					vim.bo.shiftwidth = preferred_tabstop
-				else
-					vim.bo.shiftwidth = vim.go.shiftwidth
-				end
 			end,
 			{
 				bang = true,
@@ -135,8 +132,6 @@ vim.api.nvim_create_user_command("Relist", function()
 		vim.wo.listchars = vim.go.listchars
 		-- override tabstop if we're using tabs
 		vim.bo.tabstop = vim.go.tabstop
-		-- reset shiftwidth
-		vim.bo.shiftwidth = vim.go.shiftwidth
 	end
 	-- keep softtabstop turned off
 	vim.bo.softtabstop = vim.go.softtabstop
