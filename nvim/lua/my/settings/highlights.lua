@@ -13,3 +13,7 @@ vim.cmd.highlight({
 vim.cmd.highlight({
 	args = { "StatusLineNC", "guifg=NvimLightGrey4", "guibg=NvimDarkGrey1" },
 })
+
+vim.cmd.highlight({
+	args = { "TabLineSel", "guibg=NvimDarkGrey1" },
+})
