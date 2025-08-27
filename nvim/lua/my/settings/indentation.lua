@@ -67,8 +67,9 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 		-- load editorconfig
 		require("editorconfig").config(event_opts.buf)
 
-		-- override shifwidth set by ftplugins or editorconfig
+		-- override options set by editorconfig or ftplugins
 		vim.bo.shiftwidth = vim.go.shiftwidth
+		vim.bo.softtabstop = vim.go.softtabstop
 
 		-- finalize listchars
 		vim.cmd.Relist()
@@ -133,6 +134,4 @@ vim.api.nvim_create_user_command("Relist", function()
 		-- override tabstop if we're using tabs
 		vim.bo.tabstop = vim.go.tabstop
 	end
-	-- keep softtabstop turned off
-	vim.bo.softtabstop = vim.go.softtabstop
 end, { desc = "re-set listchars" })
