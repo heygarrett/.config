@@ -11,17 +11,8 @@ return {
 			vim.cmd.TSUpdate()
 		end,
 		init = function()
-			local ensure_installed = { "comment", "markdown_inline" }
-			local needed_parsers = vim.iter(ensure_installed)
-				:filter(
-					---@param parser string
-					function(parser)
-						return not vim.tbl_contains(treesitter().get_installed(), parser)
-					end
-				)
-				:totable()
-			if not vim.tbl_isempty(needed_parsers) then
-				treesitter().install(needed_parsers)
+			if not vim.tbl_contains(treesitter().get_installed(), "comment") then
+				treesitter().install("comment")
 			end
 
 			local group = vim.api.nvim_create_augroup("treesitter", { clear = true })
