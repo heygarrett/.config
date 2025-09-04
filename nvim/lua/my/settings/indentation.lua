@@ -64,8 +64,10 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 			vim.bo.tabstop = detected_indent
 		end
 
-		-- load editorconfig
-		require("editorconfig").config(event_opts.buf)
+		-- load editorconfig, but ignore tab_width
+		local editorconfig = require("editorconfig")
+		editorconfig.properties.tab_width = nil
+		editorconfig.config(event_opts.buf)
 
 		-- override options set by editorconfig or ftplugins
 		vim.bo.shiftwidth = vim.go.shiftwidth
