@@ -49,11 +49,68 @@ local get_indentation_size = function(bufnr)
 	return #space_counts[1]
 end
 
+---@param bufnr integer
+local create_buffer_command_retab = function(bufnr)
+	vim.api.nvim_buf_create_user_command(bufnr, "Retab", function(command_opts)
+		local current_indent = get_indentation_size(bufnr)
+		if (current_indent ~= 0) == vim.bo.expandtab then
+			return
+		end
+
+		-- prompt for retab if formatting manually
+		if command_opts.bang then
+			local success, choice =
+				pcall(vim.fn.confirm, "Overwrite formatter indentation?", "&Yes\n&no")
+			if not success then
+				return
+			elseif choice == 2 then
+				return
+			end
+		end
+
+		-- then retab
+		local preferred_tabstop = vim.bo.expandtab and vim.bo.tabstop or vim.go.tabstop
+		if current_indent ~= 0 then
+			vim.bo.tabstop = current_indent
+		end
+		vim.cmd.retab({
+			bang = true,
+			range = {
+				command_opts.line1,
+				command_opts.line2,
+			},
+		})
+		vim.bo.tabstop = preferred_tabstop
+	end, {
+		bang = true,
+		range = "%",
+		desc = "custom retab",
+	})
+end
+
+vim.api.nvim_create_user_command("Relist", function()
+	if vim.bo.expandtab then
+		-- set whitespace characters for indentation with spaces
+		local listchars = vim.opt_global.listchars:get()
+		listchars.tab = "> "
+		if vim.bo.filetype ~= "markdown" then
+			listchars.leadmultispace = ":" .. (" "):rep(vim.fn.shiftwidth() - 1)
+		end
+		vim.opt_local.listchars = listchars
+	else
+		-- restore defaults for indentation with tabs
+		vim.wo.listchars = vim.go.listchars
+		vim.bo.tabstop = vim.go.tabstop
+	end
+end, { desc = "re-set listchars" })
+
 local group = vim.api.nvim_create_augroup("indentation", { clear = true })
 vim.api.nvim_create_autocmd("BufWinEnter", {
 	desc = "indentation settings",
 	group = group,
 	callback = function(event_opts)
+		create_buffer_command_retab(event_opts.buf)
+
 		-- override expandtab set by ftplugins
 		vim.bo.expandtab = vim.go.expandtab
 
@@ -75,65 +132,5 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 
 		-- finalize listchars
 		vim.cmd.Relist()
-
-		-- define Retab user command
-		vim.api.nvim_buf_create_user_command(
-			event_opts.buf,
-			"Retab",
-			function(command_opts)
-				local current_indent = get_indentation_size(event_opts.buf)
-				if (current_indent ~= 0) == vim.bo.expandtab then
-					return
-				end
-
-				-- prompt for retab if formatting manually
-				if command_opts.bang then
-					local success, choice = pcall(
-						vim.fn.confirm,
-						"Overwrite formatter indentation?",
-						"&Yes\n&no"
-					)
-					if not success then
-						return
-					elseif choice == 2 then
-						return
-					end
-				end
-				-- then retab
-				local preferred_tabstop = (
-					vim.bo.expandtab and vim.bo.tabstop or vim.go.tabstop
-				)
-				if current_indent ~= 0 then
-					vim.bo.tabstop = current_indent
-				end
-				vim.cmd.retab({
-					bang = true,
-					range = { command_opts.line1, command_opts.line2 },
-				})
-				vim.bo.tabstop = preferred_tabstop
-			end,
-			{
-				bang = true,
-				range = "%",
-				desc = "custom retab",
-			}
-		)
 	end,
 })
-
-vim.api.nvim_create_user_command("Relist", function()
-	if vim.bo.expandtab then
-		-- set whitespace characters for indentation with spaces
-		local listchars = vim.opt_global.listchars:get()
-		listchars.tab = "> "
-		if vim.bo.filetype ~= "markdown" then
-			listchars.leadmultispace = ":" .. (" "):rep(vim.fn.shiftwidth() - 1)
-		end
-		vim.opt_local.listchars = listchars
-	else
-		-- remove leadmultispace from listchars
-		vim.wo.listchars = vim.go.listchars
-		-- override tabstop if we're using tabs
-		vim.bo.tabstop = vim.go.tabstop
-	end
-end, { desc = "re-set listchars" })
