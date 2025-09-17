@@ -31,13 +31,13 @@ local get_indentation_size = function(bufnr)
 	end
 
 	local tab_count = 0
-	---@type string[]
+	---@type integer[]
 	local space_counts = {}
 	for _, w in ipairs(leading_whitespace) do
 		if w:find("\t") then
 			tab_count = tab_count + 1
 		elseif #w > 1 then -- ignore single-space indents
-			table.insert(space_counts, w)
+			table.insert(space_counts, #w)
 		end
 	end
 	if tab_count >= #space_counts then
@@ -46,7 +46,7 @@ local get_indentation_size = function(bufnr)
 
 	table.sort(space_counts)
 
-	return #space_counts[1]
+	return space_counts[1]
 end
 
 ---@param bufnr integer
