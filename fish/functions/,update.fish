@@ -9,7 +9,9 @@ function ,update
 	npm --global update
 
 	echo \n--Swift--
+	pushd ~
 	swiftly update --assume-yes
+	popd
 
 	pushd $XDG_CONFIG_HOME
 	nvim +Update
