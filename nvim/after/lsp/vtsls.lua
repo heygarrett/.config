@@ -1,5 +1,14 @@
 ---@type vim.lsp.Config
 return {
+	root_dir = function(bufnr, callback)
+		local root_dir = vim.fs.root(bufnr, {
+			"jsconfig.json",
+			"tsconfig.json",
+		})
+		if root_dir then
+			callback(root_dir)
+		end
+	end,
 	settings = {
 		autoUseWorkspaceTsdk = true,
 		javascript = {
