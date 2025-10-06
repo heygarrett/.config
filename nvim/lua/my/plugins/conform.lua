@@ -1,7 +1,6 @@
 local formatters_by_filetype = {
 	c = { "astyle" },
 	haskell = { "fourmolu" },
-	lua = { "stylua" },
 	python = {
 		"black",
 		"yapf",
