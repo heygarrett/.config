@@ -126,8 +126,13 @@ return {
 			},
 			prettierd = {
 				env = { PRETTIERD_LOCAL_PRETTIER_ONLY = 1 },
-				condition = function()
-					if next(vim.lsp.get_clients({ name = "biome" })) then
+				condition = function(_, ctx)
+					local attached_clients = vim.lsp.get_clients({ bufnr = ctx.buf })
+					if
+						vim.tbl_contains(attached_clients, function(client)
+							return vim.list_contains({ "biome", "denols" }, client.name)
+						end, { predicate = true })
+					then
 						return false
 					end
 
