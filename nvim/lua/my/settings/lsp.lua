@@ -1,3 +1,14 @@
+-- merge local LSP settings
+vim.lsp.config("*", {
+	before_init = function(_, config)
+		local ok, merged_config =
+			pcall(require("codesettings").with_local_settings, config.name, config)
+		if ok then
+			config = merged_config
+		end
+	end,
+})
+
 -- enable language servers with custom configs
 ---@type string[]
 local configured_servers = vim.iter(
