@@ -2,6 +2,7 @@
 return {
 	settings = {
 		yaml = {
+			format = { enable = false },
 			keyOrdering = false,
 			schemaStore = { enable = false },
 		},
