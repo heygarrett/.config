@@ -129,8 +129,17 @@ return {
 				condition = function(_, ctx)
 					local attached_clients = vim.lsp.get_clients({ bufnr = ctx.buf })
 					if
+						vim.regex("\\v^(javascript|typescript)")
+							:match_str(vim.bo[ctx.buf].filetype)
+						and not vim.tbl_contains(attached_clients, function(client)
+							return client.name == "vtsls"
+						end, { predicate = true })
+					then
+						return false
+					end
+					if
 						vim.tbl_contains(attached_clients, function(client)
-							return vim.list_contains({ "biome", "denols" }, client.name)
+							return client.name == "biome"
 						end, { predicate = true })
 					then
 						return false
@@ -143,8 +152,11 @@ return {
 					}, {
 						env = { PRETTIERD_LOCAL_PRETTIER_ONLY = 1 },
 					}):wait()
+					if not prettierd_info_cmd.stdout:find("Loaded") then
+						return false
+					end
 
-					return prettierd_info_cmd.stdout:find("Loaded") ~= nil
+					return true
 				end,
 			},
 			swift_format = {
