@@ -1,14 +1,3 @@
--- merge local LSP settings
-vim.lsp.config("*", {
-	before_init = function(_, config)
-		local ok, merged_config =
-			pcall(require("codesettings").with_local_settings, config.name, config)
-		if ok then
-			config = merged_config
-		end
-	end,
-})
-
 local group = vim.api.nvim_create_augroup("lsp", { clear = true })
 vim.api.nvim_create_autocmd("LspAttach", {
 	desc = "LSP options, commands and keymaps",
