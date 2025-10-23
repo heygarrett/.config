@@ -14,7 +14,6 @@ end
 local linters_by_filetype = {
 	fish = { "fish" },
 	jjdescription = { commitlint },
-	make = { "checkmake" },
 }
 
 return {
