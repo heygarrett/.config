@@ -1,3 +1,21 @@
+-- enable language servers with custom configs
+---@type string[]
+local configured_servers = vim.iter(vim.api.nvim_get_runtime_file("after/lsp/*.lua", true))
+	:filter(
+		---@param file string
+		function(file)
+			return vim.startswith(file, vim.fs.joinpath(vim.env.XDG_CONFIG_HOME, "nvim"))
+		end
+	)
+	:map(
+		---@param file string
+		function(file)
+			return vim.fn.fnamemodify(file, ":t:r")
+		end
+	)
+	:totable()
+vim.lsp.enable(configured_servers)
+
 local group = vim.api.nvim_create_augroup("lsp", { clear = true })
 vim.api.nvim_create_autocmd("LspAttach", {
 	desc = "LSP options, commands and keymaps",

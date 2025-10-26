@@ -7,9 +7,7 @@ return {
 	{
 		"https://github.com/mason-org/mason-lspconfig.nvim",
 		lazy = false,
-		opts = {
-			automatic_enable = true,
-		},
+		opts = {},
 	},
 	{
 		"https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim",
