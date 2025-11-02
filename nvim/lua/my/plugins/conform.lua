@@ -125,34 +125,30 @@ return {
 				end,
 			},
 			prettierd = {
-				env = { PRETTIERD_LOCAL_PRETTIER_ONLY = 1 },
 				condition = function(_, ctx)
-					local attached_clients = vim.lsp.get_clients({ bufnr = ctx.buf })
-					if
-						vim.regex("\\v^(javascript|typescript)")
-							:match_str(vim.bo[ctx.buf].filetype)
-						and not vim.tbl_contains(attached_clients, function(client)
-							return client.name == "vtsls"
-						end, { predicate = true })
-					then
+					local is_js_filetype = vim.regex("\\v^(javascript|typescript)")
+						:match_str(vim.bo[ctx.buf].filetype)
+					local vtsls_attached =
+						next(vim.lsp.get_clients({ bufnr = ctx.buf, name = "vtsls" }))
+					local biome_attached =
+						next(vim.lsp.get_clients({ bufnr = ctx.buf, name = "biome" }))
+					if is_js_filetype and not vtsls_attached then
 						return false
 					end
-					if
-						vim.tbl_contains(attached_clients, function(client)
-							return client.name == "biome"
-						end, { predicate = true })
-					then
+					if biome_attached then
 						return false
 					end
 
-					local prettierd_info_cmd = vim.system({
+					local local_prettier_installed = vim.system({
 						"prettierd",
 						"--debug-info",
 						".",
 					}, {
 						env = { PRETTIERD_LOCAL_PRETTIER_ONLY = 1 },
-					}):wait()
-					if not prettierd_info_cmd.stdout:find("Loaded") then
+					})
+						:wait().stdout
+						:find("Loaded")
+					if not local_prettier_installed then
 						return false
 					end
 
