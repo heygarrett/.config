@@ -1,6 +1,8 @@
 -- enable language servers with custom configs
 ---@type string[]
-local configured_servers = vim.iter(vim.api.nvim_get_runtime_file("after/lsp/*.lua", true))
+local configured_servers = vim.iter(
+	vim.api.nvim_get_runtime_file("after/lsp/*.lua", true)
+)
 	:filter(
 		---@param file string
 		function(file)
