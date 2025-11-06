@@ -2,6 +2,19 @@ local nvim_lint = function()
 	return require("lint")
 end
 
+---@param bufnr integer
+---@return string?
+local actionlint = function(bufnr)
+	local buf_name = vim.api.nvim_buf_get_name(bufnr)
+	for dir in vim.fs.parents(buf_name) do
+		if vim.endswith(dir, ".github/workflows") then
+			return "actionlint"
+		end
+	end
+
+	return nil
+end
+
 ---@param _ integer
 ---@return string?
 local commitlint = function(_)
@@ -15,6 +28,7 @@ end
 local linters_by_filetype = {
 	fish = { "fish" },
 	jjdescription = { commitlint },
+	yaml = { actionlint },
 }
 
 ---@param bufnr integer

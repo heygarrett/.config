@@ -14,6 +14,7 @@ return {
 		cmd = { "MasonToolsUpdate" },
 		opts = {
 			ensure_installed = {
+				"actionlint",
 				"basedpyright",
 				"bashls",
 				"biome",
