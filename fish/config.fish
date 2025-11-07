@@ -17,8 +17,6 @@ set --global --export MANPAGER $EDITOR +Man!
 set --global --export MISE_FISH_AUTO_ACTIVATE 0
 set --global --export NPM_CONFIG_USERCONFIG "$XDG_CONFIG_HOME"/npm/npmrc
 set --global --export RUSTUP_HOME "$XDG_DATA_HOME"/rustup
-set --global --export SSH_AUTH_SOCK \
-	"$HOME"/Library/Group\ Containers/2BUA8C4S2C.com.1password/t/agent.sock
 set --global --export STACK_XDG 1
 set --global --export STARSHIP_CONFIG "$XDG_CONFIG_HOME"/starship/starship.toml
 set --global --export SWIFTLY_HOME_DIR "$XDG_DATA_HOME"/swiftly

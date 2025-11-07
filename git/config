@@ -1,7 +1,7 @@
 [user]
 	name = Garrett
 	email = garrett@iusevimbtw.com
-	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIBygFvCSAToUZZeOru46pxOc2XW44w351Ds+SzbtaEg2
+	signingkey = ~/.ssh/id_ed25519.pub
 [commit]
 	gpgsign = true
 [core]
@@ -27,8 +27,6 @@
 	updateRefs = true
 [tag]
 	gpgsign = true
-[gpg "ssh"]
-	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
 [push]
 	autoSetupRemote = true
 [advice]
