@@ -5,8 +5,8 @@ name = "Garrett"
 email = "garrett@iusevimbtw.com"
 
 [signing]
-behavior = "force"
 backend = "ssh"
+behavior = "force"
 key = "~/.ssh/id_ed25519.pub"
 
 [git]
@@ -14,8 +14,9 @@ private-commits = "description(regex:'^private(\\(.+\\))?:.+')"
 push-new-bookmarks = true
 
 [ui]
-merge-editor = "nvimdiff"
+bookmark-list-sort-keys = ["committer-date-"]
 diff-editor = ":builtin"
+merge-editor = "nvimdiff"
 pager = [
 	"fish",
 	"-c",
@@ -24,7 +25,6 @@ pager = [
 	'sed "s/\t/$(string repeat --count $TAB_WIDTH \x20)/g" | bat --plain'
 ]
 show-cryptographic-signatures = true
-bookmark-list-sort-keys = ["committer-date-"]
 
 [merge-tools.nvimdiff]
 program = "sh"
@@ -41,11 +41,12 @@ merge-args = [
 ]
 
 [template-aliases]
-"format_short_cryptographic_signature(sig)" = "if(sig, '', '(no sig)')"
 "format_detailed_cryptographic_signature(sig)" = "if(sig, 'yes 🔒', 'no 🔓')"
+"format_short_cryptographic_signature(sig)" = "if(sig, '', '(no sig)')"
 
 [hints]
 resolving-conflicts = false
+
 
 [revsets]
 log = "present(@) | ancestors(immutable_heads().., 2) | present(trunk()) | bookmarks()"
