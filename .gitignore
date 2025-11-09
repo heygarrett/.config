@@ -11,6 +11,7 @@
 !npm/
 !nvim/
 !ruff/
+!ssh/
 !starship/
 !swift-format/
 !tealdear/
