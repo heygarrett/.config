@@ -37,6 +37,9 @@ if status is-login
 		/opt/homebrew/bin \
 		/opt/homebrew/sbin \
 		/opt/homebrew/opt/rustup/bin
+
+	# use SSH password stored in keychain
+	ssh-add --apple-load-keychain -q
 end
 
 if status is-interactive
