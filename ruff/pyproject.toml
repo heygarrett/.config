@@ -2,4 +2,13 @@
 indent-style = "tab"
 
 [tool.ruff.lint]
-select = ["ANN201", "ANN202"] # missing return types
+select = [
+	# missing return types
+	"ANN201",
+	"ANN202",
+	"ANN204",
+	"ANN205",
+	"ANN206",
+	# Any type disallowed
+	"ANN401",
+]
