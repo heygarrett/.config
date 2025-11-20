@@ -5,6 +5,7 @@ return {
 			analysis = {
 				diagnosticSeverityOverrides = {
 					reportImplicitStringConcatenation = false,
+					reportMissingParameterType = false,
 				},
 			},
 		},
