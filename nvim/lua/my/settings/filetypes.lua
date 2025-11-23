@@ -20,15 +20,14 @@ vim.treesitter.language.register("bash", "dotenv")
 
 local group = vim.api.nvim_create_augroup("filetypes", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
-	desc = "use jsonc for json with comments",
+	desc = "set up watcher for comments in json files",
 	group = group,
 	pattern = "json",
 	callback = function(filetype_event_opts)
-		vim.api.nvim_create_autocmd("DiagnosticChanged", {
-			desc = "use jsonc for json with comments",
+		local diagnostic_autocommand = vim.api.nvim_create_autocmd("DiagnosticChanged", {
+			desc = "watch for json comment diagnostic and change filetype to jsonc",
 			group = group,
 			buffer = filetype_event_opts.buf,
-			once = true,
 			callback = function(diagnostic_event_opts)
 				local matching_diagnostic = vim.iter(
 					diagnostic_event_opts.data.diagnostics
@@ -55,9 +54,26 @@ vim.api.nvim_create_autocmd("FileType", {
 							diagnostic_event_opts.buf,
 							jsonls_client.id
 						)
+					else
+						vim.diagnostic.reset(nil, diagnostic_event_opts.buf)
 					end
+
+					-- delete autocommand after resolving comment diagnostic
+					return true
 				end
 			end,
 		})
+		vim.api.nvim_create_autocmd(
+			{ "TextChanged", "TextChangedI", "TextChangedP", "TextChangedT" },
+			{
+				desc = "delete json comment diagnostic autocommand if text changes",
+				group = group,
+				buffer = filetype_event_opts.buf,
+				once = true,
+				callback = function()
+					pcall(vim.api.nvim_del_autocmd, diagnostic_autocommand)
+				end,
+			}
+		)
 	end,
 })
