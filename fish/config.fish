@@ -17,6 +17,7 @@ set --global --export HOMEBREW_NO_ANALYTICS 1
 set --global --export MANPAGER $EDITOR +Man!
 set --global --export MISE_FISH_AUTO_ACTIVATE 0
 set --global --export NPM_CONFIG_USERCONFIG "$XDG_CONFIG_HOME"/npm/npmrc
+set --global --export PYTHON_HISTORY "$XDG_DATA_HOME"/python/python_history
 set --global --export RUSTUP_HOME "$XDG_DATA_HOME"/rustup
 set --global --export STACK_XDG 1
 set --global --export STARSHIP_CONFIG "$XDG_CONFIG_HOME"/starship/starship.toml
