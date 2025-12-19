@@ -17,3 +17,8 @@ vim.cmd.highlight({
 vim.cmd.highlight({
 	args = { "TabLineSel", "guibg=NvimDarkGrey1" },
 })
+
+-- prevent HTML tags from changing the rendering of whitespace listchars
+vim.cmd.highlight({
+	args = { "NonText", "gui=nocombine" },
+})
