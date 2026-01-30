@@ -6,6 +6,7 @@ end
 
 return {
 	"https://codeberg.org/ibhagwan/fzf-lua",
+	branch = "main",
 	cmd = "FzfLua",
 	keys = {
 		{
