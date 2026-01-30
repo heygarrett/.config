@@ -27,6 +27,7 @@ end
 
 local linters_by_filetype = {
 	fish = { "fish" },
+	html = { "htmlhint" },
 	jjdescription = { commitlint },
 	yaml = { actionlint },
 }

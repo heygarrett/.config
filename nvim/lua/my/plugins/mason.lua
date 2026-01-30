@@ -27,6 +27,7 @@ return {
 				"golangci-lint",
 				"golangci_lint_ls",
 				"gopls",
+				"htmlhint",
 				"jsonls",
 				"just-lsp",
 				"lua_ls",
