@@ -22,4 +22,5 @@
 
 # reignore specifics in unignored directories
 fish/fish_variables
+jj/repos/
 nvim/lazy-lock.json
