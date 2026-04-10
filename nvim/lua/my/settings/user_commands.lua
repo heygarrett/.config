@@ -1,20 +1,14 @@
 vim.api.nvim_create_user_command("Update", function()
-	local group = vim.api.nvim_create_augroup("update", { clear = true })
-	vim.api.nvim_create_autocmd("User", {
-		pattern = "VeryLazy",
-		desc = "run Lazy sync",
-		group = group,
-		once = true,
-		callback = function()
-			vim.cmd.Lazy({
-				args = { "sync" },
-			})
-		end,
-	})
+	-- HACK: keep the confirmation window open when doing `nvim +Update`
+	vim.schedule(function()
+		vim.pack.update()
+	end)
+
 	local ok, _ = pcall(require, "mason")
 	if ok then
 		vim.cmd.MasonUpdate()
 	end
+
 	ok, _ = pcall(require, "mason-tool-installer")
 	if ok then
 		vim.cmd.MasonToolsUpdate()

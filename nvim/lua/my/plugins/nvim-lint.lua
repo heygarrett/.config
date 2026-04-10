@@ -1,3 +1,5 @@
+vim.pack.add({ "https://github.com/mfussenegger/nvim-lint" })
+
 local nvim_lint = function()
 	return require("lint")
 end
@@ -52,32 +54,27 @@ local get_linters = function(bufnr)
 		:totable()
 end
 
-return {
-	"https://github.com/mfussenegger/nvim-lint",
-	init = function()
-		local group = vim.api.nvim_create_augroup("nvim-lint", { clear = true })
-		vim.api.nvim_create_autocmd("FileType", {
+local group = vim.api.nvim_create_augroup("nvim-lint", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+	desc = "nvim-lint",
+	group = group,
+	pattern = vim.tbl_keys(linters_by_filetype),
+	callback = function(filetype_event_opts)
+		vim.api.nvim_create_autocmd({
+			"BufWinEnter",
+			"BufWritePost",
+			"InsertLeave",
+			"TextChanged",
+		}, {
 			desc = "nvim-lint",
 			group = group,
-			pattern = vim.tbl_keys(linters_by_filetype),
-			callback = function(filetype_event_opts)
-				vim.api.nvim_create_autocmd({
-					"BufWinEnter",
-					"BufWritePost",
-					"InsertLeave",
-					"TextChanged",
-				}, {
-					desc = "nvim-lint",
-					group = group,
-					buffer = filetype_event_opts.buf,
-					callback = function(lint_event_opts)
-						nvim_lint().try_lint(
-							get_linters(lint_event_opts.buf),
-							{ ignore_errors = true }
-						)
-					end,
-				})
+			buffer = filetype_event_opts.buf,
+			callback = function(lint_event_opts)
+				nvim_lint().try_lint(
+					get_linters(lint_event_opts.buf),
+					{ ignore_errors = true }
+				)
 			end,
 		})
 	end,
-}
+})
