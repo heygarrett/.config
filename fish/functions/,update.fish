@@ -13,6 +13,9 @@ function ,update
 	swiftly update --assume-yes
 	popd
 
+	echo \n--fish--
+	fish_update_completions
+
 	pushd $XDG_CONFIG_HOME
 	nvim +Update
 	popd
