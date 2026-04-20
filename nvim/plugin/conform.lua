@@ -147,11 +147,6 @@ vim.api.nvim_create_user_command("Format", function(command_opts)
 				return
 			end
 
-			if not command_opts.bang then
-				-- HACK: if the :Retab! command is not delayed by at least ~250 ms
-				-- its prompt gets covered by the status line (not sure why)
-				vim.wait(250)
-			end
 			vim.cmd.Retab({
 				bang = not command_opts.bang,
 				range = retab_range,
