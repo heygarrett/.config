@@ -67,12 +67,16 @@ vim.api.nvim_create_autocmd({ "CursorHold", "DiagnosticChanged", "TextChanged" }
 -- get instance and count of search matches
 ---@return string?
 local function get_search_count()
-	if vim.v.hlsearch == 1 and vim.api.nvim_get_mode().mode:match("n") then
-		local search_count = vim.fn.searchcount({ maxcount = 0 })
-		return ("%d/%d"):format(search_count.current, search_count.total)
-	else
+	if not (vim.v.hlsearch == 1 and vim.api.nvim_get_mode().mode:match("n")) then
 		return nil
 	end
+
+	local search_count = vim.fn.searchcount({ maxcount = 0 })
+	if not (search_count.current and search_count.total) then
+		return nil
+	end
+
+	return ("%d/%d"):format(search_count.current, search_count.total)
 end
 
 -- get formatted and highlighted string of diagnostic counts
