@@ -37,7 +37,7 @@ require("mason-tool-installer").setup({
 		"shellcheck",
 		"shfmt",
 		"stylua",
-		"taplo",
+		"tombi",
 		"vimls",
 		"vtsls",
 		"yamlls",
