@@ -17,14 +17,21 @@ return {
 		"yaml",
 	},
 	root_dir = function(bufnr, callback)
+		local deno_root = vim.fs.root(bufnr, {
+			"deno.json",
+			"deno.jsonc",
+			"deno.lock",
+		})
+		if deno_root then
+			callback(deno_root)
+			return
+		end
+
 		if vim.fs.root(bufnr, { "jsconfig.json", "tsconfig.json" }) then
 			return
 		end
 
-		callback(vim.fs.root(bufnr, {
-			"deno.json",
-			"deno.jsonc",
-		}) or vim.uv.cwd())
+		callback(vim.uv.cwd())
 	end,
 	on_attach = function(client, bufnr)
 		if vim.fs.root(bufnr, { "biome.json", "biome.jsonc" }) then
