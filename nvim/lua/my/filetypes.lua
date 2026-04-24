@@ -1,22 +1,13 @@
 vim.filetype.add({
-	extension = {
-		env = "dotenv",
-	},
 	filename = {
 		Brewfile = "ruby",
-		env = "dotenv",
 		fish_variables = "fish",
 		[".swift-format"] = "json",
 	},
-	pattern = {
-		["env%..*"] = "dotenv",
-		[".*%.env%..*"] = "dotenv",
-		["%.envrc.*"] = "sh",
-	},
 })
 
--- use bash parser for dotenv files
-vim.treesitter.language.register("bash", "dotenv")
+-- use bash parser for env files
+vim.treesitter.language.register("bash", "env")
 
 local group = vim.api.nvim_create_augroup("filetypes", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
