@@ -27,13 +27,18 @@ local commitlint = function(_)
 	return config_exists and "commitlint"
 end
 
-local linters_by_filetype = {
+---@type table<string, (string|function)[]>
+local linters_by_filetype = setmetatable({
 	env = { "dotenv_linter" },
 	fish = { "fish" },
 	html = { "htmlhint" },
 	jjdescription = { commitlint },
 	yaml = { actionlint },
-}
+}, {
+	__index = function()
+		return {}
+	end,
+})
 
 ---@param bufnr integer
 ---@return string[]
@@ -59,8 +64,11 @@ local group = vim.api.nvim_create_augroup("nvim-lint", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
 	desc = "nvim-lint",
 	group = group,
-	pattern = vim.tbl_keys(linters_by_filetype),
 	callback = function(filetype_event_opts)
+		if vim.bo[filetype_event_opts.buf].buftype ~= "" then
+			return
+		end
+
 		vim.api.nvim_create_autocmd({
 			"BufWinEnter",
 			"BufWritePost",
@@ -71,6 +79,7 @@ vim.api.nvim_create_autocmd("FileType", {
 			group = group,
 			buffer = filetype_event_opts.buf,
 			callback = function(lint_event_opts)
+				nvim_lint().try_lint("editorconfig-checker")
 				nvim_lint().try_lint(
 					get_linters(lint_event_opts.buf),
 					{ ignore_errors = true }
