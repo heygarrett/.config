@@ -28,6 +28,7 @@ local commitlint = function(_)
 end
 
 local linters_by_filetype = {
+	env = { "dotenv_linter" },
 	fish = { "fish" },
 	html = { "htmlhint" },
 	jjdescription = { commitlint },
