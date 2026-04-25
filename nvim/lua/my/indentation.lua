@@ -75,6 +75,7 @@ local create_buffer_command_retab = function(bufnr)
 		end
 		vim.cmd.retab({
 			bang = true,
+			args = { "-indentonly" },
 			range = {
 				command_opts.line1,
 				command_opts.line2,
