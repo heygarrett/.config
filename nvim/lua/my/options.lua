@@ -8,6 +8,7 @@ vim.o.linebreak = true
 vim.o.list = true
 vim.o.modeline = false
 vim.o.number = true
+vim.o.pumborder = "single"
 vim.o.ruler = false
 vim.o.scrolloff = 3
 vim.o.showmatch = true
