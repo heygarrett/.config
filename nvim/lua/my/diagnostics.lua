@@ -37,4 +37,30 @@ vim.diagnostic.config({
 			[vim.diagnostic.severity.INFO] = "DiagnosticSignInfo",
 		},
 	},
+	status = {
+		format = function(counts)
+			if #counts == 0 or vim.api.nvim_get_mode().mode:match("^i") then
+				return ""
+			end
+
+			---@type string[]
+			local formattedSevCounts = vim.iter(pairs(counts))
+				:map(
+					---@param severity integer
+					---@param count integer
+					function(severity, count)
+						return table.concat({
+							"%#DiagnosticSign",
+							({ "Error", "Warn", "Info", "Hint" })[severity],
+							"#",
+							count,
+							"%*",
+						})
+					end
+				)
+				:totable()
+
+			return table.concat(formattedSevCounts, " ")
+		end,
+	},
 })

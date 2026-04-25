@@ -79,35 +79,6 @@ local function get_search_count()
 	return ("%d/%d"):format(search_count.current, search_count.total)
 end
 
--- get formatted and highlighted string of diagnostic counts
----@return string?
-local function get_diagnostics()
-	---@type table<integer, integer>
-	local diagnostics = vim.diagnostic.count(0)
-	if #diagnostics == 0 or vim.api.nvim_get_mode().mode:match("^i") then
-		return nil
-	end
-
-	---@type string[]
-	local formattedSevCounts = vim.iter(pairs(diagnostics))
-		:map(
-			---@param severity integer
-			---@param count integer
-			function(severity, count)
-				return table.concat({
-					"%#DiagnosticSign",
-					({ "Error", "Warn", "Info", "Hint" })[severity],
-					"#",
-					count,
-					"%*",
-				})
-			end
-		)
-		:totable()
-
-	return table.concat(formattedSevCounts, " ")
-end
-
 -- get location in current buffer as a percentage
 ---@return string
 local function get_progress()
@@ -159,7 +130,10 @@ local function generate_right()
 	if search_count then
 		table.insert(right_table, search_count)
 	end
-	table.insert(right_table, get_diagnostics())
+	local diagnostic_status = vim.diagnostic.status()
+	if diagnostic_status ~= "" then
+		table.insert(right_table, diagnostic_status)
+	end
 	local file_type = vim.api.nvim_eval_statusline("%Y", {}).str:lower()
 	if file_type ~= "" then
 		table.insert(right_table, file_type)
