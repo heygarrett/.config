@@ -11,6 +11,18 @@ local fzf_lua = function(submodule)
 	return require(module_path)
 end
 
+---@param file_name string
+---@param cwd string
+---@return string
+local get_corrected_path = function(file_name, cwd)
+	local entry = fzf_lua().path.entry_to_file(file_name)
+	if not fzf_lua().path.is_absolute(entry.path) then
+		entry.path = vim.fs.joinpath(cwd, entry.path)
+	end
+
+	return entry.path
+end
+
 fzf_lua().setup({
 	"hide",
 	ui_select = true,
@@ -43,32 +55,38 @@ fzf_lua().setup({
 		find_opts = [[-type df -not -path '*/\.git/*' -printf '%P\n']],
 		fd_opts = [[--color=never --type file --type dir --hidden --follow --exclude .git]],
 		actions = {
-			["ctrl-l"] = {
-				-- filter by selected subdirectory
-				function(selected, opts)
-					local cwd = opts.cwd or vim.uv.cwd()
-					if not cwd then
-						return
-					end
-					local entry = fzf_lua().path.entry_to_file(selected[1])
-					if not fzf_lua().path.is_absolute(entry.path) then
-						entry.path = vim.fs.joinpath(cwd, entry.path)
-					end
-					fzf_lua().files({ cwd = entry.path })
-				end,
-			},
-			["ctrl-h"] = {
-				-- expand filter to parent directory
-				function(_, opts)
-					local cwd = opts.cwd or vim.uv.cwd()
-					if not cwd then
-						return
-					end
-					fzf_lua().files({
-						cwd = vim.fn.fnamemodify(vim.fs.normalize(cwd), ":h"),
-					})
-				end,
-			},
+			-- HACK: https://github.com/ibhagwan/fzf-lua/discussions/2608
+			["enter"] = function(selected, opts)
+				local entry_path = get_corrected_path(selected[1], opts.cwd)
+				vim.cmd.edit({
+					args = { entry_path },
+				})
+			end,
+			["ctrl-s"] = function(selected, opts)
+				vim.cmd.split({
+					args = { get_corrected_path(selected[1], opts.cwd) },
+				})
+			end,
+			["ctrl-v"] = function(selected, opts)
+				vim.cmd.vsplit({
+					args = { get_corrected_path(selected[1], opts.cwd) },
+				})
+			end,
+			["ctrl-t"] = function(selected, opts)
+				vim.cmd.tabedit({
+					args = { get_corrected_path(selected[1], opts.cwd) },
+				})
+			end,
+			-- filter by selected subdirectory
+			["ctrl-l"] = function(selected, opts)
+				fzf_lua().files({ cwd = get_corrected_path(selected[1], opts.cwd) })
+			end,
+			-- expand filter to parent directory
+			["ctrl-h"] = function(_, opts)
+				fzf_lua().files({
+					cwd = vim.fn.fnamemodify(vim.fs.normalize(opts.cwd), ":h"),
+				})
+			end,
 		},
 	},
 })
