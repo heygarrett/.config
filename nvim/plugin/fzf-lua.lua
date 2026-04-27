@@ -13,6 +13,7 @@ end
 
 fzf_lua().setup({
 	"hide",
+	ui_select = true,
 	fzf_opts = {
 		["--cycle"] = "",
 	},
