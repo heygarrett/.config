@@ -43,7 +43,6 @@ fzf_lua().setup({
 		find_opts = [[-type df -not -path '*/\.git/*' -printf '%P\n']],
 		fd_opts = [[--color=never --type file --type dir --hidden --follow --exclude .git]],
 		actions = {
-			["ctrl-g"] = false,
 			["ctrl-l"] = {
 				-- filter by selected subdirectory
 				function(selected, opts)
