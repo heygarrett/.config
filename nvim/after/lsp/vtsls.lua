@@ -1,12 +1,26 @@
 ---@type vim.lsp.Config
 return {
 	root_dir = function(bufnr, callback)
-		local root_dir = vim.fs.root(bufnr, {
+		local _, closest_config = next(vim.fs.find({
+			"deno.json",
+			"deno.jsonc",
+			"deno.lock",
 			"jsconfig.json",
 			"tsconfig.json",
-		})
-		if root_dir then
-			callback(root_dir)
+		}, {
+			path = vim.api.nvim_buf_get_name(bufnr),
+			upward = true,
+			limit = 1,
+			type = "file",
+		}))
+
+		if not closest_config then
+			return
+		end
+
+		local config_basename = vim.fs.basename(closest_config)
+		if vim.regex("^[jt]sconfig"):match_str(config_basename) then
+			callback(vim.fs.dirname(closest_config))
 		end
 	end,
 	settings = {

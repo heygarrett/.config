@@ -17,27 +17,30 @@ return {
 		"yaml",
 	},
 	root_dir = function(bufnr, callback)
-		local deno_root = vim.fs.root(bufnr, {
+		local _, closest_config = next(vim.fs.find({
 			"deno.json",
 			"deno.jsonc",
 			"deno.lock",
-		})
-		if deno_root then
-			callback(deno_root)
+			"jsconfig.json",
+			"tsconfig.json",
+		}, {
+			path = vim.api.nvim_buf_get_name(bufnr),
+			upward = true,
+			limit = 1,
+			type = "file",
+		}))
+
+		if not closest_config then
+			callback(vim.uv.cwd())
 			return
 		end
 
-		if vim.fs.root(bufnr, { "jsconfig.json", "tsconfig.json" }) then
-			return
+		local config_basename = vim.fs.basename(closest_config)
+		if vim.startswith(config_basename, "deno") then
+			callback(vim.fs.dirname(closest_config))
 		end
-
-		callback(vim.uv.cwd())
 	end,
 	on_attach = function(client, bufnr)
-		if vim.fs.root(bufnr, { "biome.json", "biome.jsonc" }) then
-			client.server_capabilities.documentFormattingProvider = false
-		end
-
 		if vim.fs.root(bufnr, { "deno.json", "deno.jsonc" }) then
 			return
 		end
