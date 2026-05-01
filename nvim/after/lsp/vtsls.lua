@@ -23,19 +23,27 @@ return {
 			callback(vim.fs.dirname(closest_config))
 		end
 	end,
+	---@type lspconfig.settings.vtsls
 	settings = {
 		autoUseWorkspaceTsdk = true,
 		javascript = {
-			format = { enable = false },
+			format = {
+				enable = false,
+			},
 			inlayHints = {
-				functionLikeReturnTypes = { enabled = true },
+				functionLikeReturnTypes = {
+					enabled = true,
+				},
 				parameterNames = {
-					---@type "all" | "literals" | "none"
 					enabled = "all",
 					suppressWhenArgumentMatchesName = true,
 				},
-				parameterTypes = { enabled = false },
-				propertyDeclarationTypes = { enabled = true },
+				parameterTypes = {
+					enabled = false,
+				},
+				propertyDeclarationTypes = {
+					enabled = true,
+				},
 				variableTypes = {
 					enabled = false,
 					suppressWhenTypeMatchesName = true,
@@ -43,17 +51,26 @@ return {
 			},
 		},
 		typescript = {
-			format = { enable = false },
+			format = {
+				enable = false,
+			},
 			inlayHints = {
-				enumMemberValues = { enabled = true },
-				functionLikeReturnTypes = { enabled = true },
+				enumMemberValues = {
+					enabled = true,
+				},
+				functionLikeReturnTypes = {
+					enabled = true,
+				},
 				parameterNames = {
-					---@type "all" | "literals" | "none"
 					enabled = "all",
 					suppressWhenArgumentMatchesName = true,
 				},
-				parameterTypes = { enabled = false },
-				propertyDeclarationTypes = { enabled = true },
+				parameterTypes = {
+					enabled = false,
+				},
+				propertyDeclarationTypes = {
+					enabled = true,
+				},
 				variableTypes = {
 					enabled = false,
 					suppressWhenTypeMatchesName = true,

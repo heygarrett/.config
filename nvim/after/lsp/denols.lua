@@ -51,17 +51,26 @@ return {
 				config = vim.fs.joinpath(vim.env.XDG_CONFIG_HOME, "deno/deno.json"),
 			})
 	end,
+	---@type lspconfig.settings.denols
 	settings = {
 		deno = {
 			inlayHints = {
-				enumMemberValues = { enabled = true },
-				functionLikeReturnTypes = { enabled = true },
+				enumMemberValues = {
+					enabled = true,
+				},
+				functionLikeReturnTypes = {
+					enabled = true,
+				},
 				parameterNames = {
 					---@type "all" | "literals" | "none"
 					enabled = "all",
 				},
-				parameterTypes = { enabled = false },
-				propertyDeclarationTypes = { enabled = true },
+				parameterTypes = {
+					enabled = false,
+				},
+				propertyDeclarationTypes = {
+					enabled = true,
+				},
 				variableTypes = {
 					enabled = false,
 					suppressWhenTypeMatchesName = true,
