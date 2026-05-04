@@ -1,6 +1,6 @@
 ---@type vim.lsp.Config
 return {
-	root_dir = function(bufnr, callback)
+	root_dir = function(bufnr, on_dir)
 		local _, closest_config = next(vim.fs.find({
 			"deno.json",
 			"deno.jsonc",
@@ -20,7 +20,7 @@ return {
 
 		local config_basename = vim.fs.basename(closest_config)
 		if vim.regex("^[jt]sconfig"):match_str(config_basename) then
-			callback(vim.fs.dirname(closest_config))
+			on_dir(vim.fs.dirname(closest_config))
 		end
 	end,
 	---@type lspconfig.settings.vtsls

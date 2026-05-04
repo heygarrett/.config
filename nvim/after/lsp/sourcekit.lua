@@ -1,6 +1,6 @@
 ---@type vim.lsp.Config
 return {
-	root_dir = function(bufnr, callback)
+	root_dir = function(bufnr, on_dir)
 		local root_dir = vim.fs.root(bufnr, function(name)
 			return vim.tbl_contains({
 				"Package.swift",
@@ -10,7 +10,7 @@ return {
 			end, { predicate = true })
 		end)
 		if root_dir then
-			callback(root_dir)
+			on_dir(root_dir)
 		end
 	end,
 }
