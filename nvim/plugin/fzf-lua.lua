@@ -65,9 +65,8 @@ fzf_lua().setup({
 		actions = {
 			-- HACK: https://github.com/ibhagwan/fzf-lua/discussions/2608
 			["enter"] = function(selected, opts)
-				local entry_path = get_corrected_path(selected[1], opts.cwd)
 				vim.cmd.edit({
-					args = { entry_path },
+					args = { get_corrected_path(selected[1], opts.cwd) },
 				})
 			end,
 			["ctrl-s"] = function(selected, opts)
