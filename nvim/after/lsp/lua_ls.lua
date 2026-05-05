@@ -37,7 +37,9 @@ return {
 		client.config.settings.Lua =
 			---@diagnostic disable-next-line: param-type-mismatch
 			vim.tbl_deep_extend("force", client.config.settings.Lua, {
-				runtime = { version = "LuaJIT" },
+				runtime = {
+					version = "LuaJIT",
+				},
 				workspace = {
 					checkThirdParty = "Disable",
 					library = {

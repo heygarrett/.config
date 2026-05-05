@@ -12,8 +12,18 @@ require("oil").setup({
 		["<C-h>"] = false,
 		["<C-l>"] = false,
 		["<C-r>"] = "actions.refresh",
-		["<C-s>"] = { "actions.select", opts = { horizontal = true } },
-		["<C-v>"] = { "actions.select", opts = { vertical = true } },
+		["<C-s>"] = {
+			"actions.select",
+			opts = {
+				horizontal = true,
+			},
+		},
+		["<C-v>"] = {
+			"actions.select",
+			opts = {
+				vertical = true,
+			},
+		},
 	},
 })
 

@@ -33,7 +33,9 @@ vim.api.nvim_create_autocmd("CursorHold", {
 	group = group,
 	callback = function()
 		vim.cmd.checktime({
-			mods = { emsg_silent = true },
+			mods = {
+				emsg_silent = true,
+			},
 		})
 	end,
 })

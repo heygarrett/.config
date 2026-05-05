@@ -3,7 +3,11 @@ vim.o.expandtab = false
 vim.o.shiftwidth = 0
 vim.o.softtabstop = 0
 vim.o.tabstop = tonumber(vim.env.TAB_WIDTH)
-vim.opt.listchars = { nbsp = "_", space = "·", tab = "| " }
+vim.opt.listchars = {
+	nbsp = "_",
+	space = "·",
+	tab = "| ",
+}
 -- don't run editorconfig automatically
 vim.g.editorconfig = false
 

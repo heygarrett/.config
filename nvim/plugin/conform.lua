@@ -88,7 +88,9 @@ require("conform").setup({
 					"--debug-info",
 					".",
 				}, {
-					env = { PRETTIERD_LOCAL_PRETTIER_ONLY = 1 },
+					env = {
+						PRETTIERD_LOCAL_PRETTIER_ONLY = 1,
+					},
 				})
 					:wait().stdout
 					:find("Loaded")

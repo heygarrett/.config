@@ -29,7 +29,9 @@ vim.api.nvim_create_autocmd("VimEnter", {
 			end, 500)
 		else
 			vim.cmd.mksession({
-				mods = { emsg_silent = true },
+				mods = {
+					emsg_silent = true,
+				},
 			})
 			if vim.fn.filereadable("Session.vim") == 1 then
 				vim.defer_fn(function()
@@ -76,7 +78,9 @@ vim.api.nvim_create_autocmd("VimLeavePre", {
 		vim.cmd.bdelete({
 			bang = true,
 			args = { "term://*" },
-			mods = { emsg_silent = true },
+			mods = {
+				emsg_silent = true,
+			},
 		})
 		-- Save session
 		vim.cmd.mksession({ bang = true })

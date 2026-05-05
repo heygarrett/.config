@@ -26,7 +26,9 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 		end
 		vim.cmd.normal({
 			args = { "zR" },
-			mods = { emsg_silent = true },
+			mods = {
+				emsg_silent = true,
+			},
 		})
 	end,
 })

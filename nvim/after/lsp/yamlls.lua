@@ -3,9 +3,13 @@ return {
 	---@type lspconfig.settings.yamlls
 	settings = {
 		yaml = {
-			format = { enable = false },
+			format = {
+				enable = false,
+			},
 			keyOrdering = false,
-			schemaStore = { enable = false },
+			schemaStore = {
+				enable = false,
+			},
 		},
 	},
 }

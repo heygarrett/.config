@@ -83,7 +83,9 @@ vim.api.nvim_create_user_command("Stab", function()
 	vim.cmd.tabprevious()
 	vim.cmd.sbuffer({
 		args = { buffer },
-		mods = { vertical = true },
+		mods = {
+			vertical = true,
+		},
 	})
 	vim.api.nvim_win_close(window, false)
 end, { desc = "create a split from two tabs" })
