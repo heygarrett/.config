@@ -15,12 +15,12 @@ end
 ---@param cwd string
 ---@return string
 local get_corrected_path = function(file_name, cwd)
-	local entry = fzf_lua().path.entry_to_file(file_name)
-	if not fzf_lua().path.is_absolute(entry.path) then
-		entry.path = vim.fs.joinpath(cwd, entry.path)
+	local entry_path = fzf_lua().path.entry_to_file(file_name).path
+	if not fzf_lua().path.is_absolute(entry_path) then
+		entry_path = vim.fs.joinpath(cwd, entry_path)
 	end
 
-	return entry.path
+	return entry_path
 end
 
 fzf_lua().setup({
@@ -77,6 +77,7 @@ fzf_lua().setup({
 					args = { get_corrected_path(selected[1], opts.cwd) },
 				})
 			end,
+
 			-- filter by selected subdirectory
 			["ctrl-l"] = function(selected, opts)
 				fzf_lua().files({ cwd = get_corrected_path(selected[1], opts.cwd) })
