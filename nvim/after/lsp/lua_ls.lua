@@ -8,15 +8,8 @@ return {
 			},
 			hint = {
 				enable = true,
-				---@type "Auto" | "Enable" | "Disable"
 				arrayIndex = "Disable",
-				-- await = true,
-				-- awaitPropagate = false,
-				---@type "All" | "Literal" | "Disable"
 				paramName = "Literal",
-				-- paramType = true,
-				-- ---@type "All" | "SameLine" | "Disable"
-				-- semicolon = "SameLine",
 				setType = true,
 			},
 		},
