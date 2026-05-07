@@ -1,6 +1,10 @@
 vim.pack.add({ "https://github.com/stevearc/oil.nvim" })
 
-require("oil").setup({
+local oil = function()
+	return require("oil")
+end
+
+oil().setup({
 	view_options = {
 		show_hidden = true,
 		---@param name string
@@ -28,5 +32,9 @@ require("oil").setup({
 })
 
 vim.api.nvim_create_user_command("Ex", function()
-	require("oil").open()
-end, { desc = "Open file browser" })
+	oil().open()
+end, { desc = "open file browser" })
+
+vim.keymap.set("n", "<leader>-", function()
+	oil().open()
+end, { desc = "open file browser" })
