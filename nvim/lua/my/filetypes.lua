@@ -18,7 +18,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		local diagnostic_autocommand = vim.api.nvim_create_autocmd("DiagnosticChanged", {
 			desc = "watch for json comment diagnostic and change filetype to jsonc",
 			group = group,
-			buffer = filetype_event_opts.buf,
+			buf = filetype_event_opts.buf,
 			callback = function(diagnostic_event_opts)
 				local matching_diagnostic = vim.iter(
 					diagnostic_event_opts.data.diagnostics
@@ -59,7 +59,7 @@ vim.api.nvim_create_autocmd("FileType", {
 			{
 				desc = "delete json comment diagnostic autocommand if text changes",
 				group = group,
-				buffer = filetype_event_opts.buf,
+				buf = filetype_event_opts.buf,
 				once = true,
 				callback = function()
 					pcall(vim.api.nvim_del_autocmd, diagnostic_autocommand)

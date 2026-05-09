@@ -77,7 +77,7 @@ vim.api.nvim_create_autocmd("FileType", {
 		}, {
 			desc = "nvim-lint",
 			group = group,
-			buffer = filetype_event_opts.buf,
+			buf = filetype_event_opts.buf,
 			callback = function(lint_event_opts)
 				nvim_lint().try_lint("editorconfig-checker")
 				nvim_lint().try_lint(

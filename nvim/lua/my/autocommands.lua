@@ -6,7 +6,7 @@ vim.api.nvim_create_autocmd("BufRead", {
 	callback = function(event_opts)
 		vim.api.nvim_create_autocmd("FileType", {
 			group = group,
-			buffer = event_opts.buf,
+			buf = event_opts.buf,
 			once = true,
 			callback = function()
 				local exclude = { "diff" }
