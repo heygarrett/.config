@@ -34,23 +34,23 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		end
 
 		-- Enable inlay hints
-		if not vim.lsp.inlay_hint.is_enabled({ bufnr = event_opts.buf }) then
-			vim.api.nvim_create_autocmd("LspProgress", {
-				desc = "enable inlay hints once language server is ready",
+		if client:supports_method("textDocument/inlayHint", event_opts.buf) then
+			vim.api.nvim_create_autocmd("CursorHold", {
+				desc = "enable inlay hints on CursorHold to account for slow language servers",
 				group = group,
+				buf = event_opts.buf,
 				once = true,
-				pattern = "end",
 				callback = function()
-					vim.lsp.inlay_hint.enable(true)
+					vim.lsp.inlay_hint.enable(true, { bufnr = event_opts.buf })
 				end,
 			})
+			vim.api.nvim_buf_create_user_command(event_opts.buf, "ToggleHints", function()
+				vim.lsp.inlay_hint.enable(
+					not vim.lsp.inlay_hint.is_enabled({ bufnr = event_opts.buf }),
+					{ bufnr = event_opts.buf }
+				)
+			end, { desc = "toggle inlay hints" })
 		end
-		vim.api.nvim_buf_create_user_command(event_opts.buf, "ToggleHints", function()
-			vim.lsp.inlay_hint.enable(
-				not vim.lsp.inlay_hint.is_enabled({ bufnr = event_opts.buf }),
-				{ bufnr = event_opts.buf }
-			)
-		end, { desc = "toggle inlay hints" })
 
 		-- Other LSP keymaps and user commands
 		vim.api.nvim_buf_create_user_command(
