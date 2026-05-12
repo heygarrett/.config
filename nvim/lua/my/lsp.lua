@@ -35,15 +35,8 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 		-- Enable inlay hints
 		if client:supports_method("textDocument/inlayHint", event_opts.buf) then
-			vim.api.nvim_create_autocmd("CursorHold", {
-				desc = "enable inlay hints on CursorHold to account for slow language servers",
-				group = group,
-				buf = event_opts.buf,
-				once = true,
-				callback = function()
-					vim.lsp.inlay_hint.enable(true, { bufnr = event_opts.buf })
-				end,
-			})
+			-- FIX: figure out how to wait for the language server to be ready
+			vim.lsp.inlay_hint.enable(true, { bufnr = event_opts.buf })
 			vim.api.nvim_buf_create_user_command(event_opts.buf, "ToggleHints", function()
 				vim.lsp.inlay_hint.enable(
 					not vim.lsp.inlay_hint.is_enabled({ bufnr = event_opts.buf }),
