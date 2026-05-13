@@ -28,12 +28,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			"Client ID invalid"
 		)
 
-		-- Enable LSP completion
+		-- enable LSP completion
 		if client:supports_method("textDocument/completion", event_opts.buf) then
 			vim.lsp.completion.enable(true, client.id, event_opts.buf)
 		end
 
-		-- Enable inlay hints
+		-- enable inlay hints
 		if client:supports_method("textDocument/inlayHint", event_opts.buf) then
 			-- FIX: figure out how to wait for the language server to be ready
 			vim.lsp.inlay_hint.enable(true, { bufnr = event_opts.buf })
@@ -45,7 +45,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			end, { desc = "toggle inlay hints" })
 		end
 
-		-- Other LSP keymaps and user commands
+		-- other LSP keymaps and user commands
 		vim.api.nvim_buf_create_user_command(
 			event_opts.buf,
 			"Rename",
