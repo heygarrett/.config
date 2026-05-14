@@ -1,51 +1,18 @@
----@return string
-local function get_parent_dir()
-	local path_to_cwd = vim.fn.fnamemodify(vim.fn.getcwd(0), ":h")
-	if path_to_cwd == vim.env.HOME then
-		return "~"
-	else
-		return vim.fn.fnamemodify(path_to_cwd, ":t")
-	end
-end
-
----@param cwd string
----@return string
-local function format_cwd(cwd)
-	return ("(%s)"):format(cwd)
-end
-
--- get name of the current buffer
+-- get formatted buffer name
 ---@return string
 local function get_buffer_name()
-	-- get root of cwd
-	local root_dir = vim.fn.fnamemodify(vim.fn.getcwd(0), ":t")
-	-- strip potential prefix and get file path
-	local buf_name = vim.api.nvim_buf_get_name(0):gsub(".+(/$)", "")
-	local _, split, prefix = buf_name:find("^(.+://)")
-	local file_path = split and buf_name:sub(split + 1) or buf_name
-	-- format file path
-	---@type string
-	local formatted_file_path
-	local truncated_file_path = vim.fn.fnamemodify(file_path, ":.")
-	if vim.startswith(truncated_file_path, "/") then
-		if truncated_file_path == vim.uv.cwd() then
-			formatted_file_path = vim.fs.joinpath(
-				vim.fn.fnamemodify(file_path, ":~:h"),
-				format_cwd(root_dir)
-			)
-		else
-			formatted_file_path = vim.fn.fnamemodify(file_path, ":~")
-		end
-	else
-		formatted_file_path =
-			vim.fs.joinpath(get_parent_dir(), format_cwd(root_dir), truncated_file_path)
-	end
-	-- restore potential prefix
-	if prefix then
-		formatted_file_path = prefix .. formatted_file_path
+	local buf_name = vim.api.nvim_buf_get_name(0)
+	local cwd = vim.uv.cwd()
+	if not cwd then
+		return buf_name
 	end
 
-	return formatted_file_path
+	local basename = vim.fs.basename(cwd)
+	local formatted_basename = ("(%s)"):format(basename)
+	local formatted_cwd = cwd:gsub("[^/]+$", formatted_basename)
+	local formatted_buf_name = buf_name:gsub(cwd, formatted_cwd):gsub(vim.env.HOME, "~")
+
+	return formatted_buf_name
 end
 
 local group = vim.api.nvim_create_augroup("statusline", {
