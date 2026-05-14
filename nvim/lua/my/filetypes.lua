@@ -9,7 +9,9 @@ vim.filetype.add({
 -- use bash parser for env files
 vim.treesitter.language.register("bash", "env")
 
-local group = vim.api.nvim_create_augroup("filetypes", { clear = true })
+local group = vim.api.nvim_create_augroup("filetypes", {
+	clear = true,
+})
 vim.api.nvim_create_autocmd("FileType", {
 	desc = "set up watcher for comments in json files",
 	group = group,

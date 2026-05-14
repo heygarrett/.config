@@ -22,7 +22,10 @@ end
 local commitlint = function(_)
 	local config_exists = next(vim.fs.find(function(name)
 		return name:match("commitlint") ~= nil
-	end, { upward = true, limit = 1 }))
+	end, {
+		upward = true,
+		limit = 1,
+	}))
 
 	return config_exists and "commitlint"
 end
@@ -60,7 +63,9 @@ local get_linters = function(bufnr)
 		:totable()
 end
 
-local group = vim.api.nvim_create_augroup("nvim-lint", { clear = true })
+local group = vim.api.nvim_create_augroup("nvim-lint", {
+	clear = true,
+})
 vim.api.nvim_create_autocmd("FileType", {
 	desc = "nvim-lint",
 	group = group,

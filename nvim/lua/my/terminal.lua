@@ -1,4 +1,6 @@
-local group = vim.api.nvim_create_augroup("terminal", { clear = true })
+local group = vim.api.nvim_create_augroup("terminal", {
+	clear = true,
+})
 vim.api.nvim_create_autocmd("TermOpen", {
 	desc = "terminal options",
 	group = group,

@@ -18,7 +18,9 @@ local configured_servers = vim.iter(
 	:totable()
 vim.lsp.enable(configured_servers)
 
-local group = vim.api.nvim_create_augroup("lsp", { clear = true })
+local group = vim.api.nvim_create_augroup("lsp", {
+	clear = true,
+})
 vim.api.nvim_create_autocmd("LspAttach", {
 	desc = "LSP options, commands and keymaps",
 	group = group,

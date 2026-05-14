@@ -72,10 +72,14 @@ require("conform").setup({
 			condition = function(_, ctx)
 				local is_js_filetype = vim.regex("\\v^(javascript|typescript)")
 					:match_str(vim.bo[ctx.buf].filetype)
-				local vtsls_attached =
-					next(vim.lsp.get_clients({ bufnr = ctx.buf, name = "vtsls" }))
-				local biome_attached =
-					next(vim.lsp.get_clients({ bufnr = ctx.buf, name = "biome" }))
+				local vtsls_attached = next(vim.lsp.get_clients({
+					bufnr = ctx.buf,
+					name = "vtsls",
+				}))
+				local biome_attached = next(vim.lsp.get_clients({
+					bufnr = ctx.buf,
+					name = "biome",
+				}))
 				if is_js_filetype and not vtsls_attached then
 					return false
 				end
@@ -161,7 +165,9 @@ end, {
 	desc = "synchronous formatting",
 })
 
-local group = vim.api.nvim_create_augroup("conform", { clear = true })
+local group = vim.api.nvim_create_augroup("conform", {
+	clear = true,
+})
 vim.api.nvim_create_autocmd("BufWritePre", {
 	desc = "format on save",
 	group = group,

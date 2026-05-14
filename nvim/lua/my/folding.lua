@@ -16,7 +16,9 @@ vim.o.foldtext = "v:lua.fold_text()"
 vim.opt.fillchars:append({ fold = " " })
 vim.g.markdown_folding = 1
 
-local group = vim.api.nvim_create_augroup("folds", { clear = true })
+local group = vim.api.nvim_create_augroup("folds", {
+	clear = true,
+})
 vim.api.nvim_create_autocmd("BufWinEnter", {
 	desc = "Enable folding and expand all folds",
 	group = group,

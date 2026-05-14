@@ -109,7 +109,9 @@ vim.api.nvim_create_user_command("Relist", function()
 	end
 end, { desc = "re-set listchars" })
 
-local group = vim.api.nvim_create_augroup("indentation", { clear = true })
+local group = vim.api.nvim_create_augroup("indentation", {
+	clear = true,
+})
 vim.api.nvim_create_autocmd("BufWinEnter", {
 	desc = "indentation settings",
 	group = group,

@@ -1,4 +1,6 @@
-local group = vim.api.nvim_create_augroup("autocommands", { clear = true })
+local group = vim.api.nvim_create_augroup("autocommands", {
+	clear = true,
+})
 
 vim.api.nvim_create_autocmd("BufRead", {
 	desc = "restore cursor position",

@@ -5,7 +5,9 @@ vim.pack.add({
 	},
 })
 
-local group = vim.api.nvim_create_augroup("treesitter", { clear = true })
+local group = vim.api.nvim_create_augroup("treesitter", {
+	clear = true,
+})
 vim.api.nvim_create_autocmd("PackChanged", {
 	desc = "update treesitter parsers",
 	group = group,

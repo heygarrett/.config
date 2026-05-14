@@ -1,6 +1,8 @@
 vim.opt.sessionoptions = { "blank", "help", "tabpages" }
 
-local group = vim.api.nvim_create_augroup("sessions", { clear = true })
+local group = vim.api.nvim_create_augroup("sessions", {
+	clear = true,
+})
 
 vim.api.nvim_create_autocmd("VimEnter", {
 	desc = "load or create session on launch",

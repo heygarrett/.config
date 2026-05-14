@@ -48,7 +48,9 @@ local function get_buffer_name()
 	return formatted_file_path
 end
 
-local group = vim.api.nvim_create_augroup("statusline", { clear = true })
+local group = vim.api.nvim_create_augroup("statusline", {
+	clear = true,
+})
 vim.api.nvim_create_autocmd({ "FileType", "BufEnter", "FocusGained" }, {
 	desc = "buffer name variable updated",
 	group = group,
@@ -71,7 +73,9 @@ local function get_search_count()
 		return nil
 	end
 
-	local search_count = vim.fn.searchcount({ maxcount = 0 })
+	local search_count = vim.fn.searchcount({
+		maxcount = 0,
+	})
 	if not (search_count.current and search_count.total) then
 		return nil
 	end
