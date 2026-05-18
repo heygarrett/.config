@@ -125,9 +125,10 @@ function Status_Line()
 	local right_string_length = vim.api.nvim_eval_statusline(right_string, {}).width
 
 	local divider = " | "
+
 	local length = left_string_length + #divider + right_string_length
-	local overflow = length - vim.api.nvim_win_get_width(0)
-	if overflow < 0 then
+	local overflow = (length - vim.api.nvim_win_get_width(0)) > 0
+	if not overflow then
 		divider = "%="
 	end
 
