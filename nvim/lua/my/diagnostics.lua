@@ -50,9 +50,9 @@ vim.diagnostic.config({
 					---@param count integer
 					function(severity, count)
 						return table.concat({
-							"%#DiagnosticSign",
+							"%$DiagnosticSign",
 							({ "Error", "Warn", "Info", "Hint" })[severity],
-							"#",
+							"$",
 							count,
 							"%*",
 						})
