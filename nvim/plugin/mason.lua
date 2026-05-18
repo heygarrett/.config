@@ -31,6 +31,7 @@ require("mason-tool-installer").setup({
 		"just-lsp",
 		"lua_ls",
 		"marksman",
+		"markuplint",
 		"oxlint",
 		"pkl-lsp",
 		"prettierd",
