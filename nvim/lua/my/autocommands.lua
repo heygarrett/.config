@@ -61,3 +61,23 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 			commentstring:gsub("(%S)%%s", "%1 %%s"):gsub("%%s(%S)", "%%s %1")
 	end,
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+	desc = "add barrier to saving commit message if diagnostics are present",
+	group = group,
+	pattern = "jjdescription",
+	callback = function(filetype_event_opts)
+		vim.api.nvim_create_autocmd("ExitPre", {
+			desc = "add barrier to saving commit message if diagnostics are present",
+			group = group,
+			buf = filetype_event_opts.buf,
+			callback = function(exit_event_opts)
+				local diagnostics = vim.diagnostic.count(exit_event_opts.buf)
+				if not vim.tbl_isempty(diagnostics) then
+					-- HACK: https://github.com/neovim/neovim/issues/17256
+					vim.bo[exit_event_opts.buf].modified = true
+				end
+			end,
+		})
+	end,
+})
