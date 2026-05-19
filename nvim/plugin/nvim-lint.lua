@@ -34,7 +34,7 @@ end
 local linters_by_filetype = setmetatable({
 	env = { "dotenv_linter" },
 	fish = { "fish" },
-	html = { "htmlhint", "markuplint" },
+	html = { "markuplint" },
 	jjdescription = { commitlint },
 	yaml = { actionlint },
 }, {
