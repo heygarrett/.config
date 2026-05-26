@@ -18,6 +18,7 @@ require("mason-tool-installer").setup({
 		"clangd",
 		"cmake",
 		"commitlint",
+		"cssls",
 		"dotenv-linter",
 		"eslint",
 		"fish_lsp",
