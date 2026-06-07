@@ -26,6 +26,8 @@ pager = [
 show-cryptographic-signatures = true
 
 [merge-tools.nvimdiff]
+diff-invocation-mode = "file-by-file"
+edit-invocation-mode = "file-by-file"
 program = "sh"
 merge-args = [
 	"-c",
