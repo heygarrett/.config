@@ -21,7 +21,7 @@ pager = [
 	"-c",
 	# diffs are prefixed with arbitrary length line numbers
 	# making indentation with tabs difficult to format
-	'sed "s/\t/$(string repeat --count $TAB_WIDTH \x20)/g" | bat --plain'
+	'bat | string replace \t (string repeat --count $TAB_WIDTH \x20) | bat --plain'
 ]
 show-cryptographic-signatures = true
 
