@@ -1,4 +1,3 @@
-tap "vitorgalvao/tiny-scripts"
 brew "as-tree"
 brew "astyle"
 brew "bat"
