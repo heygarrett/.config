@@ -1,0 +1,7 @@
+{
+	"$schema": "https://raw.githubusercontent.com/markuplint/markuplint/refs/heads/dev/config.schema.json",
+	"extends": ["markuplint:recommended"],
+	"rules": {
+		"use-list": false
+	}
+}

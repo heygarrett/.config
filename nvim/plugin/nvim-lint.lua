@@ -30,11 +30,34 @@ local commitlint = function(_)
 	return config_exists and "commitlint"
 end
 
+---@param bufnr integer
+---@return string
+local markuplint = function(bufnr)
+	local config_exists = next(vim.fs.find(function(name)
+		return name:match("markuplint") ~= nil
+	end, {
+		path = vim.api.nvim_buf_get_name(bufnr),
+		upward = true,
+		limit = 1,
+	}))
+
+	if not config_exists then
+		nvim_lint().linters.markuplint.args = {
+			"--format",
+			"JSON",
+			"--config",
+			vim.fs.joinpath(vim.env.XDG_CONFIG_HOME, "markuplint", ".markuplintrc.json"),
+		}
+	end
+
+	return "markuplint"
+end
+
 ---@type table<string, (string|function)[]>
 local linters_by_filetype = setmetatable({
 	env = { "dotenv_linter" },
 	fish = { "fish" },
-	html = { "markuplint" },
+	html = { markuplint },
 	jjdescription = { commitlint },
 	yaml = { actionlint },
 }, {
