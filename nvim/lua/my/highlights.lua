@@ -51,12 +51,6 @@ end
 
 -- intentional syntax highlights
 -- https://tonsky.me/blog/syntax-highlighting/
-vim.api.nvim_set_hl(0, "Comment", {
-	italic = true,
-	update = true,
-})
-vim.api.nvim_set_hl(0, "@comment", { link = "Comment" })
-
 vim.api.nvim_set_hl(0, "Constant", { fg = "NvimLightMagenta" })
 vim.api.nvim_set_hl(0, "@boolean", { link = "Constant" })
 vim.api.nvim_set_hl(0, "@character", { link = "Constant" })
