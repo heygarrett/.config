@@ -1,4 +1,4 @@
-vim.pack.add({ "https://github.com/mfussenegger/nvim-lint" })
+vim.pack.add({ "https://codeberg.org/mfussenegger/nvim-lint" })
 
 local nvim_lint = function()
 	return require("lint")
