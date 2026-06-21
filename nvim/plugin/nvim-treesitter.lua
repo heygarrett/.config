@@ -38,7 +38,11 @@ vim.api.nvim_create_autocmd("FileType", {
 			return
 		end
 
-		local ignore_install = { "diff", "make" }
+		local ignore_install = {
+			"diff",
+			"just",
+			"make",
+		}
 		if vim.tbl_contains(ignore_install, buf_parser) then
 			return
 		end
