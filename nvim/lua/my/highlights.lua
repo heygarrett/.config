@@ -35,18 +35,9 @@ vim.api.nvim_set_hl(0, "NonText", {
 
 -- clear syntax highlights
 for _, group in ipairs(vim.fn.getcompletion("@", "highlight")) do
-	local keeping = {
-		"comment",
-	}
-	for _, pattern in ipairs(keeping) do
-		if group:match(pattern) then
-			goto continue
-		end
+	if not group:match("comment") then
+		vim.api.nvim_set_hl(0, group, {})
 	end
-
-	vim.api.nvim_set_hl(0, group, {})
-
-	::continue::
 end
 
 -- intentional syntax highlights
