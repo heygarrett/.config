@@ -12,4 +12,5 @@ if [ -e ~/.ssh/id_ed25519 ]; then
 else
 	echo "No SSH key found. Generating key..."
 	ssh-keygen -t ed25519 -C "git@heygarrett.com"
+	ssh-add --apple-use-keychain ~/.ssh/id_ed25519
 fi
