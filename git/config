@@ -1,6 +1,6 @@
 [user]
 	name = Garrett
-	email = garrett@iusevimbtw.com
+	email = git@heygarrett.com
 	signingkey = ~/.ssh/id_ed25519.pub
 [gpg]
 	format = ssh
