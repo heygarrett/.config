@@ -40,8 +40,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			-- FIX: figure out how to wait for the language server to be ready
 			vim.lsp.inlay_hint.enable(true, { bufnr = event_opts.buf })
 			vim.api.nvim_buf_create_user_command(event_opts.buf, "ToggleHints", function()
+				local inlay_hints_enabled =
+					vim.lsp.inlay_hint.is_enabled({ bufnr = event_opts.buf })
 				vim.lsp.inlay_hint.enable(
-					not vim.lsp.inlay_hint.is_enabled({ bufnr = event_opts.buf }),
+					not inlay_hints_enabled,
 					{ bufnr = event_opts.buf }
 				)
 			end, { desc = "toggle inlay hints" })
