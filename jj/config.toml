@@ -50,4 +50,4 @@ resolving-conflicts = false
 
 
 [revsets]
-log = "present(@) | ancestors(immutable_heads().., 2) | present(trunk()) | bookmarks()"
+log = "builtin_log() | bookmarks()"
