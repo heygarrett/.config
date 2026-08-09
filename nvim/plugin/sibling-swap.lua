@@ -4,7 +4,7 @@ local sibling_swap = function()
 	return require("sibling-swap")
 end
 
-require("sibling-swap").setup({
+sibling_swap().setup({
 	use_default_keymaps = false,
 })
 
