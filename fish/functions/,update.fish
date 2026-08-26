@@ -1,6 +1,6 @@
 function ,update
 	echo \n--Homebrew--
-	brew update && brew upgrade --fetch-HEAD
+	brew update && brew upgrade --greedy --fetch-HEAD
 
 	echo \n--Rust--
 	rustup update
