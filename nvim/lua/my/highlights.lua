@@ -63,3 +63,11 @@ vim.api.nvim_set_hl(0, "@operator", { link = "Symbol" })
 
 -- HTML
 vim.api.nvim_set_hl(0, "@none.html", { fg = "NvimLightBlue" })
+
+-- fish
+vim.api.nvim_set_hl(0, "@function.call.fish", { italic = true, fg = "NvimLightCyan" })
+vim.api.nvim_set_hl(0, "@function.builtin.fish", { italic = false, nocombine = true })
+
+-- bash
+vim.api.nvim_set_hl(0, "@function.call.bash", { italic = true, fg = "NvimLightCyan" })
+vim.api.nvim_set_hl(0, "@function.builtin.bash", { italic = false, nocombine = true })
