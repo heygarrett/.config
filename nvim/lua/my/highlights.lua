@@ -51,6 +51,9 @@ vim.api.nvim_set_hl(0, "Declaration", { fg = "NvimLightBlue" })
 vim.api.nvim_set_hl(0, "@lsp.mod.declaration", { link = "Declaration" })
 vim.api.nvim_set_hl(0, "@lsp.mod.definition", { link = "Declaration" })
 
+vim.api.nvim_set_hl(0, "Keyword", { bold = true })
+vim.api.nvim_set_hl(0, "@keyword", { link = "Keyword" })
+
 vim.api.nvim_set_hl(0, "String", { fg = "NvimLightGreen" })
 vim.api.nvim_set_hl(0, "@string", { link = "String" })
 
