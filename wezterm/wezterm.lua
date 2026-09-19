@@ -16,6 +16,9 @@ return {
 	tab_max_width = 1000,
 	use_fancy_tab_bar = false,
 
+	-- avoid accent selector in macOS when holding a key
+	use_ime = false,
+
 	-- HACK: prevent crashes
 	-- https://github.com/wezterm/wezterm/issues/7291#issuecomment-3404387484
 	front_end = "WebGpu",
