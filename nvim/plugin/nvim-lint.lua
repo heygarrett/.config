@@ -107,11 +107,9 @@ vim.api.nvim_create_autocmd("FileType", {
 			group = group,
 			buf = filetype_event_opts.buf,
 			callback = function(lint_event_opts)
-				nvim_lint().try_lint("editorconfig-checker")
-				nvim_lint().try_lint(
-					get_linters(lint_event_opts.buf),
-					{ ignore_errors = true }
-				)
+				local relevant_linters = get_linters(lint_event_opts.buf)
+				table.insert(relevant_linters, "editorconfig-checker")
+				nvim_lint().try_lint(relevant_linters, { ignore_errors = true })
 			end,
 		})
 	end,
